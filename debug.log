@@ -1,0 +1,8 @@
+[0314/034247.235:ERROR:file_io_win.cc(163)] CreateFile C:\Program Files (x86)\settings.dat: Acesso negado. (0x5)
+[0314/034247.240:ERROR:registration_protocol_win.cc(84)] TransactNamedPipe: O pipe foi finalizado. (0x6D)
+[0314/034247.241:ERROR:file_io_win.cc(163)] CreateFile C:\Program Files (x86)\settings.dat: Acesso negado. (0x5)
+[0314/034247.441:ERROR:crashpad_client_win.cc(660)] crash server failed to launch, no dump captured
+[0317/030855.685:ERROR:file_io_win.cc(163)] CreateFile C:\Program Files (x86)\settings.dat: Acesso negado. (0x5)
+[0317/030855.701:ERROR:registration_protocol_win.cc(84)] TransactNamedPipe: O pipe foi finalizado. (0x6D)
+[0317/030855.702:ERROR:file_io_win.cc(163)] CreateFile C:\Program Files (x86)\settings.dat: Acesso negado. (0x5)
+[0317/030855.915:ERROR:crashpad_client_win.cc(660)] crash server failed to launch, no dump captured

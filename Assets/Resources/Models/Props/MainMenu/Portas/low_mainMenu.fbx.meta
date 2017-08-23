@@ -1,0 +1,173 @@
+fileFormatVersion: 2
+guid: 0939d3b2d21d4b44c901603c39392bf2
+timeCreated: 1495924861
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: beak_low
+    100002: cog_low
+    100004: gateway_low
+    100006: //RootNode
+    100008: nail1_low
+    100010: nail2_low
+    100012: nail3_low
+    100014: nail4_low
+    100016: penguin1_low
+    100018: penguin_low
+    100020: pillar1_low
+    100022: pillar2_low
+    100024: pillardoor_low
+    100026: plaque_low
+    100028: rope_low
+    100030: safedoor_door_low
+    100032: safedoor_handle_low
+    100034: safedoor_low
+    100036: tinRoof1_low
+    100038: tinRoof2_low
+    100040: title_low
+    100042: wrench_low
+    400000: beak_low
+    400002: cog_low
+    400004: gateway_low
+    400006: //RootNode
+    400008: nail1_low
+    400010: nail2_low
+    400012: nail3_low
+    400014: nail4_low
+    400016: penguin1_low
+    400018: penguin_low
+    400020: pillar1_low
+    400022: pillar2_low
+    400024: pillardoor_low
+    400026: plaque_low
+    400028: rope_low
+    400030: safedoor_door_low
+    400032: safedoor_handle_low
+    400034: safedoor_low
+    400036: tinRoof1_low
+    400038: tinRoof2_low
+    400040: title_low
+    400042: wrench_low
+    2300000: beak_low
+    2300002: cog_low
+    2300004: gateway_low
+    2300006: nail1_low
+    2300008: nail2_low
+    2300010: nail3_low
+    2300012: nail4_low
+    2300014: penguin1_low
+    2300016: pillar1_low
+    2300018: pillar2_low
+    2300020: plaque_low
+    2300022: rope_low
+    2300024: safedoor_door_low
+    2300026: safedoor_handle_low
+    2300028: tinRoof1_low
+    2300030: tinRoof2_low
+    2300032: wrench_low
+    3300000: beak_low
+    3300002: cog_low
+    3300004: gateway_low
+    3300006: nail1_low
+    3300008: nail2_low
+    3300010: nail3_low
+    3300012: nail4_low
+    3300014: penguin1_low
+    3300016: pillar1_low
+    3300018: pillar2_low
+    3300020: plaque_low
+    3300022: rope_low
+    3300024: safedoor_door_low
+    3300026: safedoor_handle_low
+    3300028: tinRoof1_low
+    3300030: tinRoof2_low
+    3300032: wrench_low
+    4300000: safedoor_handle_low
+    4300002: safedoor_door_low
+    4300004: cog_low
+    4300006: gateway_low
+    4300008: wrench_low
+    4300010: nail4_low
+    4300012: pillar1_low
+    4300014: pillar2_low
+    4300016: tinRoof1_low
+    4300018: tinRoof2_low
+    4300020: nail1_low
+    4300022: nail2_low
+    4300024: nail3_low
+    4300026: plaque_low
+    4300028: rope_low
+    4300030: penguin1_low
+    4300032: beak_low
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 40
+    meshCompression: 3
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

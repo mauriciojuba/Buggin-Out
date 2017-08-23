@@ -1,0 +1,227 @@
+fileFormatVersion: 2
+guid: 5191a40ee54729342a31fbb32e5a3960
+timeCreated: 1493869969
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: banquinha
+    100002: banquinho1
+    100004: banquinho_2
+    100006: colher
+    100008: //RootNode
+    100010: dedal
+    100012: elastico1
+    100014: garfo1
+    100016: garfo1 1
+    100018: garfo2
+    100020: garfo2 1
+    100022: latinha
+    100024: lixeira
+    100026: palito
+    100028: palito1
+    100030: palito1 1
+    100032: palito2
+    100034: palitos1
+    100036: palitos10
+    100038: palitos11
+    100040: palitos12
+    100042: palitos13
+    100044: palitos14
+    100046: palitos2
+    100048: palitos4
+    100050: palitos5
+    100052: palitos6
+    100054: pano
+    100056: parasol
+    100058: pisca_pisca
+    100060: poste_luz
+    100062: redoma
+    100064: suporte1
+    100066: suporte2
+    400000: banquinha
+    400002: banquinho1
+    400004: banquinho_2
+    400006: colher
+    400008: //RootNode
+    400010: dedal
+    400012: elastico1
+    400014: garfo1
+    400016: garfo1 1
+    400018: garfo2
+    400020: garfo2 1
+    400022: latinha
+    400024: lixeira
+    400026: palito
+    400028: palito1
+    400030: palito1 1
+    400032: palito2
+    400034: palitos1
+    400036: palitos10
+    400038: palitos11
+    400040: palitos12
+    400042: palitos13
+    400044: palitos14
+    400046: palitos2
+    400048: palitos4
+    400050: palitos5
+    400052: palitos6
+    400054: pano
+    400056: parasol
+    400058: pisca_pisca
+    400060: poste_luz
+    400062: redoma
+    400064: suporte1
+    400066: suporte2
+    2300000: colher
+    2300002: dedal
+    2300004: elastico1
+    2300006: garfo1
+    2300008: garfo1 1
+    2300010: garfo2
+    2300012: garfo2 1
+    2300014: latinha
+    2300016: palito
+    2300018: palito1
+    2300020: palito1 1
+    2300022: palito2
+    2300024: palitos1
+    2300026: palitos10
+    2300028: palitos11
+    2300030: palitos12
+    2300032: palitos13
+    2300034: palitos14
+    2300036: palitos2
+    2300038: palitos4
+    2300040: palitos5
+    2300042: palitos6
+    2300044: pano
+    2300046: pisca_pisca
+    2300048: redoma
+    2300050: suporte1
+    2300052: suporte2
+    3300000: colher
+    3300002: dedal
+    3300004: elastico1
+    3300006: garfo1
+    3300008: garfo1 1
+    3300010: garfo2
+    3300012: garfo2 1
+    3300014: latinha
+    3300016: palito
+    3300018: palito1
+    3300020: palito1 1
+    3300022: palito2
+    3300024: palitos1
+    3300026: palitos10
+    3300028: palitos11
+    3300030: palitos12
+    3300032: palitos13
+    3300034: palitos14
+    3300036: palitos2
+    3300038: palitos4
+    3300040: palitos5
+    3300042: palitos6
+    3300044: pano
+    3300046: pisca_pisca
+    3300048: redoma
+    3300050: suporte1
+    3300052: suporte2
+    4300000: dedal
+    4300002: garfo1
+    4300004: garfo2
+    4300006: latinha
+    4300008: palito1
+    4300010: suporte1
+    4300012: palito2
+    4300014: suporte2
+    4300016: palito1
+    4300018: elastico1
+    4300020: garfo1
+    4300022: garfo2
+    4300024: redoma
+    4300026: palito
+    4300028: pisca_pisca
+    4300030: colher
+    4300032: pano
+    4300034: palitos1
+    4300036: palitos2
+    4300038: palitos4
+    4300040: palitos5
+    4300042: palitos6
+    4300044: palitos10
+    4300046: palitos11
+    4300048: palitos12
+    4300050: palitos13
+    4300052: palitos14
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 75
+    meshCompression: 3
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

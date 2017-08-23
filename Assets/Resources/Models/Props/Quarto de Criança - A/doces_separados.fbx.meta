@@ -1,0 +1,154 @@
+fileFormatVersion: 2
+guid: b996ab2f88440804ea55531ed9525802
+timeCreated: 1496627846
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: alfajor_low
+    100002: alfajor_mordido_low
+    100004: belly_low
+    100006: brisadeiro_low
+    100008: cherry_low
+    100010: choco1_low
+    100012: choco2_low
+    100014: choco3_low
+    100016: cookie_low
+    100018: doces_low
+    100020: //RootNode
+    100022: gometa_low
+    100024: meia_rosquinha_low
+    100026: pitpat_low
+    100028: rosquinha_low
+    100030: transform2
+    100032: wummy_low
+    400000: alfajor_low
+    400002: alfajor_mordido_low
+    400004: belly_low
+    400006: brisadeiro_low
+    400008: cherry_low
+    400010: choco1_low
+    400012: choco2_low
+    400014: choco3_low
+    400016: cookie_low
+    400018: doces_low
+    400020: //RootNode
+    400022: gometa_low
+    400024: meia_rosquinha_low
+    400026: pitpat_low
+    400028: rosquinha_low
+    400030: transform2
+    400032: wummy_low
+    2300000: alfajor_low
+    2300002: alfajor_mordido_low
+    2300004: belly_low
+    2300006: brisadeiro_low
+    2300008: cherry_low
+    2300010: choco1_low
+    2300012: choco2_low
+    2300014: choco3_low
+    2300016: cookie_low
+    2300018: gometa_low
+    2300020: meia_rosquinha_low
+    2300022: pitpat_low
+    2300024: rosquinha_low
+    2300026: wummy_low
+    3300000: alfajor_low
+    3300002: alfajor_mordido_low
+    3300004: belly_low
+    3300006: brisadeiro_low
+    3300008: cherry_low
+    3300010: choco1_low
+    3300012: choco2_low
+    3300014: choco3_low
+    3300016: cookie_low
+    3300018: gometa_low
+    3300020: meia_rosquinha_low
+    3300022: pitpat_low
+    3300024: rosquinha_low
+    3300026: wummy_low
+    4300000: cookie_low
+    4300002: choco1_low
+    4300004: choco2_low
+    4300006: choco3_low
+    4300008: alfajor_mordido_low
+    4300010: alfajor_low
+    4300012: meia_rosquinha_low
+    4300014: wummy_low
+    4300016: cherry_low
+    4300018: pitpat_low
+    4300020: belly_low
+    4300022: gometa_low
+    4300024: rosquinha_low
+    4300026: brisadeiro_low
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 15
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

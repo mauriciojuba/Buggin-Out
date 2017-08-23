@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 5463dfe06c13b6841b998a019994ce10
+timeCreated: 1490828313
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - LifeSpritePrefab: {fileID: 1146200433711558, guid: b46077a81ac1e2c4bad22ae7b242dfeb,
+      type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

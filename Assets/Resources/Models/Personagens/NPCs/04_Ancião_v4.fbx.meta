@@ -1,0 +1,261 @@
+fileFormatVersion: 2
+guid: ffe001c9938b17947b988640ef1d41aa
+timeCreated: 1495997760
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: "Anci\xE3o2:ANCIENT"
+    100004: "Anci\xE3o2:back"
+    100006: "Anci\xE3o2:Base_CTRL"
+    100008: "Anci\xE3o2:Beard_01"
+    100010: "Anci\xE3o2:Beard_01_Cluster"
+    100012: "Anci\xE3o2:Beard_01_CTRL"
+    100014: "Anci\xE3o2:Beard_02"
+    100016: "Anci\xE3o2:Beard_02_Cluster"
+    100018: "Anci\xE3o2:Beard_02_CTRL"
+    100020: "Anci\xE3o2:Beard_03"
+    100022: "Anci\xE3o2:Beard_03_Cluster"
+    100024: "Anci\xE3o2:Beard_03_CTRL"
+    100026: "Anci\xE3o2:Beard_04"
+    100028: "Anci\xE3o2:Beard_05"
+    100030: "Anci\xE3o2:Beard_06"
+    100032: "Anci\xE3o2:Beard_07"
+    100034: "Anci\xE3o2:Beard_Curve"
+    100036: "Anci\xE3o2:Beard_IK"
+    100038: "Anci\xE3o2:Beard_SIK"
+    100040: "Anci\xE3o2:Body"
+    100042: "Anci\xE3o2:Conch"
+    100044: "Anci\xE3o2:Conch 1"
+    100046: "Anci\xE3o2:Conch_CTRL"
+    100048: "Anci\xE3o2:Foot_01"
+    100050: "Anci\xE3o2:Foot_01_Cluster"
+    100052: "Anci\xE3o2:Foot_02"
+    100054: "Anci\xE3o2:Foot_02_Cluster"
+    100056: "Anci\xE3o2:Foot_03"
+    100058: "Anci\xE3o2:Foot_03_Cluster"
+    100060: "Anci\xE3o2:Foot_04"
+    100062: "Anci\xE3o2:Foot_05"
+    100064: "Anci\xE3o2:Foot_06"
+    100066: "Anci\xE3o2:Foot_07"
+    100068: "Anci\xE3o2:Foot_08"
+    100070: "Anci\xE3o2:Foot_09"
+    100072: "Anci\xE3o2:Foot_CTRL"
+    100074: "Anci\xE3o2:Foot_IK"
+    100076: "Anci\xE3o2:Foot_IK_Curve"
+    100078: "Anci\xE3o2:Foot_SIK"
+    100080: "Anci\xE3o2:Head"
+    100082: "Anci\xE3o2:Head_CTRL"
+    100084: "Anci\xE3o2:ikHandle1"
+    100086: "Anci\xE3o2:ikHandle2"
+    100088: "Anci\xE3o2:Jaw_01"
+    100090: "Anci\xE3o2:Jaw_02"
+    100092: "Anci\xE3o2:Jaw_CTRL"
+    100094: "Anci\xE3o2:joint3"
+    100096: "Anci\xE3o2:JOINTS"
+    100098: "Anci\xE3o2:L_arm"
+    100100: "Anci\xE3o2:L_Arm_CTRL"
+    100102: "Anci\xE3o2:L_Elbow"
+    100104: "Anci\xE3o2:L_Elbow_CTRL"
+    100106: "Anci\xE3o2:L_Finger_NULL"
+    100108: "Anci\xE3o2:L_Fingers_01"
+    100110: "Anci\xE3o2:L_Fingers_02"
+    100112: "Anci\xE3o2:L_Fingers_03"
+    100114: "Anci\xE3o2:L_Fingers_CTRL"
+    100116: "Anci\xE3o2:L_Hand_CTRL"
+    100118: "Anci\xE3o2:L_Staff_01"
+    100120: "Anci\xE3o2:L_Staff_02"
+    100122: "Anci\xE3o2:L_Staff_CTRL"
+    100124: "Anci\xE3o2:L_Thumb_01"
+    100126: "Anci\xE3o2:L_Thumb_02"
+    100128: "Anci\xE3o2:L_Thumb_CTRL"
+    100130: "Anci\xE3o2:L_Thumb_NULL"
+    100132: "Anci\xE3o2:L_Wrist"
+    100134: "Anci\xE3o2:left"
+    100136: "Anci\xE3o2:MESH"
+    100138: "Anci\xE3o2:R_arm"
+    100140: "Anci\xE3o2:R_Arm_CTRL"
+    100142: "Anci\xE3o2:R_Elbow"
+    100144: "Anci\xE3o2:R_Elbow_CTRL"
+    100146: "Anci\xE3o2:R_Finger_CTRL"
+    100148: "Anci\xE3o2:R_Finger_NULL"
+    100150: "Anci\xE3o2:R_Fingers_01"
+    100152: "Anci\xE3o2:R_Fingers_02"
+    100154: "Anci\xE3o2:R_Fingers_03"
+    100156: "Anci\xE3o2:R_Hand_CTRL"
+    100158: "Anci\xE3o2:R_Thumb_01"
+    100160: "Anci\xE3o2:R_Thumb_02"
+    100162: "Anci\xE3o2:R_Thumb_CTRL"
+    100164: "Anci\xE3o2:R_Thumb_NULL"
+    100166: "Anci\xE3o2:R_Wrist"
+    100168: "Anci\xE3o2:ROOT"
+    100170: "Anci\xE3o2:Root_CTRL"
+    100172: "Anci\xE3o2:Shoulder_RT"
+    100174: "Anci\xE3o2:Staff"
+    400000: //RootNode
+    400002: "Anci\xE3o2:ANCIENT"
+    400004: "Anci\xE3o2:back"
+    400006: "Anci\xE3o2:Base_CTRL"
+    400008: "Anci\xE3o2:Beard_01"
+    400010: "Anci\xE3o2:Beard_01_Cluster"
+    400012: "Anci\xE3o2:Beard_01_CTRL"
+    400014: "Anci\xE3o2:Beard_02"
+    400016: "Anci\xE3o2:Beard_02_Cluster"
+    400018: "Anci\xE3o2:Beard_02_CTRL"
+    400020: "Anci\xE3o2:Beard_03"
+    400022: "Anci\xE3o2:Beard_03_Cluster"
+    400024: "Anci\xE3o2:Beard_03_CTRL"
+    400026: "Anci\xE3o2:Beard_04"
+    400028: "Anci\xE3o2:Beard_05"
+    400030: "Anci\xE3o2:Beard_06"
+    400032: "Anci\xE3o2:Beard_07"
+    400034: "Anci\xE3o2:Beard_Curve"
+    400036: "Anci\xE3o2:Beard_IK"
+    400038: "Anci\xE3o2:Beard_SIK"
+    400040: "Anci\xE3o2:Body"
+    400042: "Anci\xE3o2:Conch"
+    400044: "Anci\xE3o2:Conch 1"
+    400046: "Anci\xE3o2:Conch_CTRL"
+    400048: "Anci\xE3o2:Foot_01"
+    400050: "Anci\xE3o2:Foot_01_Cluster"
+    400052: "Anci\xE3o2:Foot_02"
+    400054: "Anci\xE3o2:Foot_02_Cluster"
+    400056: "Anci\xE3o2:Foot_03"
+    400058: "Anci\xE3o2:Foot_03_Cluster"
+    400060: "Anci\xE3o2:Foot_04"
+    400062: "Anci\xE3o2:Foot_05"
+    400064: "Anci\xE3o2:Foot_06"
+    400066: "Anci\xE3o2:Foot_07"
+    400068: "Anci\xE3o2:Foot_08"
+    400070: "Anci\xE3o2:Foot_09"
+    400072: "Anci\xE3o2:Foot_CTRL"
+    400074: "Anci\xE3o2:Foot_IK"
+    400076: "Anci\xE3o2:Foot_IK_Curve"
+    400078: "Anci\xE3o2:Foot_SIK"
+    400080: "Anci\xE3o2:Head"
+    400082: "Anci\xE3o2:Head_CTRL"
+    400084: "Anci\xE3o2:ikHandle1"
+    400086: "Anci\xE3o2:ikHandle2"
+    400088: "Anci\xE3o2:Jaw_01"
+    400090: "Anci\xE3o2:Jaw_02"
+    400092: "Anci\xE3o2:Jaw_CTRL"
+    400094: "Anci\xE3o2:joint3"
+    400096: "Anci\xE3o2:JOINTS"
+    400098: "Anci\xE3o2:L_arm"
+    400100: "Anci\xE3o2:L_Arm_CTRL"
+    400102: "Anci\xE3o2:L_Elbow"
+    400104: "Anci\xE3o2:L_Elbow_CTRL"
+    400106: "Anci\xE3o2:L_Finger_NULL"
+    400108: "Anci\xE3o2:L_Fingers_01"
+    400110: "Anci\xE3o2:L_Fingers_02"
+    400112: "Anci\xE3o2:L_Fingers_03"
+    400114: "Anci\xE3o2:L_Fingers_CTRL"
+    400116: "Anci\xE3o2:L_Hand_CTRL"
+    400118: "Anci\xE3o2:L_Staff_01"
+    400120: "Anci\xE3o2:L_Staff_02"
+    400122: "Anci\xE3o2:L_Staff_CTRL"
+    400124: "Anci\xE3o2:L_Thumb_01"
+    400126: "Anci\xE3o2:L_Thumb_02"
+    400128: "Anci\xE3o2:L_Thumb_CTRL"
+    400130: "Anci\xE3o2:L_Thumb_NULL"
+    400132: "Anci\xE3o2:L_Wrist"
+    400134: "Anci\xE3o2:left"
+    400136: "Anci\xE3o2:MESH"
+    400138: "Anci\xE3o2:R_arm"
+    400140: "Anci\xE3o2:R_Arm_CTRL"
+    400142: "Anci\xE3o2:R_Elbow"
+    400144: "Anci\xE3o2:R_Elbow_CTRL"
+    400146: "Anci\xE3o2:R_Finger_CTRL"
+    400148: "Anci\xE3o2:R_Finger_NULL"
+    400150: "Anci\xE3o2:R_Fingers_01"
+    400152: "Anci\xE3o2:R_Fingers_02"
+    400154: "Anci\xE3o2:R_Fingers_03"
+    400156: "Anci\xE3o2:R_Hand_CTRL"
+    400158: "Anci\xE3o2:R_Thumb_01"
+    400160: "Anci\xE3o2:R_Thumb_02"
+    400162: "Anci\xE3o2:R_Thumb_CTRL"
+    400164: "Anci\xE3o2:R_Thumb_NULL"
+    400166: "Anci\xE3o2:R_Wrist"
+    400168: "Anci\xE3o2:ROOT"
+    400170: "Anci\xE3o2:Root_CTRL"
+    400172: "Anci\xE3o2:Shoulder_RT"
+    400174: "Anci\xE3o2:Staff"
+    4300000: "Anci\xE3o2:Staff"
+    4300002: "Anci\xE3o2:Body"
+    4300004: "Anci\xE3o2:Conch"
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: "Anci\xE3o2:Body"
+    13700002: "Anci\xE3o2:Conch"
+    13700004: "Anci\xE3o2:Staff"
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 70
+    meshCompression: 3
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

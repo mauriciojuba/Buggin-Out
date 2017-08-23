@@ -1,0 +1,175 @@
+fileFormatVersion: 2
+guid: 29255823fcc2823458be52408550bd06
+timeCreated: 1496104255
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: creditpaper_low
+    100002: //RootNode
+    100004: fork1_low
+    100006: fork2_low
+    100008: pencil_1_low
+    100010: pencil_2_low
+    100012: pencil_support_1_low
+    100014: pencil_support_2_low
+    100016: ramsterwheel_low
+    100018: ramsterwheel_support_low
+    100020: scroll_low
+    100022: scroll_support_1_low
+    100024: scroll_support_2_low
+    100026: spotlight_case_low
+    100028: spotlight_cover_low
+    100030: spotlight_lamp_low
+    100032: spotlight_pivot_low
+    100034: spotlight_ring_low
+    100036: timingbelt_1_low
+    100038: timingbelt_2_low
+    400000: creditpaper_low
+    400002: //RootNode
+    400004: fork1_low
+    400006: fork2_low
+    400008: pencil_1_low
+    400010: pencil_2_low
+    400012: pencil_support_1_low
+    400014: pencil_support_2_low
+    400016: ramsterwheel_low
+    400018: ramsterwheel_support_low
+    400020: scroll_low
+    400022: scroll_support_1_low
+    400024: scroll_support_2_low
+    400026: spotlight_case_low
+    400028: spotlight_cover_low
+    400030: spotlight_lamp_low
+    400032: spotlight_pivot_low
+    400034: spotlight_ring_low
+    400036: timingbelt_1_low
+    400038: timingbelt_2_low
+    2300000: creditpaper_low
+    2300002: fork1_low
+    2300004: fork2_low
+    2300006: pencil_1_low
+    2300008: pencil_2_low
+    2300010: pencil_support_1_low
+    2300012: pencil_support_2_low
+    2300014: ramsterwheel_low
+    2300016: ramsterwheel_support_low
+    2300018: scroll_low
+    2300020: scroll_support_1_low
+    2300022: scroll_support_2_low
+    2300024: spotlight_case_low
+    2300026: spotlight_cover_low
+    2300028: spotlight_lamp_low
+    2300030: spotlight_pivot_low
+    2300032: spotlight_ring_low
+    2300034: timingbelt_1_low
+    2300036: timingbelt_2_low
+    3300000: creditpaper_low
+    3300002: fork1_low
+    3300004: fork2_low
+    3300006: pencil_1_low
+    3300008: pencil_2_low
+    3300010: pencil_support_1_low
+    3300012: pencil_support_2_low
+    3300014: ramsterwheel_low
+    3300016: ramsterwheel_support_low
+    3300018: scroll_low
+    3300020: scroll_support_1_low
+    3300022: scroll_support_2_low
+    3300024: spotlight_case_low
+    3300026: spotlight_cover_low
+    3300028: spotlight_lamp_low
+    3300030: spotlight_pivot_low
+    3300032: spotlight_ring_low
+    3300034: timingbelt_1_low
+    3300036: timingbelt_2_low
+    4300000: ramsterwheel_low
+    4300002: fork1_low
+    4300004: fork2_low
+    4300006: spotlight_lamp_low
+    4300008: spotlight_case_low
+    4300010: spotlight_cover_low
+    4300012: spotlight_pivot_low
+    4300014: spotlight_ring_low
+    4300016: scroll_support_1_low
+    4300018: scroll_support_2_low
+    4300020: pencil_support_1_low
+    4300022: pencil_support_2_low
+    4300024: timingbelt_1_low
+    4300026: timingbelt_2_low
+    4300028: pencil_1_low
+    4300030: pencil_2_low
+    4300032: scroll_low
+    4300034: ramsterwheel_support_low
+    4300036: creditpaper_low
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 70
+    meshCompression: 3
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
