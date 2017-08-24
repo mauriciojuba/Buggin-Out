@@ -20,6 +20,11 @@ public class HornControl : MonoBehaviour {
 
         if (rdb.velocity.magnitude > 0.1f)
         transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(rdb.velocity), Time.deltaTime*5);
+
+		if (Input.GetButtonDown ("X P1") || Input.GetKeyDown (KeyCode.LeftControl)) {
+			
+			anim.SetTrigger ("Attack");
+		}
     }
 
     void FixedUpdate()
