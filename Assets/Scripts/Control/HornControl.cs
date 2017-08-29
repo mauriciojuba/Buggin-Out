@@ -7,6 +7,9 @@ public class HornControl : MonoBehaviour {
     Rigidbody rdb;
     public GameObject cameragame;
     public Animator anim;
+    bool natela = false;
+    public Transform telapos;
+    int i=0;
 	// Use this for initialization
 	void Start () {
         rdb=GetComponent<Rigidbody>();
@@ -25,6 +28,21 @@ public class HornControl : MonoBehaviour {
 			
 			anim.SetTrigger ("Attack");
 		}
+
+        if (Input.GetButtonDown("Jump"))
+        {
+            anim.SetBool("tocam", true);
+            natela = true;
+            rdb.isKinematic = true;
+            
+        }
+
+        if (natela)
+        {
+            transform.localScale = Vector3.MoveTowards(transform.localScale, telapos.localScale, Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, telapos.position, Time.deltaTime*10);
+            transform.rotation = Quaternion.Lerp(transform.rotation, telapos.rotation, Time.deltaTime);
+        }
     }
 
     void FixedUpdate()
