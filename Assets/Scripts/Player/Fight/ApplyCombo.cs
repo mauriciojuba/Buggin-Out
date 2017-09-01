@@ -5,7 +5,9 @@ using UnityEngine;
 
 public class ApplyCombo: MonoBehaviour{
 	private Combo combo1 = new Combo(new string[] {"X","X","X"});
-	private Movimentacao3D AnimRef;
+	private Combo combo2 = new Combo(new string[] {"X","X","Y"});
+	[SerializeField] private HornControl SetAnim;
+	[SerializeField] private Animator Anim;
 	[SerializeField] private Fight DamageRef;
 	public List<int> IndexCombo;
 	public bool Attacking;
@@ -14,8 +16,8 @@ public class ApplyCombo: MonoBehaviour{
 
 	void Start(){
 		combo1.PlayerNumber = GetComponent<PlayerNumb> ().PlayerNumber;
+		combo2.PlayerNumber = GetComponent<PlayerNumb> ().PlayerNumber;
 		//AnimRef = GetComponent<Movimentacao3D> ();
-		combo1.Mov = AnimRef;
 	}
 
 	void Update(){
@@ -29,32 +31,42 @@ public class ApplyCombo: MonoBehaviour{
 //		}
 //		if (!ChargingAttack) {
 	//	if(!AnimRef.InDialogue){
-			if (combo1.CheckCombo ()) {
-				if (!IndexCombo.Contains (combo1.CurrentIndex)) {
-					IndexCombo.Add (combo1.CurrentIndex);
-				}
-				AnimRef.SetAttackAnim (IndexCombo [0]);
-				Attacking = combo1.Attacking;
-			}
+		if (combo1.CheckCombo ()) {
+//				if (!IndexCombo.Contains (combo1.CurrentIndex)) {
+//					IndexCombo.Add (combo1.CurrentIndex);
+//				}
+			IndexCombo.Add (combo1.currentButton);
+			SetAnim.SetAttackAnim (IndexCombo [0]);
+			Attacking = combo1.Attacking;
+		}
+		if (combo2.CheckCombo ()) {
+			//				if (!IndexCombo.Contains (combo1.CurrentIndex)) {
+			//					IndexCombo.Add (combo1.CurrentIndex);
+			//				}
+			IndexCombo.Add (combo2.currentButton);
+			SetAnim.SetAttackAnim (IndexCombo [0]);
+			Attacking = combo2.Attacking;
+		}
 			if (IndexCombo.Count > 0) {
-				if (AnimRef.Anim.GetCurrentAnimatorStateInfo (1).IsName ("Attack " + IndexCombo [0])) {
+			if (Anim.GetCurrentAnimatorStateInfo (1).IsName ("Attack " + IndexCombo [0])) {
 					if (IndexCombo.Count > 1) {
-						AnimRef.SetAttackAnim (IndexCombo [1]);
+					SetAnim.SetAttackAnim (IndexCombo [1]);
 						IndexCombo.Remove (IndexCombo [0]);
 					} else {
-						AnimRef.SetAttackAnim (0);
+					SetAnim.SetAttackAnim (0);
 						IndexCombo.Clear ();
 					}
 				}
 
 				if (!Attacking) {
-					AnimRef.SetAttackAnim (0);
+				SetAnim.SetAttackAnim (0);
 					IndexCombo.Clear ();
 				}
 			}
 			if (Time.time > combo1.TimeLastButtonPressed + combo1.TimeBetweenButtons) {
 				Attacking = false;
 			}
+		Anim.SetBool ("Attacking", Attacking);
 //		} if(ChargingAttack) {
 //			SetChargedAttack ();
 //		}
@@ -67,7 +79,7 @@ public class ApplyCombo: MonoBehaviour{
 
 	void SetChargedAttack(){
 		if (ChargingAttack) {
-			AnimRef.CanMove = false;
+			//AnimRef.CanMove = false;
 			if (DamageRef.StrongDamage < DamageRef.MaxStrongDamage) {
 				DamageRef.StrongDamage += 10 * Time.deltaTime;
 			} else {
@@ -79,7 +91,7 @@ public class ApplyCombo: MonoBehaviour{
 
 	void ExecuteChargedAttack(){
 		ChargedAttack = true;
-		AnimRef.SetStrongAttackAnim ("Release");
+		//AnimRef.SetStrongAttackAnim ("Release");
 	}
 }
 
@@ -89,6 +101,7 @@ public class Combo{
 	public string[] Buttons;
 	public int PlayerNumber;
 	public int CurrentIndex = 0;
+	public int currentButton;
 	public bool Attacking;
 	public Movimentacao3D Mov;
 
@@ -115,6 +128,12 @@ public class Combo{
 //			} else {
 				if (Buttons [CurrentIndex] == "X" && Input.GetButtonDown ("X P" + PlayerNumber) ||
 					Buttons [CurrentIndex] == "Y" && Input.GetButtonDown ("Y P" + PlayerNumber)) {
+
+				if (Buttons [CurrentIndex] == "X") {
+					currentButton = 1;
+				} else if (Buttons [CurrentIndex] == "Y") {
+					currentButton = 2;
+				}
 					TimeLastButtonPressed = Time.time;
 					CurrentIndex++;
 					Attacking = true;

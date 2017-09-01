@@ -21,13 +21,15 @@ public class HornControl : MonoBehaviour {
         if(cameragame!=null)
         mov = cameragame.transform.TransformVector(mov);
 
-        if (rdb.velocity.magnitude > 0.1f)
-        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(rdb.velocity), Time.deltaTime*5);
-
-		if (Input.GetButtonDown ("X P1") || Input.GetKeyDown (KeyCode.LeftControl)) {
-			
-			anim.SetTrigger ("Attack");
+		if (rdb.velocity.magnitude > 0.1f) {
+			Vector3 Direction = new Vector3 (rdb.velocity.x, 0, rdb.velocity.z);
+			transform.rotation = Quaternion.Lerp (transform.rotation, Quaternion.LookRotation (Direction), Time.deltaTime * 5);
 		}
+
+//		if (Input.GetButtonDown ("X P1") || Input.GetKeyDown (KeyCode.LeftControl)) {
+//			
+//			anim.SetTrigger ("Attack");
+//		}
 
         if (Input.GetButtonDown("Jump"))
         {
@@ -52,4 +54,12 @@ public class HornControl : MonoBehaviour {
         anim.SetFloat("Mov", rdb.velocity.magnitude);
 
     }
+
+	public void SetAttackAnim(int AttackNumber){
+		if (anim == null) {
+			return;
+		}
+		anim.SetTrigger ("Attack");
+		anim.SetInteger ("AttackNumber", AttackNumber);
+	}
 }
