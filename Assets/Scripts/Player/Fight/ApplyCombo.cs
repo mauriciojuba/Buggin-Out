@@ -6,7 +6,7 @@ using UnityEngine;
 public class ApplyCombo: MonoBehaviour{
 	private Combo combo1 = new Combo(new string[] {"X","X","X"});
 	private Combo combo2 = new Combo(new string[] {"X","X","Y"});
-	[SerializeField] private HornControl SetAnim;
+	[SerializeField] private Movimentacao3D SetAnim;
 	[SerializeField] private Animator Anim;
 	[SerializeField] private Fight DamageRef;
 	public List<int> IndexCombo;

@@ -9,7 +9,7 @@ public class ComboSystem : MonoBehaviour {
 	int PlayerNumber;
 	bool Attacking;
 	[SerializeField] Animator Anim;
-	[SerializeField] HornControl SetAnim;
+	[SerializeField] AnimationControl SetAnim;
 
 	void Start () {
 		PlayerNumber = GetComponent<PlayerNumb> ().PlayerNumber;

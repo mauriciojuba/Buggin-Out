@@ -5,13 +5,15 @@ using UnityEngine;
 public class HornControl : MonoBehaviour {
     Vector3 mov;
     Rigidbody rdb;
+	AnimationControl AnimCTRL;
     public GameObject cameragame;
     public Animator anim;
-    bool natela = false;
+	public bool natela = false;
     public Transform telapos;
     int i=0;
 	// Use this for initialization
 	void Start () {
+		AnimCTRL = GetComponent<AnimationControl> ();
         rdb=GetComponent<Rigidbody>();
 	}
 	
@@ -31,13 +33,13 @@ public class HornControl : MonoBehaviour {
 //			anim.SetTrigger ("Attack");
 //		}
 
-        if (Input.GetButtonDown("Jump"))
-        {
-            anim.SetBool("tocam", true);
-            natela = true;
-            rdb.isKinematic = true;
-            
-        }
+//        if (Input.GetButtonDown("Jump"))
+//        {
+//            anim.SetBool("tocam", true);
+//            natela = true;
+//            rdb.isKinematic = true;
+//            
+//        }
 
         if (natela)
         {
@@ -51,15 +53,15 @@ public class HornControl : MonoBehaviour {
     {
         Vector3 nvel = new Vector3(mov.x*5, rdb.velocity.y, mov.z*5);
         rdb.velocity = nvel ;
-        anim.SetFloat("Mov", rdb.velocity.magnitude);
+		AnimCTRL.SetMovimentAnimation(rdb.velocity.magnitude);
 
     }
-
-	public void SetAttackAnim(int AttackNumber){
-		if (anim == null) {
-			return;
-		}
-		anim.SetTrigger ("Attack");
-		anim.SetInteger ("AttackNumber", AttackNumber);
-	}
+//
+//	public void SetAttackAnim(int AttackNumber){
+//		if (anim == null) {
+//			return;
+//		}
+//		anim.SetTrigger ("Attack");
+//		anim.SetInteger ("AttackNumber", AttackNumber);
+//	}
 }
