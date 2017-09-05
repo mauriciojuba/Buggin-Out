@@ -22,9 +22,9 @@ public class HornControl : MonoBehaviour {
         mov = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         if(cameragame!=null)
         mov = cameragame.transform.TransformVector(mov);
-
-		if (rdb.velocity.magnitude > 0.1f) {
-			Vector3 Direction = new Vector3 (rdb.velocity.x, 0, rdb.velocity.z);
+        Vector3 Direction = new Vector3(rdb.velocity.x, 0, rdb.velocity.z);
+        if (Direction.magnitude > 0.1f) {
+			
 			transform.rotation = Quaternion.Lerp (transform.rotation, Quaternion.LookRotation (Direction), Time.deltaTime * 5);
 		}
 

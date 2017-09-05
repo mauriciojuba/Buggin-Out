@@ -39,7 +39,7 @@ public class CameraControl : MonoBehaviour {
        
 
         if (!playerOnScreen) {
-            DollyCam.position = Vector3.Lerp(DollyCam.position, posicionaCamera(CalculaCamTarget(numPlayers)) + tgtvelocity * 30, (velocidadeMovimento / 10) * Time.smoothDeltaTime);
+            DollyCam.position = Vector3.Lerp(DollyCam.position, posicionaCamera(CalculaCamTarget(numPlayers)) + tgtvelocity * 2, (velocidadeMovimento / 10) * Time.smoothDeltaTime);
             target.position = CalculaCamTarget(numPlayers);
         }
         //ControlaBordaTela();
