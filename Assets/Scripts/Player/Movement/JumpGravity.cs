@@ -30,7 +30,7 @@ public class JumpGravity : MonoBehaviour {
 	void Update () {
 		if (Moviment != null) {
 			if (!Moviment.natela) {
-				if (Rb.velocity.y < 0) {
+				if (Rb.velocity.y < 0 && !InGround) {
 					Vector3 V3 = Rb.velocity;
 					V3.y += Physics.gravity.y * (FallMultiplier - 1) * Time.deltaTime;
 					Rb.velocity = V3;
@@ -47,10 +47,10 @@ public class JumpGravity : MonoBehaviour {
 	void Jump(){
 		//verifica se o player esta encostando no chão
 		InGround = Physics.Linecast (transform.position, transform.position - Vector3.up * 1.1f, NoIgnoredLayers);
-		Debug.DrawLine (transform.position,transform.position - Vector3.up * 1.1f);
+		Debug.DrawLine (transform.position,transform.position - Vector3.up);
 		//se estiver no chao, pula, apertando A no controle.
 		AnimCTRL.SetGrounded(InGround);
-		if (Input.GetButtonDown ("A P" + PlayerNumber) && InGround && !Moviment.natela) {
+		if (Input.GetButtonDown ("A P" + PlayerNumber) && InGround && !Moviment.natela || Input.GetButtonDown("Jump") && InGround && !Moviment.natela) {
 
 			Jumping = true;
 			AnimCTRL.SetJumpAnim ();
@@ -58,7 +58,7 @@ public class JumpGravity : MonoBehaviour {
 			V3.y = JumpForce;
 			Rb.velocity = V3;
 		}
-		if (Input.GetButtonUp ("A P" + PlayerNumber)) {
+		if (Input.GetButtonUp ("A P" + PlayerNumber) || Input.GetButtonUp("Jump")) {
 			Jumping = false;
 		}
 //			}

@@ -23,6 +23,16 @@ public class HornControl : MonoBehaviour {
         if(cameragame!=null)
         mov = cameragame.transform.TransformVector(mov);
         Vector3 Direction = new Vector3(rdb.velocity.x, 0, rdb.velocity.z);
+
+
+		if (mov.magnitude > 0) {
+			anim.SetLayerWeight (1, 1);
+			anim.SetLayerWeight (2, 0);
+		} else if (mov.magnitude <= 0) {
+			anim.SetLayerWeight (2, 1);
+			anim.SetLayerWeight (1, 0);
+		}
+
         if (Direction.magnitude > 0.1f) {
 			
 			transform.rotation = Quaternion.Lerp (transform.rotation, Quaternion.LookRotation (Direction), Time.deltaTime * 5);
@@ -56,6 +66,8 @@ public class HornControl : MonoBehaviour {
 		AnimCTRL.SetMovimentAnimation(rdb.velocity.magnitude);
 
     }
+
+
 //
 //	public void SetAttackAnim(int AttackNumber){
 //		if (anim == null) {
