@@ -11,6 +11,7 @@ public class HornControl : MonoBehaviour {
 	public bool natela = false;
 	public bool Going = false;
     public Transform telapos;
+	public Transform AntPos;
     int i=0;
 
 	[SerializeField] GOToScreen Screen;
@@ -47,17 +48,23 @@ public class HornControl : MonoBehaviour {
 //			anim.SetTrigger ("Attack");
 //		}
 
-		if (Input.GetButtonDown ("Jump") && !Going) {
+		if (Input.GetButtonDown ("RB P1") && !Going) {
+			if (!natela) {
+				AntPos.position = transform.position;
+				AntPos.rotation = transform.rotation;
+			}
 			Going = true;
-			anim.SetBool ("tocam", true);
-			natela = !natela;
+			anim.SetBool ("tocam", !natela);
 			rdb.isKinematic = true;
-			DollyCam.playerOnScreen = natela;
+			DollyCam.ChecarNaTela ();
 		}
 
-		if (natela)
+		if (Going)
         {
-			Screen.GoToScreen (telapos,transform.gameObject);
+			if (!natela)
+				Screen.GoToScreen (telapos, gameObject);
+			else
+				Screen.GoOffScreen (AntPos, gameObject);
         }
     }
 

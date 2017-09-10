@@ -36,7 +36,6 @@ public class CameraControl : MonoBehaviour {
 
     private void LateUpdate()
     {
-       
 
         if (!playerOnScreen) {
             DollyCam.position = Vector3.Lerp(DollyCam.position, posicionaCamera(CalculaCamTarget(numPlayers)) + tgtvelocity * 2, (velocidadeMovimento / 10) * Time.smoothDeltaTime);
@@ -55,7 +54,6 @@ public class CameraControl : MonoBehaviour {
     private void Update()
     {
 		ResetGame ();
-
 //        for (int i = 0; i < players.Length; i++)
 //        {
 //            if (players[i] != null|| players[i].GetComponent<Movimentacao3D>() != null )
@@ -72,7 +70,6 @@ public class CameraControl : MonoBehaviour {
 //        }
         
     }
-
 
     void ChecarQuantidadePlayers()
     {
@@ -91,6 +88,16 @@ public class CameraControl : MonoBehaviour {
             }
         }
     }
+
+	public void ChecarNaTela(){
+		for (int i = 0; i < players.Length; i++) {
+			if (players [i].GetComponent<HornControl> ().natela || players [i].GetComponent<HornControl> ().Going) {
+				playerOnScreen = true;
+			} else {
+				playerOnScreen = false;
+			}
+		}
+	}
 
     //marca o ponto entre os jogadores que a camera ficará olhando
     public Vector3 CalculaCamTarget(int numPlayers)
