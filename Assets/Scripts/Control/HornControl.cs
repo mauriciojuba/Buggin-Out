@@ -9,8 +9,12 @@ public class HornControl : MonoBehaviour {
     public GameObject cameragame;
     public Animator anim;
 	public bool natela = false;
+	public bool Going = false;
     public Transform telapos;
     int i=0;
+
+	[SerializeField] GOToScreen Screen;
+	[SerializeField] CameraControl DollyCam;
 	// Use this for initialization
 	void Start () {
 		AnimCTRL = GetComponent<AnimationControl> ();
@@ -43,19 +47,17 @@ public class HornControl : MonoBehaviour {
 //			anim.SetTrigger ("Attack");
 //		}
 
-//        if (Input.GetButtonDown("Jump"))
-//        {
-//            anim.SetBool("tocam", true);
-//            natela = true;
-//            rdb.isKinematic = true;
-//            
-//        }
+		if (Input.GetButtonDown ("Jump") && !Going) {
+			Going = true;
+			anim.SetBool ("tocam", true);
+			natela = !natela;
+			rdb.isKinematic = true;
+			DollyCam.playerOnScreen = natela;
+		}
 
-        if (natela)
+		if (natela)
         {
-            transform.localScale = Vector3.MoveTowards(transform.localScale, telapos.localScale, Time.deltaTime);
-            transform.position = Vector3.MoveTowards(transform.position, telapos.position, Time.deltaTime*10);
-            transform.rotation = Quaternion.Lerp(transform.rotation, telapos.rotation, Time.deltaTime);
+			Screen.GoToScreen (telapos,transform.gameObject);
         }
     }
 
