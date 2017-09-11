@@ -48,7 +48,7 @@ public class HornControl : MonoBehaviour {
 //			anim.SetTrigger ("Attack");
 //		}
 
-		if (Input.GetButtonDown ("RB P1") && !Going) {
+		if (Input.GetButtonDown ("RB P1") && !Going || Input.GetKeyDown(KeyCode.LeftAlt) && !Going) {
 			if (!natela) {
 				AntPos.position = transform.position;
 				AntPos.rotation = transform.rotation;
@@ -70,9 +70,15 @@ public class HornControl : MonoBehaviour {
 
     void FixedUpdate()
     {
-        Vector3 nvel = new Vector3(mov.x*5, rdb.velocity.y, mov.z*5);
-        rdb.velocity = nvel ;
-		AnimCTRL.SetMovimentAnimation(rdb.velocity.magnitude);
+		if (!natela) {
+			Vector3 nvel = new Vector3 (mov.x * 5, rdb.velocity.y, mov.z * 5);
+			rdb.velocity = nvel;
+			AnimCTRL.SetMovimentAnimation (rdb.velocity.magnitude);
+		} else {
+			Vector3 nvel = new Vector3 (mov.x * 5, mov.z * 5, rdb.velocity.z);
+			rdb.velocity = nvel;
+			AnimCTRL.SetMovimentAnimation (rdb.velocity.magnitude);
+		}
 
     }
 
