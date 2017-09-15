@@ -24,25 +24,41 @@ public class HornControl : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        mov = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        if(cameragame!=null)
-        mov = cameragame.transform.TransformVector(mov);
-        Vector3 Direction = new Vector3(rdb.velocity.x, 0, rdb.velocity.z);
+        if (!natela)
+        {
+            mov = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+            if (cameragame != null)
+                mov = cameragame.transform.TransformVector(mov);
+            Vector3 Direction = new Vector3(rdb.velocity.x, 0, rdb.velocity.z);
 
 
-		if (mov.magnitude > 0) {
-			anim.SetLayerWeight (1, 1);
-			anim.SetLayerWeight (2, 0);
-		} else if (mov.magnitude <= 0) {
-			anim.SetLayerWeight (2, 1);
-			anim.SetLayerWeight (1, 0);
-		}
+            if (mov.magnitude > 0)
+            {
+                anim.SetLayerWeight(1, 1);
+                anim.SetLayerWeight(2, 0);
+            }
+            else if (mov.magnitude <= 0)
+            {
+                anim.SetLayerWeight(2, 1);
+                anim.SetLayerWeight(1, 0);
+            }
 
-        if (Direction.magnitude > 0.1f) {
+            if (Direction.magnitude > 0.1f)
+            {
 			
-			transform.rotation = Quaternion.Lerp (transform.rotation, Quaternion.LookRotation (Direction), Time.deltaTime * 5);
-		}
+                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(Direction), Time.deltaTime * 5);
+            }
+        }
+        else
+        {
 
+            mov = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
+            mov = cameragame.transform.TransformVector(mov);
+            transform.Translate(mov*transform.localScale.magnitude*Time.deltaTime,Space.World);
+            transform.LookAt(cameragame.transform,cameragame.transform.up);
+
+
+        }
 //		if (Input.GetButtonDown ("X P1") || Input.GetKeyDown (KeyCode.LeftControl)) {
 //			
 //			anim.SetTrigger ("Attack");
