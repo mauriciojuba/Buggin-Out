@@ -64,7 +64,7 @@ public class HornControl : MonoBehaviour {
 //			anim.SetTrigger ("Attack");
 //		}
 
-		if (Input.GetButtonDown ("RB P1") && !Going || Input.GetKeyDown(KeyCode.LeftAlt) && !Going) {
+		if (Input.GetButtonDown ("RB P1") && !Going /*|| Input.GetKeyDown(KeyCode.LeftAlt) && !Going*/) {
 			if (!natela) {
 				AntPos.position = transform.position;
 				AntPos.rotation = transform.rotation;
