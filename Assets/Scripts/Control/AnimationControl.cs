@@ -71,4 +71,24 @@ public class AnimationControl : MonoBehaviour {
 		RightFootFightCol.SetActive (false);
 	}
 	#endregion
+
+	public void PunchSound(string Event){
+		FMODUnity.RuntimeManager.PlayOneShot (Event, transform.position);
+	}
+
+	public void PickObjAnimation(){
+		Anim.SetTrigger ("Grab");
+	}
+
+	public void ActiveGrabbingAnim(){
+		Anim.SetBool ("Grabbing", true);
+	}
+
+	public void DesactiveGrabbinAnim(){
+		Anim.SetBool ("Grabbing", false);
+	}
+
+	public void ThrowObjAnim(){
+		Anim.SetTrigger ("Throw");
+	}
 }

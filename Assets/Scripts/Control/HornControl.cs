@@ -16,6 +16,7 @@ public class HornControl : MonoBehaviour {
 
 	[SerializeField] GOToScreen Screen;
 	[SerializeField] CameraControl DollyCam;
+	[SerializeField] float CamSpeed;
 	// Use this for initialization
 	void Start () {
 		AnimCTRL = GetComponent<AnimationControl> ();
@@ -26,7 +27,7 @@ public class HornControl : MonoBehaviour {
 	void Update () {
         if (!natela)
         {
-            mov = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+            mov = new Vector3(Input.GetAxis("Horizontal P1"), 0, Input.GetAxis("Vertical P1"));
             if (cameragame != null)
                 mov = cameragame.transform.TransformVector(mov);
             Vector3 Direction = new Vector3(rdb.velocity.x, 0, rdb.velocity.z);
@@ -52,9 +53,9 @@ public class HornControl : MonoBehaviour {
         else
         {
 
-            mov = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
+            mov = new Vector3(Input.GetAxis("Horizontal P1"), Input.GetAxis("Vertical P1"), 0);
             mov = cameragame.transform.TransformVector(mov);
-            transform.Translate(mov*transform.localScale.magnitude*Time.deltaTime,Space.World);
+			transform.Translate(mov*transform.localScale.magnitude*Time.deltaTime*CamSpeed,Space.World);
             transform.LookAt(cameragame.transform,cameragame.transform.up);
 
 
