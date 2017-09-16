@@ -6,6 +6,9 @@ using UnityEngine.Audio;
 public class SFX : MonoBehaviour {
 
 
+    [FMODUnity.EventRef]
+    public string Evento;
+
     public string Objeto;
     public AudioMixerGroup Mixer;
 	[SerializeField] private AudioSource Audio;
@@ -13,12 +16,15 @@ public class SFX : MonoBehaviour {
 
     public void PlaySoundSFX(string Name)
     {
-        SoundManager.PlaySFX(gameObject, Name);
-		Audio = GetComponent<AudioSource> ();
-		Audio.outputAudioMixerGroup = Mixer;
+
+        FMODUnity.RuntimeManager.PlayOneShot(Name, transform.position);
+
+       // SoundManager.PlaySFX(gameObject, Name);
+       //Audio = GetComponent<AudioSource> ();
+       //Audio.outputAudioMixerGroup = Mixer;
     }
 
-    public void AplicaMixer()
+  public void AplicaMixer()
     {
 		if (GetComponent<AudioSource>() != null) {
 			Audio = GetComponent<AudioSource> ();
@@ -76,5 +82,6 @@ public class SFX : MonoBehaviour {
        
 
     }
+    
 }
 

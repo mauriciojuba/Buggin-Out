@@ -7,7 +7,10 @@ using UnityEngine.UI;
 public class Life : MonoBehaviour {
 
 
-	public enum LifeType {Player, Enemy, Boss, Object};
+    [FMODUnity.EventRef]
+    public string Evento;
+
+    public enum LifeType {Player, Enemy, Boss, Object};
     public enum EnemyType {Mosquito, Aranha};
 	public enum ObjectType {Box, Barricade, Luz};
     public LifeType LifeOF;
@@ -135,9 +138,11 @@ public class Life : MonoBehaviour {
 				foreach (Rigidbody rb in RBGB) {
 					rb.velocity = gameObject.GetComponent<Rigidbody> ().velocity;
 				}
-				if (sfx != null) {
-					sfx.PlaySoundSfxGrupo ("Caixa Quebrando");
-				}
+
+                    FMODUnity.RuntimeManager.PlayOneShot(Evento, transform.position);
+				//if (sfx != null) {
+				//	sfx.PlaySoundSfxGrupo ("Caixa Quebrando");
+				//}
                     Destroy(gameObject);
                     break;
 			case ObjectType.Barricade:
