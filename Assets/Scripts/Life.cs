@@ -126,6 +126,7 @@ public class Life : MonoBehaviour {
 			    break;
 		}
 	}
+
     void ObjectLife()
     {
         if (LifeQuant <= 0)

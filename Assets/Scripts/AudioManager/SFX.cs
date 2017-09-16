@@ -10,7 +10,6 @@ public class SFX : MonoBehaviour {
     public string Evento;
 
     public string Objeto;
-    public AudioMixerGroup Mixer;
 	[SerializeField] private AudioSource Audio;
 	public GameObject luz;
 
@@ -19,31 +18,30 @@ public class SFX : MonoBehaviour {
 
         FMODUnity.RuntimeManager.PlayOneShot(Name, transform.position);
 
-       // SoundManager.PlaySFX(gameObject, Name);
-       //Audio = GetComponent<AudioSource> ();
-       //Audio.outputAudioMixerGroup = Mixer;
     }
 
-  public void AplicaMixer()
+    public void PlaySoundSfxGrupo()
     {
-		if (GetComponent<AudioSource>() != null) {
-			Audio = GetComponent<AudioSource> ();
-			Audio.outputAudioMixerGroup = Mixer;
-		}
+        FMODUnity.RuntimeManager.PlayOneShot(Evento, transform.position);
     }
 
-    public void PlaySoundSfxGrupo(string Grupo)
-    {
-        SoundManager.PlaySFX(SoundManager.LoadFromGroup(Grupo));
-        AplicaMixer();
-    }
+    /* 
+     * public void AplicaMixer()
+       {
+           if (GetComponent<AudioSource>() != null) {
+               Audio = GetComponent<AudioSource> ();
+               Audio.outputAudioMixerGroup = Mixer;
+           }
+       }
+       */
+
+
 
     private void OnTriggerEnter(Collider hit)
     {
         if (hit.gameObject.name == "Chao")
         {
-            if (Objeto == "Metal")
-                SoundManager.PlaySFX(gameObject, SoundManager.LoadFromGroup("Tampinhas"));
+            PlaySoundSfxGrupo();
         }
     }
 
@@ -53,9 +51,7 @@ public class SFX : MonoBehaviour {
         {
             if(Objeto == "Vidro")
             {
-                SoundManager.PlaySFX(gameObject,SoundManager.LoadFromGroup("Objetos quebrando vidro"));
-                Audio = GetComponent<AudioSource>();
-                Audio.outputAudioMixerGroup = Mixer;
+                PlaySoundSfxGrupo();
             }
 
 			if (Objeto == "Destruct") {
@@ -63,8 +59,8 @@ public class SFX : MonoBehaviour {
 					LuzQuebrando lq = luz.GetComponent<LuzQuebrando> ();
 					if (lq != null) {
 						lq.Quebrou = true;
-                        SoundManager.PlaySFX(gameObject, "holofote_falhando_01");
-					}
+                        PlaySoundSfxGrupo();
+                    }
 				}
 			}
         }
