@@ -16,7 +16,6 @@ public class LifeObj : MonoBehaviour
 
     public GameObject[] Loot;
     [Range(0, 100)]
-
     public int LootChance;
 
 

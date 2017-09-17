@@ -16,19 +16,25 @@ public class FSMMosquito : MonoBehaviour
 
     #region Variaveis
 
+    private GOToScreen Screen;
+
     public GameObject Target;
     public List<GameObject> Players;
 
+    [Header("Vida")]
+    public float Life = 100;                                   //Vida Do NPC
+    [SerializeField] private float MaxLife;                    //Vida Maxima
+    public bool TakeDamage = false;                            //Verifica se o player levou dano
+
+    [Header("Vida Player")]
     public GameObject VidaPlayer;
     public GameObject VidaTatu;
 
-
+    [Header("Movimentaçãp")]
     public float MoveSpeed;                                    //Velocidade De Movimentção
     public float RotationSpeed;                                //Velocidade De Rotação
 
-
-    public Transform[] waypoints;                              //Lista de Waypoints
-
+    [Header("Distacias")]
     public float Vision = 5f;                                  //Area Para o Npc Identificar o Player
     public float SafeDist = 10f;                               //Area Para o Npc desistir de perceguir o Player
     public float EnemyDist = 2f;                               //Area para Iniciar o Ataque
@@ -37,27 +43,27 @@ public class FSMMosquito : MonoBehaviour
     public GameObject ModelMosquito;
     private float LifeDist;
 
-
-    public float Life = 100;                                   //Vida Do NPC
-    [SerializeField] private float MaxLife;                    //Vida Maxima
-
-    public bool TakeDamage = false;                            //Verifica se o player levou dano
+   
     private float[] PlayersDist = new float[2];
     public Animator MosquitoAni;                               //Aramazena as animações do mosquito
     private Transform myTransform;                             //
     private int currentWayPoint;                               //
+
+    [Header("WayPoint")]
+    public Transform[] waypoints;                              //Lista de Waypoints
     public float TimeToNextPoint = 5f;                         //Tempo para o proximo way point
     private float TimeTo;                                      //
     private bool cor = false;
     public GameObject[] hitbox;                                  //Hitbox do ataque do mosquito
+
     public bool grappled = false;                              //Verifica se o mosquito esta sendo agarrado
-    [SerializeField] private Rigidbody rb;                     //
-    [SerializeField] private float CooldownAtk = 3f;           //Tempo de recarga do ataque
-    [SerializeField] private float TimerAtk;                   //Tempo de recarga do ataque
-    [SerializeField] private float Distace;                    //Distancia entre o NPC e o player
-    [SerializeField] private float TimeToChangeTarget = 5f;    //
-    [SerializeField] private Collider DeathCollider;
-    [SerializeField] private bool reachScreen;
+    private Rigidbody rb;                     //
+    private float CooldownAtk = 3f;           //Tempo de recarga do ataque
+    private float TimerAtk;                   //Tempo de recarga do ataque
+    private float Distace;                    //Distancia entre o NPC e o player
+    private float TimeToChangeTarget = 5f;    //
+    private Collider DeathCollider;
+    private bool reachScreen;
     public float velTransicao;                                 //Velocidade da tranzição 
     public Transform model;
     public Transform direcoes;
@@ -86,6 +92,9 @@ public class FSMMosquito : MonoBehaviour
 
     void Start()
     {
+
+        Screen = GameObject.Find("GoToScreen").GetComponent<GOToScreen>();
+
         //teste
         //if(GameObject.Find("SoundManager") != null)
         //SoundManager.PlayCappedSFX("Mosquito_Flying_Loop_01", "Mosquito_Flying_Loop_01_cap");
@@ -109,8 +118,7 @@ public class FSMMosquito : MonoBehaviour
         myTransform = transform;
         rb = gameObject.GetComponent<Rigidbody>();
         MaxLife = Life;
-		if (GameObject.FindWithTag("ScreenGlass") != null)
-			camScreen = GameObject.FindWithTag ("ScreenGlass").transform;
+		
 		if (GameObject.FindWithTag ("DollyCam") != null)
 			DollyCam = GameObject.FindWithTag ("DollyCam").GetComponent<CameraControl> ();
     }
@@ -168,11 +176,9 @@ public class FSMMosquito : MonoBehaviour
                 break;
 
             case FSMStates.Grappled:
-                Grappled();
                 break;
 
             case FSMStates.Thrown:
-                Thrown();
                 break;
 
             case FSMStates.DrainLife:
@@ -188,7 +194,6 @@ public class FSMMosquito : MonoBehaviour
                 break;
 
             case FSMStates.Transition:
-                Transition();
                 break;
 
             case FSMStates.GoToScreen:
@@ -386,7 +391,12 @@ public class FSMMosquito : MonoBehaviour
 
     void goToScreen()
     {
-        if (!reachScreen)
+
+        Screen.GoToScreen(camScreen,gameObject);
+
+
+
+        /*if (!reachScreen)
         {
             transform.localPosition = Vector3.MoveTowards(transform.localPosition, new Vector3(camScreen.localPosition.x + _2dX,
                 camScreen.localPosition.y + _2dY, camScreen.localPosition.z), velTransicao);
@@ -414,6 +424,7 @@ public class FSMMosquito : MonoBehaviour
             onScreen = false;
             state = FSMStates.Fall;
         }
+        */
     }
 
     //faz o mosquito sair da tela
@@ -421,6 +432,8 @@ public class FSMMosquito : MonoBehaviour
     void exitScreen()
     {
 
+
+        /*
 		MoveSpeed = 4f;
 
         transform.position = Vector3.MoveTowards(transform.position, new Vector3(DollyCam.target.position.x,
@@ -441,6 +454,8 @@ public class FSMMosquito : MonoBehaviour
           //  model.localRotation = Quaternion.Euler(0, 0, 0);
             toWorld = false;
         }
+        */
+
 
     }
 
@@ -650,34 +665,8 @@ public class FSMMosquito : MonoBehaviour
     }
     #endregion
 
-    //estado do mosquito agarrado
-    #region Grappled
-    private void Grappled()
-    {
-        grappled = true;
-        MosquitoAni.SetBool("IsIdle", true);
-        MosquitoAni.SetBool("IsParolling", false);
-        MosquitoAni.SetBool("FightingWalk", false);
-        MosquitoAni.SetBool("UsingWings", false);
-    }
-    #endregion
 
-    //estado do mosquito sendo arremessado
-    #region Thrown
-    private void Thrown()
-    {
-        grappled = false;
-        MosquitoAni.SetBool("IsIdle", false);
-        MosquitoAni.SetBool("IsParolling", false);
-        MosquitoAni.SetBool("FightingWalk", false);
-        MosquitoAni.SetBool("UsingWings", true);
-        if (!returned)
-        {
-            StartCoroutine(ResetStates());
-            returned = true;
-        }
-    }
-    #endregion
+   
 
     //estado do mosquito sugando a vida do player
     #region Drain Life
@@ -729,7 +718,7 @@ public class FSMMosquito : MonoBehaviour
 				ModelMosquito.transform.localEulerAngles = new Vector3 (0, 0, 0);
 			}
 			if (transform.localScale != new Vector3 (1, 1, 1)) {
-				transform.localScale = Vector3.MoveTowards (transform.localScale, new Vector3 (1, 1, 1), velTransicao / 10);
+			//	transform.localScale = Vector3.MoveTowards (transform.localScale, new Vector3 (1, 1, 1), velTransicao / 10);
 			}
 		}
         Descer();
@@ -740,6 +729,7 @@ public class FSMMosquito : MonoBehaviour
             MosquitoAni.SetBool("UsingWings", false);
             MosquitoAni.SetTrigger("Death");
             gameObject.GetComponent<CapsuleCollider>().enabled = false;
+            if(DeathCollider != null)
             DeathCollider.enabled = true;
         }
 
@@ -830,12 +820,7 @@ public class FSMMosquito : MonoBehaviour
     }
     #endregion
 
-    //deletar
-    #region Transition
-    private void Transition()
-    {
-    }
-    #endregion
+    
 
     public void SetTakeDamageAnim()
     {
