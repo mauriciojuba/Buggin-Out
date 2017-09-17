@@ -718,10 +718,18 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+      - time: 0.12597315
+        functionName: SetRightTypeOfAttack
+        data: Basic
+        objectReferenceParameter: {fileID: 11500000, guid: 5d9b5e3bc974c634a868df0dd32af592,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+      additiveReferencePoseFrame: 380
     - serializedVersion: 16
       name: ATK_XX_Horn
       takeName: ATK_XX_Horn
@@ -755,7 +763,7 @@ ModelImporter:
         intParameter: 0
         messageOptions: 0
       - time: 0.9250642
-        functionName: DesactiveRightFightCollider
+        functionName: DesactiveLeftFightCollider
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 5d9b5e3bc974c634a868df0dd32af592,
           type: 3}
@@ -765,6 +773,14 @@ ModelImporter:
       - time: 0.108529836
         functionName: DesactiveRightFightCollider
         data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 5d9b5e3bc974c634a868df0dd32af592,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.06233585
+        functionName: SetLeftTypeOfAttack
+        data: Basic
         objectReferenceParameter: {fileID: 11500000, guid: 5d9b5e3bc974c634a868df0dd32af592,
           type: 3}
         floatParameter: 0
@@ -822,6 +838,14 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+      - time: 0.059740026
+        functionName: SetRightTypeOfAttack
+        data: Basic
+        objectReferenceParameter: {fileID: 11500000, guid: 5d9b5e3bc974c634a868df0dd32af592,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -874,6 +898,14 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+      - time: 0.048052087
+        functionName: SetHeadTypeOfAttack
+        data: Strong
+        objectReferenceParameter: {fileID: 11500000, guid: 5d9b5e3bc974c634a868df0dd32af592,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -913,6 +945,14 @@ ModelImporter:
       - time: 0.84625244
         functionName: DesactiveRightFightCollider
         data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 5d9b5e3bc974c634a868df0dd32af592,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.058441162
+        functionName: SetRightTypeOfAttack
+        data: Strong
         objectReferenceParameter: {fileID: 11500000, guid: 5d9b5e3bc974c634a868df0dd32af592,
           type: 3}
         floatParameter: 0
@@ -965,6 +1005,14 @@ ModelImporter:
       - time: 0.96641034
         functionName: DesactiveLeftFightCollider
         data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 5d9b5e3bc974c634a868df0dd32af592,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.050649006
+        functionName: SetLeftTypeOfAttack
+        data: Strong
         objectReferenceParameter: {fileID: 11500000, guid: 5d9b5e3bc974c634a868df0dd32af592,
           type: 3}
         floatParameter: 0
@@ -1497,7 +1545,7 @@ ModelImporter:
       lastFrame: 1330
       wrapMode: 0
       orientationOffsetY: 0
-      level: 1.3
+      level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
@@ -1507,7 +1555,7 @@ ModelImporter:
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 1
-      keepOriginalPositionY: 1
+      keepOriginalPositionY: 0
       keepOriginalPositionXZ: 0
       heightFromFeet: 0
       mirror: 0

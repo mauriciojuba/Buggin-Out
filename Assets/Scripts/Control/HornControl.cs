@@ -11,6 +11,7 @@ public class HornControl : MonoBehaviour {
 	public bool natela = false;
     public Vector2 limiteHorizontal,limiteVertical;
 	public bool Going = false;
+	public bool CanMove = true;
     public Transform telapos;
 	public Transform AntPos;
     int i=0;
@@ -26,62 +27,65 @@ public class HornControl : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (!natela)
-        {
-            mov = new Vector3(Input.GetAxis("Horizontal P1"), 0, Input.GetAxis("Vertical P1"));
-            if (cameragame != null)
-                mov = cameragame.transform.TransformVector(mov);
-            Vector3 Direction = new Vector3(rdb.velocity.x, 0, rdb.velocity.z);
+		if (CanMove) {
+			if (!natela) {
+				mov = new Vector3 (Input.GetAxis ("Horizontal P1"), 0, Input.GetAxis ("Vertical P1"));
+				if (cameragame != null)
+					mov = cameragame.transform.TransformVector (mov);
+				Vector3 Direction = new Vector3 (rdb.velocity.x, 0, rdb.velocity.z);
 
 
-            if (mov.magnitude > 0)
-            {
-                anim.SetLayerWeight(1, 1);
-                anim.SetLayerWeight(2, 0);
-            }
-            else if (mov.magnitude <= 0)
-            {
-                anim.SetLayerWeight(2, 1);
-                anim.SetLayerWeight(1, 0);
-            }
+				if (mov.magnitude > 0) {
+					anim.SetLayerWeight (1, 1);
+					anim.SetLayerWeight (2, 0);
+				} else if (mov.magnitude <= 0) {
+					anim.SetLayerWeight (2, 1);
+					anim.SetLayerWeight (1, 0);
+				}
 
-            if (Direction.magnitude > 0.1f)
-            {
+				if (Direction.magnitude > 0.1f) {
 			
-                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(Direction), Time.deltaTime * 5);
-            }
-        }
-        else
-        {
+					transform.rotation = Quaternion.Lerp (transform.rotation, Quaternion.LookRotation (Direction), Time.deltaTime * 5);
+				}
+			} else {
 
-            mov = new Vector3(Input.GetAxis("Horizontal P1"), Input.GetAxis("Vertical P1"), 0);
-            mov = cameragame.transform.TransformVector(mov);
-            mov = CheckPositionOnScreen(mov);
-			transform.Translate(mov*transform.localScale.magnitude*Time.deltaTime*CamSpeed,Space.World);
-            transform.LookAt(cameragame.transform,transform.up+mov);
-        }
+				mov = new Vector3 (Input.GetAxis ("Horizontal P1"), Input.GetAxis ("Vertical P1"), 0);
+				mov = cameragame.transform.TransformVector (mov);
+				mov = CheckPositionOnScreen (mov);
+				transform.Translate (mov * transform.localScale.magnitude * Time.deltaTime * CamSpeed, Space.World);
+				transform.LookAt (cameragame.transform, transform.up + mov);
+				if (mov.magnitude > 0) {
+					anim.SetLayerWeight (1, 1);
+					anim.SetLayerWeight (2, 0);
+				} else if (mov.magnitude <= 0) {
+					anim.SetLayerWeight (2, 1);
+					anim.SetLayerWeight (1, 0);
+				}
+			}
 //		if (Input.GetButtonDown ("X P1") || Input.GetKeyDown (KeyCode.LeftControl)) {
 //			
 //			anim.SetTrigger ("Attack");
 //		}
-		if (Input.GetButtonDown ("RB P1") && !Going || Input.GetKeyDown(KeyCode.LeftAlt) && !Going) {
-			if (!natela) {
-				AntPos.position = transform.position;
-				AntPos.rotation = transform.rotation;
+			if (Input.GetButtonDown ("RB P1") && !Going || Input.GetKeyDown (KeyCode.LeftAlt) && !Going) {
+				if (!natela) {
+					AntPos.position = transform.position;
+					AntPos.rotation = transform.rotation;
+				}
+				Going = true;
+				anim.SetBool ("tocam", !natela);
+				rdb.isKinematic = true;
+				DollyCam.ChecarNaTela ();
 			}
-			Going = true;
-			anim.SetBool ("tocam", !natela);
-			rdb.isKinematic = true;
-			DollyCam.ChecarNaTela ();
-		}
 
-		if (Going)
-        {
-			if (!natela)
-				Screen.GoToScreen (telapos, gameObject);
-			else
-				Screen.GoOffScreen (AntPos, gameObject);
-        }
+			if (Going) {
+				if (!natela)
+					Screen.GoToScreen (telapos, gameObject);
+				else
+					Screen.GoOffScreen (AntPos, gameObject);
+			}
+		} else {
+			rdb.velocity = Vector3.zero;
+		}
     }
 Vector3 CheckPositionOnScreen(Vector3 movFactor){
 

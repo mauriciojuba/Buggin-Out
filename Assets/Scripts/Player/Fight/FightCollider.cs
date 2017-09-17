@@ -9,6 +9,7 @@ public class FightCollider : MonoBehaviour {
 	public string CharacterName;
 	public GameObject Player;
 	public GameObject EnemyHit;
+	public string Style;
 
 
 	void OnTriggerEnter (Collider col){
@@ -24,7 +25,7 @@ public class FightCollider : MonoBehaviour {
 						ApplyDamage ();
 
 						//Som de Ataque
-
+						PlaySound(Style);
 
 						//coloca particula de Ataque
 						InstantiateParticle();

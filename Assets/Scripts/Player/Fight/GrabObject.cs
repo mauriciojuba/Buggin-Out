@@ -55,6 +55,7 @@ public class GrabObject : MonoBehaviour {
 			if (Vector3.Distance (transform.position, BoxProximity.transform.position) < MinDist) {
 				targetRotation = Quaternion.LookRotation (new Vector3 (BoxProximity.transform.position.x, BoxProximity.transform.position.y - 0.668f, BoxProximity.transform.position.z) - transform.position);
 				PickUp = true;
+				gameObject.GetComponent<HornControl> ().CanMove = false;
 				Debug.LogWarning ("Pode Pegar");
 			}
 		}
@@ -74,6 +75,7 @@ public class GrabObject : MonoBehaviour {
 		BoxProximity.GetComponent<Rigidbody> ().isKinematic = true;
 		BoxProximity.GetComponent<Collider> ().isTrigger = true;
 		BoxProximity.transform.position = PointPick.position;
+		gameObject.GetComponent<HornControl> ().CanMove = true;
 		BoxProximity.transform.SetParent (PointPick);
 	}
 

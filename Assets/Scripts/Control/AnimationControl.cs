@@ -76,6 +76,22 @@ public class AnimationControl : MonoBehaviour {
 		FMODUnity.RuntimeManager.PlayOneShot (Event, transform.position);
 	}
 
+	public void SetRightFootTypeOfAttack(string Event){
+		RightFootFightCol.GetComponent<FightCollider> ().Style = Event;
+	}
+		
+	public void SetHeadTypeOfAttack(string Event){
+		HeadFightCol.GetComponent<FightCollider> ().Style = Event;
+	}
+
+	public void SetLeftTypeOfAttack(string Event){
+		LeftFightCol.GetComponent<FightCollider> ().Style = Event;
+	}
+
+	public void SetRightTypeOfAttack(string Event){
+		RightFightCol.GetComponent<FightCollider> ().Style = Event;
+	}
+
 	public void PickObjAnimation(){
 		Anim.SetTrigger ("Grab");
 	}
