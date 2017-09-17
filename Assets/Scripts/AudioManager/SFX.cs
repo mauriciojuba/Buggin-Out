@@ -70,7 +70,7 @@ public class SFX : MonoBehaviour {
             if (Objeto == "Destruct")
             {
 
-				SoundManager.PlayCappedSFX(SoundManager.LoadFromGroup("Objetos Quebrando"), "1");
+                PlaySoundSfxGrupo();
             }
         }
 

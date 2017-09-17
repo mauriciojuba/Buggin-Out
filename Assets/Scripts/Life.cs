@@ -155,7 +155,7 @@ public class Life : MonoBehaviour {
                     if(gameObject.GetComponent<LuzQuebrando>() != null)
                     {
                         gameObject.GetComponent<LuzQuebrando>().Quebrou = true;
-                        SoundManager.PlaySFX(gameObject, "holofote_falhando_01");
+                        FMODUnity.RuntimeManager.PlayOneShot(Evento, transform.position);
                         Destroy(this);
                     }
                     break;
