@@ -25,6 +25,7 @@ public class FightCollider : MonoBehaviour {
 
 						//Som de Ataque
 
+
 						//coloca particula de Ataque
 						InstantiateParticle();
 
@@ -78,7 +79,13 @@ public class FightCollider : MonoBehaviour {
 		}
 	}
 
-
+	void PlaySound(string TypeofAtk){
+		if (TypeofAtk == "Strong") {
+			FMODUnity.RuntimeManager.PlayOneShot ("event:/Player/Horn/Ataque_Forte_Horn", transform.position);
+		}else if(TypeofAtk == "Basic"){
+			FMODUnity.RuntimeManager.PlayOneShot ("event:/Player/Horn/Ataque_Basico_Horn", transform.position);
+		}
+	}
 
 	public void InstantiateParticle(){
 		if (particula != null)

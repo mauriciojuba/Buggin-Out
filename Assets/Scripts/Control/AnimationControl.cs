@@ -72,7 +72,7 @@ public class AnimationControl : MonoBehaviour {
 	}
 	#endregion
 
-	public void PunchSound(string Event){
+	public void PlaySound(string Event){
 		FMODUnity.RuntimeManager.PlayOneShot (Event, transform.position);
 	}
 
