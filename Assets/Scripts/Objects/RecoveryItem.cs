@@ -20,7 +20,6 @@ public class RecoveryItem : MonoBehaviour {
             {
 				if (other.gameObject.GetComponent<Life> () != null) {
 					if (other.gameObject.GetComponent<Life> ().LifeQuant + 100 <= other.gameObject.GetComponent<Life> ().MaxLife) {
-						SoundManager.PlaySFX ("ColetarVida");
 
 						if (emitter != null) { //desabilita efeitos graficos
 
