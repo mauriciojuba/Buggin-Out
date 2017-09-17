@@ -58,7 +58,7 @@ public class HornControl : MonoBehaviour {
             mov = cameragame.transform.TransformVector(mov);
             mov = CheckPositionOnScreen(mov);
 			transform.Translate(mov*transform.localScale.magnitude*Time.deltaTime*CamSpeed,Space.World);
-            transform.LookAt(cameragame.transform,cameragame.transform.up);
+            transform.LookAt(cameragame.transform,transform.up+mov);
         }
 //		if (Input.GetButtonDown ("X P1") || Input.GetKeyDown (KeyCode.LeftControl)) {
 //			
