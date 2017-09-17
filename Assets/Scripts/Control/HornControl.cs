@@ -9,6 +9,7 @@ public class HornControl : MonoBehaviour {
     public GameObject cameragame;
     public Animator anim;
 	public bool natela = false;
+    public Vector2 limiteHorizontal,limiteVertical;
 	public bool Going = false;
     public Transform telapos;
 	public Transform AntPos;
@@ -55,17 +56,15 @@ public class HornControl : MonoBehaviour {
 
             mov = new Vector3(Input.GetAxis("Horizontal P1"), Input.GetAxis("Vertical P1"), 0);
             mov = cameragame.transform.TransformVector(mov);
+            mov = CheckPositionOnScreen(mov);
 			transform.Translate(mov*transform.localScale.magnitude*Time.deltaTime*CamSpeed,Space.World);
             transform.LookAt(cameragame.transform,cameragame.transform.up);
-
-
         }
 //		if (Input.GetButtonDown ("X P1") || Input.GetKeyDown (KeyCode.LeftControl)) {
 //			
 //			anim.SetTrigger ("Attack");
 //		}
-
-		if (Input.GetButtonDown ("RB P1") && !Going /*|| Input.GetKeyDown(KeyCode.LeftAlt) && !Going*/) {
+		if (Input.GetButtonDown ("RB P1") && !Going || Input.GetKeyDown(KeyCode.LeftAlt) && !Going) {
 			if (!natela) {
 				AntPos.position = transform.position;
 				AntPos.rotation = transform.rotation;
@@ -84,6 +83,32 @@ public class HornControl : MonoBehaviour {
 				Screen.GoOffScreen (AntPos, gameObject);
         }
     }
+Vector3 CheckPositionOnScreen(Vector3 movFactor){
+
+    // talvez seja necessário tornar público os limites da tela para diferentes objetos, dependo do tamanho.
+    // horn limiteHorizontal = 0.1 e 0.9  limiteVertical = -0.1 e 0.5.
+		Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
+        //saiu pela esquerda
+		if(pos.x <= limiteHorizontal.x && movFactor.x<0){
+            movFactor.x = 0;
+		}
+        //saiu pela direita
+		if(limiteHorizontal.y <= pos.x && movFactor.x>0){
+            movFactor.x = 0;
+		}
+        //saiu por baixo
+		if(pos.y <= limiteVertical.x && movFactor.y<0){
+            movFactor.y = 0;
+            movFactor.z = 0;
+		}
+        //saiu por cima
+		if(limiteVertical.y <= pos.y && movFactor.y>0){
+            movFactor.y = 0;
+            movFactor.z = 0;
+		}
+        return movFactor;
+	}
+
 
     void FixedUpdate()
     {
