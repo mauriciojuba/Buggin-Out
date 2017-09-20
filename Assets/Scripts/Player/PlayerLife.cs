@@ -5,17 +5,22 @@ using UnityEngine.UI;
 
 public class PlayerLife : MonoBehaviour {
 
-	public float Life;
-	float AntLife;
-	public float MaxLife;
-	public Image LifeMask;
+	public float MaxLife, LifeAtual;
+	float maskOver;
+	public Animator Mask;
+
 
 	void Start () {
-		Life = MaxLife;
+		MaxLife = 300f;
+		LifeAtual = MaxLife;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		LifeMask.fillAmount = Life / MaxLife;
+		atualizaVida ();
+	}
+
+	void atualizaVida(){
+		Mask.SetFloat ("Life", (LifeAtual / MaxLife));
 	}
 }

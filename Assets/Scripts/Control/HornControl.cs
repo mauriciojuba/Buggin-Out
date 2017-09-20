@@ -23,6 +23,7 @@ public class HornControl : MonoBehaviour {
 	void Start () {
 		AnimCTRL = GetComponent<AnimationControl> ();
         rdb=GetComponent<Rigidbody>();
+		cameragame.transform.up = Vector3.up;
 	}
 	
 	// Update is called once per frame
@@ -33,7 +34,7 @@ public class HornControl : MonoBehaviour {
 				if (cameragame != null)
 					mov = cameragame.transform.TransformVector (mov);
 				Vector3 Direction = new Vector3 (rdb.velocity.x, 0, rdb.velocity.z);
-
+				Vector3 Directionabs = new Vector3 (mov.x, 0, mov.z);
 
 				if (mov.magnitude > 0) {
 					anim.SetLayerWeight (1, 1);
@@ -45,11 +46,12 @@ public class HornControl : MonoBehaviour {
 
 				if (Direction.magnitude > 0.1f) {
 			
-					transform.rotation = Quaternion.Lerp (transform.rotation, Quaternion.LookRotation (Direction), Time.deltaTime * 5);
+					transform.rotation = Quaternion.Lerp (transform.rotation, Quaternion.LookRotation (Directionabs), Time.deltaTime * 5);
 				}
 			} else {
 
 				mov = new Vector3 (Input.GetAxis ("Horizontal P1"), Input.GetAxis ("Vertical P1"), 0);
+
 				mov = cameragame.transform.TransformVector (mov);
 				mov = CheckPositionOnScreen (mov);
 				transform.Translate (mov * transform.localScale.magnitude * Time.deltaTime * CamSpeed, Space.World);
@@ -117,12 +119,16 @@ Vector3 CheckPositionOnScreen(Vector3 movFactor){
     void FixedUpdate()
     {
 		if (!natela) {
-			Vector3 nvel = new Vector3 (mov.x * 5, rdb.velocity.y, mov.z * 5);
-			rdb.velocity = nvel;
+			mov = Vector3.ClampMagnitude (mov, 1);
+			Vector3 nvel = new Vector3 (mov.x *5, 0, mov.z *5);
+
+			//rdb.velocity = nvel;
+			rdb.AddForce(nvel,ForceMode.VelocityChange);
 			AnimCTRL.SetMovimentAnimation (rdb.velocity.magnitude);
 		} else {
 			Vector3 nvel = new Vector3 (mov.x * 5, mov.z * 5, rdb.velocity.z);
 			rdb.velocity = nvel;
+
 			AnimCTRL.SetMovimentAnimation (rdb.velocity.magnitude);
 		}
 

@@ -268,23 +268,20 @@ public class FSMMosquito : MonoBehaviour
 
     //move o mosquito para a vida  do player
 
+
+	public GameObject LifeEmblem;
+	public GameObject Player;
     public void MovePraVida()
     {
-        if(VidaTatu.GetComponent<ScaleLife> ().TatuLife <= 0) DrainLifeEnd();
-        LifeDist = Vector3.Distance(VidaTatu.transform.position, gameObject.transform.position);
+		MosquitoAni.SetBool("GoingToScreen", false);
 
-        //colocar o modelo no centro do objeto pernilongo
-        ModelMosquito.transform.localPosition = new Vector3(ModelMosquito.transform.localPosition.x, ModelMosquito.transform.localPosition.y, -1f);
-
-        //para não olhar direto pro tatu
-        Vector3 correctLook = Vector3.Lerp(direction.position, VidaTatu.transform.position, RotationSpeed * Time.deltaTime);
-
-        //olha para o tatu e coloca arruma a posição, ponta-cabeça
-        transform.LookAt(correctLook, new Vector3(-1, -1, 1));
-
-        // transform.position = Vector3.MoveTowards(transform.position, VidaTatu.transform.position, MoveSpeed);
-
-        rb.MovePosition(transform.position + transform.forward * Time.deltaTime * MoveSpeed);
+		Vector3 mov;
+		float CamSpeed = 0.1f;
+		mov = new Vector3 (LifeEmblem.transform.position.x - transform.position.x, LifeEmblem.transform.position.y - transform.position.y, 0);
+		mov = Camera.main.transform.TransformVector (mov);
+		MosquitoAni.SetBool("walkScreen", true);
+		transform.Translate (mov * transform.localScale.magnitude * Time.deltaTime * CamSpeed, Space.World);
+		transform.LookAt (Camera.main.transform, transform.up + mov);
     }
 
     //executa quando acaba a animaçao sugar a vida do player
@@ -392,7 +389,10 @@ public class FSMMosquito : MonoBehaviour
     void goToScreen()
     {
 
-        Screen.GoToScreen(camScreen,gameObject);
+        //Screen.GoToScreen(camScreen,gameObject);
+		if (Screen.GoToScreen (camScreen, gameObject)) {
+			state = FSMStates.DrainLife;
+		}
 
 
 
@@ -672,36 +672,14 @@ public class FSMMosquito : MonoBehaviour
     #region Drain Life
     private void DrainLife()
     {
-        if(TakeDamage)
-        state = FSMStates.Damage;
-
-		if (VidaTatu.GetComponent<ScaleLife> ().TatuLife <= 0) {
-			DrainingLife = false;
-			Descer ();
-			StopAllCoroutines ();
-			if (part != null) {
-				ParticleSystem particleemitter = part.GetComponent<ParticleSystem> ();
-				if (particleemitter != null) {
-					ParticleSystem.EmissionModule emit = particleemitter.emission;
-					emit.enabled = false;
-				}
-				Destroy(part, 5f);
-			}
-			MosquitoAni.SetBool ("LifeDrain", false);
+		LifeDist = Vector3.Distance(transform.position, LifeEmblem.transform.position);
+		Debug.Log (LifeDist);
+		if (LifeDist > 0.4f) {
+			MovePraVida ();
+		} else {
+			this.rb.velocity = Vector3.zero;
+			MosquitoAni.SetBool("walkScreen", false);
 		}
-
-
-			MosquitoAni.SetBool ("LifeDrain", true);
-			//para não olhar direto pro tatu
-		if (DrainingLife) {
-			Vector3 correctLook = Vector3.Lerp (direction.position, VidaTatu.transform.position, RotationSpeed * Time.deltaTime);
-
-			//olha para o tatu e coloca arruma a posição, ponta-cabeça
-			transform.LookAt (correctLook, new Vector3 (-1, -1, 1));
-		}
-
-
-
     }
 
     #endregion

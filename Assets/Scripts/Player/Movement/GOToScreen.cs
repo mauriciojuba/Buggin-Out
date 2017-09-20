@@ -7,7 +7,7 @@ public class GOToScreen : MonoBehaviour {
 	public CameraControl Cam;
     float time=0;
 
-	public void GoToScreen(Transform telapos, GameObject ObjectThatGoes){
+	public bool GoToScreen(Transform telapos, GameObject ObjectThatGoes){
         
         ObjectThatGoes.transform.localScale = Vector3.Lerp (ObjectThatGoes.transform.localScale, telapos.localScale, time);
         ObjectThatGoes.transform.position = Vector3.Lerp (ObjectThatGoes.transform.position, telapos.position,time);
@@ -16,13 +16,15 @@ public class GOToScreen : MonoBehaviour {
 
 		if (ObjectThatGoes.transform.position == telapos.position && ObjectThatGoes.transform.localScale == telapos.localScale) {
 			ObjectThatGoes.transform.rotation = telapos.rotation;
-            ObjectThatGoes.transform.parent = telapos;
+			ObjectThatGoes.transform.parent = telapos;
 			if (ObjectThatGoes.GetComponent<HornControl> () != null) {
 				ObjectThatGoes.GetComponent<HornControl> ().Going = false;
 				ObjectThatGoes.GetComponent<HornControl> ().natela = true;
 				Cam.ChecarNaTela ();
-
 			}
+			return true;
+		} else {
+			return false;
 		}
 	}
 

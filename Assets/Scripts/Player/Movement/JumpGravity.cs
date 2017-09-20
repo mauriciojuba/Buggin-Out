@@ -30,6 +30,7 @@ public class JumpGravity : MonoBehaviour {
 	void Update () {
 		if (Moviment != null) {
 			if (!Moviment.natela) {
+				/*
 				if (Rb.velocity.y < 0 && !InGround) {
 					Vector3 V3 = Rb.velocity;
 					V3.y += Physics.gravity.y * (FallMultiplier - 1) * Time.deltaTime;
@@ -39,6 +40,7 @@ public class JumpGravity : MonoBehaviour {
 					V3.y += Physics.gravity.y * (LowJumpMultiplayer - 1) * Time.deltaTime;
 					Rb.velocity = V3;
 				}
+				*/
 			}
 		}
 		Jump ();
