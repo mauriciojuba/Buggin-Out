@@ -44,7 +44,7 @@ public class HornControl : MonoBehaviour {
 					anim.SetLayerWeight (1, 0);
 				}
 
-				if (Direction.magnitude > 0.1f) {
+				if (Directionabs.magnitude > 0.1f) {
 			
 					transform.rotation = Quaternion.Lerp (transform.rotation, Quaternion.LookRotation (Directionabs), Time.deltaTime * 5);
 				}
