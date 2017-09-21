@@ -446,12 +446,28 @@ ModelImporter:
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 1
       keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 1
+      keepOriginalPositionXZ: 0
       heightFromFeet: 0
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.32512665
+        functionName: ActiveRightFightCollider
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 5d9b5e3bc974c634a868df0dd32af592,
+          type: 3}
+        floatParameter: 100
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.78448486
+        functionName: DesactiveRightFightCollider
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 5d9b5e3bc974c634a868df0dd32af592,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -474,12 +490,36 @@ ModelImporter:
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 1
       keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 1
+      keepOriginalPositionXZ: 0
       heightFromFeet: 0
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.06526947
+        functionName: DesactiveRightFightCollider
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 5d9b5e3bc974c634a868df0dd32af592,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.31650543
+        functionName: ActiveLeftFightCollider
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 5d9b5e3bc974c634a868df0dd32af592,
+          type: 3}
+        floatParameter: 120
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.8768463
+        functionName: DesactiveLeftFightCollider
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 5d9b5e3bc974c634a868df0dd32af592,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -502,16 +542,32 @@ ModelImporter:
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 1
       keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 1
+      keepOriginalPositionXZ: 0
       heightFromFeet: 0
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.25246334
+        functionName: ActiveLeftFightCollider
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 5d9b5e3bc974c634a868df0dd32af592,
+          type: 3}
+        floatParameter: 150
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.64039373
+        functionName: DesactiveLeftFightCollider
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 5d9b5e3bc974c634a868df0dd32af592,
+          type: 3}
+        floatParameter: 150
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+      additiveReferencePoseFrame: 510
     - serializedVersion: 16
       name: ATK_Combo_XXY_Liz
       takeName: ATK_Combo_XXX_XXY_Liz
@@ -530,20 +586,44 @@ ModelImporter:
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 1
       keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 1
+      keepOriginalPositionXZ: 0
       heightFromFeet: 0
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.17118281
+        functionName: DesactiveLeftFightCollider
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 5d9b5e3bc974c634a868df0dd32af592,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.4593603
+        functionName: ActiveRightFootFightCollider
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 5d9b5e3bc974c634a868df0dd32af592,
+          type: 3}
+        floatParameter: 160
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.763547
+        functionName: DesactiveRightFootFightCollider
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 5d9b5e3bc974c634a868df0dd32af592,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+      additiveReferencePoseFrame: 510
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 30
+    globalScale: 25
     meshCompression: 0
     addColliders: 0
     importVisibility: 1

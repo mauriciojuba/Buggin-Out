@@ -10,6 +10,7 @@ public class FightCollider : MonoBehaviour {
 	public GameObject Player;
 	public GameObject EnemyHit;
 	public string Style;
+	private bool Horn,Liz,Juan;
 
 
 	void OnTriggerEnter (Collider col){
@@ -81,10 +82,24 @@ public class FightCollider : MonoBehaviour {
 	}
 
 	void PlaySound(string TypeofAtk){
-		if (TypeofAtk == "Strong") {
-			FMODUnity.RuntimeManager.PlayOneShot ("event:/Player/Horn/Ataque_Forte_Horn", transform.position);
-		}else if(TypeofAtk == "Basic"){
-			FMODUnity.RuntimeManager.PlayOneShot ("event:/Player/Horn/Ataque_Basico_Horn", transform.position);
+		if (Horn) {
+			if (TypeofAtk == "Strong") {
+				FMODUnity.RuntimeManager.PlayOneShot ("event:/Player/Horn/Ataque_Forte_Horn", transform.position);
+			} else if (TypeofAtk == "Basic") {
+				FMODUnity.RuntimeManager.PlayOneShot ("event:/Player/Horn/Ataque_Basico_Horn", transform.position);
+			}
+		} else if (Liz) {
+			if (TypeofAtk == "Strong") {
+				FMODUnity.RuntimeManager.PlayOneShot ("event:/Player/Horn/Ataque_Forte_Horn", transform.position);
+			} else if (TypeofAtk == "Basic") {
+				FMODUnity.RuntimeManager.PlayOneShot ("event:/Player/Horn/Ataque_Basico_Horn", transform.position);
+			}
+		} else if (Juan) {
+			if (TypeofAtk == "Strong") {
+				FMODUnity.RuntimeManager.PlayOneShot ("event:/Player/Horn/Ataque_Forte_Horn", transform.position);
+			} else if (TypeofAtk == "Basic") {
+				FMODUnity.RuntimeManager.PlayOneShot ("event:/Player/Horn/Ataque_Basico_Horn", transform.position);
+			}
 		}
 	}
 

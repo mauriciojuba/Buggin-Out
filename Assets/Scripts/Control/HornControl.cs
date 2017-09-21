@@ -19,6 +19,7 @@ public class HornControl : MonoBehaviour {
 	[SerializeField] GOToScreen Screen;
 	[SerializeField] CameraControl DollyCam;
 	[SerializeField] float CamSpeed;
+	[SerializeField] float Speed = 5;
 	// Use this for initialization
 	void Start () {
 		AnimCTRL = GetComponent<AnimationControl> ();
@@ -120,7 +121,7 @@ Vector3 CheckPositionOnScreen(Vector3 movFactor){
     {
 		if (!natela) {
 			mov = Vector3.ClampMagnitude (mov, 1);
-			Vector3 nvel = new Vector3 (mov.x *5, 0, mov.z *5);
+			Vector3 nvel = new Vector3 (mov.x *Speed, 0, mov.z *Speed);
 
 			//rdb.velocity = nvel;
 			rdb.AddForce(nvel,ForceMode.VelocityChange);
