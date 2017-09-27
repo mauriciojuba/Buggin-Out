@@ -4,107 +4,128 @@ using UnityEngine;
 
 public class AnimationControl : MonoBehaviour {
 
-	[SerializeField] Animator Anim;
+    [SerializeField] Animator Anim;
 
-	[SerializeField] GameObject RightFightCol, LeftFightCol, HeadFightCol, RightFootFightCol;
+    [SerializeField] GameObject RightFightCol, LeftFightCol, HeadFightCol, RightFootFightCol;
 
-	public void SetAttackAnim(int AttackNumber){
-		if (Anim == null) {
-			return;
-		}
-		Anim.SetTrigger ("Attack");
-		Anim.SetInteger ("AttackNumber", AttackNumber);
-	}
+    [SerializeField] GameObject SpecialPrefab;
 
-	public void SetMovimentAnimation(float Velocity){
-		Anim.SetFloat("Mov", Velocity);
-	}
+    private void Update()
+    {
+      if(Input.GetKeyDown(KeyCode.M)){
+            Anim.SetTrigger("Special");
+        }
+    }
 
-	public void SetJumpAnim(){
-		if (Anim == null) {
-			return;
-		}
-		Anim.SetTrigger ("Jump");
-	}
-	public void SetGrounded(bool Grounded){
-		Anim.SetBool ("grounded", Grounded);
-	}
+    public void SetAttackAnim(int AttackNumber) {
+        if (Anim == null) {
+            return;
+        }
+        Anim.SetTrigger("Attack");
+        Anim.SetInteger("AttackNumber", AttackNumber);
+    }
 
-	public void SetTakeDamageAnim(){
-		Anim.SetTrigger ("TakeDamage");
-	}
+    public void SetMovimentAnimation(float Velocity) {
+        Anim.SetFloat("Mov", Velocity);
+    }
 
-	#region Functions Active/Desactive Fight Colliders
-	public void ActiveRightFightCollider(float Damage){
-		RightFightCol.GetComponent<FightCollider> ().Damage = Damage;
-		RightFightCol.SetActive (true);
-	}
+    public void SetJumpAnim() {
+        if (Anim == null) {
+            return;
+        }
+        Anim.SetTrigger("Jump");
+    }
+    public void SetGrounded(bool Grounded) {
+        Anim.SetBool("grounded", Grounded);
+    }
 
-	public void DesactiveRightFightCollider(){
-		RightFightCol.SetActive (false);
-	}
+    public void SetTakeDamageAnim() {
+        Anim.SetTrigger("TakeDamage");
+    }
 
-	public void ActiveLeftFightCollider(float Damage){
-		LeftFightCol.GetComponent<FightCollider> ().Damage = Damage;
-		LeftFightCol.SetActive (true);
-	}
+    #region Functions Active/Desactive Fight Colliders
+    public void ActiveRightFightCollider(float Damage) {
+        RightFightCol.GetComponent<FightCollider>().Damage = Damage;
+        RightFightCol.SetActive(true);
+    }
 
-	public void DesactiveLeftFightCollider(){
-		LeftFightCol.SetActive (false);
-	}
+    public void DesactiveRightFightCollider() {
+        RightFightCol.SetActive(false);
+    }
 
-	public void ActiveHeadFightCollider(float Damage){
-		HeadFightCol.GetComponent<FightCollider> ().Damage = Damage;
-		HeadFightCol.SetActive (true);
-	}
+    public void ActiveLeftFightCollider(float Damage) {
+        LeftFightCol.GetComponent<FightCollider>().Damage = Damage;
+        LeftFightCol.SetActive(true);
+    }
 
-	public void DesactiveHeadFightCollider(){
-		HeadFightCol.SetActive (false);
-	}
+    public void DesactiveLeftFightCollider() {
+        LeftFightCol.SetActive(false);
+    }
 
-	public void ActiveRightFootFightCollider(float Damage){
-		RightFootFightCol.GetComponent<FightCollider> ().Damage = Damage;
-		RightFootFightCol.SetActive (true);
-	}
+    public void ActiveHeadFightCollider(float Damage) {
+        HeadFightCol.GetComponent<FightCollider>().Damage = Damage;
+        HeadFightCol.SetActive(true);
+    }
 
-	public void DesactiveRightFootFightCollider(){
-		RightFootFightCol.SetActive (false);
-	}
-	#endregion
+    public void DesactiveHeadFightCollider() {
+        HeadFightCol.SetActive(false);
+    }
 
-	public void PlaySound(string Event){
-		FMODUnity.RuntimeManager.PlayOneShot (Event, transform.position);
-	}
+    public void ActiveRightFootFightCollider(float Damage) {
+        RightFootFightCol.GetComponent<FightCollider>().Damage = Damage;
+        RightFootFightCol.SetActive(true);
+    }
 
-	public void SetRightFootTypeOfAttack(string Event){
-		RightFootFightCol.GetComponent<FightCollider> ().Style = Event;
-	}
-		
-	public void SetHeadTypeOfAttack(string Event){
-		HeadFightCol.GetComponent<FightCollider> ().Style = Event;
-	}
+    public void DesactiveRightFootFightCollider() {
+        RightFootFightCol.SetActive(false);
+    }
+    #endregion
 
-	public void SetLeftTypeOfAttack(string Event){
-		LeftFightCol.GetComponent<FightCollider> ().Style = Event;
-	}
+    public void PlaySound(string Event) {
+        FMODUnity.RuntimeManager.PlayOneShot(Event, transform.position);
+    }
 
-	public void SetRightTypeOfAttack(string Event){
-		RightFightCol.GetComponent<FightCollider> ().Style = Event;
-	}
+    public void SetRightFootTypeOfAttack(string Event) {
+        RightFootFightCol.GetComponent<FightCollider>().Style = Event;
+    }
 
-	public void PickObjAnimation(){
-		Anim.SetTrigger ("Grab");
-	}
+    public void SetHeadTypeOfAttack(string Event) {
+        HeadFightCol.GetComponent<FightCollider>().Style = Event;
+    }
 
-	public void ActiveGrabbingAnim(){
-		Anim.SetBool ("Grabbing", true);
-	}
+    public void SetLeftTypeOfAttack(string Event) {
+        LeftFightCol.GetComponent<FightCollider>().Style = Event;
+    }
 
-	public void DesactiveGrabbinAnim(){
-		Anim.SetBool ("Grabbing", false);
-	}
+    public void SetRightTypeOfAttack(string Event) {
+        RightFightCol.GetComponent<FightCollider>().Style = Event;
+    }
 
-	public void ThrowObjAnim(){
-		Anim.SetTrigger ("Throw");
-	}
+    public void PickObjAnimation() {
+        Anim.SetTrigger("Grab");
+    }
+
+    public void ActiveGrabbingAnim() {
+        Anim.SetBool("Grabbing", true);
+    }
+
+    public void DesactiveGrabbinAnim() {
+        Anim.SetBool("Grabbing", false);
+    }
+
+    public void ThrowObjAnim() {
+        Anim.SetTrigger("Throw");
+    }
+
+    public void InstantiateSpecialLiz(string Side) {
+        GameObject GO = null;
+        if (Side == "Left") {
+            GO = GameObject.Instantiate(SpecialPrefab, LeftFightCol.transform.position, transform.rotation);
+        } else if (Side == "Right") {
+            GO = GameObject.Instantiate(SpecialPrefab, RightFightCol.transform.position, transform.rotation);
+        }
+        Vector3 dir = Quaternion.AngleAxis(Random.Range(-25, 25), transform.up) * transform.forward;
+        GO.GetComponent<Rigidbody>().AddForce(dir * 500);
+        GO.transform.rotation = Quaternion.LookRotation(dir);
+    }
 }
