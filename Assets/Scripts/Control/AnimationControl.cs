@@ -10,12 +10,6 @@ public class AnimationControl : MonoBehaviour {
 
     [SerializeField] GameObject SpecialPrefab;
 
-    private void Update()
-    {
-      if(Input.GetKeyDown(KeyCode.M)){
-            Anim.SetTrigger("Special");
-        }
-    }
 
     public void SetAttackAnim(int AttackNumber) {
         if (Anim == null) {
@@ -115,6 +109,16 @@ public class AnimationControl : MonoBehaviour {
 
     public void ThrowObjAnim() {
         Anim.SetTrigger("Throw");
+    }
+
+    public void SetUsingSpecial(bool Set)
+    {
+        Anim.SetBool("UsingSpecial", Set);
+    }
+
+    public void SetSpecial()
+    {
+        Anim.SetTrigger("Special");
     }
 
     public void InstantiateSpecialLiz(string Side) {

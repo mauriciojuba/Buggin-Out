@@ -17,18 +17,18 @@ public class GOToScreen : MonoBehaviour {
 		if (ObjectThatGoes.transform.position == telapos.position && ObjectThatGoes.transform.localScale == telapos.localScale) {
 			ObjectThatGoes.transform.rotation = telapos.rotation;
 			ObjectThatGoes.transform.parent = telapos;
-			if (ObjectThatGoes.GetComponent<HornControl> () != null) {
-				ObjectThatGoes.GetComponent<HornControl> ().Going = false;
-				ObjectThatGoes.GetComponent<HornControl> ().natela = true;
-				Cam.ChecarNaTela ();
-			}
+	//		if (ObjectThatGoes.GetComponent<HornControl> () != null) {
+	//			ObjectThatGoes.GetComponent<HornControl> ().Going = false;
+	//			ObjectThatGoes.GetComponent<HornControl> ().natela = true;
+	//			Cam.ChecarNaTela ();
+	//		}
 			return true;
 		} else {
 			return false;
 		}
 	}
 
-	public void GoOffScreen(Transform Pos, GameObject ObjectThatGoes){
+	public bool GoOffScreen(Transform Pos, GameObject ObjectThatGoes){
         time = 0;
         ObjectThatGoes.transform.parent = null;
 		ObjectThatGoes.transform.localScale = Vector3.MoveTowards (ObjectThatGoes.transform.localScale, new Vector3(1,1,1), Time.deltaTime);
@@ -44,7 +44,10 @@ public class GOToScreen : MonoBehaviour {
 				ObjectThatGoes.GetComponent<HornControl> ().natela = false;
 				Cam.ChecarNaTela ();
 			}
-
-		}
+            return true;
+		} else
+        {
+            return false;
+        }
 	}
 }

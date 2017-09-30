@@ -16,10 +16,13 @@ public class HornControl : MonoBehaviour {
 	public Transform AntPos;
     int i=0;
 
+    public bool UseSpecial;
+
 	[SerializeField] GOToScreen Screen;
 	[SerializeField] CameraControl DollyCam;
 	[SerializeField] float CamSpeed;
 	[SerializeField] float Speed = 5;
+    [SerializeField] UseEspecial SpecialRef;
 	// Use this for initialization
 	void Start () {
 		AnimCTRL = GetComponent<AnimationControl> ();
@@ -29,7 +32,7 @@ public class HornControl : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (CanMove) {
+        if (CanMove) {
 			if (!natela) {
 				mov = new Vector3 (Input.GetAxis ("Horizontal P1"), 0, Input.GetAxis ("Vertical P1"));
 				if (cameragame != null)
@@ -38,10 +41,12 @@ public class HornControl : MonoBehaviour {
 				Vector3 Directionabs = new Vector3 (mov.x, 0, mov.z);
 
 				if (mov.magnitude > 0) {
+                    anim.SetBool("Layer1Active", true);
 					anim.SetLayerWeight (1, 1);
 					anim.SetLayerWeight (2, 0);
 				} else if (mov.magnitude <= 0) {
-					anim.SetLayerWeight (2, 1);
+                    anim.SetBool("Layer1Active", false);
+                    anim.SetLayerWeight (2, 1);
 					anim.SetLayerWeight (1, 0);
 				}
 
@@ -81,14 +86,51 @@ public class HornControl : MonoBehaviour {
 			}
 
 			if (Going) {
-				if (!natela)
-					Screen.GoToScreen (telapos, gameObject);
-				else
-					Screen.GoOffScreen (AntPos, gameObject);
+                if (!natela)
+                {
+                    Screen.GoToScreen(telapos, gameObject);
+                    if(Screen.GoToScreen(telapos, gameObject))
+                    {
+                        Going = false;
+                        natela = true;
+                    }
+                }
+                else
+                    Screen.GoOffScreen(AntPos, gameObject);
 			}
 		} else {
 			rdb.velocity = Vector3.zero;
 		}
+        #region Especial (Usar e Rotacionar)
+        if (Input.GetKeyDown(KeyCode.Z) && !UseSpecial)
+        {
+            UseSpecial = true;
+            AnimCTRL.SetSpecial();
+        }
+
+        if (UseSpecial)
+        {
+            if (SpecialRef.UsingSpecial())
+            {
+                Vector3 movSpecial = new Vector3(Input.GetAxis("Horizontal P1"), 0, Input.GetAxis("Vertical P1"));
+                Vector3 DirectionSpecial = new Vector3(movSpecial.x, 0, movSpecial.z);
+                if (DirectionSpecial.magnitude > 0.1f)
+                {
+                    transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(DirectionSpecial), Time.deltaTime * 5);
+                }
+                CanMove = false;
+                AnimCTRL.SetUsingSpecial(true);
+                if(SpecialRef.Horn)
+                    SpecialRef.SpecialHorn();
+            }
+            else
+            {
+                AnimCTRL.SetUsingSpecial(false);
+                CanMove = true;
+                UseSpecial = false;
+            }
+        }
+        #endregion
     }
 Vector3 CheckPositionOnScreen(Vector3 movFactor){
 
@@ -144,4 +186,9 @@ Vector3 CheckPositionOnScreen(Vector3 movFactor){
 //		anim.SetTrigger ("Attack");
 //		anim.SetInteger ("AttackNumber", AttackNumber);
 //	}
+
+    void Special()
+    {
+
+    }
 }
