@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyIA : MonoBehaviour,IGroundEnemy,IKillable, IAnimated<Animator>,IGoToScreen,IScreenEntity {
+public class EnemyIA : MonoBehaviour,IGroundEnemy,IKillable,IGoToScreen,IScreenEntity {
 
 	[HideInInspector]
 	public Rigidbody RB;
 	[HideInInspector]
-	public Animator anim;
+	public Animator _anim;
 	[HideInInspector]
-	public enum State 	{Idle, Patrol, Chase, Flee, Attack, TakeDamage,
+	public enum State 	{Idle, Patrol, Chase, Flee, Attack, TakeDamage, Grabbed,
 						Dead, GoingToScreen, OnScreenIdle, OnScreenChase, 
-						OnScreenAttack, GoingToWorld, OnScreenDamage};
+						OnScreenAttack, GoingToWorld, OnScreenDamage, OnScreenFall};
 	[HideInInspector]
 	public GameObject player1, player2;
 	[HideInInspector]
@@ -32,6 +32,7 @@ public class EnemyIA : MonoBehaviour,IGroundEnemy,IKillable, IAnimated<Animator>
 	public float attackStr;
 	public float attackDelay;
 	public bool hitted;
+	public bool grabbed;
 
 	protected float attackTimer;
 
@@ -128,11 +129,11 @@ public class EnemyIA : MonoBehaviour,IGroundEnemy,IKillable, IAnimated<Animator>
 	}
 	public virtual void Idle()
 	{
-		//MosquitoAni.SetBool("IsIdle", true);
+		_anim.SetBool("IsIdle", true);
 
 		if (Vector3.Distance(Target.transform.position, gameObject.transform.position) < Visao)
 		{
-			//MosquitoAni.SetBool("IsIdle", false);
+			_anim.SetBool("IsIdle", false);
 			ActualState = State.Chase;
 		}
 		TimeToNextPoint -= Time.deltaTime;
@@ -144,7 +145,7 @@ public class EnemyIA : MonoBehaviour,IGroundEnemy,IKillable, IAnimated<Animator>
 				currentWaypoint = 0;
 			TimeToNextPoint = TimeTo;
 
-			//MosquitoAni.SetBool("IsIdle", false);
+			_anim.SetBool("IsIdle", false);
 			ActualState = State.Patrol;
 		}
 		if (hitted)
@@ -158,7 +159,7 @@ public class EnemyIA : MonoBehaviour,IGroundEnemy,IKillable, IAnimated<Animator>
 
 		if (dir.sqrMagnitude <= 1)
 		{
-			//MosquitoAni.SetBool("IsParolling", false);
+			_anim.SetBool("IsParolling", false);
 			ActualState = State.Idle;
 		}
 		else
@@ -166,7 +167,7 @@ public class EnemyIA : MonoBehaviour,IGroundEnemy,IKillable, IAnimated<Animator>
 
 		if (targetDistance < Visao)
 		{
-			//MosquitoAni.SetBool("IsParolling", false);
+			_anim.SetBool("IsParolling", false);
 			ActualState = State.Chase;
 		}
 		if (hitted)
@@ -174,8 +175,8 @@ public class EnemyIA : MonoBehaviour,IGroundEnemy,IKillable, IAnimated<Animator>
 	}
 	public virtual void Chase()
 	{
-		//MosquitoAni.SetBool ("IsParolling", false);
-		//MosquitoAni.SetBool("FightingWalk", true);
+		_anim.SetBool ("IsParolling", false);
+		_anim.SetBool("FightingWalk", true);
 		Vector3 dir = Target.transform.position;
 		transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(Target.transform.position - transform.position), Time.deltaTime * rotationSpeed);
 		transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
@@ -191,7 +192,7 @@ public class EnemyIA : MonoBehaviour,IGroundEnemy,IKillable, IAnimated<Animator>
 		}
 		if (targetDistance > SafeDist + 1)
 		{
-			//MosquitoAni.SetBool("FightingWalk", false);
+			_anim.SetBool("FightingWalk", false);
 			ActualState = State.Patrol;
 		}
 		if (hitted)
@@ -199,6 +200,23 @@ public class EnemyIA : MonoBehaviour,IGroundEnemy,IKillable, IAnimated<Animator>
 	}
 	public virtual void Flee()
 	{
+		
+		_anim.SetBool("FightingWalk", false);
+		TimeToNextPoint = 0;
+		transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(transform.position - Target.transform.position), rotationSpeed * Time.deltaTime);
+		transform.position += transform.forward * speed * Time.deltaTime;
+
+		if (targetDistance > SafeDist + 2 && Life <= lifeMax * 0.2f)
+		{
+			_anim.SetTrigger("GoToScreen");
+			_anim.SetBool("UsingWings", false);
+			_anim.SetBool("GoingToScreen", true);
+
+			ActualState = State.GoingToScreen;
+		}
+
+		else if (targetDistance > SafeDist + 2)
+			ActualState = State.Idle;
 	}
 	public virtual void Attack()
 	{
@@ -207,6 +225,46 @@ public class EnemyIA : MonoBehaviour,IGroundEnemy,IKillable, IAnimated<Animator>
 
 	#region IKillable
 	public virtual void TakeDamage ()
+	{
+		if (!onScreen)
+		{
+			_anim.SetBool("FightingWalk", false);
+			if (Life > 0 && Life <= lifeMax * 0.2f && !grabbed)
+			{
+				ActualState = State.Flee;
+			}
+			else if (Life <= 0) ActualState = State.Dead;
+		}
+		else
+		{
+			_anim.SetTrigger("TakeDamageScreen");
+			_anim.SetBool ("LifeDrain", false);
+			/*if (part != null) {
+				ParticleSystem particleemitter = part.GetComponent<ParticleSystem> ();
+				if (particleemitter != null) {
+					ParticleSystem.EmissionModule emit = particleemitter.emission;
+					emit.enabled = false;
+				}
+				Destroy(part, 5f);
+			}*/
+
+			if (Life > 0) {
+				ActualState = State.OnScreenFall;
+			} else {
+				ActualState = State.Dead;
+			}
+		}
+		TakeDamage = false;
+		if (_anim.GetCurrentAnimatorStateInfo(0).IsName("Take Damage") && _anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.7f && !grabbed && Life > 0)
+		{
+			ActualState = State.Chase;
+		}
+		else if (_anim.GetCurrentAnimatorStateInfo(0).IsName("Take Damage") && _anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.7f && grabbed && Life > 0)
+		{
+			ActualState = State.Grabbed;
+		}
+	}
+	public virtual void Grabbed ()
 	{
 	}
 	public virtual void Die ()
@@ -236,10 +294,7 @@ public class EnemyIA : MonoBehaviour,IGroundEnemy,IKillable, IAnimated<Animator>
 	public virtual void OnScreenDamage ()
 	{
 	}
-	#endregion
-
-	#region IAnimated
-	public virtual void Animate (Animator anim, string variable, float value)
+	public virtual void OnScreenFall ()
 	{
 	}
 	#endregion

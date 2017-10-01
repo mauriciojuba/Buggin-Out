@@ -16,6 +16,7 @@ public interface IGroundEnemy
 public interface IKillable
 {
 	void TakeDamage();
+	void Grabbed();
 	void Die();
 }
 public interface IGoToScreen
@@ -28,8 +29,5 @@ public interface IScreenEntity{
 	void OnScreenAttack();
 	void OnScreenIdle ();
 	void OnScreenDamage ();
-}
-public interface IAnimated<T>
-{
-	void Animate(T anim, string variable, float value);
+	void OnScreenFall ();
 }
