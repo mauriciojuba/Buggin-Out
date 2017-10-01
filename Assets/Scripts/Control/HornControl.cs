@@ -7,6 +7,7 @@ public class HornControl : MonoBehaviour {
     Rigidbody rdb;
 	AnimationControl AnimCTRL;
     public GameObject cameragame;
+    public GameObject ReferenciaDir;
     public Animator anim;
 	public bool natela = false;
     public Vector2 limiteHorizontal,limiteVertical;
@@ -27,16 +28,18 @@ public class HornControl : MonoBehaviour {
 	void Start () {
 		AnimCTRL = GetComponent<AnimationControl> ();
         rdb=GetComponent<Rigidbody>();
-		cameragame.transform.up = Vector3.up;
-	}
+		//cameragame.transform.up = Vector3.up;
+        ReferenciaDir.transform.up = Vector3.up;
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
         if (CanMove) {
 			if (!natela) {
 				mov = new Vector3 (Input.GetAxis ("Horizontal P1"), 0, Input.GetAxis ("Vertical P1"));
-				if (cameragame != null)
-					mov = cameragame.transform.TransformVector (mov);
+				if (ReferenciaDir != null)
+					mov = ReferenciaDir.transform.TransformVector (mov);
 				Vector3 Direction = new Vector3 (rdb.velocity.x, 0, rdb.velocity.z);
 				Vector3 Directionabs = new Vector3 (mov.x, 0, mov.z);
 
@@ -63,10 +66,12 @@ public class HornControl : MonoBehaviour {
 				transform.Translate (mov * transform.localScale.magnitude * Time.deltaTime * CamSpeed, Space.World);
 				transform.LookAt (cameragame.transform, transform.up + mov);
 				if (mov.magnitude > 0) {
-					anim.SetLayerWeight (1, 1);
+                    anim.SetBool("Layer1Active", true);
+                    anim.SetLayerWeight (1, 1);
 					anim.SetLayerWeight (2, 0);
 				} else if (mov.magnitude <= 0) {
-					anim.SetLayerWeight (2, 1);
+                    anim.SetBool("Layer1Active", false);
+                    anim.SetLayerWeight (2, 1);
 					anim.SetLayerWeight (1, 0);
 				}
 			}
@@ -167,7 +172,7 @@ Vector3 CheckPositionOnScreen(Vector3 movFactor){
 
 			//rdb.velocity = nvel;
 			rdb.AddForce(nvel,ForceMode.VelocityChange);
-			AnimCTRL.SetMovimentAnimation (rdb.velocity.magnitude);
+            AnimCTRL.SetMovimentAnimation(mov.magnitude * Speed);
 		} else {
 			Vector3 nvel = new Vector3 (mov.x * 5, mov.z * 5, rdb.velocity.z);
 			rdb.velocity = nvel;

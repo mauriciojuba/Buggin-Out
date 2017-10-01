@@ -450,7 +450,23 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.32887533
+        functionName: PickUpObj
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: cf15a5804b9cf6c4c9c8fd1ca3d977f8,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.8449208
+        functionName: ActiveGrabbingAnim
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 5d9b5e3bc974c634a868df0dd32af592,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -459,7 +475,7 @@ ModelImporter:
       name: Grab_OBJ_Liz_Idle
       takeName: Grab_OBJ_Liz
       firstFrame: 830
-      lastFrame: 860
+      lastFrame: 870
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -482,11 +498,11 @@ ModelImporter:
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+      additiveReferencePoseFrame: 800
     - serializedVersion: 16
       name: Grab_OBJ_Liz_Throw
       takeName: Grab_OBJ_Liz
-      firstFrame: 860
+      firstFrame: 870
       lastFrame: 910
       wrapMode: 0
       orientationOffsetY: 0
@@ -506,15 +522,31 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.29305354
+        functionName: ThrowObj
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: cf15a5804b9cf6c4c9c8fd1ca3d977f8,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.7560284
+        functionName: DesactiveGrabbinAnim
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 5d9b5e3bc974c634a868df0dd32af592,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+      additiveReferencePoseFrame: 800
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 25
+    globalScale: 26
     meshCompression: 0
     addColliders: 0
     importVisibility: 1

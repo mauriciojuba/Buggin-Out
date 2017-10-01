@@ -452,7 +452,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.32512665
+      - time: 0.33095756
         functionName: ActiveRightFightCollider
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 5d9b5e3bc974c634a868df0dd32af592,
@@ -460,7 +460,7 @@ ModelImporter:
         floatParameter: 100
         intParameter: 0
         messageOptions: 0
-      - time: 0.78448486
+      - time: 0.8311321
         functionName: DesactiveRightFightCollider
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 5d9b5e3bc974c634a868df0dd32af592,
@@ -504,7 +504,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.31650543
+      - time: 0.41854626
         functionName: ActiveLeftFightCollider
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 5d9b5e3bc974c634a868df0dd32af592,
@@ -512,7 +512,7 @@ ModelImporter:
         floatParameter: 120
         intParameter: 0
         messageOptions: 0
-      - time: 0.8768463
+      - time: 0.83603
         functionName: DesactiveLeftFightCollider
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 5d9b5e3bc974c634a868df0dd32af592,
@@ -564,6 +564,14 @@ ModelImporter:
         floatParameter: 150
         intParameter: 0
         messageOptions: 0
+      - time: 0.05333277
+        functionName: DesactiveLeftFightCollider
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 5d9b5e3bc974c634a868df0dd32af592,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -600,7 +608,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.4593603
+      - time: 0.42437488
         functionName: ActiveRightFootFightCollider
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 5d9b5e3bc974c634a868df0dd32af592,
@@ -623,7 +631,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 25
+    globalScale: 26
     meshCompression: 0
     addColliders: 0
     importVisibility: 1
