@@ -6,15 +6,16 @@ using UnityEngine;
 public interface IGroundEnemy
 {
 	void CheckAllTargets();
-	void Idle(Transform[] players);
-	void Patrol(float speed, Transform[] waypoints);
-	void Chase(float speed, Transform target);
-	void Flee(float speed, Transform nextPos);
-	void Attack(float hitPoints, GameObject player);
+	void CalculaDistancia();
+	void Idle();
+	void Patrol();
+	void Chase();
+	void Flee();
+	void Attack();
 }
 public interface IKillable
 {
-	void TakeDamage(float hitPoints);
+	void TakeDamage();
 	void Die();
 }
 public interface IGoToScreen
@@ -23,8 +24,10 @@ public interface IGoToScreen
 	void DownToGround();
 }
 public interface IScreenEntity{
-	void WalkOnScreen();
-	void AttackOnScreen();
+	void OnScreenChase();
+	void OnScreenAttack();
+	void OnScreenIdle ();
+	void OnScreenDamage ();
 }
 public interface IAnimated<T>
 {
