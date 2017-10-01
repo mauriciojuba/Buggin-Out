@@ -5,6 +5,7 @@ using UnityEngine;
 public class GOToScreen : MonoBehaviour {
 
 	public CameraControl Cam;
+    public Transform CamTransform;
     float time=0;
 
 	public bool GoToScreen(Transform telapos, GameObject ObjectThatGoes){
@@ -16,7 +17,7 @@ public class GOToScreen : MonoBehaviour {
 
 		if (ObjectThatGoes.transform.position == telapos.position && ObjectThatGoes.transform.localScale == telapos.localScale) {
 			ObjectThatGoes.transform.rotation = telapos.rotation;
-			ObjectThatGoes.transform.parent = telapos;
+			ObjectThatGoes.transform.parent = CamTransform;
 	//		if (ObjectThatGoes.GetComponent<HornControl> () != null) {
 	//			ObjectThatGoes.GetComponent<HornControl> ().Going = false;
 	//			ObjectThatGoes.GetComponent<HornControl> ().natela = true;

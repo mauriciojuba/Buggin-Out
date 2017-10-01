@@ -452,7 +452,23 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.5013326
+        functionName: ActiveRightFightCollider
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 5d9b5e3bc974c634a868df0dd32af592,
+          type: 3}
+        floatParameter: 100
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.9253337
+        functionName: DesactiveRightFightCollider
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 5d9b5e3bc974c634a868df0dd32af592,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -480,7 +496,31 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.15200014
+        functionName: DesactiveRightFightCollider
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 5d9b5e3bc974c634a868df0dd32af592,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.3520024
+        functionName: ActiveLeftFightCollider
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 5d9b5e3bc974c634a868df0dd32af592,
+          type: 3}
+        floatParameter: 100
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.8213352
+        functionName: DesactiveLeftFightCollider
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 5d9b5e3bc974c634a868df0dd32af592,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -508,7 +548,31 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.10666507
+        functionName: DesactiveLeftFightCollider
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 5d9b5e3bc974c634a868df0dd32af592,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.33333334
+        functionName: ActiveRightFightCollider
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 5d9b5e3bc974c634a868df0dd32af592,
+          type: 3}
+        floatParameter: 100
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.77599823
+        functionName: DesactiveRightFightCollider
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 5d9b5e3bc974c634a868df0dd32af592,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -536,7 +600,31 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.08533271
+        functionName: DesactiveRightFightCollider
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 5d9b5e3bc974c634a868df0dd32af592,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.3279985
+        functionName: ActiveLeftFightCollider
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 5d9b5e3bc974c634a868df0dd32af592,
+          type: 3}
+        floatParameter: 100
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.75466776
+        functionName: DesactiveLeftFightCollider
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 5d9b5e3bc974c634a868df0dd32af592,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -564,7 +652,47 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.08533369
+        functionName: DesactiveLeftFightCollider
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 5d9b5e3bc974c634a868df0dd32af592,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.42666698
+        functionName: ActiveRightFightCollider
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 5d9b5e3bc974c634a868df0dd32af592,
+          type: 3}
+        floatParameter: 100
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.42666698
+        functionName: ActiveLeftFightCollider
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 5d9b5e3bc974c634a868df0dd32af592,
+          type: 3}
+        floatParameter: 100
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.67999995
+        functionName: DesactiveLeftFightCollider
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 5d9b5e3bc974c634a868df0dd32af592,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.67999995
+        functionName: DesactiveRightFightCollider
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 5d9b5e3bc974c634a868df0dd32af592,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -572,7 +700,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 25
+    globalScale: 26
     meshCompression: 0
     addColliders: 0
     importVisibility: 1
