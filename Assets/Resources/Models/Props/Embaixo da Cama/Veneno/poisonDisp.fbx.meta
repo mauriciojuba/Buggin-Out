@@ -1,0 +1,152 @@
+fileFormatVersion: 2
+guid: 438061360dcd826488fe01858d074cc5
+timeCreated: 1506897361
+licenseType: Free
+ModelImporter:
+  serializedVersion: 21
+  fileIDToRecycleName:
+    100000: dispenser_low
+    100002: flask_low
+    100004: //RootNode
+    100006: poisonfall_low
+    100008: pool_low
+    100010: residue_low
+    100012: sticks_low
+    100014: sticks_low1
+    100016: sticks_low2
+    100018: sticks_low3
+    100020: sticks_low4
+    100022: sticks_low5
+    100024: sticks_low6
+    100026: sticks_low7
+    100028: sticks_low8
+    400000: dispenser_low
+    400002: flask_low
+    400004: //RootNode
+    400006: poisonfall_low
+    400008: pool_low
+    400010: residue_low
+    400012: sticks_low
+    400014: sticks_low1
+    400016: sticks_low2
+    400018: sticks_low3
+    400020: sticks_low4
+    400022: sticks_low5
+    400024: sticks_low6
+    400026: sticks_low7
+    400028: sticks_low8
+    2300000: dispenser_low
+    2300002: flask_low
+    2300004: poisonfall_low
+    2300006: pool_low
+    2300008: residue_low
+    2300010: sticks_low1
+    2300012: sticks_low2
+    2300014: sticks_low3
+    2300016: sticks_low4
+    2300018: sticks_low5
+    2300020: sticks_low6
+    2300022: sticks_low7
+    2300024: sticks_low8
+    3300000: dispenser_low
+    3300002: flask_low
+    3300004: poisonfall_low
+    3300006: pool_low
+    3300008: residue_low
+    3300010: sticks_low1
+    3300012: sticks_low2
+    3300014: sticks_low3
+    3300016: sticks_low4
+    3300018: sticks_low5
+    3300020: sticks_low6
+    3300022: sticks_low7
+    3300024: sticks_low8
+    4300000: sticks_low1
+    4300002: sticks_low2
+    4300004: sticks_low3
+    4300006: sticks_low4
+    4300008: sticks_low5
+    4300010: sticks_low6
+    4300012: sticks_low7
+    4300014: sticks_low8
+    4300016: dispenser_low
+    4300018: flask_low
+    4300020: pool_low
+    4300022: poisonfall_low
+    4300024: residue_low
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 50
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
