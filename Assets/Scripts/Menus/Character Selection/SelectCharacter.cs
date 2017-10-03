@@ -221,11 +221,7 @@ public class SelectCharacter : MonoBehaviour {
 	}
 
 	void DetectJoy(){
-		if (DetectS.P1Active && DetectS.P2Active && DetectS.P3Active && DetectS.P4Active) {
-			DetectS.ActiveJoy = 4;
-		}else if(DetectS.P1Active && DetectS.P2Active && DetectS.P3Active){
-			DetectS.ActiveJoy = 3;
-		}else if(DetectS.P1Active && DetectS.P2Active){
+		if(DetectS.P1Active && DetectS.P2Active){
 			DetectS.ActiveJoy = 2;
 		}else if(DetectS.P1Active){
 			DetectS.ActiveJoy = 1;
