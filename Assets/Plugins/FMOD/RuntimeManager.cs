@@ -608,7 +608,8 @@ namespace FMODUnity
                 }
                 else
                 {
-                    throw new BankLoadException(bankPath, loadResult);
+					Debug.Log ("FMOD FDP");
+                    //throw new BankLoadException(bankPath, loadResult);
                 }
             }
         }
@@ -856,7 +857,7 @@ namespace FMODUnity
             result = StudioSystem.getBus(path, out bus);
             if (result != FMOD.RESULT.OK)
             {
-                throw new BusNotFoundException(path);
+				Debug.Log ("FMOD FDP");
             }
             return bus;
         }
@@ -875,12 +876,14 @@ namespace FMODUnity
 
         public static void PauseAllEvents(bool paused)
         {
-            GetBus("bus:/").setPaused(paused);
+			Debug.Log ("FMOD FDP");
+            //GetBus("bus:/").setPaused(paused);
         }
 
         public static void MuteAllEvents(bool muted)
         {
-            GetBus("bus:/").setMute(muted);
+			Debug.Log ("FMOD FDP");
+            //GetBus("bus:/").setMute(muted);
         }
 
         public static bool IsInitialized

@@ -16,7 +16,6 @@ public interface IGroundEnemy
 public interface IKillable
 {
 	void TakeDamage();
-	void Grabbed();
 	void Die();
 }
 public interface IGoToScreen

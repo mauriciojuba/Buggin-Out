@@ -5,11 +5,13 @@ using UnityEngine;
 public class EnemyIA : MonoBehaviour,IGroundEnemy,IKillable,IGoToScreen,IScreenEntity {
 
 	[HideInInspector]
+	public GOToScreen Screen;
+	[HideInInspector]
 	public Rigidbody RB;
 	[HideInInspector]
 	public Animator _anim;
 	[HideInInspector]
-	public enum State 	{Idle, Patrol, Chase, Flee, Attack, TakeDamage, Grabbed,
+	public enum State 	{Idle, Patrol, Chase, Flee, Attack, TakeDamage,
 						Dead, GoingToScreen, OnScreenIdle, OnScreenChase, 
 						OnScreenAttack, GoingToWorld, OnScreenDamage, OnScreenFall};
 	[HideInInspector]
@@ -18,8 +20,6 @@ public class EnemyIA : MonoBehaviour,IGroundEnemy,IKillable,IGoToScreen,IScreenE
 	public List<GameObject> players;
 	[HideInInspector]
 	public float[] playersDist = new float[2];
-	[HideInInspector]
-	float Life;
 
 	[Header("Estado atual")]
 	public State ActualState = State.Chase;
@@ -28,6 +28,7 @@ public class EnemyIA : MonoBehaviour,IGroundEnemy,IKillable,IGoToScreen,IScreenE
 	public GameObject Target;
 
 	[Header("Configurações de Combate")]
+	public float Life = 300;
 	public float lifeMax;
 	public float attackStr;
 	public float attackDelay;
@@ -46,6 +47,7 @@ public class EnemyIA : MonoBehaviour,IGroundEnemy,IKillable,IGoToScreen,IScreenE
 	[Header("WayPoint")]
 	public Transform[] waypoints;
 	public float TimeToNextPoint = 5f;
+	public float TimeToChangeTarget = 5f;
 
 	protected float TimeTo;
 	protected int currentWaypoint;
@@ -57,13 +59,16 @@ public class EnemyIA : MonoBehaviour,IGroundEnemy,IKillable,IGoToScreen,IScreenE
 
 	protected float targetDistance;
 
-	public void Start()
+	public virtual void Start()
 	{
+		Screen = GameObject.Find ("GoToScreen").GetComponent<GOToScreen>();
 		RB = GetComponent<Rigidbody> ();
-		anim = GetComponent<Animator> ();
-		Life = lifeMax;
+		_anim = GetComponent<Animator> ();
+		lifeMax = Life;
 		CheckAllTargets ();
+		TimeTo = TimeToNextPoint;
 		CalculaDistancia ();
+		StartCoroutine(CalcDist());
 	}
 
 	public void FixedUpdate()
@@ -71,15 +76,17 @@ public class EnemyIA : MonoBehaviour,IGroundEnemy,IKillable,IGoToScreen,IScreenE
 		targetDistance = Vector3.Distance(Target.transform.position, gameObject.transform.position);
 		switch (ActualState)
 		{
-		case State.Idle: Idle(); break;
-		case State.Patrol: Patrol(); break;
-		case State.Chase: Chase(); break;
-		case State.Attack: Attack(); break;
-		case State.TakeDamage: TakeDamage(); break;
-		case State.Flee: Flee(); break;
-		case State.Dead: Die(); break;
-		case State.GoingToScreen: UpToScreen(); break;
-		case State.GoingToWorld: DownToGround (); break;
+			case State.Idle: Idle(); break;
+			case State.Patrol: Patrol(); break;
+			case State.Chase: Chase(); break;
+			case State.Attack: Attack(); break;
+			case State.TakeDamage: TakeDamage(); break;
+			case State.Flee: Flee(); break;
+			case State.Dead: Die(); break;
+			case State.GoingToScreen: UpToScreen(); break;
+			case State.GoingToWorld: DownToGround (); break;
+			case State.OnScreenIdle: OnScreenIdle (); break;
+			
 		}
 	}
 
@@ -107,6 +114,12 @@ public class EnemyIA : MonoBehaviour,IGroundEnemy,IKillable,IGoToScreen,IScreenE
 			player2 = GameObject.FindGameObjectWithTag ("Player2_3D");
 			players.Add (player2);
 		}
+	}
+	IEnumerator CalcDist()
+	{
+		yield return new WaitForSeconds(TimeToChangeTarget);
+		CalculaDistancia();
+		StartCoroutine(CalcDist());
 	}
 	public void CalculaDistancia()
 	{
@@ -153,6 +166,7 @@ public class EnemyIA : MonoBehaviour,IGroundEnemy,IKillable,IGoToScreen,IScreenE
 	}
 	public virtual void Patrol()
 	{
+		_anim.SetBool("IsParolling", true);
 		Vector3 dir = waypoints[currentWaypoint].position - transform.position;
 		transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime * rotationSpeed);
 		transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
@@ -220,6 +234,11 @@ public class EnemyIA : MonoBehaviour,IGroundEnemy,IKillable,IGoToScreen,IScreenE
 	}
 	public virtual void Attack()
 	{
+		_anim.SetTrigger("ATK1");
+
+		ActualState = State.Chase;
+
+		if (hitted) ActualState = State.TakeDamage;
 	}
 	#endregion
 
@@ -239,6 +258,8 @@ public class EnemyIA : MonoBehaviour,IGroundEnemy,IKillable,IGoToScreen,IScreenE
 		{
 			_anim.SetTrigger("TakeDamageScreen");
 			_anim.SetBool ("LifeDrain", false);
+
+			//particulas
 			/*if (part != null) {
 				ParticleSystem particleemitter = part.GetComponent<ParticleSystem> ();
 				if (particleemitter != null) {
@@ -254,18 +275,11 @@ public class EnemyIA : MonoBehaviour,IGroundEnemy,IKillable,IGoToScreen,IScreenE
 				ActualState = State.Dead;
 			}
 		}
-		TakeDamage = false;
-		if (_anim.GetCurrentAnimatorStateInfo(0).IsName("Take Damage") && _anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.7f && !grabbed && Life > 0)
+		hitted = false;
+		if (_anim.GetCurrentAnimatorStateInfo(0).IsName("Take Damage") && _anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.7f && Life > 0)
 		{
 			ActualState = State.Chase;
 		}
-		else if (_anim.GetCurrentAnimatorStateInfo(0).IsName("Take Damage") && _anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.7f && grabbed && Life > 0)
-		{
-			ActualState = State.Grabbed;
-		}
-	}
-	public virtual void Grabbed ()
-	{
 	}
 	public virtual void Die ()
 	{
@@ -273,8 +287,11 @@ public class EnemyIA : MonoBehaviour,IGroundEnemy,IKillable,IGoToScreen,IScreenE
 	#endregion
 
 	#region IGoToScreen
-	public void UpToScreen ()
+	public virtual void UpToScreen ()
 	{
+		if (Screen.GoToScreen (gameObject)) {
+			ActualState = State.OnScreenIdle;
+		}
 	}
 	public void DownToGround ()
 	{

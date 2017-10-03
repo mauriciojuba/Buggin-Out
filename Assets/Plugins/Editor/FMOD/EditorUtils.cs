@@ -198,7 +198,8 @@ namespace FMODUnity
                     }
                     else
                     {
-                        RuntimeManager.GetBus("bus:/").setPaused(false);
+						Debug.Log ("FMOD FDP");
+                        //RuntimeManager.GetBus("bus:/").setPaused(false);
                     }
                 }
             }

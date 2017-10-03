@@ -93,8 +93,8 @@ public class HornControl : MonoBehaviour {
 			if (Going) {
                 if (!natela)
                 {
-                    Screen.GoToScreen(telapos, gameObject);
-                    if(Screen.GoToScreen(telapos, gameObject))
+                    Screen.GoToScreen(gameObject);
+                    if(Screen.GoToScreen(gameObject))
                     {
                         Going = false;
                         natela = true;

@@ -390,7 +390,7 @@ public class FSMMosquito : MonoBehaviour
     {
 
         //Screen.GoToScreen(camScreen,gameObject);
-		if (Screen.GoToScreen (camScreen, gameObject)) {
+		if (Screen.GoToScreen (gameObject)) {
 			state = FSMStates.DrainLife;
 		}
 

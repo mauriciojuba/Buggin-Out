@@ -6,9 +6,13 @@ public class GOToScreen : MonoBehaviour {
 
 	public CameraControl Cam;
     public Transform CamTransform;
+	public Transform telapos;
     float time=0;
 
-	public bool GoToScreen(Transform telapos, GameObject ObjectThatGoes){
+	void Start(){
+	}
+
+	public bool GoToScreen(GameObject ObjectThatGoes){
         
         ObjectThatGoes.transform.localScale = Vector3.Lerp (ObjectThatGoes.transform.localScale, telapos.localScale, time);
         ObjectThatGoes.transform.position = Vector3.Lerp (ObjectThatGoes.transform.position, telapos.position,time);
@@ -18,11 +22,21 @@ public class GOToScreen : MonoBehaviour {
 		if (ObjectThatGoes.transform.position == telapos.position && ObjectThatGoes.transform.localScale == telapos.localScale) {
 			ObjectThatGoes.transform.rotation = telapos.rotation;
 			ObjectThatGoes.transform.parent = CamTransform;
-	//		if (ObjectThatGoes.GetComponent<HornControl> () != null) {
-	//			ObjectThatGoes.GetComponent<HornControl> ().Going = false;
-	//			ObjectThatGoes.GetComponent<HornControl> ().natela = true;
-	//			Cam.ChecarNaTela ();
-	//		}
+			return true;
+		} else {
+			return false;
+		}
+	}
+	public bool GoToScreen(GameObject ObjectThatGoes, Vector3 tamanhoNaTela){
+
+		ObjectThatGoes.transform.localScale = Vector3.Lerp (ObjectThatGoes.transform.localScale, tamanhoNaTela, time);
+		ObjectThatGoes.transform.position = Vector3.Lerp (ObjectThatGoes.transform.position, telapos.position,time);
+		ObjectThatGoes.transform.rotation = Quaternion.Lerp (ObjectThatGoes.transform.rotation, telapos.rotation, time);
+		time += Time.deltaTime*0.1f;
+
+		if (ObjectThatGoes.transform.position == telapos.position && ObjectThatGoes.transform.localScale == tamanhoNaTela) {
+			ObjectThatGoes.transform.rotation = telapos.rotation;
+			ObjectThatGoes.transform.parent = CamTransform;
 			return true;
 		} else {
 			return false;
