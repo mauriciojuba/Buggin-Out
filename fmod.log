@@ -14,7 +14,7 @@
 [LOG] Thread::initThread                       : Init FMOD stream thread. Priority: 2, Stack Size: 65536, Semaphore: No, Sleep Time: 10, Looping: Yes.
 [LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
 [LOG] Thread::initThread                       : Init FMOD mixer thread. Priority: 3, Stack Size: 49152, Semaphore: No, Sleep Time: 0, Looping: Yes.
-[LOG] AsyncManager::init                       : manager 00000000591365A8 isAsync 1 updatePeriod 0.02
+[LOG] AsyncManager::init                       : manager 00000000421A6348 isAsync 1 updatePeriod 0.02
 [LOG] Thread::initThread                       : Init FMOD Studio update thread. Priority: 0, Stack Size: 65536, Semaphore: No, Sleep Time: 1, Looping: No.
 [LOG] AsyncManager::init                       : done
 [LOG] PlaybackSystem::init                     : 
@@ -30,15 +30,15 @@
 [LOG] SystemI::createSound                     : filename = Assets\Resources\Fmod\Buggin_Out_Fmod\Build\Desktop/Master Bank.bank : mode 02012082
 [LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
 [LOG] Thread::initThread                       : Init FMOD nonblocking thread (0). Priority: 1, Stack Size: 81920, Semaphore: Yes, Sleep Time: 0, Looping: Yes.
-[LOG] SystemI::createSound                     : setdata soundi = 00000000157A3298 : node = 0000000069981340
-[LOG] SystemI::createSound                     : add node to async list : head = 0000000058EF0C58.  list count = 0
-[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 00000000157A3298
+[LOG] SystemI::createSound                     : setdata soundi = 0000000015D75778 : node = 000000006F70B900
+[LOG] SystemI::createSound                     : add node to async list : head = 000000007DC40B08.  list count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000000015D75778
 [LOG] SystemI::createSoundInternal             :     filename = Assets\Resources\Fmod\Buggin_Out_Fmod\Build\Desktop/Master Bank.bank : mode 02012082
 [LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 232
 [LOG] SystemI::createSoundInternal             :     exinfo->length             = 2860192
 [LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 37952
 [LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000000069981458
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 000000006F70BA18
 [LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
 [LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
 [LOG] SystemI::createSoundInternal             :     Format has 1 subsounds.
@@ -46,7 +46,7 @@
 [LOG] System::createSoundInternal              :     decode buffersize = 19200 : blocksize = 256 : format = 2
 [LOG] SystemI::createSample                    :     mode 02012082 length 19200 samples, lengthbytes 1364384
 [LOG] SystemI::createSample                    :     channels = 2
-[LOG] SystemI::createSample                    :     output = 0000000058E6CD98
+[LOG] SystemI::createSample                    :     output = 000000007DE605B8
 [LOG] OutputSoftware::createSample             :     lengthpcm 19200, lengthbytes 1364384, channels 2, format 2, freq 48000, mode 0201208a
 [LOG] System::createSoundInternal              :     1 subsounds detected.
 [LOG] System::createSoundInternal              :     Seek stream to start
@@ -54,24 +54,24 @@
 [LOG] Thread::initThread                       :         Init FMOD file thread. Priority: 1, Stack Size: 16384, Semaphore: No, Sleep Time: 10, Looping: Yes.
 [LOG] SystemI::createSoundInternal             :     done.  OpenState now = FMOD_OPENSTATE_READY.
 
-[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 00000000157A3298
-[LOG] SoundI::getSubSound                      : sound 00000000157A3298.  Subsound index 0 / 1
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000000015D75778
+[LOG] SoundI::getSubSound                      : sound 0000000015D75778.  Subsound index 0 / 1
 [LOG] SoundI::getSubSound                      : starting non blocking seek and setting sound to not ready state
 [LOG] SoundI::getSubSound                      : finished preparing nonblocking getSubSound seek
-[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 00000000157A4378
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000000015D76198
 [LOG] AsyncThread::threadFunc                  :     done setposition
 [LOG] AsyncThread::threadFunc                  :     done flush
-[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 00000000157A4378
-[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 00000000157A4378
-[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 00000000157A4378
-[LOG] SoundI::release                          : Bugging Out - Fase 1 Final Mix (00000000157A3298)
-[LOG] SoundI::release                          : remove stream samples. (00000000157A3298)
-[LOG] SoundI::release                          :     Bugging Out - Fase 1 Final Mix (0000000058EF0CA8)
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000000015D76198
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000000015D76198
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000000015D76198
+[LOG] SoundI::release                          : Bugging Out - Fase 1 Final Mix (0000000015D75778)
+[LOG] SoundI::release                          : remove stream samples. (0000000015D75778)
+[LOG] SoundI::release                          :     Bugging Out - Fase 1 Final Mix (000000007DC42218)
 [LOG] SoundI::release                          :     done
-[LOG] SoundI::release                          : release subsounds. (00000000157A3298)
-[LOG] SoundI::release                          :     Bugging Out - Fase 1 Final Mix (00000000157A4378)
+[LOG] SoundI::release                          : release subsounds. (0000000015D75778)
+[LOG] SoundI::release                          :     Bugging Out - Fase 1 Final Mix (0000000015D76198)
 [LOG] SoundI::release                          :     done
-[LOG] SoundI::release                          : release codec. (00000000157A3298)
+[LOG] SoundI::release                          : release codec. (0000000015D75778)
 [LOG] SoundI::release                          : done
 [LOG] Thread::callback                         : FMOD Studio update thread finished.
 [LOG] Thread::callback                         : FMOD Studio bank load thread finished.
