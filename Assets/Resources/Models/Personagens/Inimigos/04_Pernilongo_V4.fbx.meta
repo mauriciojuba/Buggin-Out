@@ -3,7 +3,7 @@ guid: 5cba6fd1b066cf546b783ed34d414f2b
 timeCreated: 1494356587
 licenseType: Free
 ModelImporter:
-  serializedVersion: 19
+  serializedVersion: 21
   fileIDToRecycleName:
     100000: //RootNode
     100002: back
@@ -500,6 +500,7 @@ ModelImporter:
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
+    extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
       name: Walk
@@ -3584,7 +3585,7 @@ ModelImporter:
       lastFrame: 140
       wrapMode: 0
       orientationOffsetY: 0
-      level: 0
+      level: 0.8
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
@@ -4196,7 +4197,7 @@ ModelImporter:
       lastFrame: 185
       wrapMode: 0
       orientationOffsetY: 0
-      level: 0
+      level: 0.8
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
@@ -4808,7 +4809,7 @@ ModelImporter:
       lastFrame: 230
       wrapMode: 0
       orientationOffsetY: 0
-      level: 0
+      level: 0.8
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
@@ -5420,7 +5421,7 @@ ModelImporter:
       lastFrame: 260
       wrapMode: 0
       orientationOffsetY: 0
-      level: 0
+      level: 0.8
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
@@ -6032,7 +6033,7 @@ ModelImporter:
       lastFrame: 295
       wrapMode: 0
       orientationOffsetY: 0
-      level: 0
+      level: 0.8
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
@@ -6644,7 +6645,7 @@ ModelImporter:
       lastFrame: 385
       wrapMode: 0
       orientationOffsetY: 0
-      level: 0
+      level: 0.8
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
@@ -7288,7 +7289,7 @@ ModelImporter:
       lastFrame: 320
       wrapMode: 0
       orientationOffsetY: 0
-      level: 0
+      level: 0.8
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
@@ -7900,7 +7901,7 @@ ModelImporter:
       lastFrame: 350
       wrapMode: 0
       orientationOffsetY: 0
-      level: 0
+      level: 0.8
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
@@ -8512,7 +8513,7 @@ ModelImporter:
       lastFrame: 385
       wrapMode: 0
       orientationOffsetY: 0
-      level: 0
+      level: 0.8
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
@@ -9124,7 +9125,7 @@ ModelImporter:
       lastFrame: 475
       wrapMode: 0
       orientationOffsetY: 0
-      level: 0
+      level: 0.8
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
@@ -9736,7 +9737,7 @@ ModelImporter:
       lastFrame: 405
       wrapMode: 0
       orientationOffsetY: 0
-      level: 0
+      level: 0.8
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
@@ -10348,7 +10349,7 @@ ModelImporter:
       lastFrame: 435
       wrapMode: 0
       orientationOffsetY: 0
-      level: 0
+      level: 0.8
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
@@ -10960,7 +10961,7 @@ ModelImporter:
       lastFrame: 475
       wrapMode: 0
       orientationOffsetY: 0
-      level: 0
+      level: 0.5
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
@@ -14632,7 +14633,7 @@ ModelImporter:
       lastFrame: 685
       wrapMode: 0
       orientationOffsetY: 0
-      level: 0
+      level: 0.8
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
@@ -16467,7 +16468,10 @@ ModelImporter:
     globalScale: 15
     meshCompression: 3
     addColliders: 0
+    importVisibility: 0
     importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
@@ -16483,6 +16487,7 @@ ModelImporter:
     normalSmoothAngle: 180
     normalImportMode: 1
     tangentImportMode: 3
+    normalCalculationMode: 0
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
