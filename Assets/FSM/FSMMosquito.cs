@@ -771,8 +771,10 @@ public class FSMMosquito : MonoBehaviour
 		rb.isKinematic = true;
         MoveSpeed = 0.5f;
 
-        if (LifeDist <= LifeDrainDist)
-            state = FSMStates.DrainLife;
+		if (LifeDist <= LifeDrainDist) {
+			Debug.Log ("AQUI");
+			state = FSMStates.DrainLife;
+		}
 
         if (Life >= 0.5f * MaxLife)
         {

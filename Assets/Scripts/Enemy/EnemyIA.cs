@@ -43,6 +43,8 @@ public class EnemyIA : MonoBehaviour,IGroundEnemy,IKillable,IGoToScreen,IScreenE
 	public float chaseSpeed;
 	public float fleeSpeed;
 	public bool onScreen;
+	public float screenSpeed;
+	public Vector3 onScreenScale;
 
 	[Header("WayPoint")]
 	public Transform[] waypoints;
@@ -86,7 +88,7 @@ public class EnemyIA : MonoBehaviour,IGroundEnemy,IKillable,IGoToScreen,IScreenE
 			case State.GoingToScreen: UpToScreen(); break;
 			case State.GoingToWorld: DownToGround (); break;
 			case State.OnScreenIdle: OnScreenIdle (); break;
-			
+			case State.OnScreenChase: OnScreenChase (); break;
 		}
 	}
 
@@ -289,6 +291,12 @@ public class EnemyIA : MonoBehaviour,IGroundEnemy,IKillable,IGoToScreen,IScreenE
 	#region IGoToScreen
 	public virtual void UpToScreen ()
 	{
+		if (!onScreen)
+		{
+			RB.useGravity = false;
+			screenSpeed = 0.5f;
+			onScreen = true;
+		}
 		if (Screen.GoToScreen (gameObject)) {
 			ActualState = State.OnScreenIdle;
 		}
@@ -301,6 +309,7 @@ public class EnemyIA : MonoBehaviour,IGroundEnemy,IKillable,IGoToScreen,IScreenE
 	#region IScreenEntity
 	public virtual void OnScreenChase ()
 	{
+		
 	}
 	public virtual void OnScreenAttack ()
 	{
