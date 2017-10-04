@@ -1,0 +1,140 @@
+fileFormatVersion: 2
+guid: 08839064a12bd1f41a56747cbd818fdf
+timeCreated: 1507154204
+licenseType: Free
+ModelImporter:
+  serializedVersion: 21
+  fileIDToRecycleName:
+    100000: fortress_bellMESH
+    100002: fortress_bellRIG
+    100004: //RootNode
+    100006: joint1
+    100008: joint2
+    100010: joint3
+    100012: joint4
+    100014: joint5
+    100016: joint6
+    100018: joint7
+    100020: nurbsCircle1
+    100022: nurbsCircle2
+    100024: nurbsCircle3
+    100026: nurbsCircle4
+    100028: pCube1
+    100030: pCylinder1
+    100032: pCylinder11
+    100034: pCylinder12
+    100036: pCylinder13
+    100038: pCylinder2
+    100040: polySurface1
+    400000: fortress_bellMESH
+    400002: fortress_bellRIG
+    400004: //RootNode
+    400006: joint1
+    400008: joint2
+    400010: joint3
+    400012: joint4
+    400014: joint5
+    400016: joint6
+    400018: joint7
+    400020: nurbsCircle1
+    400022: nurbsCircle2
+    400024: nurbsCircle3
+    400026: nurbsCircle4
+    400028: pCube1
+    400030: pCylinder1
+    400032: pCylinder11
+    400034: pCylinder12
+    400036: pCylinder13
+    400038: pCylinder2
+    400040: polySurface1
+    4300000: polySurface1
+    4300002: pCylinder1
+    4300004: pCylinder2
+    4300006: pCylinder11
+    4300008: pCylinder12
+    4300010: pCylinder13
+    4300012: pCube1
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: pCube1
+    13700002: pCylinder1
+    13700004: pCylinder11
+    13700006: pCylinder12
+    13700008: pCylinder13
+    13700010: pCylinder2
+    13700012: polySurface1
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 100
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

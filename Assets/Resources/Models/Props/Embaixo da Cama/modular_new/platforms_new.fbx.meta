@@ -1,0 +1,160 @@
+fileFormatVersion: 2
+guid: 0f89e06f6926731489fab070dc950168
+timeCreated: 1507154488
+licenseType: Free
+ModelImporter:
+  serializedVersion: 21
+  fileIDToRecycleName:
+    100000: platform_nails1
+    100002: platform_nails2
+    100004: platform_nails3
+    100006: platform_pillar1
+    100008: platform_planks1
+    100010: platform_planks2
+    100012: platform_planks3
+    100014: platform_planks4
+    100016: platform_walls1
+    100018: platform_walls2
+    100020: platform_walls3
+    100022: platform_wax_border_curve1
+    100024: platform_wax_border_straight1
+    100026: platform_wax_border_straight2
+    100028: //RootNode
+    100030: wax_bar_wall
+    400000: platform_nails1
+    400002: platform_nails2
+    400004: platform_nails3
+    400006: platform_pillar1
+    400008: platform_planks1
+    400010: platform_planks2
+    400012: platform_planks3
+    400014: platform_planks4
+    400016: platform_walls1
+    400018: platform_walls2
+    400020: platform_walls3
+    400022: platform_wax_border_curve1
+    400024: platform_wax_border_straight1
+    400026: platform_wax_border_straight2
+    400028: //RootNode
+    400030: wax_bar_wall
+    2300000: platform_nails1
+    2300002: platform_nails2
+    2300004: platform_nails3
+    2300006: platform_pillar1
+    2300008: platform_planks1
+    2300010: platform_planks2
+    2300012: platform_planks3
+    2300014: platform_planks4
+    2300016: platform_walls1
+    2300018: platform_walls2
+    2300020: platform_walls3
+    2300022: platform_wax_border_curve1
+    2300024: platform_wax_border_straight1
+    2300026: platform_wax_border_straight2
+    2300028: wax_bar_wall
+    3300000: platform_nails1
+    3300002: platform_nails2
+    3300004: platform_nails3
+    3300006: platform_pillar1
+    3300008: platform_planks1
+    3300010: platform_planks2
+    3300012: platform_planks3
+    3300014: platform_planks4
+    3300016: platform_walls1
+    3300018: platform_walls2
+    3300020: platform_walls3
+    3300022: platform_wax_border_curve1
+    3300024: platform_wax_border_straight1
+    3300026: platform_wax_border_straight2
+    3300028: wax_bar_wall
+    4300000: wax_bar_wall
+    4300002: platform_planks1
+    4300004: platform_nails2
+    4300006: platform_nails3
+    4300008: platform_nails1
+    4300010: platform_walls1
+    4300012: platform_wax_border_straight2
+    4300014: platform_planks2
+    4300016: platform_wax_border_curve1
+    4300018: platform_walls2
+    4300020: platform_walls3
+    4300022: platform_wax_border_straight1
+    4300024: platform_planks4
+    4300026: platform_planks3
+    4300028: platform_pillar1
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 50
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
