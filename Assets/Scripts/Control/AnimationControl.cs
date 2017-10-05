@@ -16,6 +16,7 @@ public class AnimationControl : MonoBehaviour {
             return;
         }
         Anim.SetTrigger("Attack");
+        Anim.SetTrigger("Attack 2");
         Anim.SetInteger("AttackNumber", AttackNumber);
     }
 

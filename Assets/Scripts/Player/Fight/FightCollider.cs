@@ -10,7 +10,7 @@ public class FightCollider : MonoBehaviour {
 	public GameObject Player;
 	public GameObject EnemyHit;
 	public string Style;
-	private bool Horn,Liz,Juan;
+	[SerializeField] private bool Horn,Liz,Juan;
 
 
 	void OnTriggerEnter (Collider col){
@@ -66,6 +66,11 @@ public class FightCollider : MonoBehaviour {
         if (EnemyHit.gameObject.GetComponent<PlayerLife>() != null)
         {
             EnemyHit.GetComponent<PlayerLife>().LifeAtual -= (int)Damage;
+        }
+        if (EnemyHit.gameObject.GetComponent<Life>() != null)
+        {
+            EnemyHit.GetComponent<Life>().LifeQuant -= (int)Damage;
+
         }
     }
 
