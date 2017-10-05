@@ -5,54 +5,49 @@ using UnityEngine;
 public class IA_Mosquito : EnemyIA {
 
 	public GameObject[] hitbox;
-	Vector3 _tamanhoNaTela = new Vector3(2f,2f,2f);
 	GameObject LifeEmblem;
-	Vector3 mov;
+	public float LifeDist = 0.4f;
 
 	public override void Start ()
 	{
 		base.Start ();
 		LifeEmblem = GameObject.Find ("LifeEmblem");
+		onScreenScale = new Vector3(2f,2f,2f);
 	}
 
 
 
 	#region Override EnemyIA
-
-	public override void UpToScreen ()
-	{
-		if (Screen.GoToScreen (gameObject,_tamanhoNaTela)) {
-			ActualState = State.OnScreenIdle;
-		}
-	}
 	public override void OnScreenIdle ()
 	{
+		_anim.SetBool("GoingToScreen", false);
 		ActualState = State.OnScreenChase;
 	}
 	public override void OnScreenChase ()
 	{
-		LifeEmblemDrain ();
+		RB.isKinematic = true;
+		LifeDist = Vector3.Distance(transform.position, LifeEmblem.transform.position);
+		Debug.Log (LifeDist);
+		if (LifeDist > 0.2f) {
+			LifeEmblemChase ();
+		} else {
+			RB.velocity = Vector3.zero;
+			_anim.SetBool("walkScreen", false);
+		}
+
 	}
 
 	#endregion
 
 	#region Ataques Mosquito
 
-	public void LifeEmblemDrain(){
-		float CamSpeed = 0.1f;
+	public void LifeEmblemChase(){
+		Vector3 mov;
 		mov = new Vector3 (LifeEmblem.transform.position.x - transform.position.x, LifeEmblem.transform.position.y - transform.position.y, 0);
 		mov = Camera.main.transform.TransformVector (mov);
-		if (mov.x >= 0.2f) {
-			_anim.SetBool ("walkScreen", true);
-			transform.Translate (mov * transform.localScale.magnitude * Time.deltaTime * CamSpeed, Space.World);
-			transform.LookAt (Camera.main.transform, transform.up + mov);
-			if (hitted) {
-				ActualState = State.OnScreenDamage;
-			}
-		} else {
-			ActualState = State.GoingToWorld;
-		}
-
+		_anim.SetBool("walkScreen", true);
+		transform.Translate (mov * transform.localScale.magnitude * Time.deltaTime * screenSpeed, Space.World);
+		transform.LookAt (Camera.main.transform, transform.up + mov);
 	}
 
 	public void HitBoxOn()
