@@ -7,12 +7,15 @@ public class IA_Mosquito : EnemyIA {
 	public GameObject[] hitbox;
 	GameObject LifeEmblem;
 	public float LifeDist = 0.4f;
+	float initialTargetLife;
+	Transform Parent;
 
 	public override void Start ()
 	{
 		base.Start ();
 		LifeEmblem = GameObject.Find ("LifeEmblem");
 		onScreenScale = new Vector3(2f,2f,2f);
+		Parent = transform.parent;
 	}
 
 
@@ -33,8 +36,35 @@ public class IA_Mosquito : EnemyIA {
 		} else {
 			RB.velocity = Vector3.zero;
 			_anim.SetBool("walkScreen", false);
+			initialTargetLife = Target.GetComponent<PlayerLife> ().LifeAtual;
+			ActualState = State.OnScreenAttack;
 		}
 
+	}
+	public override void OnScreenAttack ()
+	{
+		float targetLife;
+		targetLife = Target.GetComponent<PlayerLife> ().LifeAtual;
+		if (targetLife >= initialTargetLife - onScreenAtkStr) {
+			_anim.SetBool("LifeDrain", true);
+			targetLife -= Time.fixedDeltaTime*10;
+			Target.GetComponent<PlayerLife> ().LifeAtual = targetLife;
+		} else {
+			_anim.SetBool("LifeDrain", false);
+			ActualState = State.GoingToWorld;
+		}
+	}
+
+	public override void DownToGround ()
+	{
+		if (Screen.GoOffScreen (worldPos, gameObject, Parent)) {
+			RB.isKinematic = false;
+			RB.useGravity = true;
+			onScreen = false;
+			ActualState = State.Idle;
+			_anim.SetBool("GoingToWorld", true);
+			_anim.SetBool("UsingWings", true);
+		}
 	}
 
 	#endregion

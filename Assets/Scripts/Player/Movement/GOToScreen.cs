@@ -65,4 +65,26 @@ public class GOToScreen : MonoBehaviour {
             return false;
         }
 	}
+	public bool GoOffScreen(Transform Pos, GameObject ObjectThatGoes, Transform parent){
+		time = 0;
+		ObjectThatGoes.transform.parent = parent;
+		ObjectThatGoes.transform.localScale = Vector3.MoveTowards (ObjectThatGoes.transform.localScale, new Vector3(1,1,1), Time.deltaTime);
+		ObjectThatGoes.transform.position = Vector3.MoveTowards (ObjectThatGoes.transform.position, new Vector3(Pos.position.x,transform.position.y,Pos.position.z) , Time.deltaTime * 5);
+		ObjectThatGoes.transform.rotation = Quaternion.Lerp (ObjectThatGoes.transform.rotation, Pos.rotation, Time.deltaTime * 2);
+		if (ObjectThatGoes.transform.position == new Vector3(Pos.position.x, transform.position.y, Pos.position.z) && ObjectThatGoes.transform.localScale == new Vector3(1,1,1)) {
+			ObjectThatGoes.transform.rotation = Pos.rotation;
+			if (ObjectThatGoes.GetComponent<Rigidbody> () != null) {
+				ObjectThatGoes.GetComponent<Rigidbody> ().isKinematic = false;
+			}
+			if (ObjectThatGoes.GetComponent<HornControl> () != null) {
+				ObjectThatGoes.GetComponent<HornControl> ().Going = false;
+				ObjectThatGoes.GetComponent<HornControl> ().natela = false;
+				Cam.ChecarNaTela ();
+			}
+			return true;
+		} else
+		{
+			return false;
+		}
+	}
 }

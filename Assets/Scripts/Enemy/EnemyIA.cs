@@ -20,6 +20,10 @@ public class EnemyIA : MonoBehaviour,IGroundEnemy,IKillable,IGoToScreen,IScreenE
 	public List<GameObject> players;
 	[HideInInspector]
 	public float[] playersDist = new float[2];
+	[HideInInspector]
+	public Transform worldPos;
+	[HideInInspector]
+	public float playerStr;
 
 	[Header("Estado atual")]
 	public State ActualState = State.Chase;
@@ -32,6 +36,7 @@ public class EnemyIA : MonoBehaviour,IGroundEnemy,IKillable,IGoToScreen,IScreenE
 	public float lifeMax;
 	public float attackStr;
 	public float attackDelay;
+	public float onScreenAtkStr;
 	public bool hitted;
 	public bool grabbed;
 
@@ -75,6 +80,7 @@ public class EnemyIA : MonoBehaviour,IGroundEnemy,IKillable,IGoToScreen,IScreenE
 
 	public void FixedUpdate()
 	{
+		if(hitted) ActualState = State.TakeDamage;
 		targetDistance = Vector3.Distance(Target.transform.position, gameObject.transform.position);
 		switch (ActualState)
 		{
@@ -89,6 +95,7 @@ public class EnemyIA : MonoBehaviour,IGroundEnemy,IKillable,IGoToScreen,IScreenE
 			case State.GoingToWorld: DownToGround (); break;
 			case State.OnScreenIdle: OnScreenIdle (); break;
 			case State.OnScreenChase: OnScreenChase (); break;
+			case State.OnScreenAttack: OnScreenAttack (); break;
 		}
 	}
 
@@ -247,10 +254,11 @@ public class EnemyIA : MonoBehaviour,IGroundEnemy,IKillable,IGoToScreen,IScreenE
 	#region IKillable
 	public virtual void TakeDamage ()
 	{
+		Life -= playerStr;
 		if (!onScreen)
 		{
 			_anim.SetBool("FightingWalk", false);
-			if (Life > 0 && Life <= lifeMax * 0.2f && !grabbed)
+			if (Life > 0 && Life <= lifeMax * 0.2f)
 			{
 				ActualState = State.Flee;
 			}
@@ -285,6 +293,7 @@ public class EnemyIA : MonoBehaviour,IGroundEnemy,IKillable,IGoToScreen,IScreenE
 	}
 	public virtual void Die ()
 	{
+		Destroy (gameObject, 3f);
 	}
 	#endregion
 
@@ -293,6 +302,7 @@ public class EnemyIA : MonoBehaviour,IGroundEnemy,IKillable,IGoToScreen,IScreenE
 	{
 		if (!onScreen)
 		{
+			worldPos = transform;
 			RB.useGravity = false;
 			screenSpeed = 0.5f;
 			onScreen = true;
@@ -301,8 +311,14 @@ public class EnemyIA : MonoBehaviour,IGroundEnemy,IKillable,IGoToScreen,IScreenE
 			ActualState = State.OnScreenIdle;
 		}
 	}
-	public void DownToGround ()
+	public virtual void DownToGround ()
 	{
+		if (Screen.GoOffScreen (worldPos, gameObject)) {
+			RB.isKinematic = false;
+			RB.useGravity = true;
+			onScreen = false;
+			ActualState = State.Idle;
+		}
 	}
 	#endregion
 
@@ -325,5 +341,12 @@ public class EnemyIA : MonoBehaviour,IGroundEnemy,IKillable,IGoToScreen,IScreenE
 	}
 	#endregion
 
+
+	public void OnTriggerExit(Collider hit){
+		if (hit.CompareTag ("playerHitCollider")) {
+			playerStr = hit.GetComponent<FightCollider> ().Damage;
+			if(!hitted) hitted = true;
+		}
+	}
 
 }
