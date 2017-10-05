@@ -90,9 +90,9 @@ public class FightCollider : MonoBehaviour {
 			}
 		} else if (Liz) {
 			if (TypeofAtk == "Strong") {
-				FMODUnity.RuntimeManager.PlayOneShot ("event:/Player/Horn/Ataque_Forte_Horn", transform.position);
+				FMODUnity.RuntimeManager.PlayOneShot ("event:/Player/Liz/Ataque_Basico_Liz", transform.position);
 			} else if (TypeofAtk == "Basic") {
-				FMODUnity.RuntimeManager.PlayOneShot ("event:/Player/Horn/Ataque_Basico_Horn", transform.position);
+				FMODUnity.RuntimeManager.PlayOneShot ("event:/Player/Liz/Ataque_Basico_Liz", transform.position);
 			}
 		} else if (Juan) {
 			if (TypeofAtk == "Strong") {
