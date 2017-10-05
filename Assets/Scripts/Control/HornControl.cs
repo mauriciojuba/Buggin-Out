@@ -26,9 +26,21 @@ public class HornControl : MonoBehaviour {
     [SerializeField] UseEspecial SpecialRef;
 	// Use this for initialization
 	void Start () {
-		AnimCTRL = GetComponent<AnimationControl> ();
+        if (GameObject.FindWithTag("DollyCam") != null)
+        {
+            DollyCam = GameObject.FindWithTag("DollyCam").GetComponent<CameraControl>();
+        }
+        if (GameObject.FindWithTag("Reference") != null)
+        {
+            ReferenciaDir = GameObject.FindWithTag("Reference");
+        }
+        if (GameObject.FindWithTag("PosTela") != null)
+        {
+            telapos = GameObject.FindWithTag("PosTela").transform;
+        }
+        AnimCTRL = GetComponent<AnimationControl> ();
         rdb=GetComponent<Rigidbody>();
-		//cameragame.transform.up = Vector3.up;
+        cameragame = Camera.main.gameObject;
         ReferenciaDir.transform.up = Vector3.up;
 
     }
@@ -81,9 +93,9 @@ public class HornControl : MonoBehaviour {
 //		}
 			if (Input.GetButtonDown ("RB P1") && !Going || Input.GetKeyDown (KeyCode.LeftAlt) && !Going) {
 				if (!natela) {
-					AntPos.position = transform.position;
-					AntPos.rotation = transform.rotation;
-				}
+                    AntPos = new GameObject("World Pos Player").transform;
+                    AntPos.position = transform.position;
+                }
 				Going = true;
 				anim.SetBool ("tocam", !natela);
 				rdb.isKinematic = true;
@@ -100,8 +112,14 @@ public class HornControl : MonoBehaviour {
                         natela = true;
                     }
                 }
-                else
-                    Screen.GoOffScreen(AntPos, gameObject);
+                else { 
+                   if(Screen.GoOffScreen(AntPos, gameObject))
+                    {
+                        Going = false;
+                        natela = false;
+                        Destroy(AntPos.gameObject);
+                    }
+                }
 			}
 		} else {
 			rdb.velocity = Vector3.zero;

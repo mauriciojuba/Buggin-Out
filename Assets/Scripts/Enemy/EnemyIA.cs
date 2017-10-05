@@ -321,7 +321,7 @@ public class EnemyIA : MonoBehaviour,IGroundEnemy,IKillable,IGoToScreen,IScreenE
 			RB.isKinematic = false;
 			RB.useGravity = true;
 			onScreen = false;
-            Destroy(worldPos);
+            Destroy(worldPos.gameObject);
 			ActualState = State.Idle;
 		}
 	}
