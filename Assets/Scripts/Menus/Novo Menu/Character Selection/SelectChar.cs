@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SelectChar : MonoBehaviour {
 
+    [SerializeField] GameObject[] Characters;
     [SerializeField] GameObject[] CharactersPos;
     [SerializeField] int PosAtual;
     [SerializeField] int PlayerNumber;
@@ -15,6 +16,7 @@ public class SelectChar : MonoBehaviour {
     void Start () {
         if (GameObject.FindWithTag("DATA") != null)
             DataS = GameObject.FindWithTag("DATA").GetComponent<Data>();
+        ChangePosition();
     }
 	
 	// Update is called once per frame
@@ -67,12 +69,14 @@ public class SelectChar : MonoBehaviour {
     {
         if (PlayerNumb == 1)
         {
-            DataS.P1SelectedCharacter = CharactersPos[PosAtual].GetComponent<CharacterHolder>().ThisCharacter;
+            Characters[PosAtual].GetComponent<Animator>().SetBool("Selected", true);
+            DataS.P1SelectedCharacter = Characters[PosAtual].GetComponent<CharacterHolder>().ThisCharacter;
             DataS.P1SelectedCharacter.PlayerNumber = PlayerNumb;
         }
         else if (PlayerNumb == 2)
         {
-            DataS.P2SelectedCharacter = CharactersPos[PosAtual].GetComponent<CharacterHolder>().ThisCharacter;
+            Characters[PosAtual].GetComponent<Animator>().SetBool("Selected", true);
+            DataS.P2SelectedCharacter = Characters[PosAtual].GetComponent<CharacterHolder>().ThisCharacter;
             DataS.P2SelectedCharacter.PlayerNumber = PlayerNumb;
 
         }
@@ -81,14 +85,20 @@ public class SelectChar : MonoBehaviour {
     public void OnDeselectCharacter(int PlayerNumb)
     {
         if (PlayerNumb == 1)
+        {
+            Characters[PosAtual].GetComponent<Animator>().SetBool("Selected", false);
             DataS.P1SelectedCharacter = null;
+        }
         else if (PlayerNumb == 2)
+        {
+            Characters[PosAtual].GetComponent<Animator>().SetBool("Selected", false);
             DataS.P2SelectedCharacter = null;
+        }
     }
 
     void ChangePosition()
     {
-        transform.position = new Vector3(CharactersPos[PosAtual].transform.position.x, transform.position.y, CharactersPos[PosAtual].transform.position.z);
+        transform.position = new Vector3(CharactersPos[PosAtual].transform.position.x, CharactersPos[PosAtual].transform.position.y, CharactersPos[PosAtual].transform.position.z);
     }
 
     IEnumerator SetCanChangeTrue()

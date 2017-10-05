@@ -27,6 +27,8 @@ public class CameraControl : MonoBehaviour {
 
 	public List<GameObject> StunnedPlayers;
 
+    public string LevelName;
+
     private void Start()
     {
         DollyCam = transform;
@@ -183,7 +185,7 @@ public class CameraControl : MonoBehaviour {
 			Fader.color = c;
 			//colocar o nome da cena aqui--------------------------\|/
 			if (c.a >= 1) {
-				UnityEngine.SceneManagement.SceneManager.LoadScene ("Level 1A");
+				UnityEngine.SceneManagement.SceneManager.LoadScene (LevelName);
 			}
 		}
 	}

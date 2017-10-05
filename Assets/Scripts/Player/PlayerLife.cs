@@ -11,13 +11,9 @@ public class PlayerLife : MonoBehaviour {
 	float maskOver;
 	public Animator Mask;
 
-    private void Awake()
-    {
-       LifeInGame = Instantiate(LifeEmblem, Camera.main.transform);
-       LifeInGame.name = "LifeEmblem";
-    }
-
     void Start () {
+        LifeInGame = Instantiate(LifeEmblem, Camera.main.transform);
+        LifeInGame.name = "LifeEmblem";
         Mask = LifeInGame.GetComponent<Animator>();
 		MaxLife = 300f;
 		LifeAtual = MaxLife;

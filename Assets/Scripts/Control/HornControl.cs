@@ -1,10 +1,11 @@
-﻿using System.Collections;
+﻿
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class HornControl : MonoBehaviour {
     Vector3 mov;
-    Rigidbody rdb;
+    [SerializeField] Rigidbody rdb;
 	AnimationControl AnimCTRL;
     public GameObject cameragame;
     public GameObject ReferenciaDir;
@@ -26,20 +27,12 @@ public class HornControl : MonoBehaviour {
     [SerializeField] UseEspecial SpecialRef;
 	// Use this for initialization
 	void Start () {
-        if (GameObject.FindWithTag("DollyCam") != null)
-        {
-            DollyCam = GameObject.FindWithTag("DollyCam").GetComponent<CameraControl>();
-        }
-        if (GameObject.FindWithTag("Reference") != null)
-        {
-            ReferenciaDir = GameObject.FindWithTag("Reference");
-        }
-        if (GameObject.FindWithTag("PosTela") != null)
-        {
-            telapos = GameObject.FindWithTag("PosTela").transform;
-        }
+        DollyCam = GameObject.FindWithTag("DollyCam").GetComponent<CameraControl>();
+        ReferenciaDir = GameObject.FindWithTag("Reference");
+        telapos = GameObject.FindWithTag("PosTela").transform;
+        Screen = GameObject.Find("GoToScreen").GetComponent<GOToScreen>();
         AnimCTRL = GetComponent<AnimationControl> ();
-        rdb=GetComponent<Rigidbody>();
+        rdb = gameObject.GetComponent<Rigidbody>();
         cameragame = Camera.main.gameObject;
         ReferenciaDir.transform.up = Vector3.up;
 
@@ -95,6 +88,7 @@ public class HornControl : MonoBehaviour {
 				if (!natela) {
                     AntPos = new GameObject("World Pos Player").transform;
                     AntPos.position = transform.position;
+                    AntPos.rotation = transform.rotation;
                 }
 				Going = true;
 				anim.SetBool ("tocam", !natela);

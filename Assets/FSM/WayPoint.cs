@@ -11,7 +11,7 @@ public class WayPoint : MonoBehaviour {
 
     public Mesh Seta;
 
-    /*public void OnDrawGizmos()
+    public void OnDrawGizmos()
     {
 
 
@@ -30,6 +30,6 @@ public class WayPoint : MonoBehaviour {
             }
         }
         
-    }*/
+    }
 
 }

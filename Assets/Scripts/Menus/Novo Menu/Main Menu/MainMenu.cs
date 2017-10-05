@@ -46,7 +46,7 @@ public class MainMenu : MonoBehaviour {
     {
         yield return new WaitForSeconds(1.3f);
         GoCam = false;
-        AsyncOperation async = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("Level 1A");
+        AsyncOperation async = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("Selecao");
 
         while (!async.isDone)
         {

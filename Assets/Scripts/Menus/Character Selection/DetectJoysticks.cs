@@ -93,6 +93,7 @@ public class DetectJoysticks : MonoBehaviour {
 				}
 			}
 		} else {
+            if(Press_A_P2 != null)
 			Press_A_P2.SetActive (false);
 
 		}	

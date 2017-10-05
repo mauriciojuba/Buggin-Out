@@ -19,7 +19,7 @@ public class FightCollider : MonoBehaviour {
 			if (Player.CompareTag ("Player1_3D") || Player.CompareTag ("Player2_3D") ||
 				Player.CompareTag ("Player3_3D") || Player.CompareTag ("Player4_3D")) {
 				if (col.tag != "Player1_3D" && col.tag != "Player2_3D" && col.tag != "Player3_3D" && col.tag != "Player4_3D") {
-					if (col.gameObject.GetComponent<Life> () != null) {
+					if (col.gameObject.CompareTag("Enemy") || col.gameObject.CompareTag("Destructible")) {
 						//Aqui deve ser chamado o método(função) que substituirá o Update do script Life.
 						EnemyHit = col.gameObject;
 						//Aplica o Dano.
@@ -81,6 +81,7 @@ public class FightCollider : MonoBehaviour {
 
         }
 		if (EnemyHit.GetComponent<FSMAranha> () != null) {
+            EnemyHit.GetComponent<FSMAranha>().Life -= Damage;
 			EnemyHit.GetComponent<FSMAranha> ().state = FSMAranha.FSMStates.Damage;
 			EnemyHit.GetComponent<FSMAranha> ().SetTakeDamageAnim ();
 		}
@@ -111,11 +112,12 @@ public class FightCollider : MonoBehaviour {
 	public void InstantiateParticle(){
 		if (particula != null)
 		{
-			//ScreenShake.Instance.Shake(0.05f, 0.05f);
+			ScreenShake.Instance.Shake(0.05f, 0.05f);
 			GameObject part = Instantiate (particula, transform.position, Quaternion.identity) as GameObject;
-			float timePart = part.GetComponent<ParticleSystem> ().duration;
+            part.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+			float timePart = part.GetComponent<ParticleSystem> ().main.duration;
 			if (Player != null) {
-				if (Player.GetComponent<Movimentacao3D> ().onScreen) {
+				if (Player.GetComponent<HornControl> ().natela) {
 					part.transform.localScale = new Vector3 (0.3f, 0.3f, 0.3f);
 				}
 			}

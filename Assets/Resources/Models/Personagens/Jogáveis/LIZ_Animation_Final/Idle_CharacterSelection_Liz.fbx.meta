@@ -356,7 +356,7 @@ ModelImporter:
     4300022: Liz:R_Eyelid_T
     4300024: Liz:L_Eyelid_T
     4300026: Liz:R_Jaw
-    7400000: Idle_CharacterSelection_Liz
+    7400000: Idle_CharacterSelection_Select_Loop
     7400002: Idle_CharacterSelection_Liz_1
     7400004: Idle_CharacterSelection_Liz_1_Loop
     7400006: Idle_CharacterSelection_Liz_Select
@@ -513,9 +513,9 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Idle_CharacterSelection_Liz
+      name: Idle_CharacterSelection_Select_Loop
       takeName: Idle_CharacterSelection_Liz
-      firstFrame: 1210
+      firstFrame: 1290
       lastFrame: 1330
       wrapMode: 0
       orientationOffsetY: 0
@@ -523,7 +523,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 1
       loopBlendPositionY: 0

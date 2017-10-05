@@ -37,6 +37,7 @@ public class IA_Mosquito : EnemyIA {
 	}
 	public override void OnScreenChase ()
 	{
+        LifeEmblem = Target.GetComponent<PlayerLife>().LifeInGame;
 		RB.isKinematic = true;
 		LifeDist = Vector3.Distance(transform.position, LifeEmblem.transform.position);
 		Debug.Log (LifeDist);

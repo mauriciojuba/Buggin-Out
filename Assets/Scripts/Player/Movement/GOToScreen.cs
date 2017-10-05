@@ -47,9 +47,9 @@ public class GOToScreen : MonoBehaviour {
         time = 0;
         ObjectThatGoes.transform.parent = null;
 		ObjectThatGoes.transform.localScale = Vector3.MoveTowards (ObjectThatGoes.transform.localScale, new Vector3(1,1,1), Time.deltaTime);
-		ObjectThatGoes.transform.position = Vector3.MoveTowards (ObjectThatGoes.transform.position, new Vector3(Pos.position.x,transform.position.y,Pos.position.z) , Time.deltaTime * 5);
+		ObjectThatGoes.transform.position = Vector3.MoveTowards (ObjectThatGoes.transform.position, new Vector3(Pos.position.x, ObjectThatGoes.transform.position.y,Pos.position.z) , Time.deltaTime * 5);
 		ObjectThatGoes.transform.rotation = Quaternion.Lerp (ObjectThatGoes.transform.rotation, Pos.rotation, Time.deltaTime * 2);
-		if (ObjectThatGoes.transform.position == new Vector3(Pos.position.x, transform.position.y, Pos.position.z) && ObjectThatGoes.transform.localScale == new Vector3(1,1,1)) {
+		if (ObjectThatGoes.transform.position == new Vector3(Pos.position.x, ObjectThatGoes.transform.position.y, Pos.position.z) && ObjectThatGoes.transform.localScale == new Vector3(1,1,1)) {
 			ObjectThatGoes.transform.rotation = Pos.rotation;
 			if (ObjectThatGoes.GetComponent<Rigidbody> () != null) {
 				ObjectThatGoes.GetComponent<Rigidbody> ().isKinematic = false;
@@ -69,9 +69,9 @@ public class GOToScreen : MonoBehaviour {
 		time = 0;
 		ObjectThatGoes.transform.parent = parent;
 		ObjectThatGoes.transform.localScale = Vector3.MoveTowards (ObjectThatGoes.transform.localScale, new Vector3(1,1,1), Time.deltaTime);
-		ObjectThatGoes.transform.position = Vector3.MoveTowards (ObjectThatGoes.transform.position, new Vector3(Pos.position.x,transform.position.y,Pos.position.z) , Time.deltaTime * 5);
+		ObjectThatGoes.transform.position = Vector3.MoveTowards (ObjectThatGoes.transform.position, new Vector3(Pos.position.x, ObjectThatGoes.transform.position.y,Pos.position.z) , Time.deltaTime * 5);
 		ObjectThatGoes.transform.rotation = Quaternion.Lerp (ObjectThatGoes.transform.rotation, Pos.rotation, Time.deltaTime * 2);
-		if (ObjectThatGoes.transform.position == new Vector3(Pos.position.x, transform.position.y, Pos.position.z) && ObjectThatGoes.transform.localScale == new Vector3(1,1,1)) {
+		if (ObjectThatGoes.transform.position == new Vector3(Pos.position.x, ObjectThatGoes.transform.position.y, Pos.position.z) && ObjectThatGoes.transform.localScale == new Vector3(1,1,1)) {
 			ObjectThatGoes.transform.rotation = Pos.rotation;
 			if (ObjectThatGoes.GetComponent<Rigidbody> () != null) {
 				ObjectThatGoes.GetComponent<Rigidbody> ().isKinematic = false;
