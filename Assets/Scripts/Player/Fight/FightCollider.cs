@@ -75,6 +75,9 @@ public class FightCollider : MonoBehaviour {
 			EnemyHit.GetComponent<FSMMosquito> ().state = FSMMosquito.FSMStates.Damage;
 			EnemyHit.GetComponent<FSMMosquito> ().SetTakeDamageAnim ();
 		}
+		if (EnemyHit.GetComponent<IA_Mosquito> () != null) {
+			EnemyHit.GetComponent<IA_Mosquito> ().hitted = true;
+		}
 		if (EnemyHit.GetComponent<FSMAranha> () != null) {
 			EnemyHit.GetComponent<FSMAranha> ().state = FSMAranha.FSMStates.Damage;
 			EnemyHit.GetComponent<FSMAranha> ().SetTakeDamageAnim ();
