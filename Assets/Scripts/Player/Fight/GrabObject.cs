@@ -9,7 +9,7 @@ public class GrabObject : MonoBehaviour {
 	[SerializeField] float Force;
 	GameObject BoxProximity;
 	bool PickUp, PickedObj;
-	GameObject[] Boxs;
+    [SerializeField]  GameObject[] Boxs;
 	AnimationControl AnimCTRL;
 	Quaternion targetRotation;
 
@@ -56,6 +56,7 @@ public class GrabObject : MonoBehaviour {
 				targetRotation = Quaternion.LookRotation (new Vector3 (BoxProximity.transform.position.x, BoxProximity.transform.position.y - 0.668f, BoxProximity.transform.position.z) - transform.position);
 				PickUp = true;
 				gameObject.GetComponent<HornControl> ().CanMove = false;
+                gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
 				Debug.LogWarning ("Pode Pegar");
 			}
 		}
