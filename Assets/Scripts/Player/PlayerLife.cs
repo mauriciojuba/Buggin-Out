@@ -26,6 +26,7 @@ public class PlayerLife : MonoBehaviour {
 	}
 
 	void atualizaVida(){
+        if(Mask != null)
 		Mask.SetFloat ("Life", (LifeAtual / MaxLife));
 	}
 }
