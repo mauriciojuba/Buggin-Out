@@ -9,8 +9,17 @@ public class IA_Mosquito : EnemyIA {
 	public float LifeDist = 0.4f;
 	float initialTargetLife;
 	Transform Parent;
+    //variavel pra trocar os colliders quando morre só pro mosquito ir pro chão
+    public Collider NormalCollider, DeathCollider;
 
-	public override void Start ()
+
+    //variaveis Particula lifedrain
+    private GameObject part;
+    public GameObject ParticulaLifeDrain;
+    public Transform rootJoint;
+    private bool StartedParticle;
+
+    public override void Start ()
 	{
 		base.Start ();
 		LifeEmblem = GameObject.Find ("LifeEmblem");
@@ -45,33 +54,52 @@ public class IA_Mosquito : EnemyIA {
 	{
 		float targetLife;
 		targetLife = Target.GetComponent<PlayerLife> ().LifeAtual;
-		if (targetLife >= initialTargetLife - onScreenAtkStr) {
+        if (!StartedParticle)
+        {
+            DrainLifeStart();
+        }
+
+        if (targetLife >= initialTargetLife - onScreenAtkStr) {
 			_anim.SetBool("LifeDrain", true);
 			targetLife -= Time.fixedDeltaTime*10;
+            Life += Time.fixedDeltaTime * 10;
 			Target.GetComponent<PlayerLife> ().LifeAtual = targetLife;
 		} else {
 			_anim.SetBool("LifeDrain", false);
 			ActualState = State.GoingToWorld;
-		}
+            DrainLifeEnd();
+
+        }
 	}
 
 	public override void DownToGround ()
 	{
-		if (Screen.GoOffScreen (worldPos, gameObject, Parent)) {
+        _anim.SetBool("GoingToWorld", true);
+        if (Screen.GoOffScreen (worldPos, gameObject, Parent)) {
 			RB.isKinematic = false;
 			RB.useGravity = true;
 			onScreen = false;
 			ActualState = State.Idle;
-			_anim.SetBool("GoingToWorld", true);
+			_anim.SetBool("GoingToWorld", false);
 			_anim.SetBool("UsingWings", true);
 		}
 	}
 
-	#endregion
+    //trocar os colliders quando morre e ativar animação.
+    public override void Die()
+    {
+        _anim.SetTrigger("Death");
+        _anim.SetBool("UsingWings", false);
+        NormalCollider.enabled = false;
+        DeathCollider.enabled = true;
+        if(_anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.8f)
+        Destroy(gameObject, 3f);
+    }
+    #endregion
 
-	#region Ataques Mosquito
+    #region Ataques Mosquito
 
-	public void LifeEmblemChase(){
+    public void LifeEmblemChase(){
 		Vector3 mov;
 		mov = new Vector3 (LifeEmblem.transform.position.x - transform.position.x, LifeEmblem.transform.position.y - transform.position.y, 0);
 		mov = Camera.main.transform.TransformVector (mov);
@@ -98,6 +126,30 @@ public class IA_Mosquito : EnemyIA {
 			hitbox[1].GetComponent<Collider>().enabled = false;
 	}
 
-	#endregion
+    #endregion
 
+    #region Particle LifeDrain (arruma depois no lugar certo)
+    public void DrainLifeStart()
+    {
+        part = Instantiate(ParticulaLifeDrain, LifeEmblem.transform.position, Quaternion.identity) as GameObject;
+        part.transform.parent = LifeEmblem.transform;
+        part.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+
+        part.GetComponent<ParticleHoming>().target = rootJoint;
+
+        part.SetActive(true);
+        StartedParticle = true;
+    }
+
+    public void DrainLifeEnd()
+    {
+        ParticleSystem particleemitter = part.GetComponent<ParticleSystem>();
+        if (particleemitter != null)
+        {
+            ParticleSystem.EmissionModule emit = particleemitter.emission;
+            emit.enabled = false;
+        }
+        Destroy(part, 5f);
+    }
+    #endregion
 }

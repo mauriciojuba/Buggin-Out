@@ -151,7 +151,7 @@ public class EnemyIA : MonoBehaviour,IGroundEnemy,IKillable,IGoToScreen,IScreenE
 	}
 	public virtual void Idle()
 	{
-		_anim.SetBool("IsIdle", true);
+        _anim.SetBool("IsIdle", true);
 
 		if (Vector3.Distance(Target.transform.position, gameObject.transform.position) < Visao)
 		{
@@ -175,7 +175,7 @@ public class EnemyIA : MonoBehaviour,IGroundEnemy,IKillable,IGoToScreen,IScreenE
 	}
 	public virtual void Patrol()
 	{
-		_anim.SetBool("IsParolling", true);
+        _anim.SetBool("IsParolling", true);
 		Vector3 dir = waypoints[currentWaypoint].position - transform.position;
 		transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime * rotationSpeed);
 		transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
@@ -198,7 +198,7 @@ public class EnemyIA : MonoBehaviour,IGroundEnemy,IKillable,IGoToScreen,IScreenE
 	}
 	public virtual void Chase()
 	{
-		_anim.SetBool ("IsParolling", false);
+        _anim.SetBool ("IsParolling", false);
 		_anim.SetBool("FightingWalk", true);
 		Vector3 dir = Target.transform.position;
 		transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(Target.transform.position - transform.position), Time.deltaTime * rotationSpeed);
@@ -223,8 +223,7 @@ public class EnemyIA : MonoBehaviour,IGroundEnemy,IKillable,IGoToScreen,IScreenE
 	}
 	public virtual void Flee()
 	{
-		
-		_anim.SetBool("FightingWalk", false);
+        _anim.SetBool("FightingWalk", false);
 		TimeToNextPoint = 0;
 		transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(transform.position - Target.transform.position), rotationSpeed * Time.deltaTime);
 		transform.position += transform.forward * speed * Time.deltaTime;
@@ -254,11 +253,15 @@ public class EnemyIA : MonoBehaviour,IGroundEnemy,IKillable,IGoToScreen,IScreenE
 	#region IKillable
 	public virtual void TakeDamage ()
 	{
-		Life -= playerStr;
+        if (hitted)
+        {
+            Life -= playerStr;
+            hitted = false;
+        }
 		if (!onScreen)
 		{
 			_anim.SetBool("FightingWalk", false);
-			if (Life > 0 && Life <= lifeMax * 0.2f)
+            if (Life > 0 && Life <= lifeMax * 0.2f)
 			{
 				ActualState = State.Flee;
 			}
@@ -279,13 +282,13 @@ public class EnemyIA : MonoBehaviour,IGroundEnemy,IKillable,IGoToScreen,IScreenE
 				Destroy(part, 5f);
 			}*/
 
-			if (Life > 0) {
-				ActualState = State.OnScreenFall;
-			} else {
-				ActualState = State.Dead;
-			}
+			//if (Life > 0) {
+				ActualState = State.GoingToWorld;
+			//} else {
+			//	ActualState = State.Dead;
+			//}
 		}
-		hitted = false;
+		//hitted = false;
 		if (_anim.GetCurrentAnimatorStateInfo(0).IsName("Take Damage") && _anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.7f && Life > 0)
 		{
 			ActualState = State.Chase;
@@ -293,7 +296,7 @@ public class EnemyIA : MonoBehaviour,IGroundEnemy,IKillable,IGoToScreen,IScreenE
 	}
 	public virtual void Die ()
 	{
-		Destroy (gameObject, 3f);
+       
 	}
 	#endregion
 
@@ -302,7 +305,8 @@ public class EnemyIA : MonoBehaviour,IGroundEnemy,IKillable,IGoToScreen,IScreenE
 	{
 		if (!onScreen)
 		{
-			worldPos = transform;
+			worldPos = new GameObject("World Pos Mosquito").transform;
+            worldPos.position = transform.position;
 			RB.useGravity = false;
 			screenSpeed = 0.5f;
 			onScreen = true;
@@ -317,6 +321,7 @@ public class EnemyIA : MonoBehaviour,IGroundEnemy,IKillable,IGoToScreen,IScreenE
 			RB.isKinematic = false;
 			RB.useGravity = true;
 			onScreen = false;
+            Destroy(worldPos);
 			ActualState = State.Idle;
 		}
 	}
@@ -342,11 +347,11 @@ public class EnemyIA : MonoBehaviour,IGroundEnemy,IKillable,IGoToScreen,IScreenE
 	#endregion
 
 
-	public void OnTriggerExit(Collider hit){
-		if (hit.CompareTag ("playerHitCollider")) {
-			playerStr = hit.GetComponent<FightCollider> ().Damage;
-			if(!hitted) hitted = true;
-		}
-	}
+	//public void OnTriggerExit(Collider hit){
+	//	if (hit.CompareTag ("playerHitCollider")) {
+	//		playerStr = hit.GetComponent<FightCollider> ().Damage;
+	//		if(!hitted) hitted = true;
+	//	}
+	//}
 
 }

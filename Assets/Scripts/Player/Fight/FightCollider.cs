@@ -43,13 +43,13 @@ public class FightCollider : MonoBehaviour {
 			//coloca particula de Ataque
 			InstantiateParticle ();
 
-			if (col.gameObject.GetComponent<Life> () != null) {
+			if (col.gameObject.GetComponent<PlayerLife> () != null) {
 				EnemyHit = col.gameObject;
 
 				//Aplica o Dano.
 				ApplyDamage ();
 
-				if (col.gameObject.GetComponent<Life> ().LifeQuant >= col.gameObject.GetComponent<Life> ().Division) {
+				if (col.gameObject.GetComponent<PlayerLife> ().LifeAtual >= 0) {
 					if (col.CompareTag ("Player1_3D") || col.CompareTag ("Player2_3D") ||
 						col.CompareTag ("Player3_3D") || col.CompareTag ("Player4_3D")) {
 						col.GetComponent<AnimationControl> ().SetTakeDamageAnim ();
@@ -61,14 +61,13 @@ public class FightCollider : MonoBehaviour {
 		}
 	}
 
-	void ApplyDamage(){
-		EnemyHit.GetComponent<Life> ().LifeQuant -= (int)Damage;
-		EnemyHit.GetComponent<Life> ().UpdateLife ();
-		if (EnemyHit.GetComponent<Life> ().LifeOF == Life.LifeType.Player) {
-			EnemyHit.GetComponent<Life> ().ListOfImg [EnemyHit.gameObject.GetComponent<Life> ().QuantImgInScene - 1].GetComponent<ScaleLife> ().TatuLife -= (int)Damage;
-			EnemyHit.GetComponent<Life> ().ListOfImg [EnemyHit.gameObject.GetComponent<Life> ().QuantImgInScene - 1].GetComponent<ScaleLife> ().UpdateScaleLife ();
-		}
-	}
+    void ApplyDamage()
+    {
+        if (EnemyHit.gameObject.GetComponent<PlayerLife>() != null)
+        {
+            EnemyHit.GetComponent<PlayerLife>().LifeAtual -= (int)Damage;
+        }
+    }
 
 	void ApplyEnemyHitAnim(){
 		if (EnemyHit.GetComponent<FSMMosquito> () != null) {
@@ -76,8 +75,11 @@ public class FightCollider : MonoBehaviour {
 			EnemyHit.GetComponent<FSMMosquito> ().SetTakeDamageAnim ();
 		}
 		if (EnemyHit.GetComponent<IA_Mosquito> () != null) {
-			EnemyHit.GetComponent<IA_Mosquito> ().hitted = true;
-		}
+            EnemyHit.GetComponent<IA_Mosquito>().playerStr = Damage;
+            EnemyHit.GetComponent<IA_Mosquito>()._anim.SetTrigger("TakeDamage");
+            EnemyHit.GetComponent<IA_Mosquito> ().hitted = true;
+
+        }
 		if (EnemyHit.GetComponent<FSMAranha> () != null) {
 			EnemyHit.GetComponent<FSMAranha> ().state = FSMAranha.FSMStates.Damage;
 			EnemyHit.GetComponent<FSMAranha> ().SetTakeDamageAnim ();
@@ -109,7 +111,7 @@ public class FightCollider : MonoBehaviour {
 	public void InstantiateParticle(){
 		if (particula != null)
 		{
-			ScreenShake.Instance.Shake(0.05f, 0.05f);
+			//ScreenShake.Instance.Shake(0.05f, 0.05f);
 			GameObject part = Instantiate (particula, transform.position, Quaternion.identity) as GameObject;
 			float timePart = part.GetComponent<ParticleSystem> ().duration;
 			if (Player != null) {

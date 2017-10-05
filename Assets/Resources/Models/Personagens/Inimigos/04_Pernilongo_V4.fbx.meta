@@ -6661,39 +6661,7 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events:
-      - time: 0.68269235
-        functionName: HitBoxOn
-        data: 
-        objectReferenceParameter: {fileID: 11500000, guid: 4f74974012ef0b74e972a92bee464fdf,
-          type: 3}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
-      - time: 0.72499996
-        functionName: HitBoxOff
-        data: 
-        objectReferenceParameter: {fileID: 11500000, guid: 4f74974012ef0b74e972a92bee464fdf,
-          type: 3}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
-      - time: 0.9923075
-        functionName: DrainLifeEnd
-        data: 
-        objectReferenceParameter: {fileID: 11500000, guid: 4f74974012ef0b74e972a92bee464fdf,
-          type: 3}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
-      - time: 0.27378643
-        functionName: DrainLifeStart
-        data: 
-        objectReferenceParameter: {fileID: 11500000, guid: 4f74974012ef0b74e972a92bee464fdf,
-          type: 3}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
+      events: []
       transformMask:
       - path: 
         weight: 1
