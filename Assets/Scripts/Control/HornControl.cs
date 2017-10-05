@@ -49,11 +49,11 @@ public class HornControl : MonoBehaviour {
 				Vector3 Directionabs = new Vector3 (mov.x, 0, mov.z);
 
 				if (mov.magnitude > 0) {
-                    //anim.SetBool("Layer1Active", true);
+                    anim.SetBool("Layer1Active", true);
 					anim.SetLayerWeight (1, 1);
 					anim.SetLayerWeight (2, 0);
 				} else if (mov.magnitude <= 0) {
-                   // anim.SetBool("Layer1Active", false);
+                    anim.SetBool("Layer1Active", false);
                     anim.SetLayerWeight (2, 1);
 					anim.SetLayerWeight (1, 0);
 				}
@@ -71,11 +71,11 @@ public class HornControl : MonoBehaviour {
 				transform.Translate (mov * transform.localScale.magnitude * Time.deltaTime * CamSpeed, Space.World);
 				transform.LookAt (cameragame.transform, transform.up + mov);
 				if (mov.magnitude > 0) {
-                   // anim.SetBool("Layer1Active", true);
+                    anim.SetBool("Layer1Active", true);
                     anim.SetLayerWeight (1, 1);
 					anim.SetLayerWeight (2, 0);
 				} else if (mov.magnitude <= 0) {
-                   // anim.SetBool("Layer1Active", false);
+                    anim.SetBool("Layer1Active", false);
                     anim.SetLayerWeight (2, 1);
 					anim.SetLayerWeight (1, 0);
 				}
