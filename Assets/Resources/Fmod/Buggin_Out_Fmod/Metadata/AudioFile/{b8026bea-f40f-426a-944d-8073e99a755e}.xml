@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.09.00">
+    <object class="AudioFile" id="{b8026bea-f40f-426a-944d-8073e99a755e}">
+        <property name="assetPath">
+            <value>Cera Apanhando/CeraHit05.wav</value>
+        </property>
+        <property name="frequencyInKHz">
+            <value>48</value>
+        </property>
+        <property name="channelCount">
+            <value>2</value>
+        </property>
+        <property name="length">
+            <value>0.68727083333333339</value>
+        </property>
+        <relationship name="masterAssetFolder">
+            <destination>{03bc8d35-9f13-4b66-a22f-2a40c7dc76a9}</destination>
+        </relationship>
+    </object>
+</objects>
