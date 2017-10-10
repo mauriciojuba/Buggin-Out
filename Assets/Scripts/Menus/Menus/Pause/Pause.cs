@@ -14,8 +14,10 @@ public class Pause : MonoBehaviour {
 	[SerializeField] private Menu PauseMenu;
 	[SerializeField] private Image PauseColor;
 	private Menu CurrentMenu;
+    float OldTime;
+
 	void Start () {
-		
+        OldTime = 1.5f;
 		if(GameObject.FindWithTag ("Player1_3D") != null)
 			Player1_3D = GameObject.FindWithTag ("Player1_3D");
 		if(GameObject.FindWithTag ("Player2_3D") != null)
@@ -69,7 +71,7 @@ public class Pause : MonoBehaviour {
 			Color c = new Color ();
 			c.a = 0;
 			PauseColor.color = c;
-			Time.timeScale = 1;
+			Time.timeScale = OldTime;
 		}
 		if (gameObject.GetComponent<MenuManager> ().CurrentMenu != null)
 			gameObject.GetComponent<MenuManager> ().CurrentMenu.IsOpen = false;

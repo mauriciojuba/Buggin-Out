@@ -19,7 +19,9 @@ public class GOToScreen : MonoBehaviour {
         ObjectThatGoes.transform.rotation = Quaternion.Lerp (ObjectThatGoes.transform.rotation, telapos.rotation, time);
         time += Time.deltaTime*0.1f;
 
-		if (ObjectThatGoes.transform.position == telapos.position && ObjectThatGoes.transform.localScale == telapos.localScale) {
+		if (Mathf.Abs(ObjectThatGoes.transform.position.y) >= Mathf.Abs(telapos.position.y) - 0.001f &&
+            Mathf.Abs(ObjectThatGoes.transform.position.y) <= Mathf.Abs(telapos.position.y) + 0.001f &&
+            ObjectThatGoes.transform.localScale == telapos.localScale) {
 			ObjectThatGoes.transform.rotation = telapos.rotation;
 			ObjectThatGoes.transform.parent = CamTransform;
 			return true;
@@ -34,7 +36,9 @@ public class GOToScreen : MonoBehaviour {
 		ObjectThatGoes.transform.rotation = Quaternion.Lerp (ObjectThatGoes.transform.rotation, telapos.rotation, time);
 		time += Time.deltaTime*0.1f;
 
-		if (ObjectThatGoes.transform.position == telapos.position && ObjectThatGoes.transform.localScale == tamanhoNaTela) {
+        if (Mathf.Abs(ObjectThatGoes.transform.position.y) >= Mathf.Abs(telapos.position.y) - 0.001f &&
+            Mathf.Abs(ObjectThatGoes.transform.position.y) <= Mathf.Abs(telapos.position.y) + 0.001f &&
+            ObjectThatGoes.transform.localScale == telapos.localScale) {
 			ObjectThatGoes.transform.rotation = telapos.rotation;
 			ObjectThatGoes.transform.parent = CamTransform;
 			return true;

@@ -12,23 +12,29 @@ public class PauseMenu : MonoBehaviour {
 
 	[SerializeField] private EventSystem Event;
 	[SerializeField] private GameObject ButtonSelect;
+    float OldTime;
 
-	public void SairDoJogo(){
+    private void Start()
+    {
+        OldTime = 1.5f;
+    }
+
+    public void SairDoJogo(){
 		Application.Quit();
 	}
 	public void SelecaoPersonagem(){
 		gamePaused = false;
-		Time.timeScale = 1;
+		Time.timeScale = OldTime;
 		SceneManager.LoadScene("Selecao Personagens 3D");
 	}
 	public void MainMenu(){
 		gamePaused = false;
-		Time.timeScale = 1;
+		Time.timeScale = OldTime;
 		SceneManager.LoadScene("Main Menu");
 	}
 
 	public void TemCerteza(string Menu){
-		Time.timeScale = 1;
+		Time.timeScale = OldTime;
 	}
 
 	void Update(){
@@ -49,7 +55,7 @@ public class PauseMenu : MonoBehaviour {
 		if (gamePaused) {
 			Time.timeScale = 0;
 		} else {
-			Time.timeScale = 1;
+			Time.timeScale = OldTime;
 		}
 	}
 }
