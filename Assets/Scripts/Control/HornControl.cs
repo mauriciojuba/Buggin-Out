@@ -25,6 +25,7 @@ public class HornControl : MonoBehaviour {
 	[SerializeField] float CamSpeed;
 	[SerializeField] float Speed = 5;
     [SerializeField] UseEspecial SpecialRef;
+    public int NumberOfSpecial;
 	// Use this for initialization
 	void Start () {
         DollyCam = GameObject.FindWithTag("DollyCam").GetComponent<CameraControl>();
@@ -119,8 +120,11 @@ public class HornControl : MonoBehaviour {
 			rdb.velocity = Vector3.zero;
 		}
         #region Especial (Usar e Rotacionar)
+
+        //Estou tentando zerar a velocity do rdb mas ela continua deslizando enquanto usa o especial.. ajudem ae se caso souberem o motivo
         if (Input.GetKeyDown(KeyCode.Z) && !UseSpecial)
         {
+            rdb.velocity = Vector3.zero;
             UseSpecial = true;
             AnimCTRL.SetSpecial();
         }

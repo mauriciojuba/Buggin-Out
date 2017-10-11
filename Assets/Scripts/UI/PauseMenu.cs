@@ -12,22 +12,34 @@ public class PauseMenu : MonoBehaviour {
 
 	[SerializeField] private EventSystem Event;
 	[SerializeField] private GameObject ButtonSelect;
+    [SerializeField] GameObject[] Enemies;
+    [SerializeField] GameObject Player1,Player2;
     float OldTime;
 
     private void Start()
     {
+        if (GameObject.FindWithTag("Player1_3D") != null)
+        {
+            Player1 = GameObject.FindWithTag("Player1_3D");
+        }
+        if (GameObject.FindWithTag("Player2_3D") != null)
+        {
+            Player2 = GameObject.FindWithTag("Player2_3D");
+        }
         OldTime = 1.5f;
+        Enemies = GameObject.FindGameObjectsWithTag("Enemy");
     }
 
     public void SairDoJogo(){
 		Application.Quit();
 	}
 	public void SelecaoPersonagem(){
-		gamePaused = false;
-		Time.timeScale = OldTime;
-		SceneManager.LoadScene("Selecao Personagens 3D");
-	}
-	public void MainMenu(){
+        //////colocar função pra voltar pra seleção aqui
+        //gamePaused = false;
+        //Time.timeScale = OldTime;
+        //SceneManager.LoadScene("Selecao Personagens 3D");
+    }
+    public void MainMenu(){
 		gamePaused = false;
 		Time.timeScale = OldTime;
 		SceneManager.LoadScene("Main Menu");
@@ -40,7 +52,9 @@ public class PauseMenu : MonoBehaviour {
 	void Update(){
 		if(Input.GetButtonDown("Start P1") || Input.GetButtonDown("Start P2") || Input.GetKeyDown(KeyCode.P)){
 			gamePaused = !gamePaused;
-			pauseMenu.SetActive(gamePaused);
+            CheckEnemies();
+            EnableDesableEnemies(gamePaused);
+            pauseMenu.SetActive(gamePaused);
 			if (gamePaused) {
 				Event.SetSelectedGameObject (ButtonSelect);
 			} else {
@@ -51,11 +65,48 @@ public class PauseMenu : MonoBehaviour {
 			gamePaused = !gamePaused;
 			pauseMenu.SetActive(gamePaused);
 		}
-
-		if (gamePaused) {
-			Time.timeScale = 0;
-		} else {
-			Time.timeScale = OldTime;
-		}
 	}
+
+    void CheckEnemies()
+    {
+        Enemies = GameObject.FindGameObjectsWithTag("Enemy");
+    }
+
+    void EnableDesableEnemies(bool isDeactive)
+    {
+        for (int i = 0; i < Enemies.Length; i++)
+        {
+            //Desativa ou Ativa script do mosquito
+            if (Enemies[i].GetComponent<IA_Mosquito>() != null)
+            {
+                Enemies[i].GetComponent<IA_Mosquito>().enabled = !isDeactive;
+            }
+            //Desativa ou Ativa script da aranha (trocar pela IA nova da aranha quando pronta)
+            if (Enemies[i].GetComponent<FSMAranha>() != null)
+            {
+                Enemies[i].GetComponent<FSMAranha>().enabled = !isDeactive;
+            }
+        }
+        if (Player1 != null)
+        {
+            Player1.GetComponent<HornControl>().enabled = !isDeactive;
+            Player1.GetComponent<ComboSystem>().enabled = !isDeactive;
+            Player1.GetComponent<GrabObject>().enabled = !isDeactive;
+        }
+        if (Player2 != null)
+        {
+            Player2.GetComponent<HornControl>().enabled = !isDeactive;
+            Player2.GetComponent<ComboSystem>().enabled = !isDeactive;
+            Player2.GetComponent<GrabObject>().enabled = !isDeactive;
+        }
+
+        if (isDeactive)
+        {
+            Time.timeScale = 0;
+        }
+        else
+        {
+            Time.timeScale = OldTime;
+        }
+    }
 }
