@@ -19,6 +19,8 @@ public class CameraControl : MonoBehaviour {
     bool alguemFora;
     Vector3 vel = Vector3.zero;
 
+	public static bool someObjGoingToScreen;
+
     public bool playerOnScreen;
 
     public Transform target;
@@ -38,15 +40,15 @@ public class CameraControl : MonoBehaviour {
 
     private void LateUpdate()
     {
-
-        if (!playerOnScreen) {
-            DollyCam.position = Vector3.Lerp(DollyCam.position, posicionaCamera(CalculaCamTarget(numPlayers)) + tgtvelocity * 2, (velocidadeMovimento / 10) * Time.smoothDeltaTime);
-            target.position = CalculaCamTarget(numPlayers);
-        }
-        //ControlaBordaTela();
-        tgtvelocity = target.position - tgtlastpos;
-        tgtlastpos = target.position;
-
+		if (!someObjGoingToScreen) {
+			if (!playerOnScreen) {
+				DollyCam.position = Vector3.Lerp (DollyCam.position, posicionaCamera (CalculaCamTarget (numPlayers)) + tgtvelocity * 2, (velocidadeMovimento / 10) * Time.smoothDeltaTime);
+				target.position = CalculaCamTarget (numPlayers);
+			}
+			//ControlaBordaTela();
+			tgtvelocity = target.position - tgtlastpos;
+			tgtlastpos = target.position;
+		}
     }
     private void FixedUpdate()
     {
@@ -55,6 +57,7 @@ public class CameraControl : MonoBehaviour {
     }
     private void Update()
     {
+		Debug.Log (someObjGoingToScreen);
 		ResetGame ();
 //        for (int i = 0; i < players.Length; i++)
 //        {
