@@ -24,6 +24,8 @@ public class EnemyIA : MonoBehaviour,IGroundEnemy,IKillable,IGoToScreen,IScreenE
 	public Transform worldPos;
 	[HideInInspector]
 	public float playerStr;
+	[HideInInspector]
+	public float randomOffsetOnScreen;
 
 	[Header("Estado atual")]
 	public State ActualState = State.Chase;
@@ -233,7 +235,7 @@ public class EnemyIA : MonoBehaviour,IGroundEnemy,IKillable,IGoToScreen,IScreenE
 			_anim.SetTrigger("GoToScreen");
 			_anim.SetBool("UsingWings", false);
 			_anim.SetBool("GoingToScreen", true);
-
+			randomOffsetOnScreen = Random.Range (-0.1f, 0.1f);
 			ActualState = State.GoingToScreen;
 		}
 
@@ -311,7 +313,7 @@ public class EnemyIA : MonoBehaviour,IGroundEnemy,IKillable,IGoToScreen,IScreenE
 			screenSpeed = 0.5f;
 			onScreen = true;
 		}
-		if (Screen.GoToScreen (gameObject)) {
+		if (Screen.GoToScreen (gameObject,randomOffsetOnScreen)) {
 			ActualState = State.OnScreenIdle;
 		}
 	}

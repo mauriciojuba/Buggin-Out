@@ -12,16 +12,20 @@ public class GOToScreen : MonoBehaviour {
 	void Start(){
 	}
 
-	public bool GoToScreen(GameObject ObjectThatGoes){
+	public bool GoToScreen(GameObject ObjectThatGoes, float Range){
+		float offset = Range;
+		Vector3 randomTelaPos = new Vector3(telapos.position.x+offset*10f,
+			telapos.position.y+offset,
+			telapos.position.z+offset);
 		CameraControl.someObjGoingToScreen = true;
-        ObjectThatGoes.transform.localScale = Vector3.Lerp (ObjectThatGoes.transform.localScale, telapos.localScale, time);
-        ObjectThatGoes.transform.position = Vector3.Lerp (ObjectThatGoes.transform.position, telapos.position,time);
-        ObjectThatGoes.transform.rotation = Quaternion.Lerp (ObjectThatGoes.transform.rotation, telapos.rotation, time);
-        time += Time.deltaTime*0.1f;
+		ObjectThatGoes.transform.localScale = Vector3.Lerp (ObjectThatGoes.transform.localScale, telapos.localScale, time);
+		ObjectThatGoes.transform.position = Vector3.Lerp (ObjectThatGoes.transform.position, randomTelaPos,time);
+		ObjectThatGoes.transform.rotation = Quaternion.Lerp (ObjectThatGoes.transform.rotation, telapos.rotation, time);
+		time += Time.deltaTime*0.1f;
 
-		if (Mathf.Abs(ObjectThatGoes.transform.position.y) >= Mathf.Abs(telapos.position.y) - 0.01f &&
-            Mathf.Abs(ObjectThatGoes.transform.position.y) <= Mathf.Abs(telapos.position.y) + 0.01f &&
-            ObjectThatGoes.transform.localScale == telapos.localScale) {
+		if (Mathf.Abs(ObjectThatGoes.transform.position.y) >= Mathf.Abs(randomTelaPos.y) - 0.01f &&
+			Mathf.Abs(ObjectThatGoes.transform.position.y) <= Mathf.Abs(randomTelaPos.y) + 0.01f &&
+			ObjectThatGoes.transform.localScale == telapos.localScale) {
 			ObjectThatGoes.transform.rotation = telapos.rotation;
 			ObjectThatGoes.transform.parent = CamTransform;
 			CameraControl.someObjGoingToScreen = false;
@@ -30,15 +34,20 @@ public class GOToScreen : MonoBehaviour {
 			return false;
 		}
 	}
-	public bool GoToScreen(GameObject ObjectThatGoes, Vector3 tamanhoNaTela){
+
+	public bool GoToScreen(GameObject ObjectThatGoes, Vector3 tamanhoNaTela, float Range){
+		float offset = Range;
+		Vector3 randomTelaPos = new Vector3(telapos.position.x+offset,
+											telapos.position.y+offset,
+											telapos.position.z+offset);
 		CameraControl.someObjGoingToScreen = true;
 		ObjectThatGoes.transform.localScale = Vector3.Lerp (ObjectThatGoes.transform.localScale, tamanhoNaTela, time);
-		ObjectThatGoes.transform.position = Vector3.Lerp (ObjectThatGoes.transform.position, telapos.position,time);
+		ObjectThatGoes.transform.position = Vector3.Lerp (ObjectThatGoes.transform.position, randomTelaPos,time);
 		ObjectThatGoes.transform.rotation = Quaternion.Lerp (ObjectThatGoes.transform.rotation, telapos.rotation, time);
 		time += Time.deltaTime*0.1f;
 
-        if (Mathf.Abs(ObjectThatGoes.transform.position.y) >= Mathf.Abs(telapos.position.y) - 0.01f &&
-            Mathf.Abs(ObjectThatGoes.transform.position.y) <= Mathf.Abs(telapos.position.y) + 0.01f &&
+		if (Mathf.Abs(ObjectThatGoes.transform.position.y) >= Mathf.Abs(randomTelaPos.y) - 0.01f &&
+			Mathf.Abs(ObjectThatGoes.transform.position.y) <= Mathf.Abs(randomTelaPos.y) + 0.01f &&
             ObjectThatGoes.transform.localScale == telapos.localScale) {
 			ObjectThatGoes.transform.rotation = telapos.rotation;
 			ObjectThatGoes.transform.parent = CamTransform;

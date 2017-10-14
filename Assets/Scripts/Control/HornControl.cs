@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class HornControl : MonoBehaviour {
     Vector3 mov;
+	Vector3 movAntPos;
+	Rigidbody antposRB;
     [SerializeField] Rigidbody rdb;
 	AnimationControl AnimCTRL;
     public GameObject cameragame;
@@ -19,6 +21,8 @@ public class HornControl : MonoBehaviour {
     int i=0;
 
     public bool UseSpecial;
+
+	float randomOffSetOnScreen;
 
 	[SerializeField] GOToScreen Screen;
 	[SerializeField] CameraControl DollyCam;
@@ -68,57 +72,71 @@ public class HornControl : MonoBehaviour {
 				mov = new Vector3 (Input.GetAxis ("Horizontal P1"), Input.GetAxis ("Vertical P1"), 0);
 
 				mov = cameragame.transform.TransformVector (mov);
-				mov = CheckPositionOnScreen (mov);
-				transform.Translate (mov * transform.localScale.magnitude * Time.deltaTime * CamSpeed, Space.World);
-				transform.LookAt (cameragame.transform, transform.up + mov);
-				if (mov.magnitude > 0) {
-                   // anim.SetBool("Layer1Active", true);
-                    anim.SetLayerWeight (1, 1);
-					anim.SetLayerWeight (2, 0);
-				} else if (mov.magnitude <= 0) {
-                   // anim.SetBool("Layer1Active", false);
-                    anim.SetLayerWeight (2, 1);
-					anim.SetLayerWeight (1, 0);
+				mov = CheckPositionOnScreen (mov,transform);
+				if (!escolhendoPontoDeRetorno) {
+					transform.Translate (mov * transform.localScale.magnitude * Time.deltaTime * CamSpeed, Space.World);
+					transform.LookAt (cameragame.transform, transform.up + mov);
+					if (mov.magnitude > 0) {
+						// anim.SetBool("Layer1Active", true);
+						anim.SetLayerWeight (1, 1);
+						anim.SetLayerWeight (2, 0);
+					} else if (mov.magnitude <= 0) {
+						// anim.SetBool("Layer1Active", false);
+						anim.SetLayerWeight (2, 1);
+						anim.SetLayerWeight (1, 0);
+					}
 				}
 			}
 //		if (Input.GetButtonDown ("X P1") || Input.GetKeyDown (KeyCode.LeftControl)) {
 //			
 //			anim.SetTrigger ("Attack");
 //		}
-			if (Input.GetButtonDown ("RB P1") && !Going || Input.GetKeyDown (KeyCode.LeftAlt) && !Going) {
-				if (!natela) {
-                    AntPos = new GameObject("World Pos Player").transform;
-                    AntPos.position = transform.position;
-                    AntPos.rotation = transform.rotation;
-                }
-				Going = true;
-				anim.SetBool ("tocam", !natela);
-				rdb.isKinematic = true;
-				DollyCam.ChecarNaTela ();
+			if (!natela) {
+				if (Input.GetButtonDown ("RB P1") && !Going ||
+				    Input.GetKeyDown (KeyCode.LeftAlt) && !Going) {
+					antposRB = AntPos.GetComponent<Rigidbody> ();
+					AntPos.position = transform.position;
+					AntPos.rotation = transform.rotation;
+					Going = true;
+					randomOffSetOnScreen = Random.Range (-0.1f, 0.1f);
+					anim.SetBool ("tocam", !natela);
+					rdb.isKinematic = true;
+					DollyCam.ChecarNaTela ();
+				}
+			} else {
+				if (Input.GetButton ("RB P1") && !Going ||
+					Input.GetKey (KeyCode.LeftAlt) && !Going) {
+					MudaPontoDeRetorno ();
+				}
+				if (Input.GetButtonUp ("RB P1") && !Going ||
+					Input.GetKeyUp (KeyCode.LeftAlt) && !Going) {
+					Going = true;
+					anim.SetBool ("tocam", !natela);
+					rdb.isKinematic = true;
+					DollyCam.ChecarNaTela ();
+				}
 			}
 
 			if (Going) {
-                if (!natela)
-                {
-                    Screen.GoToScreen(gameObject);
-                    if(Screen.GoToScreen(gameObject))
-                    {
-                        Going = false;
-                        natela = true;
-                    }
-                }
-                else { 
-                   if(Screen.GoOffScreen(AntPos, gameObject))
-                    {
-                        Going = false;
-                        natela = false;
-                        Destroy(AntPos.gameObject);
-                    }
-                }
+				if (!natela) {
+					//Screen.GoToScreen(gameObject);
+					if (Screen.GoToScreen (gameObject, randomOffSetOnScreen)) {
+						Going = false;
+						natela = true;
+					}
+				} else {
+					if (Screen.GoOffScreen (AntPos, gameObject)) {
+						Going = false;
+						natela = false;
+						Destroy (AntPos.gameObject);
+					}
+				}
 			}
 		} else {
 			rdb.velocity = Vector3.zero;
 		}
+
+
         #region Especial (Usar e Rotacionar)
 
         //Estou tentando zerar a velocity do rdb mas ela continua deslizando enquanto usa o especial.. ajudem ae se caso souberem o motivo
@@ -153,11 +171,23 @@ public class HornControl : MonoBehaviour {
         }
         #endregion
     }
-Vector3 CheckPositionOnScreen(Vector3 movFactor){
+	#region Escolhe retorno World
+	bool escolhendoPontoDeRetorno;
+	void MudaPontoDeRetorno(){
+		if (AntPos != null) {
+			escolhendoPontoDeRetorno = true;
+			movAntPos = new Vector3 (Input.GetAxis ("Horizontal P1"), 0, Input.GetAxis ("Vertical P1"));
+			movAntPos = CheckPositionOnScreen (movAntPos,AntPos);
+			Debug.Log (AntPos+","+ movAntPos);
+			AntPos.Translate (movAntPos * Time.deltaTime * CamSpeed*5, Space.World);
+		}
+	}
+	#endregion
+	Vector3 CheckPositionOnScreen(Vector3 movFactor,Transform trans){
 
     // talvez seja necessário tornar público os limites da tela para diferentes objetos, dependo do tamanho.
     // horn limiteHorizontal = 0.1 e 0.9  limiteVertical = -0.1 e 0.5.
-		Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
+		Vector3 pos = Camera.main.WorldToViewportPoint(trans.position);
         //saiu pela esquerda
 		if(pos.x <= limiteHorizontal.x && movFactor.x<0){
             movFactor.x = 0;
