@@ -3,7 +3,7 @@ guid: 72c261cc36f2ffb4eb33829ec11bc3c6
 timeCreated: 1497063164
 licenseType: Free
 ModelImporter:
-  serializedVersion: 19
+  serializedVersion: 21
   fileIDToRecycleName:
     100000: //RootNode
     100002: left
@@ -258,6 +258,7 @@ ModelImporter:
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
+    extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
       name: Walk
@@ -732,9 +733,9 @@ ModelImporter:
       curves: []
       events:
       - time: 0.57894737
-        functionName: SpiderShot
+        functionName: WebBall
         data: 
-        objectReferenceParameter: {fileID: 11500000, guid: c025e0d18d77d504a98367f0a4e26048,
+        objectReferenceParameter: {fileID: 11500000, guid: ef300f14f55814155ae47c85a9caf706,
           type: 3}
         floatParameter: 0
         intParameter: 0
@@ -1617,7 +1618,10 @@ ModelImporter:
     globalScale: 125
     meshCompression: 0
     addColliders: 0
+    importVisibility: 0
     importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
@@ -1633,6 +1637,7 @@ ModelImporter:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
+    normalCalculationMode: 0
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
