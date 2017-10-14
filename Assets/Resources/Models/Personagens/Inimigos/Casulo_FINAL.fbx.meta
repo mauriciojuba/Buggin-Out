@@ -1,0 +1,152 @@
+fileFormatVersion: 2
+guid: 4148a9bcd16db434da321fe9a5ca903b
+timeCreated: 1508006551
+licenseType: Free
+ModelImporter:
+  serializedVersion: 21
+  fileIDToRecycleName:
+    100000: Casulo:Abdomen_01
+    100002: Casulo:Abdomen_02
+    100004: Casulo:Abdomen_03
+    100006: Casulo:Abdomen_04
+    100008: Casulo:Abdomen_05
+    100010: Casulo:Abdomen_06
+    100012: Casulo:Abdomen_RT
+    100014: Casulo:Abdomen_RT_CTRL
+    100016: Casulo:COCOON
+    100018: Casulo:cocoon
+    100020: Casulo:Head
+    100022: Casulo:Head_CTRL
+    100024: Casulo:Head_End
+    100026: Casulo:JOINTS
+    100028: Casulo:L_Claw_01
+    100030: Casulo:L_Claw_CTRL
+    100032: Casulo:L_Claw_RT
+    100034: Casulo:L_Tumor_01
+    100036: Casulo:L_Tumor_CTRL
+    100038: Casulo:L_Tumor_RT
+    100040: Casulo:MASTER_CTRL
+    100042: Casulo:MESH
+    100044: Casulo:R_Claw_01
+    100046: Casulo:R_Claw_CTRL
+    100048: Casulo:R_Claw_RT
+    100050: Casulo:R_Tumor_01
+    100052: Casulo:R_Tumor_CTRL
+    100054: Casulo:R_Tumor_RT
+    100056: Casulo:ROOT
+    100058: Casulo:ROOT_CTRL
+    100060: //RootNode
+    100062: left
+    400000: Casulo:Abdomen_01
+    400002: Casulo:Abdomen_02
+    400004: Casulo:Abdomen_03
+    400006: Casulo:Abdomen_04
+    400008: Casulo:Abdomen_05
+    400010: Casulo:Abdomen_06
+    400012: Casulo:Abdomen_RT
+    400014: Casulo:Abdomen_RT_CTRL
+    400016: Casulo:COCOON
+    400018: Casulo:cocoon
+    400020: Casulo:Head
+    400022: Casulo:Head_CTRL
+    400024: Casulo:Head_End
+    400026: Casulo:JOINTS
+    400028: Casulo:L_Claw_01
+    400030: Casulo:L_Claw_CTRL
+    400032: Casulo:L_Claw_RT
+    400034: Casulo:L_Tumor_01
+    400036: Casulo:L_Tumor_CTRL
+    400038: Casulo:L_Tumor_RT
+    400040: Casulo:MASTER_CTRL
+    400042: Casulo:MESH
+    400044: Casulo:R_Claw_01
+    400046: Casulo:R_Claw_CTRL
+    400048: Casulo:R_Claw_RT
+    400050: Casulo:R_Tumor_01
+    400052: Casulo:R_Tumor_CTRL
+    400054: Casulo:R_Tumor_RT
+    400056: Casulo:ROOT
+    400058: Casulo:ROOT_CTRL
+    400060: //RootNode
+    400062: left
+    2000000: left
+    4300000: Casulo:cocoon
+    7400000: Idle_Casulo
+    7400002: Shake_Casulo
+    9500000: //RootNode
+    13700000: Casulo:cocoon
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
