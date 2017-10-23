@@ -27,7 +27,7 @@ public class DestruirObjeto : MonoBehaviour {
 	}
 
 	public IEnumerator ActiveCol(){
-		yield return new WaitForSeconds (0.5f);
+		yield return new WaitForSeconds (0.1f);
 		gameObject.GetComponent<Collider> ().isTrigger = false;
 
 	}

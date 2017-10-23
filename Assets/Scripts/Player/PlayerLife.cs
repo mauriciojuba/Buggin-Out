@@ -10,6 +10,7 @@ public class PlayerLife : MonoBehaviour {
     public GameObject LifeInGame;
 	float maskOver;
 	public Animator Mask;
+    public float TimeInPoison;
 
     void Start () {
         LifeInGame = Instantiate(LifeEmblem, Camera.main.transform);
@@ -29,4 +30,14 @@ public class PlayerLife : MonoBehaviour {
         if(Mask != null)
 		Mask.SetFloat ("Life", (LifeAtual / MaxLife));
 	}
+
+    public void DamagePerSecond(float Damage)
+    {
+        TimeInPoison += Time.deltaTime;
+        if(TimeInPoison >= 1.5f)
+        {
+            LifeAtual -= Damage;
+            TimeInPoison = 0;
+        }
+    }
 }

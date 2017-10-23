@@ -12,7 +12,7 @@ public class Life : MonoBehaviour {
 
     public enum LifeType {Player, Enemy, Boss, Object};
     public enum EnemyType {Mosquito, Aranha};
-	public enum ObjectType {Box, Barricade, Luz};
+	public enum ObjectType {Box, Barricade, Luz, Bomb};
     public LifeType LifeOF;
     public EnemyType TypeEnemy;
 	public ObjectType TypeOfObject;
@@ -134,34 +134,47 @@ public class Life : MonoBehaviour {
 			switch(TypeOfObject){
 			case ObjectType.Box:
 				GameObject GB = GameObject.Instantiate (ObjDestruido, transform.position, Quaternion.identity) as GameObject;
-				Component[] RBGB;
-				RBGB = GB.transform.GetComponentsInChildren<Rigidbody> ();
+                Component[] RBGB;
+                RBGB = GB.transform.GetComponentsInChildren<Rigidbody> ();
 				foreach (Rigidbody rb in RBGB) {
 					rb.velocity = gameObject.GetComponent<Rigidbody> ().velocity;
 				}
 
-                    FMODUnity.RuntimeManager.PlayOneShot(Evento, transform.position);
-				//if (sfx != null) {
-				//	sfx.PlaySoundSfxGrupo ("Caixa Quebrando");
-				//}
-                    Destroy(gameObject);
-                    break;
+                FMODUnity.RuntimeManager.PlayOneShot(Evento, transform.position);
+                //if (sfx != null) {
+                //sfx.PlaySoundSfxGrupo ("Caixa Quebrando");
+                //}
+                DropLoot();
+                Destroy(gameObject);
+                break;
 			case ObjectType.Barricade:
 				Instantiate (ObjDestruido, transform.position, Quaternion.identity);
+                Destroy(gameObject);
+                break;
+
+            case ObjectType.Luz:
+                if(gameObject.GetComponent<LuzQuebrando>() != null)
+                {
+                   gameObject.GetComponent<LuzQuebrando>().Quebrou = true;
+                   FMODUnity.RuntimeManager.PlayOneShot(Evento, transform.position);
+                   Destroy(this);
+                }
+                break;
+
+             case ObjectType.Bomb:
+                    GameObject Bomb = GameObject.Instantiate(ObjDestruido, transform.position, Quaternion.identity) as GameObject;
+                    if (Evento != null)
+                    {
+                        FMODUnity.RuntimeManager.PlayOneShot(Evento, transform.position);
+                    }
+                    //if (sfx != null) {
+                    //	sfx.PlaySoundSfxGrupo ("Caixa Quebrando");
+                    //}
                     Destroy(gameObject);
                     break;
+            }
 
-                case ObjectType.Luz:
-                    if(gameObject.GetComponent<LuzQuebrando>() != null)
-                    {
-                        gameObject.GetComponent<LuzQuebrando>().Quebrou = true;
-                        FMODUnity.RuntimeManager.PlayOneShot(Evento, transform.position);
-                        Destroy(this);
-                    }
-                    break;
-			}
-
-            DropLoot();
+            
             
         }
     }
