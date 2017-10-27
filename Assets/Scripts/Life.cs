@@ -49,6 +49,8 @@ public class Life : MonoBehaviour {
 	[SerializeField] private bool UpdateL;
     private SFX sfx;
 
+    public Vector3 Contact;
+
     public bool UpdateL1
     {
         get
@@ -163,6 +165,7 @@ public class Life : MonoBehaviour {
 
              case ObjectType.Bomb:
                     GameObject Bomb = GameObject.Instantiate(ObjDestruido, transform.position, Quaternion.identity) as GameObject;
+                    //Bomb.transform.LookAt(Contact);
                     if (Evento != null)
                     {
                         FMODUnity.RuntimeManager.PlayOneShot(Evento, transform.position);

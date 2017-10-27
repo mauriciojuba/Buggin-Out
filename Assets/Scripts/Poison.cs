@@ -9,9 +9,6 @@ public class Poison : MonoBehaviour {
     [SerializeField] float DamagePerSecond;
     [SerializeField] float Damp;
     [SerializeField] Vector3 LastSize;
-
-    void Start () {
-	}
 	
 	// Update is called once per frame
 	void Update () {
@@ -43,6 +40,7 @@ public class Poison : MonoBehaviour {
     {
         if(other.GetComponent<PlayerLife>() != null)
         {
+            //criar uma função igual a do player no script de vida do mosquito
             other.GetComponent<PlayerLife>().DamagePerSecond(DamagePerSecond);
         }
     }
@@ -51,6 +49,7 @@ public class Poison : MonoBehaviour {
     {
         if (other.GetComponent<PlayerLife>() != null)
         {
+            //criar uma variavel de tempo pro script de vida do mosquito
             other.GetComponent<PlayerLife>().TimeInPoison = 0;
         }
     }
