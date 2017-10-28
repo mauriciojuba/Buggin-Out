@@ -1,0 +1,470 @@
+fileFormatVersion: 2
+guid: ec6b25fc706d7dd43b40e1ac468a41fe
+timeCreated: 1509210535
+licenseType: Free
+ModelImporter:
+  serializedVersion: 21
+  fileIDToRecycleName:
+    100000: base_low
+    100002: bomb
+    100004: bomb_high
+    100006: bomb_low
+    100008: //RootNode
+    100010: CATAPULT_FULL
+    100012: Catapult_GEO
+    100014: Catapult_Joints
+    100016: catapult_low
+    100018: clamps_low
+    100020: dispenser_high
+    100022: dispenser_low
+    100024: flask_high
+    100026: flask_low
+    100028: hook_low
+    100030: hoop_1_low
+    100032: hoop_2_low
+    100034: hoop_3_low
+    100036: hoops_low
+    100038: joint1
+    100040: joint2
+    100042: joint3
+    100044: joint4
+    100046: marble
+    100048: marble 1
+    100050: nurbsCircle1
+    100052: nurbsCircle2
+    100054: nurbsCircle3
+    100056: nurbsCircle4
+    100058: pavise_high
+    100060: pavise_low
+    100062: pCube1
+    100064: platform_high
+    100066: platform_low
+    100068: Poison_DispenserHigh
+    100070: Poison_DispenserLow
+    100072: poisonfall_high
+    100074: poisonfall_low
+    100076: polySurface1
+    100078: polySurface3
+    100080: polySurface3_MeshPart0
+    100082: polySurface3_MeshPart1
+    100084: polySurface4
+    100086: polySurface4_MeshPart0
+    100088: polySurface4_MeshPart1
+    100090: polySurface4_MeshPart2
+    100092: pool_high
+    100094: pool_low
+    100096: residue_high
+    100098: residue_low
+    100100: RIG
+    100102: shield_high
+    100104: shield_low
+    100106: spikes_high
+    100108: spikes_low
+    100110: spoon_low
+    100112: spring_high
+    100114: spring_low
+    100116: spring_low 1
+    100118: springTrap_low
+    100120: springTrap_low1
+    100122: sticks_low
+    100124: sticks_low1
+    100126: sticks_low2
+    100128: sticks_low3
+    100130: sticks_low4
+    100132: sticks_low5
+    100134: sticks_low6
+    100136: sticks_low7
+    100138: sticks_low8
+    100140: support_high
+    100142: support_low
+    400000: base_low
+    400002: bomb
+    400004: bomb_high
+    400006: bomb_low
+    400008: //RootNode
+    400010: CATAPULT_FULL
+    400012: Catapult_GEO
+    400014: Catapult_Joints
+    400016: catapult_low
+    400018: clamps_low
+    400020: dispenser_high
+    400022: dispenser_low
+    400024: flask_high
+    400026: flask_low
+    400028: hook_low
+    400030: hoop_1_low
+    400032: hoop_2_low
+    400034: hoop_3_low
+    400036: hoops_low
+    400038: joint1
+    400040: joint2
+    400042: joint3
+    400044: joint4
+    400046: marble
+    400048: marble 1
+    400050: nurbsCircle1
+    400052: nurbsCircle2
+    400054: nurbsCircle3
+    400056: nurbsCircle4
+    400058: pavise_high
+    400060: pavise_low
+    400062: pCube1
+    400064: platform_high
+    400066: platform_low
+    400068: Poison_DispenserHigh
+    400070: Poison_DispenserLow
+    400072: poisonfall_high
+    400074: poisonfall_low
+    400076: polySurface1
+    400078: polySurface3
+    400080: polySurface3_MeshPart0
+    400082: polySurface3_MeshPart1
+    400084: polySurface4
+    400086: polySurface4_MeshPart0
+    400088: polySurface4_MeshPart1
+    400090: polySurface4_MeshPart2
+    400092: pool_high
+    400094: pool_low
+    400096: residue_high
+    400098: residue_low
+    400100: RIG
+    400102: shield_high
+    400104: shield_low
+    400106: spikes_high
+    400108: spikes_low
+    400110: spoon_low
+    400112: spring_high
+    400114: spring_low
+    400116: spring_low 1
+    400118: springTrap_low
+    400120: springTrap_low1
+    400122: sticks_low
+    400124: sticks_low1
+    400126: sticks_low2
+    400128: sticks_low3
+    400130: sticks_low4
+    400132: sticks_low5
+    400134: sticks_low6
+    400136: sticks_low7
+    400138: sticks_low8
+    400140: support_high
+    400142: support_low
+    2300000: bomb_low
+    2300002: dispenser_high
+    2300004: dispenser_low
+    2300006: flask_high
+    2300008: flask_low
+    2300010: marble 1
+    2300012: platform_high
+    2300014: poisonfall_high
+    2300016: poisonfall_low
+    2300018: polySurface1
+    2300020: polySurface3_MeshPart0
+    2300022: polySurface3_MeshPart1
+    2300024: polySurface4_MeshPart0
+    2300026: polySurface4_MeshPart1
+    2300028: polySurface4_MeshPart2
+    2300030: pool_high
+    2300032: pool_low
+    2300034: residue_high
+    2300036: residue_low
+    2300038: shield_high
+    2300040: shield_low
+    2300042: spikes_high
+    2300044: spikes_low
+    2300046: spring_high
+    2300048: sticks_low1
+    2300050: sticks_low2
+    2300052: sticks_low3
+    2300054: sticks_low4
+    2300056: sticks_low5
+    2300058: sticks_low6
+    2300060: sticks_low7
+    2300062: sticks_low8
+    2300064: support_high
+    2300066: support_low
+    3300000: bomb_low
+    3300002: dispenser_high
+    3300004: dispenser_low
+    3300006: flask_high
+    3300008: flask_low
+    3300010: marble 1
+    3300012: platform_high
+    3300014: poisonfall_high
+    3300016: poisonfall_low
+    3300018: polySurface1
+    3300020: polySurface3_MeshPart0
+    3300022: polySurface3_MeshPart1
+    3300024: polySurface4_MeshPart0
+    3300026: polySurface4_MeshPart1
+    3300028: polySurface4_MeshPart2
+    3300030: pool_high
+    3300032: pool_low
+    3300034: residue_high
+    3300036: residue_low
+    3300038: shield_high
+    3300040: shield_low
+    3300042: spikes_high
+    3300044: spikes_low
+    3300046: spring_high
+    3300048: sticks_low1
+    3300050: sticks_low2
+    3300052: sticks_low3
+    3300054: sticks_low4
+    3300056: sticks_low5
+    3300058: sticks_low6
+    3300060: sticks_low7
+    3300062: sticks_low8
+    3300064: support_high
+    3300066: support_low
+    4300000: sticks_low1
+    4300002: sticks_low2
+    4300004: sticks_low3
+    4300006: sticks_low4
+    4300008: sticks_low5
+    4300010: sticks_low6
+    4300012: sticks_low7
+    4300014: sticks_low8
+    4300016: dispenser_low
+    4300018: flask_low
+    4300020: pool_low
+    4300022: poisonfall_low
+    4300024: residue_low
+    4300026: dispenser_high
+    4300028: flask_high
+    4300030: pool_high
+    4300032: poisonfall_high
+    4300034: residue_high
+    4300036: support_low
+    4300038: spikes_low
+    4300040: shield_low
+    4300042: support_high
+    4300044: spikes_high
+    4300046: shield_high
+    4300048: platform_low
+    4300050: spring_low
+    4300052: platform_high
+    4300054: spring_high
+    4300056: marble
+    4300058: bomb_low
+    4300060: polySurface1
+    4300062: polySurface3_MeshPart0
+    4300064: polySurface3_MeshPart1
+    4300066: polySurface4_MeshPart0
+    4300068: polySurface4_MeshPart1
+    4300070: polySurface4_MeshPart2
+    4300072: hook_low
+    4300074: base_low
+    4300076: hoops_low
+    4300078: spoon_low
+    4300080: clamps_low
+    4300082: spring_low
+    4300084: hoop_3_low
+    4300086: hoop_2_low
+    4300088: hoop_1_low
+    7400000: idle
+    7400002: launch
+    7400004: return
+    9500000: //RootNode
+    13700000: base_low
+    13700002: clamps_low
+    13700004: hook_low
+    13700006: hoop_1_low
+    13700008: hoop_2_low
+    13700010: hoop_3_low
+    13700012: hoops_low
+    13700014: platform_low
+    13700016: spoon_low
+    13700018: spring_low
+    13700020: spring_low 1
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: idle
+      takeName: idle
+      firstFrame: 1
+      lastFrame: 4
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 0.980916
+        functionName: DeactiveCatapult
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 14d12e81604d23b49bc622dff282e912,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.08015266
+        functionName: InstantiateBombIdle
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 14d12e81604d23b49bc622dff282e912,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: launch
+      takeName: launch
+      firstFrame: 5
+      lastFrame: 9
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 0.04580149
+        functionName: ActiveCatapult
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 14d12e81604d23b49bc622dff282e912,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.20650522
+        functionName: Launch
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 14d12e81604d23b49bc622dff282e912,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 5
+    - serializedVersion: 16
+      name: return
+      takeName: return
+      firstFrame: 10
+      lastFrame: 25
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 70
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
