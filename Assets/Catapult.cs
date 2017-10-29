@@ -24,7 +24,7 @@ public class Catapult : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if (Activated)
+        if (Activated && Launched)
         {
             Timer += Time.deltaTime;
             if (Timer > CooldownToReturn)
@@ -69,5 +69,7 @@ public class Catapult : MonoBehaviour {
         BombIdle = GameObject.Instantiate(Prefab, Muzzle.position, Quaternion.Euler(Muzzle.rotation.x, Muzzle.rotation.y + 180, Muzzle.rotation.z));
         BombIdle.transform.SetParent(Muzzle);
         BombIdle.GetComponent<Rigidbody>().isKinematic = true;
+        BombIdle.tag = "Untagged";
+
     }
 }
