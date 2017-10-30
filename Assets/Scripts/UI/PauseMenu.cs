@@ -16,6 +16,8 @@ public class PauseMenu : MonoBehaviour {
     [SerializeField] GameObject Player1,Player2;
     float OldTime;
 
+    [SerializeField] OLDTVFilter3 TVMenu;
+
     private void Start()
     {
         if (GameObject.FindWithTag("Player1_3D") != null)
@@ -28,6 +30,7 @@ public class PauseMenu : MonoBehaviour {
         }
         OldTime = 1.5f;
         Enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        TVMenu.preset.noiseFilter.magnetude = 0;
     }
 
     public void SairDoJogo(){
@@ -57,8 +60,10 @@ public class PauseMenu : MonoBehaviour {
             pauseMenu.SetActive(gamePaused);
 			if (gamePaused) {
 				Event.SetSelectedGameObject (ButtonSelect);
+                TVMenu.preset.noiseFilter.magnetude = 1;
 			} else {
-				Event.SetSelectedGameObject (null);
+                TVMenu.preset.noiseFilter.magnetude = 0;
+                Event.SetSelectedGameObject (null);
 			}
 		}
 		if(Input.GetButtonDown("PS4 Options") || Input.GetButtonDown("PS4 Share")){

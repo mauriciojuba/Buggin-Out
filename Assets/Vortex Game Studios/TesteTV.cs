@@ -1,22 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TesteTV : MonoBehaviour {
 
-    public OLDTVFilter3 tv;
-
-    [Range(0, 1)]
-    public float Magnitude;
+    public Text _TextGraphics;
+    public int QualitySelected;
 
 	// Use this for initialization
 	void Start () {
-        tv.preset.noiseFilter.magnetude = Magnitude;
 
     }
 	
 	// Update is called once per frame
 	void Update () {
-        tv.preset.noiseFilter.magnetude = Magnitude;
+        QualitySelected = QualitySettings.GetQualityLevel();
+        _TextGraphics.text = QualitySettings.names[QualitySelected];
     }
 }
