@@ -9,6 +9,7 @@ public class IA_Mosquito : EnemyIA {
 	public float LifeDist = 0.4f;
 	float initialTargetLife;
 	Transform Parent;
+
     //variavel pra trocar os colliders quando morre só pro mosquito ir pro chão
     public Collider NormalCollider, DeathCollider;
 
