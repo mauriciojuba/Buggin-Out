@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyIA : MonoBehaviour,IGroundEnemy,IKillable,IGoToScreen,IScreenEntity {
 
-	[HideInInspector]
+    NavMeshAgent _navMeshAgent;
+
+    [HideInInspector]
 	public GOToScreen Screen;
 	[HideInInspector]
 	public Rigidbody RB;
@@ -70,7 +73,21 @@ public class EnemyIA : MonoBehaviour,IGroundEnemy,IKillable,IGoToScreen,IScreenE
 
 	public virtual void Start()
 	{
-		Screen = GameObject.Find ("GoToScreen").GetComponent<GOToScreen>();
+        //Teste NavMesh
+        /*
+        _navMeshAgent = this.GetComponent<NavMeshAgent>();
+
+        if (_navMeshAgent == null)
+        {
+            Debug.LogError("The nav mesh agent is not attached");
+        }
+        else
+        {
+            _navMeshAgent.SetDestination(waypoints[0].position);
+        }
+        */
+
+        Screen = GameObject.Find ("GoToScreen").GetComponent<GOToScreen>();
 		RB = GetComponent<Rigidbody> ();
 		_anim = GetComponent<Animator> ();
 		lifeMax = Life;
@@ -178,7 +195,7 @@ public class EnemyIA : MonoBehaviour,IGroundEnemy,IKillable,IGoToScreen,IScreenE
 	public virtual void Patrol()
 	{
         _anim.SetBool("IsParolling", true);
-		Vector3 dir = waypoints[currentWaypoint].position - transform.position;
+        Vector3 dir = waypoints[currentWaypoint].position - transform.position;
 		transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime * rotationSpeed);
 		transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
 
@@ -190,7 +207,28 @@ public class EnemyIA : MonoBehaviour,IGroundEnemy,IKillable,IGoToScreen,IScreenE
 		else
 			RB.MovePosition(transform.position + transform.forward * Time.deltaTime * speed);
 
-		if (targetDistance < Visao)
+        
+
+        // TESTE NavMesh 
+        /*
+        if (waypoints != null)
+        {
+            if (Vector3.Distance(gameObject.transform.position, waypoints[currentWaypoint].position) < 1)
+            {
+                TimeToNextPoint -= Time.deltaTime;
+                if (TimeToNextPoint < 0)
+                {
+                    currentWaypoint++;
+                    if (currentWaypoint >= waypoints.Length)
+                        currentWaypoint = 0;
+                    TimeToNextPoint = TimeToChangeTarget;
+                    _navMeshAgent.SetDestination(waypoints[currentWaypoint].position);
+                }
+            }
+        }
+        */
+
+        if (targetDistance < Visao)
 		{
 			_anim.SetBool("IsParolling", false);
 			ActualState = State.Chase;
