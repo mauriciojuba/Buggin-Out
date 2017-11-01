@@ -21,7 +21,13 @@ public class SelectChar : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(Input.GetAxis("Horizontal P" + PlayerNumber) > 0.5f && CanChange)
+        if (!CanChange)
+        {
+            if (ChangePosition()){
+                CanChange = true;
+            }
+        }
+        if (Input.GetAxis("Horizontal P" + PlayerNumber) > 0.5f && CanChange)
         {
             CanChange = false;
             if (PosAtual < CharactersPos.Length - 1)
@@ -30,8 +36,6 @@ public class SelectChar : MonoBehaviour {
             {
                 PosAtual = 0;
             }
-            ChangePosition();
-            StartCoroutine(SetCanChangeTrue());
         }
         if(Input.GetAxis("Horizontal P" + PlayerNumber) < -0.5f && CanChange)
         {
@@ -42,8 +46,6 @@ public class SelectChar : MonoBehaviour {
             {
                 PosAtual = CharactersPos.Length - 1;
             }
-            ChangePosition();
-            StartCoroutine(SetCanChangeTrue());
         }
 
         if(Input.GetButtonDown("A P" + PlayerNumber) && !Selected)
@@ -96,9 +98,17 @@ public class SelectChar : MonoBehaviour {
         }
     }
 
-    void ChangePosition()
+    bool ChangePosition()
     {
-        transform.position = new Vector3(CharactersPos[PosAtual].transform.position.x, CharactersPos[PosAtual].transform.position.y, CharactersPos[PosAtual].transform.position.z);
+        transform.position = Vector3.Lerp(transform.position, CharactersPos[PosAtual].transform.position, Time.deltaTime * 15);
+        if (transform.position == CharactersPos[PosAtual].transform.position)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     IEnumerator SetCanChangeTrue()

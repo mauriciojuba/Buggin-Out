@@ -4,75 +4,75 @@ using UnityEngine;
 
 public class MainMenu : MonoBehaviour {
 
-    [SerializeField] GameObject Main, Options, Credits, BlackScreen;
-    [SerializeField] bool GoCam;
+    [SerializeField] GameObject[] Menus;
+    [SerializeField] GameObject[] MenuPos;
+    [SerializeField] int PreSelected;
+    [SerializeField] int PlayerNumber;
+    [SerializeField] bool CanChange, inMenu;
 
     private void Update()
     {
-        if (GoCam)
+        if (!CanChange && !inMenu)
         {
-            transform.Translate(Vector3.forward * 2 * Time.deltaTime);
+            if (ChangePosition())
+            {
+                CanChange = true;
+            }
+        }
+        if (Input.GetAxis("Horizontal P" + PlayerNumber) > 0.5f && CanChange)
+        {
+            NextSelection();
+        }
+        if (Input.GetAxis("Horizontal P" + PlayerNumber) < -0.5f && CanChange)
+        {
+            PreviousSelection();
         }
     }
 
-    public void ActiveMenu(string Menu)
+    public void NextSelection()
     {
-        StartCoroutine(TimeToActive(Menu));
+        CanChange = false;
+        if (PreSelected < MenuPos.Length - 1)
+            PreSelected++;
+        else if (PreSelected >= MenuPos.Length - 1)
+        {
+            PreSelected = 0;
+        }
     }
 
-    public void DesactiveMenu(string Menu)
+    public void PreviousSelection()
     {
-        if (Menu == "Main Menu")
+        CanChange = false;
+        if (PreSelected > 0)
+            PreSelected--;
+        else if (PreSelected <= 0)
         {
-            Main.SetActive(false);
-        }
-        if (Menu == "Options")
-        {
-            Options.SetActive(false);
-        }
-        if (Menu == "Credits")
-        {
-            Credits.SetActive(false);
+            PreSelected = MenuPos.Length - 1;
         }
     }
 
-    public void ActiveCam()
+    bool ChangePosition()
     {
-        GoCam = true;
-        StartCoroutine(TimeCam());
+        transform.position = Vector3.Lerp(transform.position, MenuPos[PreSelected].transform.position, Time.deltaTime * 15);
+        if (transform.position == MenuPos[PreSelected].transform.position)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
-    IEnumerator TimeCam()
+    public void ActiveMenu()
     {
-        yield return new WaitForSeconds(1.3f);
-        GoCam = false;
-        AsyncOperation async = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("Selecao");
-
-        while (!async.isDone)
-        {
-           yield return null;
-        }
-
+        Menus[PreSelected].GetComponent<Menus>().ActiveMenu();
+        inMenu = true;
     }
 
-    IEnumerator TimeToActive(string Menu)
+    public void DesactiveMenu()
     {
-        BlackScreen.SetActive(true);
-        yield return new WaitForSeconds(0.3f);
-        BlackScreen.SetActive(false);
-        if (Menu == "Main Menu")
-        {
-            Main.SetActive(true);
-        }
-        if (Menu == "Options")
-        {
-            Options.SetActive(true);
-        }
-        if (Menu == "Credits")
-        {
-            Credits.SetActive(true);
-        }
+        Menus[PreSelected].GetComponent<Menus>().DeactiveMenu();
+        inMenu = false;
     }
-
-
 }
