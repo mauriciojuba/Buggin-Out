@@ -5,6 +5,7 @@ using UnityEngine;
 public class Menus : MonoBehaviour {
 
     [SerializeField] GameObject Menu;
+    [SerializeField] string NamePhase;
 
     public void ActiveMenu()
     {
@@ -14,5 +15,11 @@ public class Menus : MonoBehaviour {
     public void DeactiveMenu()
     {
         Menu.SetActive(false);
+    }
+
+    public void StartPhase()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(NamePhase);
+        //active LoadScreen;
     }
 }
