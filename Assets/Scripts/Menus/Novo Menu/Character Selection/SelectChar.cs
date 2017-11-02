@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class SelectChar : MonoBehaviour {
 
-    [SerializeField] GameObject[] Characters;
-    [SerializeField] GameObject[] CharactersPos;
+    [SerializeField] GameObject[] AllObjs;
+    [SerializeField] GameObject[] AllObjsPos;
+
+    [SerializeField] List<GameObject> UnlockedObjs;
+    [SerializeField] List<GameObject> UnlockedObjsPos;
+
     [SerializeField] int PosAtual;
     [SerializeField] int PlayerNumber;
     [SerializeField] bool CanChange;
@@ -13,10 +17,52 @@ public class SelectChar : MonoBehaviour {
     [SerializeField] DetectJoysticks DetectS;
     Data DataS;
 
+    [SerializeField] bool SelectCharacter, SelectPhase;
+
     void Start () {
         if (GameObject.FindWithTag("DATA") != null)
             DataS = GameObject.FindWithTag("DATA").GetComponent<Data>();
-        ChangePosition();
+
+        if(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "SelecaoPersonagem")
+        {
+            SelectCharacter = true;
+            SelectPhase = false;
+        }
+        else if(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "SelecaoFase")
+        {
+            SelectCharacter = false;
+            SelectPhase = true;
+        }
+
+        if (SelectCharacter)
+        {
+            if (DataS.UnlockedCharacter.Contains("Juan"))
+            {
+                if (!UnlockedObjs.Contains(AllObjs[2]))
+                {
+                    UnlockedObjs.Add(AllObjs[2]);
+                }
+                if (!UnlockedObjsPos.Contains(AllObjsPos[2]))
+                {
+                    UnlockedObjsPos.Add(AllObjsPos[2]);
+                }
+            }
+        }
+        else if (SelectPhase)
+        {
+            if (DataS.CompletedPhases.Contains(1))
+            {
+                if (!UnlockedObjs.Contains(AllObjs[1]))
+                {
+                    UnlockedObjs.Add(AllObjs[1]);
+                }
+                if (!UnlockedObjsPos.Contains(AllObjsPos[1]))
+                {
+                    UnlockedObjsPos.Add(AllObjsPos[1]);
+                }
+            }
+        }
+
     }
 	
 	// Update is called once per frame
@@ -29,56 +75,64 @@ public class SelectChar : MonoBehaviour {
         }
         if (Input.GetAxis("Horizontal P" + PlayerNumber) > 0.5f && CanChange)
         {
-            CanChange = false;
-            if (PosAtual < CharactersPos.Length - 1)
-            PosAtual++;
-            else if(PosAtual >= CharactersPos.Length - 1)
-            {
-                PosAtual = 0;
-            }
+            NextSelection();
         }
         if(Input.GetAxis("Horizontal P" + PlayerNumber) < -0.5f && CanChange)
         {
-            CanChange = false;
-            if (PosAtual > 0)
-                PosAtual--;
-            else if (PosAtual <= 0)
-            {
-                PosAtual = CharactersPos.Length - 1;
-            }
+            PreviousSelection();
         }
 
         if(Input.GetButtonDown("A P" + PlayerNumber) && !Selected)
         {
+            if(SelectCharacter)
             OnSelectCharacter(PlayerNumber);
-            CanChange = false;
-            DetectS.QuantSelected++;
-            Selected = true;
         }
 
         if(Input.GetButtonDown("B P"+PlayerNumber) && Selected)
         {
             OnDeselectCharacter(PlayerNumber);
-            CanChange = true;
-            DetectS.QuantSelected--;
-            Selected = false;
         }
 
 
     }
 
+    public void NextSelection()
+    {
+        CanChange = false;
+        if (PosAtual < UnlockedObjsPos.Count - 1)
+            PosAtual++;
+        else if (PosAtual >= UnlockedObjsPos.Count - 1)
+        {
+            PosAtual = 0;
+        }
+    }
+
+    public void PreviousSelection()
+    {
+        CanChange = false;
+        if (PosAtual > 0)
+            PosAtual--;
+        else if (PosAtual <= 0)
+        {
+            PosAtual = UnlockedObjsPos.Count - 1;
+        }
+    }
+
     public void OnSelectCharacter(int PlayerNumb)
     {
+        CanChange = false;
+        DetectS.QuantSelected++;
+        Selected = true;
         if (PlayerNumb == 1)
         {
-            Characters[PosAtual].GetComponent<Animator>().SetBool("Selected", true);
-            DataS.P1SelectedCharacter = Characters[PosAtual].GetComponent<CharacterHolder>().ThisCharacter;
+            UnlockedObjs[PosAtual].GetComponent<Animator>().SetBool("Selected", true);
+            DataS.P1SelectedCharacter = UnlockedObjs[PosAtual].GetComponent<CharacterHolder>().ThisCharacter;
             DataS.P1SelectedCharacter.PlayerNumber = PlayerNumb;
         }
         else if (PlayerNumb == 2)
         {
-            Characters[PosAtual].GetComponent<Animator>().SetBool("Selected", true);
-            DataS.P2SelectedCharacter = Characters[PosAtual].GetComponent<CharacterHolder>().ThisCharacter;
+            UnlockedObjs[PosAtual].GetComponent<Animator>().SetBool("Selected", true);
+            DataS.P2SelectedCharacter = UnlockedObjs[PosAtual].GetComponent<CharacterHolder>().ThisCharacter;
             DataS.P2SelectedCharacter.PlayerNumber = PlayerNumb;
 
         }
@@ -86,22 +140,33 @@ public class SelectChar : MonoBehaviour {
 
     public void OnDeselectCharacter(int PlayerNumb)
     {
+        CanChange = true;
+        DetectS.QuantSelected--;
+        Selected = false;
         if (PlayerNumb == 1)
         {
-            Characters[PosAtual].GetComponent<Animator>().SetBool("Selected", false);
+            UnlockedObjs[PosAtual].GetComponent<Animator>().SetBool("Selected", false);
             DataS.P1SelectedCharacter = null;
         }
         else if (PlayerNumb == 2)
         {
-            Characters[PosAtual].GetComponent<Animator>().SetBool("Selected", false);
+            UnlockedObjs[PosAtual].GetComponent<Animator>().SetBool("Selected", false);
             DataS.P2SelectedCharacter = null;
         }
+    }
+    
+    public void OnSelectPhase()
+    {
+        CanChange = false;
+        Selected = true;
+        DataS.PhaseName = UnlockedObjs[PosAtual].GetComponent<Menus>().NamePhase;
+        UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("SelecaoPersonagem");
     }
 
     bool ChangePosition()
     {
-        transform.position = Vector3.Lerp(transform.position, CharactersPos[PosAtual].transform.position, Time.deltaTime * 15);
-        if (transform.position == CharactersPos[PosAtual].transform.position)
+        transform.position = Vector3.Lerp(transform.position, UnlockedObjsPos[PosAtual].transform.position, Time.deltaTime * 15);
+        if (transform.position == UnlockedObjsPos[PosAtual].transform.position)
         {
             return true;
         }

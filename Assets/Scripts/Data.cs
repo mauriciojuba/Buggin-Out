@@ -6,6 +6,7 @@ public class Data : MonoBehaviour {
 
 	//lista de fases completas.
 	public List<int> CompletedPhases;
+    public List<string> UnlockedCharacter;
 	private GameObject[] Datas;
 
 	public string PhaseName;
