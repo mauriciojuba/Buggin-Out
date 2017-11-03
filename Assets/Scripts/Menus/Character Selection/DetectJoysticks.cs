@@ -45,8 +45,12 @@ public class DetectJoysticks : MonoBehaviour {
 	public Color P2Color = Color.red;
 
     private GameObject P2;
+
+    Data DataS;
 	void Start(){
-		P1Active = true;
+        if (GameObject.FindWithTag("DATA") != null)
+            DataS = GameObject.FindWithTag("DATA").GetComponent<Data>();
+        P1Active = true;
 	}
 
 	void Update() {
@@ -58,7 +62,7 @@ public class DetectJoysticks : MonoBehaviour {
 			if (QuantSelected == ActiveJoy) {
 				Timer -= Time.deltaTime;
 				if (Timer <= 0) {
-					UnityEngine.SceneManagement.SceneManager.LoadScene ("Level 1A");
+					UnityEngine.SceneManagement.SceneManager.LoadScene (DataS.PhaseName);
 				}
 			} else {
 				Timer = MaxTimer;
@@ -67,7 +71,7 @@ public class DetectJoysticks : MonoBehaviour {
 			if (QuantSelected == 1) {
 				Timer -= Time.deltaTime;
 				if (Timer <= 0) {
-					UnityEngine.SceneManagement.SceneManager.LoadScene ("Level 1A");
+					UnityEngine.SceneManagement.SceneManager.LoadScene (DataS.PhaseName);
 				}
 			} else {
 				Timer = MaxTimer;
