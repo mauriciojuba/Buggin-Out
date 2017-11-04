@@ -18,11 +18,8 @@ public class RecoveryItem : MonoBehaviour {
         if (other.CompareTag("Player1_3D") || other.CompareTag("Player2_3D") || other.CompareTag("Player3_3D") || other.CompareTag("Player4_3D")) {
             if (RecuperaHP)
             {
-				if (other.gameObject.GetComponent<Life> () != null) {
-					if (other.gameObject.GetComponent<Life> ().LifeQuant + 100 <= other.gameObject.GetComponent<Life> ().MaxLife) {
-
+				if (other.gameObject.GetComponent<PlayerLife> () != null) {
 						if (emitter != null) { //desabilita efeitos graficos
-
 							Renderer rend = model.GetComponent<Renderer> (); // remove a emissao
 							Material mat = rend.material;
 							float emission = 0;
@@ -43,21 +40,14 @@ public class RecoveryItem : MonoBehaviour {
 						} //efeitos graficos end
 
 						if (effect != null) { //particula
-							partTime = effect.GetComponent<ParticleSystem> ().duration;
+							partTime = effect.GetComponent<ParticleSystem> ().main.duration;
 							GameObject part = Instantiate (effect, transform.position, Quaternion.identity) as GameObject;
 							GameObject.Destroy (part, partTime);
 						} //particula end
-
-						Player = other.gameObject;
-						GetComponent<LifePos> ().X = Player.GetComponent<Life> ().X + 0.007f;
-						GetComponent<LifePos> ().PlayerNumber = Player.GetComponent<Movimentacao3D> ().PlayerNumber;
-						GetComponent<LifePos> ().enabled = true;
-						GetComponent<LifePos> ().Player = Player;
-						transform.SetParent (Player.GetComponent<Movimentacao3D> ().camScreen);
-						gameObject.GetComponent<Rigidbody> ().isKinematic = true;
-//					Destroy (GetComponent<Collider> ());
-//					Destroy (GetComponent<Rigidbody> ());
-					}
+                    Player = other.gameObject;
+                    PlusLife();
+					Destroy (GetComponent<Collider> ());
+					Destroy (GetComponent<Rigidbody> ());
 				}
             }
             if (RecuperaESP)
@@ -92,8 +82,7 @@ public class RecoveryItem : MonoBehaviour {
 	}
 
 	public void PlusLife(){
-		Player.gameObject.GetComponent<Life>().LifeQuant += valorRecuperacao;
-		Player.gameObject.GetComponent<Life> ().UpdateLife ();
-		Destroy (this);
+		Player.gameObject.GetComponent<PlayerLife>().LifeAtual += valorRecuperacao;
+		Destroy (gameObject);
 	}
 }

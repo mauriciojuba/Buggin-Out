@@ -27,6 +27,16 @@ public class MainMenu : MonoBehaviour {
         {
             PreviousSelection();
         }
+
+        if(Input.GetButtonDown("A P" + PlayerNumber) && !inMenu)
+        {
+            ActiveMenu();
+        }
+
+        if(Input.GetButtonDown("B P" + PlayerNumber) && inMenu)
+        {
+            DeactiveMenu();
+        }
     }
 
     public void NextSelection()
@@ -67,12 +77,14 @@ public class MainMenu : MonoBehaviour {
     public void ActiveMenu()
     {
         Menus[PreSelected].GetComponent<Menus>().ActiveMenu();
+        CanChange = false;
         inMenu = true;
     }
 
-    public void DesactiveMenu()
+    public void DeactiveMenu()
     {
         Menus[PreSelected].GetComponent<Menus>().DeactiveMenu();
+        CanChange = true;
         inMenu = false;
     }
 }

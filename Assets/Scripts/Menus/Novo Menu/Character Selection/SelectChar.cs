@@ -84,13 +84,16 @@ public class SelectChar : MonoBehaviour {
 
         if(Input.GetButtonDown("A P" + PlayerNumber) && !Selected)
         {
-            if(SelectCharacter)
-            OnSelectCharacter(PlayerNumber);
+            if (SelectCharacter)
+                OnSelectCharacter(PlayerNumber);
+            else if (SelectPhase)
+                OnSelectPhase();
         }
 
         if(Input.GetButtonDown("B P"+PlayerNumber) && Selected)
         {
-            OnDeselectCharacter(PlayerNumber);
+            if (SelectCharacter)
+                OnDeselectCharacter(PlayerNumber);
         }
 
 
