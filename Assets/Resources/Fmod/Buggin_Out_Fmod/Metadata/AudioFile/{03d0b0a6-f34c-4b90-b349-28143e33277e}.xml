@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.09.00">
+    <object class="AudioFile" id="{03d0b0a6-f34c-4b90-b349-28143e33277e}">
+        <property name="assetPath">
+            <value>Anciao/Falas/14.wav</value>
+        </property>
+        <property name="frequencyInKHz">
+            <value>44.0999985</value>
+        </property>
+        <property name="channelCount">
+            <value>2</value>
+        </property>
+        <property name="length">
+            <value>8.1110884353741497</value>
+        </property>
+        <relationship name="masterAssetFolder">
+            <destination>{03bc8d35-9f13-4b66-a22f-2a40c7dc76a9}</destination>
+        </relationship>
+    </object>
+</objects>
