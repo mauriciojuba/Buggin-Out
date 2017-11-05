@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.09.00">
+    <object class="AudioFile" id="{f294ae36-4c56-4323-a1fc-c47bec9b5bf9}">
+        <property name="assetPath">
+            <value>Horn/Falas/sobra_01_1.wav</value>
+        </property>
+        <property name="frequencyInKHz">
+            <value>44.0999985</value>
+        </property>
+        <property name="channelCount">
+            <value>2</value>
+        </property>
+        <property name="length">
+            <value>2.7102494331065761</value>
+        </property>
+        <relationship name="masterAssetFolder">
+            <destination>{03bc8d35-9f13-4b66-a22f-2a40c7dc76a9}</destination>
+        </relationship>
+    </object>
+</objects>

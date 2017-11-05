@@ -2,13 +2,13 @@
 <objects serializationModel="Studio.01.09.00">
     <object class="Event" id="{c691a2c7-891b-4fa9-a4c8-b2ab2fefa74f}">
         <property name="name">
-            <value>Ao_Chegar_Rei_Gecko</value>
+            <value>Ao_Chegar_Rei_Gecko_Liz</value>
         </property>
         <property name="outputFormat">
             <value>2</value>
         </property>
         <relationship name="folder">
-            <destination>{65fc7274-0158-40be-9493-75623f060fb0}</destination>
+            <destination>{08d0de87-9f13-4acb-b970-e535e23fa5e8}</destination>
         </relationship>
         <relationship name="mixer">
             <destination>{9734f0bf-51e8-4cf3-b6c8-88faff469f1c}</destination>

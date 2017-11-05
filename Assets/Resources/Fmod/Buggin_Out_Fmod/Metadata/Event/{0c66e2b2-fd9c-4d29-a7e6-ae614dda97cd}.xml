@@ -2,13 +2,13 @@
 <objects serializationModel="Studio.01.09.00">
     <object class="Event" id="{0c66e2b2-fd9c-4d29-a7e6-ae614dda97cd}">
         <property name="name">
-            <value>Ultimate</value>
+            <value>Ultimate_Liz</value>
         </property>
         <property name="outputFormat">
             <value>2</value>
         </property>
         <relationship name="folder">
-            <destination>{65fc7274-0158-40be-9493-75623f060fb0}</destination>
+            <destination>{08d0de87-9f13-4acb-b970-e535e23fa5e8}</destination>
         </relationship>
         <relationship name="mixer">
             <destination>{c91537ab-f7e5-40d0-9c5e-ffb48a13e73c}</destination>

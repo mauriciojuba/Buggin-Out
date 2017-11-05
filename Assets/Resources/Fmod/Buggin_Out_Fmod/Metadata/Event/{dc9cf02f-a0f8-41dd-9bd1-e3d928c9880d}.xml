@@ -2,13 +2,13 @@
 <objects serializationModel="Studio.01.09.00">
     <object class="Event" id="{dc9cf02f-a0f8-41dd-9bd1-e3d928c9880d}">
         <property name="name">
-            <value>Limpar_a_Area</value>
+            <value>Limpar_a_Area_Liz</value>
         </property>
         <property name="outputFormat">
             <value>2</value>
         </property>
         <relationship name="folder">
-            <destination>{65fc7274-0158-40be-9493-75623f060fb0}</destination>
+            <destination>{08d0de87-9f13-4acb-b970-e535e23fa5e8}</destination>
         </relationship>
         <relationship name="mixer">
             <destination>{4d2f86f5-5114-40e6-9ef6-1deb3cb29cf7}</destination>

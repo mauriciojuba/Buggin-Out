@@ -2,13 +2,13 @@
 <objects serializationModel="Studio.01.09.00">
     <object class="Event" id="{2535ce8e-3957-438f-b9c7-683162fd9704}">
         <property name="name">
-            <value>Derrota</value>
+            <value>Derrota_Liz</value>
         </property>
         <property name="outputFormat">
             <value>2</value>
         </property>
         <relationship name="folder">
-            <destination>{65fc7274-0158-40be-9493-75623f060fb0}</destination>
+            <destination>{08d0de87-9f13-4acb-b970-e535e23fa5e8}</destination>
         </relationship>
         <relationship name="mixer">
             <destination>{b4c241e1-4672-4d19-bd6a-12a80c91c653}</destination>
