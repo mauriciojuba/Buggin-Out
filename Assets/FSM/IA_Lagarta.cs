@@ -13,7 +13,7 @@ public class IA_Lagarta : EnemyIA {
     {
         RB.isKinematic = true;
         Target_dist = Vector3.Distance(transform.position, Target_On_Screen.position);
-        Debug.Log(Target_dist);
+        //Debug.Log(Target_dist);
 
         if (Target_dist > 0.2f)
         {
@@ -26,10 +26,25 @@ public class IA_Lagarta : EnemyIA {
 
     }
 
+    public override void UpToScreen()
+    {
+        if (!onScreen)
+        {
+            worldPos = new GameObject("World Pos Mosquito").transform;
+            worldPos.position = transform.position;
+            RB.useGravity = false;
+            screenSpeed = 0.5f;
+            onScreen = true;
+        }
+        if (Screen.GoToScreen(gameObject, randomOffsetOnScreen))
+        {
+            ActualState = State.OnScreenChase;
+        }
+    }
+
     public override void OnScreenAttack()
     {
-
-        GameObject.Instantiate(Casulo, transform.position, transform.rotation);
+        GameObject.Instantiate(Casulo, transform.position, transform.rotation,transform.parent);
         Destroy(gameObject);
     }
 
