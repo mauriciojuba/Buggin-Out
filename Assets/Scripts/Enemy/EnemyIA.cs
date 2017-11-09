@@ -370,7 +370,6 @@ public class EnemyIA : MonoBehaviour,IGroundEnemy,IKillable,IGoToScreen,IScreenE
 	#region IScreenEntity
 	public virtual void OnScreenChase ()
 	{
-		
 	}
 	public virtual void OnScreenAttack ()
 	{

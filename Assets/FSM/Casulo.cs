@@ -45,12 +45,19 @@ public class Casulo : MonoBehaviour {
             {
                 Cas.transform.parent = null;
 
-                Cas.transform.position = Vector3.Lerp(transform.position, target_Chao, 0.02F);
+                Cas.transform.position = Vector3.Lerp(transform.position, target_Chao, 0.2F);
                 Cas.transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(2, 2, 2), 0.1F);
                 Cai = true;
 
-                Destroy(Cas, 3F);
+                Destroy(Cas, 2F);
             }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player1_3D") {
+            Caindo = true;
         }
     }
 

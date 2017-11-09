@@ -66,6 +66,7 @@ public class IA_Mosquito : EnemyIA {
 			targetLife -= Time.fixedDeltaTime*10;
             Life += Time.fixedDeltaTime * 10;
 			Target.GetComponent<PlayerLife> ().LifeAtual = targetLife;
+
 		} else {
 			_anim.SetBool("LifeDrain", false);
 			ActualState = State.GoingToWorld;

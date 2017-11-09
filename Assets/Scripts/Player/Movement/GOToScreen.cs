@@ -35,7 +35,32 @@ public class GOToScreen : MonoBehaviour {
 		}
 	}
 
-	public bool GoToScreen(GameObject ObjectThatGoes, Vector3 tamanhoNaTela, float Range){
+    public bool GoToScreen(GameObject ObjectThatGoes, float RangeX , float RangeY, float RangeZ)
+    {
+        Vector3 randomTelaPos = new Vector3(telapos.position.x + RangeX,
+            telapos.position.y+ RangeY,
+            telapos.position.z+ RangeZ);
+        CameraControl.someObjGoingToScreen = true;
+        ObjectThatGoes.transform.localScale = Vector3.Lerp(ObjectThatGoes.transform.localScale, telapos.localScale, time);
+        ObjectThatGoes.transform.position = Vector3.Lerp(ObjectThatGoes.transform.position, randomTelaPos, time);
+        ObjectThatGoes.transform.rotation = Quaternion.Lerp(ObjectThatGoes.transform.rotation, telapos.rotation, time);
+        time += Time.deltaTime * 5f;
+
+        if (Mathf.Abs(ObjectThatGoes.transform.position.y) >= Mathf.Abs(randomTelaPos.y) - 0.01f &&
+            Mathf.Abs(ObjectThatGoes.transform.position.y) <= Mathf.Abs(randomTelaPos.y) + 0.01f &&
+            ObjectThatGoes.transform.localScale == telapos.localScale){
+            ObjectThatGoes.transform.rotation = telapos.rotation;
+            ObjectThatGoes.transform.parent = CamTransform;
+            CameraControl.someObjGoingToScreen = false;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public bool GoToScreen(GameObject ObjectThatGoes, Vector3 tamanhoNaTela, float Range){
 		float offset = Range;
 		Vector3 randomTelaPos = new Vector3(telapos.position.x+offset,
 											telapos.position.y+offset,
