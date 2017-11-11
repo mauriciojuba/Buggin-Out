@@ -53,24 +53,32 @@ public class PauseMenu : MonoBehaviour {
 
 	void Update(){
 		if(Input.GetButtonDown("Start P1") || Input.GetButtonDown("Start P2") || Input.GetKeyDown(KeyCode.P)){
-			gamePaused = !gamePaused;
-            CheckEnemies();
-            EnableDesableEnemies(gamePaused);
-            pauseMenu.SetActive(gamePaused);
-			if (gamePaused) {
-				Event.SetSelectedGameObject (ButtonSelect);
-                StartCoroutine(Static());
-			} else {
-                Event.SetSelectedGameObject (null);
-                TVMenu.preset.staticFilter.staticMagnitude = 0;
-                StopAllCoroutines();
-            }
+            PauseGame();
         }
 		if(Input.GetButtonDown("PS4 Options") || Input.GetButtonDown("PS4 Share")){
 			gamePaused = !gamePaused;
 			pauseMenu.SetActive(gamePaused);
 		}
 	}
+
+    public void PauseGame()
+    {
+        gamePaused = !gamePaused;
+        CheckEnemies();
+        EnableDesableEnemies(gamePaused);
+        pauseMenu.SetActive(gamePaused);
+        if (gamePaused)
+        {
+            Event.SetSelectedGameObject(ButtonSelect);
+            StartCoroutine(Static());
+        }
+        else
+        {
+            Event.SetSelectedGameObject(null);
+            TVMenu.preset.staticFilter.staticMagnitude = 0;
+            StopAllCoroutines();
+        }
+    }
 
     void CheckEnemies()
     {

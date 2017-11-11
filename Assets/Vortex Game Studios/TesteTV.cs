@@ -10,8 +10,14 @@ public class TesteTV : MonoBehaviour {
     [SerializeField] GameObject[] InMenus;
     [SerializeField] int MenuSelected;
     [SerializeField] int InMenuSelection;
+    [SerializeField] PauseMenu PauseS;
+    [Header("Cores dos Menus(Temporario)")]
+    [SerializeField] Color SelectedMenuColor;
+    [SerializeField] Color UnselectedMenuColor;
 
-    [SerializeField] Color SelectedColor, UnselectedColor;
+    [Header("Cores das opções do menu")]
+    [SerializeField] Color SelectedColor;
+    [SerializeField] Color UnselectedColor;
 
 
     public Text _TextGraphics;
@@ -39,6 +45,17 @@ public class TesteTV : MonoBehaviour {
         {
             InMenus[InMenuSelection].GetComponent<Text>().color = SelectedColor;
             OptionSelected = InMenus[InMenuSelection].name;
+        }
+        for (int i = 0; i < Menus.Length; i++)
+        {
+            if (i != MenuSelected)
+            {
+                Menus[i].GetComponent<Image>().color = UnselectedMenuColor;
+            }
+            else
+            {
+                Menus[i].GetComponent<Image>().color = SelectedMenuColor;
+            }
         }
     }
 	
@@ -75,6 +92,11 @@ public class TesteTV : MonoBehaviour {
         {
             PlusMenu();
         }
+        if (Input.GetKeyDown(KeyCode.KeypadEnter))
+        {
+            ReturnMenu();
+        }
+
         #endregion
     }
 
@@ -152,8 +174,20 @@ public class TesteTV : MonoBehaviour {
             MenuSelected++;
             InMenuSelection = 0;
             SetMenus();
-            OptionSelected = InMenus[InMenuSelection].name;
-            if (InMenus[InMenuSelection] != null && InMenus.Length > 0)
+            if (InMenus.Length > 0)
+                OptionSelected = InMenus[InMenuSelection].name;
+            for (int i = 0; i < Menus.Length; i++)
+            {
+                if (i != MenuSelected)
+                {
+                    Menus[i].GetComponent<Image>().color = UnselectedMenuColor;
+                }
+                else
+                {
+                    Menus[i].GetComponent<Image>().color = SelectedMenuColor;
+                }
+            }
+            if (InMenus.Length > 0)
             {
 
                 InMenus[0].GetComponent<Text>().color = SelectedColor;
@@ -177,8 +211,20 @@ public class TesteTV : MonoBehaviour {
             MenuSelected--;
             InMenuSelection = 0;
             SetMenus();
-            OptionSelected = InMenus[InMenuSelection].name;
-            if (InMenus[InMenuSelection] != null && InMenus.Length > 0)
+            if (InMenus.Length > 0)
+                OptionSelected = InMenus[InMenuSelection].name;
+            for (int i = 0; i < Menus.Length; i++)
+            {
+                if (i != MenuSelected)
+                {
+                    Menus[i].GetComponent<Image>().color = UnselectedMenuColor;
+                }
+                else
+                {
+                    Menus[i].GetComponent<Image>().color = SelectedMenuColor;
+                }
+            }
+            if (InMenus.Length > 0)
             {
 
                 InMenus[0].GetComponent<Text>().color = SelectedColor;
@@ -250,4 +296,30 @@ public class TesteTV : MonoBehaviour {
 
     }
 
+    void ReturnMenu()
+    {
+        if (InMenus[InMenuSelection].name == "Sim")
+        {
+            if (Menus[MenuSelected].name == "Menu Principal")
+            {
+                PauseS.PauseGame();
+                UnityEngine.SceneManagement.SceneManager.LoadScene("Main");
+            }
+            if (Menus[MenuSelected].name == "Selecao Personagens")
+            {
+                PauseS.PauseGame();
+                UnityEngine.SceneManagement.SceneManager.LoadScene("SelecaoPersonagem");
+            }
+            if (Menus[MenuSelected].name == "Sair do jogo")
+            {
+                PauseS.PauseGame();
+                Application.Quit();
+            }
+        }
+
+        if(InMenus[InMenuSelection].name == "Não")
+        {
+            PauseS.PauseGame();
+        }
+    }
 }
