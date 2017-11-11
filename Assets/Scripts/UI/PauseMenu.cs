@@ -30,7 +30,6 @@ public class PauseMenu : MonoBehaviour {
         }
         OldTime = 1.5f;
         Enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        TVMenu.preset.noiseFilter.magnetude = 0;
     }
 
     public void SairDoJogo(){
@@ -60,12 +59,13 @@ public class PauseMenu : MonoBehaviour {
             pauseMenu.SetActive(gamePaused);
 			if (gamePaused) {
 				Event.SetSelectedGameObject (ButtonSelect);
-                TVMenu.preset.noiseFilter.magnetude = 1;
+                StartCoroutine(Static());
 			} else {
-                TVMenu.preset.noiseFilter.magnetude = 0;
                 Event.SetSelectedGameObject (null);
-			}
-		}
+                TVMenu.preset.staticFilter.staticMagnitude = 0;
+                StopAllCoroutines();
+            }
+        }
 		if(Input.GetButtonDown("PS4 Options") || Input.GetButtonDown("PS4 Share")){
 			gamePaused = !gamePaused;
 			pauseMenu.SetActive(gamePaused);
@@ -113,5 +113,14 @@ public class PauseMenu : MonoBehaviour {
         {
             Time.timeScale = OldTime;
         }
+    }
+
+    IEnumerator Static()
+    {
+        TVMenu.preset.staticFilter.staticMagnitude = Random.Range(0.05f, 0.15f);
+        yield return StartCoroutine(CoroutineUtil.WaitForRealSeconds(0.3f));
+        TVMenu.preset.staticFilter.staticMagnitude = 0;
+        yield return StartCoroutine(CoroutineUtil.WaitForRealSeconds(5));
+        StartCoroutine(Static());
     }
 }
