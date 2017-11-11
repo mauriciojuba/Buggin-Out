@@ -57,7 +57,7 @@ public class CameraControl : MonoBehaviour {
     }
     private void Update()
     {
-		Debug.Log (someObjGoingToScreen);
+		//Debug.Log (someObjGoingToScreen);
 		ResetGame ();
 //        for (int i = 0; i < players.Length; i++)
 //        {
