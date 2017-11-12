@@ -33,8 +33,13 @@ public class TesteTV : MonoBehaviour {
     string MasterVolume;
 
     public string OptionSelected;
-	// Use this for initialization
-	void Start () {
+
+    [SerializeField] OLDTVFilter3 TVMenu;
+
+    [SerializeField] GameObject Cursor;
+
+    // Use this for initialization
+    void Start () {
         SetMenus();
         for (int i = 0; i < BrightnessNumber; i++)
         {
@@ -302,24 +307,47 @@ public class TesteTV : MonoBehaviour {
         {
             if (Menus[MenuSelected].name == "Menu Principal")
             {
-                PauseS.PauseGame();
+                if (PauseS != null)
+                    PauseS.PauseGame();
                 UnityEngine.SceneManagement.SceneManager.LoadScene("Main");
             }
             if (Menus[MenuSelected].name == "Selecao Personagens")
             {
-                PauseS.PauseGame();
+                if (PauseS != null)
+                    PauseS.PauseGame();
                 UnityEngine.SceneManagement.SceneManager.LoadScene("SelecaoPersonagem");
             }
             if (Menus[MenuSelected].name == "Sair do jogo")
             {
-                PauseS.PauseGame();
+                if (PauseS != null)
+                    PauseS.PauseGame();
                 Application.Quit();
             }
         }
 
         if(InMenus[InMenuSelection].name == "Não")
         {
-            PauseS.PauseGame();
+            if(PauseS != null)
+                PauseS.PauseGame();
+            else if(Cursor != null)
+                Cursor.GetComponent<MainMenu>().DeactiveMenu();
         }
+
+        if (InMenus[InMenuSelection].name == "Voltar")
+        {
+            if (Cursor != null)
+            {
+                Cursor.GetComponent<MainMenu>().DeactiveMenu();
+            }
+        }
+    }
+
+    IEnumerator Static()
+    {
+        TVMenu.preset.staticFilter.staticMagnitude = Random.Range(0.05f, 0.15f);
+        yield return StartCoroutine(CoroutineUtil.WaitForRealSeconds(0.3f));
+        TVMenu.preset.staticFilter.staticMagnitude = 0;
+        yield return StartCoroutine(CoroutineUtil.WaitForRealSeconds(5));
+        StartCoroutine(Static());
     }
 }
