@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class IA_Mariposa : EnemyIA
 {
+    
 
     public override void OnScreenIdle()
     {
@@ -20,8 +21,4 @@ public class IA_Mariposa : EnemyIA
        
     }
 
-    public override void Die()
-    {
-
-    }
 }

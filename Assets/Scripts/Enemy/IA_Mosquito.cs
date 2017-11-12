@@ -30,8 +30,60 @@ public class IA_Mosquito : EnemyIA {
 
 
 
-	#region Override EnemyIA
-	public override void OnScreenIdle ()
+    #region Override EnemyIA
+
+    public override void TakeDamage()
+    {
+        if (hitted)
+        {
+            if (playerStr == 0)
+                playerStr = 50;
+
+            Life -= playerStr;
+            hitted = false;
+        }
+        if (!onScreen)
+        {
+            if (_anim != null)
+                _anim.SetBool("FightingWalk", false);
+            if (Life > 0 && Life <= lifeMax * 0.2f)
+            {
+                ActualState = State.Flee;
+            }
+            else if (Life <= 0) ActualState = State.Dead;
+        }
+        else
+        {
+            if (_anim != null)
+            {
+                _anim.SetTrigger("TakeDamageScreen");
+                _anim.SetBool("LifeDrain", false);
+            }
+
+            //particulas
+            /*if (part != null) {
+				ParticleSystem particleemitter = part.GetComponent<ParticleSystem> ();
+				if (particleemitter != null) {
+					ParticleSystem.EmissionModule emit = particleemitter.emission;
+					emit.enabled = false;
+				}
+				Destroy(part, 5f);
+			}*/
+
+            //if (Life > 0) {
+            ActualState = State.GoingToWorld;
+            //} else {
+            //	ActualState = State.Dead;
+            //}
+        }
+        //hitted = false;
+        if (_anim.GetCurrentAnimatorStateInfo(0).IsName("Take Damage") && _anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.7f && Life > 0)
+        {
+            ActualState = State.Chase;
+        }
+    }
+
+    public override void OnScreenIdle ()
 	{
 		_anim.SetBool("GoingToScreen", false);
 		ActualState = State.OnScreenChase;
