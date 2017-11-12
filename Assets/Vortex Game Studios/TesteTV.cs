@@ -309,13 +309,20 @@ public class TesteTV : MonoBehaviour {
             {
                 if (PauseS != null)
                     PauseS.PauseGame();
-                UnityEngine.SceneManagement.SceneManager.LoadScene("Main");
+
+                if (GameObject.FindWithTag("Loading") != null)
+                    GameObject.FindWithTag("Loading").GetComponent<Loading>().StartCoroutine(GameObject.FindWithTag("Loading").GetComponent<Loading>().LoadAsync("Main"));
+                else
+                    UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("Main");
             }
             if (Menus[MenuSelected].name == "Selecao Personagens")
             {
                 if (PauseS != null)
                     PauseS.PauseGame();
-                UnityEngine.SceneManagement.SceneManager.LoadScene("SelecaoPersonagem");
+                if (GameObject.FindWithTag("Loading") != null)
+                    GameObject.FindWithTag("Loading").GetComponent<Loading>().StartCoroutine(GameObject.FindWithTag("Loading").GetComponent<Loading>().LoadAsync("SelecaoPersonagem"));
+                else
+                    UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("SelecaoPersonagem");
             }
             if (Menus[MenuSelected].name == "Sair do jogo")
             {

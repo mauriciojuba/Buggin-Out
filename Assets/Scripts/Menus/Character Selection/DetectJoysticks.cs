@@ -46,6 +46,8 @@ public class DetectJoysticks : MonoBehaviour {
 
     private GameObject P2;
 
+    bool Loaded;
+
     Data DataS;
 	void Start(){
         if (GameObject.FindWithTag("DATA") != null)
@@ -58,25 +60,48 @@ public class DetectJoysticks : MonoBehaviour {
 		ActiveJoysticks ();
 		DetectActivity ();
 		DetectJoy ();
-		if (P1Connected) {
-			if (QuantSelected == ActiveJoy) {
-				Timer -= Time.deltaTime;
-				if (Timer <= 0) {
-					UnityEngine.SceneManagement.SceneManager.LoadScene (DataS.PhaseName);
-				}
-			} else {
-				Timer = MaxTimer;
-			}
-		} else {
-			if (QuantSelected == 1) {
-				Timer -= Time.deltaTime;
-				if (Timer <= 0) {
-					UnityEngine.SceneManagement.SceneManager.LoadScene (DataS.PhaseName);
-				}
-			} else {
-				Timer = MaxTimer;
-			}
-		}
+        if (!Loaded)
+        {
+            if (P1Connected)
+            {
+                if (QuantSelected == ActiveJoy)
+                {
+                    Timer -= Time.deltaTime;
+                    if (Timer <= 0)
+                    {
+                        if (GameObject.FindWithTag("Loading") != null)
+                            GameObject.FindWithTag("Loading").GetComponent<Loading>().StartCoroutine(GameObject.FindWithTag("Loading").GetComponent<Loading>().LoadAsync(DataS.PhaseName));
+                        else
+                            UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(DataS.PhaseName);
+                        Loaded = true;
+                    }
+                }
+                else
+                {
+                    Timer = MaxTimer;
+                }
+            }
+            else
+            {
+                if (QuantSelected == 1)
+                {
+                    Timer -= Time.deltaTime;
+                    if (Timer <= 0)
+                    {
+                        if (GameObject.FindWithTag("Loading") != null)
+                            GameObject.FindWithTag("Loading").GetComponent<Loading>().StartCoroutine(GameObject.FindWithTag("Loading").GetComponent<Loading>().LoadAsync(DataS.PhaseName));
+                        else
+                            UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(DataS.PhaseName);
+                        Loaded = true;
+
+                    }
+                }
+                else
+                {
+                    Timer = MaxTimer;
+                }
+            }
+        }
 	}
 
 	//Ativa os controles quando apertar A.

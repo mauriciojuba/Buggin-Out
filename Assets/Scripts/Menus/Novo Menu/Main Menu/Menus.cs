@@ -27,6 +27,6 @@ public class Menus : MonoBehaviour {
 
     public void NewGame()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("SelecaoFase");
+        GameObject.FindWithTag("Loading").GetComponent<Loading>().StartCoroutine(GameObject.FindWithTag("Loading").GetComponent<Loading>().LoadAsync("SelecaoFase"));
     }
 }

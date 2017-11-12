@@ -64,39 +64,42 @@ public class SelectChar : MonoBehaviour {
         }
 
     }
-	
-	// Update is called once per frame
-	void Update () {
-        if (!CanChange)
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (Camera.main.GetComponent<OLDTVFilter3>().preset.noiseFilter.magnetude <= 0)
         {
-            if (ChangePosition()){
-                CanChange = true;
+            if (!CanChange)
+            {
+                if (ChangePosition())
+                {
+                    CanChange = true;
+                }
+            }
+            if (Input.GetAxis("Horizontal P" + PlayerNumber) > 0.5f && CanChange)
+            {
+                NextSelection();
+            }
+            if (Input.GetAxis("Horizontal P" + PlayerNumber) < -0.5f && CanChange)
+            {
+                PreviousSelection();
+            }
+
+            if (Input.GetButtonDown("A P" + PlayerNumber) && !Selected)
+            {
+                if (SelectCharacter)
+                    OnSelectCharacter(PlayerNumber);
+                else if (SelectPhase)
+                    OnSelectPhase();
+            }
+
+            if (Input.GetButtonDown("B P" + PlayerNumber) && Selected)
+            {
+                if (SelectCharacter)
+                    OnDeselectCharacter(PlayerNumber);
             }
         }
-        if (Input.GetAxis("Horizontal P" + PlayerNumber) > 0.5f && CanChange)
-        {
-            NextSelection();
-        }
-        if(Input.GetAxis("Horizontal P" + PlayerNumber) < -0.5f && CanChange)
-        {
-            PreviousSelection();
-        }
-
-        if(Input.GetButtonDown("A P" + PlayerNumber) && !Selected)
-        {
-            if (SelectCharacter)
-                OnSelectCharacter(PlayerNumber);
-            else if (SelectPhase)
-                OnSelectPhase();
-        }
-
-        if(Input.GetButtonDown("B P"+PlayerNumber) && Selected)
-        {
-            if (SelectCharacter)
-                OnDeselectCharacter(PlayerNumber);
-        }
-
-
     }
 
     public void NextSelection()
@@ -163,7 +166,8 @@ public class SelectChar : MonoBehaviour {
         CanChange = false;
         Selected = true;
         DataS.PhaseName = UnlockedObjs[PosAtual].GetComponent<Menus>().NamePhase;
-        UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("SelecaoPersonagem");
+        if (GameObject.FindWithTag("Loading") != null)
+            GameObject.FindWithTag("Loading").GetComponent<Loading>().StartCoroutine(GameObject.FindWithTag("Loading").GetComponent<Loading>().LoadAsync("SelecaoPersonagem"));
     }
 
     bool ChangePosition()

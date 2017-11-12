@@ -10,32 +10,37 @@ public class MainMenu : MonoBehaviour {
     [SerializeField] int PlayerNumber;
     [SerializeField] bool CanChange, inMenu;
 
+
+
     private void Update()
     {
-        if (!CanChange && !inMenu)
+        if (Camera.main.GetComponent<OLDTVFilter3>().preset.noiseFilter.magnetude <= 0)
         {
-            if (ChangePosition())
+            if (!CanChange && !inMenu)
             {
-                CanChange = true;
+                if (ChangePosition())
+                {
+                    CanChange = true;
+                }
             }
-        }
-        if (Input.GetAxis("Horizontal P" + PlayerNumber) > 0.5f && CanChange)
-        {
-            NextSelection();
-        }
-        if (Input.GetAxis("Horizontal P" + PlayerNumber) < -0.5f && CanChange)
-        {
-            PreviousSelection();
-        }
+            if (Input.GetAxis("Horizontal P" + PlayerNumber) > 0.5f && CanChange)
+            {
+                NextSelection();
+            }
+            if (Input.GetAxis("Horizontal P" + PlayerNumber) < -0.5f && CanChange)
+            {
+                PreviousSelection();
+            }
 
-        if(Input.GetButtonDown("A P" + PlayerNumber) && !inMenu)
-        {
-            ActiveMenu();
-        }
+            if (Input.GetButtonDown("A P" + PlayerNumber) && !inMenu)
+            {
+                ActiveMenu();
+            }
 
-        if(Input.GetButtonDown("B P" + PlayerNumber) && inMenu)
-        {
-            DeactiveMenu();
+            if (Input.GetButtonDown("B P" + PlayerNumber) && inMenu)
+            {
+                DeactiveMenu();
+            }
         }
     }
 
