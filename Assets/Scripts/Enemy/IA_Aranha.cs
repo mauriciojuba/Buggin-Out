@@ -26,7 +26,7 @@ public class IA_Aranha : EnemyIA {
 		if (targetDistance <= EnemyDist && attackTimer >= attackDelay)
 		{
 			_anim.SetBool("IsIdle", false);
-			_anim.SetTrigger("ATK");
+            _anim.SetTrigger("ATK");
 			attackTimer = 0;
 		}
 		if (targetDistance > EnemyDist)
