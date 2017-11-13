@@ -20,12 +20,12 @@ public class GrabObject : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetButtonDown ("B P1") && !PickUp && !PickedObj || Input.GetKeyDown(KeyCode.LeftControl) && !PickUp && !PickedObj) {
+		if (Input.GetButtonDown ("B P1") && !PickUp && !PickedObj || Input.GetKeyDown(KeyCode.L) && !PickUp && !PickedObj) {
 			CheckAllDistance ();
 			CheckDistance ();
 		}
 
-		if (Input.GetButtonDown ("B P1") && PickedObj || Input.GetKeyDown(KeyCode.LeftControl) && PickedObj) {
+		if (Input.GetButtonDown ("B P1") && PickedObj || Input.GetKeyDown(KeyCode.L) && PickedObj) {
 			AnimCTRL.ThrowObjAnim ();
 		}
 

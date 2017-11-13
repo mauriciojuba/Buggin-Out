@@ -16,6 +16,11 @@ public class Menus : MonoBehaviour {
         }
         else
         {
+            if (Menu.name == "Opções")
+            {
+                Menu.GetComponent<TesteTV>().InMenuSelection = 0;
+                Menu.GetComponent<TesteTV>().SetColor();
+            }
             Menu.SetActive(true);
         }
     }

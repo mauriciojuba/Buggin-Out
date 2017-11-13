@@ -9,6 +9,8 @@ public class Barreira : MonoBehaviour {
 	[SerializeField] Rigidbody dominoCenterLeft,dominoCenterRight;
 	[SerializeField] Vector3 forceDir;
 	[SerializeField] List<GameObject> DeadEnemys;
+    [SerializeField] GameObject[] Dominos;
+    [SerializeField] bool Ajust;
 	void Start () {
 		
 	}
@@ -19,13 +21,39 @@ public class Barreira : MonoBehaviour {
 			dominoCenterLeft.AddForce(forceDir*2000f);
 			dominoCenterRight.AddForce(-forceDir*2000f);
 			this.GetComponent<BoxCollider>().enabled = false;
+            StartCoroutine(DestroyThisOBJ());
 		}
 
 		for (int i = 0; i < AreaEnemys.Count; i++) {
-			if (AreaEnemys [i] == null) {
+            if (AreaEnemys[i] == null)
+            {
                 AreaEnemys.RemoveAt(i);
-    }
+            }
 		}
 
+        if (Ajust)
+        {
+            AjustSize();
+        }
 	}
+
+    IEnumerator DestroyThisOBJ()
+    {
+        yield return new WaitForSeconds(3f);
+        Ajust = true;
+        yield return new WaitForSeconds(3f);
+        for (int i = 0; i < Dominos.Length; i++)
+        {
+            Destroy(Dominos[i]);
+        }
+        Destroy(gameObject);
+    }
+
+    void AjustSize()
+    {
+        for (int i = 0; i < Dominos.Length; i++)
+        {
+            Dominos[i].transform.localScale = Vector3.Lerp(Dominos[i].transform.localScale, new Vector3(0, 0, 0), Time.deltaTime);
+        }
+    }
 }

@@ -6,6 +6,7 @@ using UnityEngine;
 public class HornControl : MonoBehaviour {
     Vector3 mov;
 	Vector3 movAntPos;
+    public GameObject AntPosPrefab;
 	Rigidbody antposRB;
     [SerializeField] Rigidbody rdb;
 	AnimationControl AnimCTRL;
@@ -93,8 +94,9 @@ public class HornControl : MonoBehaviour {
 //		}
 			if (!natela) {
 				if (Input.GetButtonDown ("RB P1") && !Going ||
-				    Input.GetKeyDown (KeyCode.LeftAlt) && !Going) {
-					antposRB = AntPos.GetComponent<Rigidbody> ();
+				    Input.GetKeyDown (KeyCode.LeftShift) && !Going) {
+                    AntPos = GameObject.Instantiate(AntPosPrefab, transform.position, transform.rotation).transform;
+                    antposRB = AntPos.GetComponent<Rigidbody>();
 					AntPos.position = transform.position;
 					AntPos.rotation = transform.rotation;
 					Going = true;
@@ -105,11 +107,11 @@ public class HornControl : MonoBehaviour {
 				}
 			} else {
 				if (Input.GetButton ("RB P1") && !Going ||
-					Input.GetKey (KeyCode.LeftAlt) && !Going) {
+					Input.GetKey (KeyCode.LeftShift) && !Going) {
 					MudaPontoDeRetorno ();
 				}
 				if (Input.GetButtonUp ("RB P1") && !Going ||
-					Input.GetKeyUp (KeyCode.LeftAlt) && !Going) {
+					Input.GetKeyUp (KeyCode.LeftShift) && !Going) {
 					Going = true;
 					anim.SetBool ("tocam", !natela);
 					rdb.isKinematic = true;
@@ -140,7 +142,7 @@ public class HornControl : MonoBehaviour {
         #region Especial (Usar e Rotacionar)
 
         //Estou tentando zerar a velocity do rdb mas ela continua deslizando enquanto usa o especial.. ajudem ae se caso souberem o motivo
-        if (Input.GetKeyDown(KeyCode.Z) && !UseSpecial)
+        if (Input.GetKeyDown(KeyCode.K) && !UseSpecial)
         {
             rdb.velocity = Vector3.zero;
             UseSpecial = true;

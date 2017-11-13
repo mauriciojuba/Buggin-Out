@@ -20,10 +20,10 @@ public class ComboSystem : MonoBehaviour {
 		if (Time.time > TimeLastButtonPressed + TimeBetweenButtons) {
 			Attacking = false;
 		}
-		if (Input.GetButtonDown ("X P" + PlayerNumber) || Input.GetKeyDown(KeyCode.Q)) {
+		if (Input.GetButtonDown ("X P" + PlayerNumber) || Input.GetKeyDown(KeyCode.J)) {
 			ButtonPressed (1);
 		}
-		if (Input.GetButtonDown ("Y P" + PlayerNumber) || Input.GetKeyDown(KeyCode.E)) {
+		if (Input.GetButtonDown ("Y P" + PlayerNumber) || Input.GetKeyDown(KeyCode.I)) {
 			ButtonPressed (2);
 		}
 		Anim.SetBool ("Attacking", Attacking);

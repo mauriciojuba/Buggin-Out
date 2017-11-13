@@ -5,11 +5,11 @@ using UnityEngine.UI;
 
 public class TesteTV : MonoBehaviour {
 
-
+    [SerializeField] int PlayerNumber = 1;
     [SerializeField] GameObject[] Menus;
     [SerializeField] GameObject[] InMenus;
     [SerializeField] int MenuSelected;
-    [SerializeField] int InMenuSelection;
+    [SerializeField] public int InMenuSelection;
     [SerializeField] PauseMenu PauseS;
     [Header("Cores dos Menus(Temporario)")]
     [SerializeField] Color SelectedMenuColor;
@@ -38,8 +38,11 @@ public class TesteTV : MonoBehaviour {
 
     [SerializeField] GameObject Cursor;
 
+    [SerializeField] bool CanChange = true;
+
     // Use this for initialization
     void Start () {
+        CanChange = true;
         SetMenus();
         for (int i = 0; i < BrightnessNumber; i++)
         {
@@ -73,31 +76,31 @@ public class TesteTV : MonoBehaviour {
 
 
         #region Buttons to Press
-        if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
+        if (Input.GetAxis("Horizontal P1") > 0.5f && CanChange || Input.GetKey(KeyCode.D) && CanChange)
+        { 
             Plus();
         }
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (Input.GetAxis("Horizontal P1") < -0.5f && CanChange || Input.GetKey(KeyCode.A) && CanChange)
         {
             Minus();
         }
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetAxis("Vertical P1") > 0.5f && CanChange || Input.GetKey(KeyCode.W) && CanChange)
         {
             MinusInMenu();
         }
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+        if (Input.GetAxis("Vertical P1") < -0.5f && CanChange || Input.GetKey(KeyCode.S) && CanChange)
         {
             PlusInMenu();
         }
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetButton("LB P1") && CanChange || Input.GetKey(KeyCode.Q) && CanChange)
         {
             MinusMenu();
         }
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetButton("RB P1") && CanChange || Input.GetKey(KeyCode.E) && CanChange)
         {
             PlusMenu();
         }
-        if (Input.GetKeyDown(KeyCode.KeypadEnter))
+        if (Input.GetButton("A P1") && CanChange || Input.GetKey(KeyCode.Return) && CanChange)
         {
             ReturnMenu();
         }
@@ -107,6 +110,7 @@ public class TesteTV : MonoBehaviour {
 
     void Plus()
     {
+        StartCoroutine(SetCanChange());
         if(OptionSelected == "Gráficos")
         {
             if (QualitySelected < QualitySettings.names.Length - 1)
@@ -135,6 +139,7 @@ public class TesteTV : MonoBehaviour {
 
     void Minus()
     {
+        StartCoroutine(SetCanChange());
 
         if (OptionSelected == "Gráficos")
         {
@@ -174,6 +179,8 @@ public class TesteTV : MonoBehaviour {
 
     void PlusMenu()
     {
+        StartCoroutine(SetCanChange());
+
         if (MenuSelected < Menus.Length)
         {
             MenuSelected++;
@@ -211,6 +218,8 @@ public class TesteTV : MonoBehaviour {
 
     void MinusMenu()
     {
+        StartCoroutine(SetCanChange());
+
         if (MenuSelected > 0)
         {
             MenuSelected--;
@@ -247,6 +256,8 @@ public class TesteTV : MonoBehaviour {
 
     void PlusInMenu()
     {
+        StartCoroutine(SetCanChange());
+
         if (InMenuSelection < InMenus.Length - 1)
         {
             InMenuSelection++;
@@ -267,6 +278,8 @@ public class TesteTV : MonoBehaviour {
 
     void MinusInMenu()
     {
+        StartCoroutine(SetCanChange());
+
         if (InMenuSelection > 0)
         {
             InMenuSelection--;
@@ -334,10 +347,13 @@ public class TesteTV : MonoBehaviour {
 
         if(InMenus[InMenuSelection].name == "Não")
         {
-            if(PauseS != null)
+            if (PauseS != null)
                 PauseS.PauseGame();
-            else if(Cursor != null)
+            else if (Cursor != null)
+            {
+                
                 Cursor.GetComponent<MainMenu>().DeactiveMenu();
+            }
         }
 
         if (InMenus[InMenuSelection].name == "Voltar")
@@ -349,6 +365,25 @@ public class TesteTV : MonoBehaviour {
         }
     }
 
+    public void SetColor()
+    {
+        if (InMenus.Length > 0)
+        {
+
+            InMenus[0].GetComponent<Text>().color = SelectedColor;
+
+            for (int i = 0; i < InMenus.Length; i++)
+            {
+                if (i != InMenuSelection)
+                {
+                    InMenus[i].GetComponent<Text>().color = UnselectedColor;
+                }
+            }
+        }
+        if(InMenus.Length > 1)
+        OptionSelected = InMenus[InMenuSelection].name;
+    }
+
     IEnumerator Static()
     {
         TVMenu.preset.staticFilter.staticMagnitude = Random.Range(0.05f, 0.15f);
@@ -356,5 +391,13 @@ public class TesteTV : MonoBehaviour {
         TVMenu.preset.staticFilter.staticMagnitude = 0;
         yield return StartCoroutine(CoroutineUtil.WaitForRealSeconds(5));
         StartCoroutine(Static());
+    }
+
+    IEnumerator SetCanChange()
+    {
+        CanChange = false;
+        yield return StartCoroutine(CoroutineUtil.WaitForRealSeconds(0.3f));
+        CanChange = true;
+
     }
 }

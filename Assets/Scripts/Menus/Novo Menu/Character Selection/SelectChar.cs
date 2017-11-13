@@ -99,6 +99,7 @@ public class SelectChar : MonoBehaviour {
                 if (SelectCharacter)
                     OnDeselectCharacter(PlayerNumber);
             }
+            
         }
     }
 

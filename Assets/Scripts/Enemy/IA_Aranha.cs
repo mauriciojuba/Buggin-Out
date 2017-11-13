@@ -43,8 +43,15 @@ public class IA_Aranha : EnemyIA {
 	public override void TakeDamage ()
 	{
 		_anim.SetBool("TakeDamage", true);
+        if (hitted)
+        {
+            if (playerStr == 0)
+                playerStr = 50;
 
-		if (Life <= 0)
+            Life -= playerStr;
+            hitted = false;
+        }
+        if (Life <= 0)
 		{
 			_anim.SetBool("TakeDamage", false);
 			ActualState = State.Dead;
