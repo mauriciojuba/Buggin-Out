@@ -16,8 +16,19 @@ public class DestruirObjeto : MonoBehaviour {
 		} else if (Throwed) {
 			if (this.GetComponent<Life> () != null) {
                 this.GetComponent<Life>().Contact = hit.contacts[0].point;
-				this.GetComponent<Life> ().LifeQuant = 0;
-                gameObject.GetComponent<Collider>().enabled = false;
+                if (this.GetComponent<Life>().Poison)
+                {
+                    if (hit.gameObject.CompareTag("Chão"))
+                    {
+                        this.GetComponent<Life>().LifeQuant = 0;
+                        gameObject.GetComponent<Collider>().enabled = false;
+                    }
+                }
+                else
+                {
+                    this.GetComponent<Life>().LifeQuant = 0;
+                    gameObject.GetComponent<Collider>().enabled = false;
+                }
 			}
 			if (hit.gameObject.tag != "Player1_3D" && hit.gameObject.tag != "Player2_3D") {
 				if (hit.gameObject.GetComponent<Life> () != null) {

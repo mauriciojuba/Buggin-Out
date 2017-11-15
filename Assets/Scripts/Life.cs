@@ -20,8 +20,7 @@ public class Life : MonoBehaviour {
     public GameObject[] Loot;
     [Range(0,100)]
     public int LootChance;
-
-
+    public bool Poison;
     #region Variables For Enemys Life
 
 
@@ -165,6 +164,7 @@ public class Life : MonoBehaviour {
 
              case ObjectType.Bomb:
                     GameObject Bomb = GameObject.Instantiate(ObjDestruido, transform.position, Quaternion.identity) as GameObject;
+                   
                     //Bomb.transform.LookAt(Contact);
                     if (Evento != null)
                     {

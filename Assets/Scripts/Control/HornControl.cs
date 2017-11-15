@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class HornControl : MonoBehaviour {
-    Vector3 mov;
+    public Vector3 mov;
 	Vector3 movAntPos;
     public GameObject AntPosPrefab;
 	Rigidbody antposRB;
@@ -144,7 +144,7 @@ public class HornControl : MonoBehaviour {
         //Estou tentando zerar a velocity do rdb mas ela continua deslizando enquanto usa o especial.. ajudem ae se caso souberem o motivo
         if (Input.GetKeyDown(KeyCode.K) && !UseSpecial)
         {
-            rdb.velocity = Vector3.zero;
+            mov = Vector3.zero;
             UseSpecial = true;
             AnimCTRL.SetSpecial();
         }

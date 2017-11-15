@@ -181,7 +181,7 @@ public class TesteTV : MonoBehaviour {
     {
         StartCoroutine(SetCanChange());
 
-        if (MenuSelected < Menus.Length)
+        if (MenuSelected < Menus.Length - 1)
         {
             MenuSelected++;
             InMenuSelection = 0;

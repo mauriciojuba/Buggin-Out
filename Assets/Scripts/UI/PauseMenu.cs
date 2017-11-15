@@ -69,12 +69,12 @@ public class PauseMenu : MonoBehaviour {
         pauseMenu.SetActive(gamePaused);
         if (gamePaused)
         {
-            Event.SetSelectedGameObject(ButtonSelect);
+            //Event.SetSelectedGameObject(ButtonSelect);
             StartCoroutine(Static());
         }
         else
         {
-            Event.SetSelectedGameObject(null);
+            //Event.SetSelectedGameObject(null);
             TVMenu.preset.staticFilter.staticMagnitude = 0;
             StopAllCoroutines();
         }

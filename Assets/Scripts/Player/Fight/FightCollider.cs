@@ -125,7 +125,7 @@ public class FightCollider : MonoBehaviour {
 	public void InstantiateParticle(){
 		if (particula != null)
 		{
-			ScreenShake.Instance.Shake(0.05f, 0.05f);
+			//ScreenShake.Instance.Shake(0.05f, 0.05f);
 			GameObject part = Instantiate (particula, transform.position, Quaternion.identity) as GameObject;
             part.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
 			float timePart = part.GetComponent<ParticleSystem> ().main.duration;

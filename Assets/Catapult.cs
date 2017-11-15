@@ -60,6 +60,7 @@ public class Catapult : MonoBehaviour {
     {
         GameObject GB = GameObject.Instantiate(Prefab, Muzzle.position, Quaternion.Euler(Muzzle.rotation.x, Muzzle.rotation.y + 180, Muzzle.rotation.z));
         Destroy(BombIdle);
+        GB.GetComponent<Rigidbody>().isKinematic = false;
         GB.GetComponent<Rigidbody>().AddForce(Muzzle.forward * Random.Range(MinForce, MaxForce));
         GB.GetComponent<DestruirObjeto>().Throwed = true;
     }

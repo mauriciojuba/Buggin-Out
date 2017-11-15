@@ -13,9 +13,10 @@ public class RoombaScript : MonoBehaviour {
 		}
         if (Col.collider.gameObject.GetComponent<IA_Mosquito>() != null)
         {
-            Col.collider.gameObject.GetComponent<IA_Mosquito>().ActualState = EnemyIA.State.Dead;
+            Col.collider.gameObject.GetComponent<IA_Mosquito>().Life -= 9999;
+            Col.collider.gameObject.GetComponent<IA_Mosquito>().TakeDamage();
         }
-        if(Col.collider.gameObject.GetComponent<PlayerLife>() != null)
+        if (Col.collider.gameObject.GetComponent<PlayerLife>() != null)
         {
             Col.collider.gameObject.GetComponent<PlayerLife>().LifeAtual = 0;
 
