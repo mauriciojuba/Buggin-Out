@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class StartCutscene1A : MonoBehaviour {
 
-	public Animator Roomba;
+	public GameObject Roomba;
 	public CameraControl dollycam;
 	bool zoomOut;
 	void OnTriggerEnter(Collider hit){
 		if(hit.CompareTag("Player1_3D")){
 			zoomOut = true;
-			Roomba.enabled = true;
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Roomba", transform.position);
+			Roomba.SetActive(true);
 		}
 	}
 	void Update(){
