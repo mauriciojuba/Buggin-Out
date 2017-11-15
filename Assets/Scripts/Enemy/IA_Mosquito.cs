@@ -50,7 +50,13 @@ public class IA_Mosquito : EnemyIA {
             {
                 ActualState = State.Flee;
             }
-            else if (Life <= 0) ActualState = State.Dead;
+            else if(Life <= 0){
+                if(Target.name=="Horn")
+                FMODUnity.RuntimeManager.PlayOneShot(Evento_Horn, transform.position);
+                if (Target.name == "Liz")
+                    FMODUnity.RuntimeManager.PlayOneShot(Evento_Liz, transform.position);
+                ActualState = State.Dead;
+            }
         }
         else
         {

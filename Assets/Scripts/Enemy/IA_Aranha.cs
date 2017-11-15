@@ -53,7 +53,11 @@ public class IA_Aranha : EnemyIA {
         }
         if (Life <= 0)
 		{
-			_anim.SetBool("TakeDamage", false);
+            if (Target.name == "Horn")
+                FMODUnity.RuntimeManager.PlayOneShot(Evento_Horn, transform.position);
+            if (Target.name == "Liz")
+                FMODUnity.RuntimeManager.PlayOneShot(Evento_Liz, transform.position);
+            _anim.SetBool("TakeDamage", false);
 			ActualState = State.Dead;
 		}
 		else
@@ -64,6 +68,7 @@ public class IA_Aranha : EnemyIA {
 	}
 	public override void Die ()
 	{
+
 		_anim.SetTrigger("Die");
 		Destroy (gameObject, 4f);
 	}

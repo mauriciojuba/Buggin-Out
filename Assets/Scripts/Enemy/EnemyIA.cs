@@ -31,6 +31,11 @@ public class EnemyIA : MonoBehaviour, IGroundEnemy, IKillable, IGoToScreen, IScr
     [HideInInspector]
     public float randomOffsetOnScreen;
 
+    [FMODUnity.EventRef]
+    public string Evento_Liz;
+    [FMODUnity.EventRef]
+    public string Evento_Horn;
+
     [Header("Estado atual")]
     public State ActualState = State.Chase;
 
@@ -333,7 +338,13 @@ public class EnemyIA : MonoBehaviour, IGroundEnemy, IKillable, IGoToScreen, IScr
     {
 
         if (Life <= 0f)
+        {
+            if (Target.name == "Horn")
+                FMODUnity.RuntimeManager.PlayOneShot(Evento_Horn, transform.position);
+            if (Target.name == "Liz")
+                FMODUnity.RuntimeManager.PlayOneShot(Evento_Liz, transform.position);
             ActualState = State.Dead;
+        }
 
         if (hitted)
         {
@@ -357,7 +368,7 @@ public class EnemyIA : MonoBehaviour, IGroundEnemy, IKillable, IGoToScreen, IScr
 
     public virtual void Die()
     {
-
+        
         _anim.SetTrigger("Death");
 
     }

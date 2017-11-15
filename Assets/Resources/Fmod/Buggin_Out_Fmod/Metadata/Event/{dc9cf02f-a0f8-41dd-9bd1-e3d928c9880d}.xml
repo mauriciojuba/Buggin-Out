@@ -5,7 +5,7 @@
             <value>Limpar_a_Area_Liz</value>
         </property>
         <property name="outputFormat">
-            <value>2</value>
+            <value>1</value>
         </property>
         <relationship name="folder">
             <destination>{08d0de87-9f13-4acb-b970-e535e23fa5e8}</destination>
@@ -56,7 +56,14 @@
             <destination>{f58d2150-9fad-4aa0-8621-f3dba9c2ee89}</destination>
         </relationship>
     </object>
-    <object class="EventAutomatableProperties" id="{cefb5b00-f6de-4985-ad84-bbaa43049f07}"/>
+    <object class="EventAutomatableProperties" id="{cefb5b00-f6de-4985-ad84-bbaa43049f07}">
+        <property name="maxVoices">
+            <value>1</value>
+        </property>
+        <property name="voiceStealing">
+            <value>3</value>
+        </property>
+    </object>
     <object class="MarkerTrack" id="{e378dda8-2d1a-4af5-a9e5-8af263b3c035}"/>
     <object class="GroupTrack" id="{c179daba-aab9-4463-a1b9-48ab68928080}">
         <relationship name="modules">
@@ -119,7 +126,6 @@
     <object class="MixerBusEffectChain" id="{e9d68f65-7e9a-4e86-b284-042e30bafa8a}">
         <relationship name="effects">
             <destination>{b494071f-b815-4d80-b633-b5378c2cf5ff}</destination>
-            <destination>{efa105aa-ec86-41b6-b275-9f09dafdb68f}</destination>
         </relationship>
     </object>
     <object class="MixerBusPanner" id="{3130b454-ac6c-462d-950c-33303c668f76}"/>
@@ -166,6 +172,5 @@
     </object>
     <object class="MixerBusPanner" id="{f7fd3439-282b-4692-8a6b-a129b8e6ce42}"/>
     <object class="MixerBusFader" id="{b494071f-b815-4d80-b633-b5378c2cf5ff}"/>
-    <object class="SpatialiserEffect" id="{efa105aa-ec86-41b6-b275-9f09dafdb68f}"/>
     <object class="MixerBusFader" id="{56f74fb5-8902-460d-9dc2-202e339a6a15}"/>
 </objects>

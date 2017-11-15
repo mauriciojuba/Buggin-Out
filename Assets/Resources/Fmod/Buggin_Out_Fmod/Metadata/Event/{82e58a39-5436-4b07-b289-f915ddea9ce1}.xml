@@ -5,7 +5,7 @@
             <value>Morte_De_Inimigo_Liz</value>
         </property>
         <property name="outputFormat">
-            <value>2</value>
+            <value>1</value>
         </property>
         <relationship name="folder">
             <destination>{08d0de87-9f13-4acb-b970-e535e23fa5e8}</destination>
@@ -56,7 +56,14 @@
             <destination>{f58d2150-9fad-4aa0-8621-f3dba9c2ee89}</destination>
         </relationship>
     </object>
-    <object class="EventAutomatableProperties" id="{bef0f740-c6dc-4478-adb3-b66387e76cbe}"/>
+    <object class="EventAutomatableProperties" id="{bef0f740-c6dc-4478-adb3-b66387e76cbe}">
+        <property name="maxVoices">
+            <value>1</value>
+        </property>
+        <property name="voiceStealing">
+            <value>3</value>
+        </property>
+    </object>
     <object class="MarkerTrack" id="{c1bd60ca-4e3f-4bc5-bd58-299c777da9dc}"/>
     <object class="GroupTrack" id="{1c23004c-ba36-49b7-b53b-9cd42d2971b2}">
         <relationship name="modules">
@@ -122,7 +129,6 @@
     <object class="MixerBusEffectChain" id="{9423c674-66e4-49d3-9367-c5f2015870d3}">
         <relationship name="effects">
             <destination>{2d3052cf-d921-4318-88ce-bd2406c43747}</destination>
-            <destination>{2d78fdba-4bce-4324-b3b0-cf887ff18ad5}</destination>
         </relationship>
     </object>
     <object class="MixerBusPanner" id="{6bfb3633-3f35-4a7c-a63b-18c7749dd721}"/>
@@ -184,6 +190,5 @@
     </object>
     <object class="MixerBusPanner" id="{38d790a2-1787-45ce-b3ce-ab16dcdeb126}"/>
     <object class="MixerBusFader" id="{2d3052cf-d921-4318-88ce-bd2406c43747}"/>
-    <object class="SpatialiserEffect" id="{2d78fdba-4bce-4324-b3b0-cf887ff18ad5}"/>
     <object class="MixerBusFader" id="{9407df3a-4ccf-4046-a71b-384d2ae1f907}"/>
 </objects>

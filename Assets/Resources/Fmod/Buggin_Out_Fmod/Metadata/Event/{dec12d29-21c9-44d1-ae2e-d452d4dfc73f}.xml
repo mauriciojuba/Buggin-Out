@@ -76,6 +76,12 @@
         </relationship>
     </object>
     <object class="EventMixerMaster" id="{c9b3685c-2b67-4933-9fe0-db0b8891fecd}">
+        <property name="volume">
+            <value>-7</value>
+        </property>
+        <relationship name="modulators">
+            <destination>{556e1aed-f31b-435b-8b24-14ad0480474e}</destination>
+        </relationship>
         <relationship name="effectChain">
             <destination>{4c3f6ad9-679e-485f-af52-afb53a05a7a0}</destination>
         </relationship>
@@ -96,6 +102,9 @@
         <property name="length">
             <value>1.8024489795918368</value>
         </property>
+        <relationship name="modulators">
+            <destination>{a54177dc-e047-4471-8552-b10778752ad1}</destination>
+        </relationship>
         <relationship name="audioFile">
             <destination>{912f8f76-b37d-40fc-87a3-2ebfcf1d906f}</destination>
         </relationship>
@@ -114,6 +123,14 @@
             <destination>{c9b3685c-2b67-4933-9fe0-db0b8891fecd}</destination>
         </relationship>
     </object>
+    <object class="RandomizerModulator" id="{556e1aed-f31b-435b-8b24-14ad0480474e}">
+        <property name="nameOfPropertyBeingModulated">
+            <value>volume</value>
+        </property>
+        <property name="amount">
+            <value>8.80000019</value>
+        </property>
+    </object>
     <object class="MixerBusEffectChain" id="{4c3f6ad9-679e-485f-af52-afb53a05a7a0}">
         <relationship name="effects">
             <destination>{cfd5da23-9f7e-40d5-b8a5-63e25b346ee1}</destination>
@@ -122,6 +139,14 @@
     </object>
     <object class="MixerBusPanner" id="{665b00a6-aa7b-43c4-929a-6ac86b036e17}"/>
     <object class="MixerBusFader" id="{d74e0fde-c8b1-4e8b-8bde-25052faae16b}"/>
+    <object class="RandomizerModulator" id="{a54177dc-e047-4471-8552-b10778752ad1}">
+        <property name="nameOfPropertyBeingModulated">
+            <value>pitch</value>
+        </property>
+        <property name="amount">
+            <value>8.5</value>
+        </property>
+    </object>
     <object class="MixerBusEffectChain" id="{fd980599-f857-49ee-8d0a-41a6843b9f13}">
         <relationship name="effects">
             <destination>{4b45852a-e781-4124-9649-e2e816a9ab19}</destination>

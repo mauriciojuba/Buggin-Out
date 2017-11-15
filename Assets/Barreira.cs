@@ -11,14 +11,23 @@ public class Barreira : MonoBehaviour {
 	[SerializeField] List<GameObject> DeadEnemys;
     [SerializeField] GameObject[] Dominos;
     [SerializeField] bool Ajust;
-	void Start () {
+
+    [FMODUnity.EventRef]
+    public string Evento_Liz;
+    [FMODUnity.EventRef]
+    public string Evento_Horn;
+
+    void Start () {
 		
 	}
 	
 	// Update is called once per frame
 	void LateUpdate () {
 		if (AreaEnemys.Count == 0) {
-			dominoCenterLeft.AddForce(forceDir*2000f);
+
+            //FMODUnity.RuntimeManager.PlayOneShot(Evento_Horn, transform.position);
+
+            dominoCenterLeft.AddForce(forceDir*2000f);
 			dominoCenterRight.AddForce(-forceDir*2000f);
 			this.GetComponent<BoxCollider>().enabled = false;
             StartCoroutine(DestroyThisOBJ());
@@ -40,6 +49,7 @@ public class Barreira : MonoBehaviour {
     IEnumerator DestroyThisOBJ()
     {
         yield return new WaitForSeconds(3f);
+        
         Ajust = true;
         yield return new WaitForSeconds(3f);
         for (int i = 0; i < Dominos.Length; i++)
