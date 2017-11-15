@@ -7,7 +7,7 @@ using UnityEngine.AI;
 public class IA_Boss : MonoBehaviour
 {
 
-    public enum State { Idle, Chama_Inimigo, LevaDano, Atordoado, Cansado, ATK_Dash_Ground, ATK_Dash_Screen, ATK_Area, Morte }
+    public enum State { Idle, Chama_Bomba, LevaDano, Atordoado, Cansado, ATK_Dash_Ground, ATK_Dash_Screen, ATK_Area, Morte , UpToScreen, DowToGround }
     public State ActualState = State.Idle;
 
     [HideInInspector]
@@ -28,9 +28,11 @@ public class IA_Boss : MonoBehaviour
     [Header("Foco do inimigo")]
     public GameObject Target;
     public Transform Target_On_Screen;
+    public float Target_dist;
 
     [Header("Vida")]
     public float Life = 3000f;
+    public bool CanHit;
     public bool hitted;
 
     [Header("Configurações de Dano")]
@@ -40,7 +42,9 @@ public class IA_Boss : MonoBehaviour
     public GameObject HitBox_Area;
 
     [Header("Configurações de Ataques")]
-    public float TimeToAtk;
+    public float TimeToAtkDash;
+    public float TimeToAtkBomb;
+    public GameObject Bomb, BombFail;
 
     [Header("WayPoint")]
     public Transform[] waypoints;
@@ -55,6 +59,8 @@ public class IA_Boss : MonoBehaviour
     public float screenSpeed;
     public float rotationSpeed;
 
+    public float StunTime = 10f;
+
     [Header("Screen")]
     public bool onScreen;
 
@@ -63,7 +69,7 @@ public class IA_Boss : MonoBehaviour
     public float SafeDist;
     public float EnemyDist;
     protected float targetDistance;
-
+    public float randomOffsetOnScreen;
 
     // Use this for initialization
     void Start()
@@ -84,7 +90,7 @@ public class IA_Boss : MonoBehaviour
         switch (ActualState)
         {
             case State.Idle: Idle(); break;
-            case State.Chama_Inimigo: Call_Enemy(); break;
+            case State.Chama_Bomba: Call_Bomb(); break;
             case State.LevaDano: TakeDamage(); break;
             case State.Cansado: Cansado(); break;
             case State.Atordoado: Stuned(); break;
@@ -92,6 +98,8 @@ public class IA_Boss : MonoBehaviour
             case State.ATK_Dash_Screen: AtkD_S(); break;
             case State.ATK_Area: AtkA(); break;
             case State.Morte: Die(); break;
+            case State.UpToScreen: GoingToScreen(); break;
+            case State.DowToGround: GoingToWorld(); break;
         }
     }
 
@@ -101,6 +109,7 @@ public class IA_Boss : MonoBehaviour
     {
         //Fica um tempo em idle Antes da mudança de estado
         //Se os PLayers Chegarem perto ele da um ataque em area
+        CanHit = true;
 
         Vector3 dir = Target.transform.position;
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(Target.transform.position - transform.position), Time.deltaTime * rotationSpeed);
@@ -113,14 +122,23 @@ public class IA_Boss : MonoBehaviour
             ActualState = State.ATK_Area;
         }
 
-        TimeToAtk -= Time.deltaTime;
-        if(TimeToAtk <= 0)
+        
+        TimeToAtkBomb -= Time.deltaTime;
+        if (TimeToAtkBomb <= 0)
+        {
+            ActualState = State.Chama_Bomba;
+        }
+
+
+        TimeToAtkDash -= Time.deltaTime;
+        if (TimeToAtkDash <= 0)
         {
             ActualState = State.ATK_Dash_Ground;
         }
-        
 
-        
+        if (hitted)
+            ActualState = State.LevaDano;
+
 
     }
 
@@ -143,53 +161,74 @@ public class IA_Boss : MonoBehaviour
             hitted = false;
         }
 
-        if (Life > 0f)
+        if (Life > 0f && StunTime > 0f)
+            ActualState = State.Cansado;
+        else if(Life > 0f)
             ActualState = State.Idle;
     }
 
     public virtual void Die()
     {
 
-        _anim.SetTrigger("Death");
+        //_anim.SetTrigger("Death");
 
     }
 
 
     private void Cansado() //Bos fica Parado um Tempo depois do Dash Na tela
     {
-        float StunTime = 5; //Tempo que o boss fica Parado
+        CanHit = true; 
 
         StunTime -= Time.deltaTime;
         if (StunTime > 0)
         {
             if (_anim != null)
             {
-
+               
             }
+            print(StunTime);
         }
+        else
+        {
+            StunTime = 0;
+            print(StunTime);
+            ActualState = State.Idle;
+        }
+
+        if (hitted)
+            ActualState = State.LevaDano;
+
     }
 
     private void Stuned() // Depos que o Boss Leva Uma quantidade 
     {
-        float StunTime = 5; //Tempo que o boss fica atordoado
+        CanHit = true;
 
-        StunTime -= Time.deltaTime;
-        if (StunTime > 0)
-        {
-            if (_anim != null)
-            {
+        if (hitted)
+            ActualState = State.LevaDano;
 
-            }
-        }
     }
 
-    private void Call_Enemy()
+    private void Call_Bomb()
     {
         //Chama inimigo
+        float randow;
+        randow = UnityEngine.Random.Range(1,10);
+        randow = Mathf.RoundToInt(randow);
+
+        if(randow <=3)
+            Instantiate(BombFail, Target.transform.localPosition + Vector3.up * 10, Target.transform.rotation);
+        else
+            Instantiate(Bomb, Target.transform.localPosition + Vector3.up * 10, Target.transform.rotation);
+        TimeToAtkBomb = 4;
+        ActualState = State.Idle;
+
     }
 
     private void AtkA()
     {
+        CanHit = false;
+
         HitBoxOn("Area");
         HitBoxOff("Area");
 
@@ -199,6 +238,8 @@ public class IA_Boss : MonoBehaviour
 
     private void AtkD()
     {
+        CanHit = false;
+
         //Dash No Chao
 
         if (_anim != null)
@@ -215,7 +256,10 @@ public class IA_Boss : MonoBehaviour
             currentWaypoint++;
             CalculaDistancia();
             if (currentWaypoint >= waypoints.Length)
-                ActualState = State.ATK_Dash_Screen;
+            {
+                currentWaypoint = 0;
+                ActualState = State.UpToScreen;
+            }
         }
         else
         {
@@ -225,26 +269,59 @@ public class IA_Boss : MonoBehaviour
 
     private void AtkD_S()
     {
+        CanHit = false;
+
         //Dash Na tela
-        Screen.GoToScreen(gameObject, -10f, 0, 0f);
-        RB.useGravity = false;
-        onScreen = true;
+        RB.isKinematic = true;
+        Target_dist = Vector3.Distance(transform.position, Target_On_Screen.position);
 
-        if (onScreen)
+
+        if (Target_dist > 0.3f)
         {
-
             Vector3 mov;
             mov = new Vector3(Target_On_Screen.position.x - transform.position.x, Target_On_Screen.position.y - transform.position.y, 0);
             mov = Camera.main.transform.TransformVector(mov);
             transform.Translate(mov * transform.localScale.magnitude * Time.deltaTime * screenSpeed, Space.World);
             transform.LookAt(Camera.main.transform, transform.up + mov);
         }
+        else
+        {
+            StunTime = 10f;
+            TimeToAtkDash = 15f;
+            ActualState = State.DowToGround;
+        }
+
+
     }
 
    
+    private void GoingToScreen()
+    {
+
+        Screen.GoToScreen(gameObject, -50f, 0f, 0f);
+        RB.useGravity = false;
+        onScreen = true;
+
+        if (Screen.GoToScreen(gameObject, randomOffsetOnScreen))
+        {
+            ActualState = State.ATK_Dash_Screen;
+        }
+
+    }
+
+    private void GoingToWorld()
+    {
+        if (Screen.GoOffScreen(waypoints[0], gameObject))
+        {
+            RB.isKinematic = false;
+            RB.useGravity = true;
+            onScreen = false;
+            ActualState = State.Cansado;
+        }
+    }
 
 
-    //Outras Funçoes 
+    //Outras Funçoes  /////////////////////////////////////////
 
     IEnumerator CalcDist()
     {
@@ -269,22 +346,6 @@ public class IA_Boss : MonoBehaviour
         else if (players.Count == 1)
         {
             Target = players[0];
-        }
-    }
-
-    public void Chase()
-    {
-        if (_anim != null)
-        {
-            _anim.SetBool("IsParolling", false);
-            _anim.SetBool("FightingWalk", true);
-        }
-        Vector3 dir = Target.transform.position;
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(Target.transform.position - transform.position), Time.deltaTime * rotationSpeed);
-        transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
-        if (targetDistance > EnemyDist && Vector3.Distance(Target.transform.position, gameObject.transform.position) < SafeDist)
-        {
-            RB.MovePosition(transform.position + transform.forward * Time.deltaTime * DashSpeed);
         }
     }
 
@@ -332,6 +393,15 @@ public class IA_Boss : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, SafeDist);
+    }
+
+    public void OnTriggerExit(Collider hit)
+    {
+        if (hit.CompareTag("playerHitCollider"))
+        {
+            playerStr = hit.GetComponent<FightCollider>().Damage;
+            if (!hitted && CanHit) hitted = true;
+        }
     }
 
 }
