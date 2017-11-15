@@ -5,7 +5,7 @@
             <value>Perto_De_Inimigo_Horn</value>
         </property>
         <property name="outputFormat">
-            <value>2</value>
+            <value>1</value>
         </property>
         <relationship name="folder">
             <destination>{10bcd208-0cd3-4d7b-b4db-8dba452433ff}</destination>
@@ -56,7 +56,14 @@
             <destination>{f58d2150-9fad-4aa0-8621-f3dba9c2ee89}</destination>
         </relationship>
     </object>
-    <object class="EventAutomatableProperties" id="{10e9a742-2293-4fd0-8199-fb80ef48c3a3}"/>
+    <object class="EventAutomatableProperties" id="{10e9a742-2293-4fd0-8199-fb80ef48c3a3}">
+        <property name="maxVoices">
+            <value>1</value>
+        </property>
+        <property name="voiceStealing">
+            <value>3</value>
+        </property>
+    </object>
     <object class="MarkerTrack" id="{25f0748b-d891-4310-ad54-51518182c839}"/>
     <object class="GroupTrack" id="{613f6a44-e23e-40d5-ac03-9d8e5ede557d}">
         <relationship name="modules">
@@ -121,7 +128,6 @@
     <object class="MixerBusEffectChain" id="{3832eaeb-e569-4409-9e02-5a8cc0f3d2bc}">
         <relationship name="effects">
             <destination>{a688f37b-6a15-4b87-9ff7-9baaca541127}</destination>
-            <destination>{b44e906f-618f-4c87-8def-79cb1b5d7fc4}</destination>
         </relationship>
     </object>
     <object class="MixerBusPanner" id="{e12b67d3-4add-40f9-910b-07233775d85b}"/>
@@ -178,6 +184,5 @@
     </object>
     <object class="MixerBusPanner" id="{f2037737-998c-45b2-ab1d-3de177b8bda2}"/>
     <object class="MixerBusFader" id="{a688f37b-6a15-4b87-9ff7-9baaca541127}"/>
-    <object class="SpatialiserEffect" id="{b44e906f-618f-4c87-8def-79cb1b5d7fc4}"/>
     <object class="MixerBusFader" id="{e3d433b3-8a9a-42a0-b6c7-562cbdb67c90}"/>
 </objects>

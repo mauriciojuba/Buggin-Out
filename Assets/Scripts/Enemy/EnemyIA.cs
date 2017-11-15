@@ -12,7 +12,6 @@ public class EnemyIA : MonoBehaviour, IGroundEnemy, IKillable, IGoToScreen, IScr
     public GOToScreen Screen;
     [HideInInspector]
     public Rigidbody RB;
- 
     public Animator _anim;
     [HideInInspector]
     public enum State { Idle, Patrol, Chase, Flee, Attack, TakeDamage,
@@ -30,6 +29,9 @@ public class EnemyIA : MonoBehaviour, IGroundEnemy, IKillable, IGoToScreen, IScr
     public float playerStr;
     [HideInInspector]
     public float randomOffsetOnScreen;
+
+
+    public int VoiceChance;
 
     [FMODUnity.EventRef]
     public string Evento_Liz;
@@ -339,10 +341,14 @@ public class EnemyIA : MonoBehaviour, IGroundEnemy, IKillable, IGoToScreen, IScr
 
         if (Life <= 0f)
         {
-            if (Target.name == "Horn")
-                FMODUnity.RuntimeManager.PlayOneShot(Evento_Horn, transform.position);
-            if (Target.name == "Liz")
-                FMODUnity.RuntimeManager.PlayOneShot(Evento_Liz, transform.position);
+            float random = Random.Range(0, 100);
+            if (random <= VoiceChance)
+            {
+                if (Target.name == "Horn")
+                    FMODUnity.RuntimeManager.PlayOneShot(Evento_Horn, transform.position);
+                if (Target.name == "Liz")
+                    FMODUnity.RuntimeManager.PlayOneShot(Evento_Liz, transform.position);
+            }
             ActualState = State.Dead;
         }
 

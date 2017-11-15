@@ -5,7 +5,7 @@
             <value>Perto_De_Inimigo_Liz</value>
         </property>
         <property name="outputFormat">
-            <value>2</value>
+            <value>1</value>
         </property>
         <relationship name="folder">
             <destination>{08d0de87-9f13-4acb-b970-e535e23fa5e8}</destination>
@@ -56,7 +56,14 @@
             <destination>{f58d2150-9fad-4aa0-8621-f3dba9c2ee89}</destination>
         </relationship>
     </object>
-    <object class="EventAutomatableProperties" id="{5ed52841-599a-43ba-8c33-e716d1f01ef9}"/>
+    <object class="EventAutomatableProperties" id="{5ed52841-599a-43ba-8c33-e716d1f01ef9}">
+        <property name="maxVoices">
+            <value>1</value>
+        </property>
+        <property name="voiceStealing">
+            <value>3</value>
+        </property>
+    </object>
     <object class="MarkerTrack" id="{6a2200c6-f296-48c1-b0f9-7fed520e9f2c}"/>
     <object class="GroupTrack" id="{b3ea2604-2454-44de-a937-902dd10aef49}">
         <relationship name="modules">
@@ -122,7 +129,6 @@
     <object class="MixerBusEffectChain" id="{17a0323f-3fab-4b3d-aa17-90c654603063}">
         <relationship name="effects">
             <destination>{c4523c17-825d-4cd3-82f8-c109dc942bf3}</destination>
-            <destination>{6a0bb1a8-976f-462a-9d56-93be0f0f2f2c}</destination>
         </relationship>
     </object>
     <object class="MixerBusPanner" id="{94e50f95-9fa0-4036-b570-d9542474ea97}"/>
@@ -184,6 +190,5 @@
     </object>
     <object class="MixerBusPanner" id="{0ce70e48-ecce-4eea-94a3-9483a73a150b}"/>
     <object class="MixerBusFader" id="{c4523c17-825d-4cd3-82f8-c109dc942bf3}"/>
-    <object class="SpatialiserEffect" id="{6a0bb1a8-976f-462a-9d56-93be0f0f2f2c}"/>
     <object class="MixerBusFader" id="{e049f989-a274-4c37-85f2-c507f552810b}"/>
 </objects>
