@@ -10,13 +10,13 @@ public class Disable : MonoBehaviour {
     {
         if (other.gameObject.name == "Horn")
         {
-            FalaHorn.SetActive(false);
+            FalaHorn.SetActive(true);
             gameObject.GetComponent<Collider>().enabled = false;
 
         }
         else if(other.gameObject.name == "Liz")
         {
-            FalaLiz.SetActive(false);
+            FalaLiz.SetActive(true);
             gameObject.GetComponent<Collider>().enabled = false;
         }
     }
