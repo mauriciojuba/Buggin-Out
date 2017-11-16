@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WayPoint : MonoBehaviour {
 
-    static Color linkColor = Color.green;
+    public Color linkColor = Color.green;
     public Color waypointColor = Color.blue;
     public float radius = 0.1F;
     public Transform[] Links;

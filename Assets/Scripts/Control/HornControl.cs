@@ -179,9 +179,12 @@ public class HornControl : MonoBehaviour {
 	void MudaPontoDeRetorno(){
 		if (AntPos != null) {
 			escolhendoPontoDeRetorno = true;
-			movAntPos = new Vector3 (Input.GetAxis ("Horizontal P1"), 0, Input.GetAxis ("Vertical P1"));
+            AntPos.GetComponent<Rigidbody>().isKinematic = false;
+            AntPos.GetComponent<Rigidbody>().useGravity = true;
+            AntPos.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            movAntPos = new Vector3 (Input.GetAxis ("Horizontal P1"), 0, Input.GetAxis ("Vertical P1"));
 			movAntPos = CheckPositionOnScreen (movAntPos,AntPos);
-			Debug.Log (AntPos+","+ movAntPos);
+			//Debug.Log (AntPos+","+ movAntPos);
 			AntPos.Translate (movAntPos * Time.deltaTime * CamSpeed*5, Space.World);
 		}
 	}
@@ -191,6 +194,7 @@ public class HornControl : MonoBehaviour {
     // talvez seja necessário tornar público os limites da tela para diferentes objetos, dependo do tamanho.
     // horn limiteHorizontal = 0.1 e 0.9  limiteVertical = -0.1 e 0.5.
 		Vector3 pos = Camera.main.WorldToViewportPoint(trans.position);
+        Debug.Log("Posicao Atual: " + pos);
         //saiu pela esquerda
 		if(pos.x <= limiteHorizontal.x && movFactor.x<0){
             movFactor.x = 0;

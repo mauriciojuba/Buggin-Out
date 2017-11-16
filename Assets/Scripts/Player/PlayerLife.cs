@@ -11,6 +11,8 @@ public class PlayerLife : MonoBehaviour {
 	float maskOver;
 	public Animator Mask;
     public float TimeInPoison;
+    public bool Stunned;
+    [SerializeField] CameraControl _Cam;
 
     void Start () {
         LifeInGame = Instantiate(LifeEmblem, Camera.main.transform);
@@ -19,11 +21,22 @@ public class PlayerLife : MonoBehaviour {
 		MaxLife = 300f;
 		LifeAtual = MaxLife;
         Mask.SetFloat("Life", (LifeAtual / MaxLife));
+        _Cam = GameObject.FindWithTag("DollyCam").GetComponent<CameraControl>();
     }
 	
 	// Update is called once per frame
 	void Update () {
 		atualizaVida ();
+        if(LifeAtual <= 0)
+        {
+            Stunned = true;
+            GetComponent<HornControl>().mov = Vector3.zero;
+            GetComponent<HornControl>().CanMove = false;
+            if (!_Cam.StunnedPlayers.Contains(gameObject))
+            {
+                _Cam.StunnedPlayers.Add(gameObject);
+            }
+        }
 	}
 
 	void atualizaVida(){

@@ -31,11 +31,17 @@ public class CameraControl : MonoBehaviour {
 
     public string LevelName;
 
+    Camera Main;
+    public bool GameOver;
+    public bool reseting;
+
     private void Start()
     {
         DollyCam = transform;
         ChecarQuantidadePlayers();
         DollyCam.position = posicionaCamera(CalculaCamTarget(numPlayers));
+        reseting = true;
+        Main = Camera.main;
     }
 
     private void LateUpdate()
@@ -59,21 +65,46 @@ public class CameraControl : MonoBehaviour {
     {
 		//Debug.Log (someObjGoingToScreen);
 		ResetGame ();
-//        for (int i = 0; i < players.Length; i++)
-//        {
-//            if (players[i] != null|| players[i].GetComponent<Movimentacao3D>() != null )
-//            {
-//                if (players[i].GetComponent<Movimentacao3D>().onScreen == true || players[i].GetComponent<Movimentacao3D>().toWorld == true)
-//                {
-//                    playerOnScreen = true;
-//                }
-//                else
-//                {
-//                    playerOnScreen = false;
-//                }
-//            }
-//        }
-        
+        if (Main != null && reseting)
+        {
+            if (Main.GetComponent<OLDTVFilter3>().preset.noiseFilter.magnetude > 0)
+            {
+                Main.GetComponent<OLDTVFilter3>().preset.noiseFilter.magnetude -= Time.deltaTime;
+            }
+            if (Main.GetComponent<OLDTVFilter3>().preset.noiseFilter.magnetude <= 0)
+            {
+                Main.GetComponent<OLDTVFilter3>().preset.noiseFilter.magnetude = 0;
+            }
+
+            if (Main.GetComponent<OLDTVFilter3>().preset.staticFilter.staticMagnitude > 0)
+            {
+                Main.GetComponent<OLDTVFilter3>().preset.staticFilter.staticMagnitude -= Time.deltaTime;
+            }
+            if (Main.GetComponent<OLDTVFilter3>().preset.staticFilter.staticMagnitude <= 0)
+            {
+                Main.GetComponent<OLDTVFilter3>().preset.staticFilter.staticMagnitude = 0;
+            }
+
+            if(Main.GetComponent<OLDTVFilter3>().preset.staticFilter.staticMagnitude == 0 && Main.GetComponent<OLDTVFilter3>().preset.noiseFilter.magnetude == 0)
+            {
+                reseting = false;
+            }
+        }
+        //        for (int i = 0; i < players.Length; i++)
+        //        {
+        //            if (players[i] != null|| players[i].GetComponent<Movimentacao3D>() != null )
+        //            {
+        //                if (players[i].GetComponent<Movimentacao3D>().onScreen == true || players[i].GetComponent<Movimentacao3D>().toWorld == true)
+        //                {
+        //                    playerOnScreen = true;
+        //                }
+        //                else
+        //                {
+        //                    playerOnScreen = false;
+        //                }
+        //            }
+        //        }
+
     }
 
     void ChecarQuantidadePlayers()
@@ -181,17 +212,40 @@ public class CameraControl : MonoBehaviour {
     }*/
     
 	void ResetGame(){
-		if (StunnedPlayers.Count == players.Length) {
-
-			Color c = Fader.color;
-			c.a += Time.deltaTime / 5;
-			Fader.color = c;
-			//colocar o nome da cena aqui--------------------------\|/
-			if (c.a >= 1) {
-				UnityEngine.SceneManagement.SceneManager.LoadScene (LevelName);
-			}
-		}
+        if (StunnedPlayers.Count == players.Length)
+        {
+            GameOverEffect();
+        }
 	}
+
+
+    void GameOverEffect()
+    {
+        if (Main == null)
+        {
+            Main = Camera.main;
+        }
+
+        if (Main != null)
+        {
+            if (Main.GetComponent<OLDTVFilter3>().preset.noiseFilter.magnetude <= 1)
+            {
+                Main.GetComponent<OLDTVFilter3>().preset.noiseFilter.magnetude += Time.deltaTime;
+                Main.GetComponent<OLDTVFilter3>().preset.staticFilter.staticMagnitude += Time.deltaTime;
+                GameOver = true;
+            }
+            
+            if (Main.GetComponent<OLDTVFilter3>().preset.noiseFilter.magnetude < 0)
+            {
+                Main.GetComponent<OLDTVFilter3>().preset.noiseFilter.magnetude = 0;
+            }
+
+            if (Main.GetComponent<OLDTVFilter3>().preset.noiseFilter.magnetude >= 1)
+            {
+                UnityEngine.SceneManagement.SceneManager.LoadScene(LevelName);
+            }
+        }
+    }
 
     void lockPlayerMovement(Transform t)
     {

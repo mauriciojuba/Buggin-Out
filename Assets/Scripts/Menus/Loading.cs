@@ -44,20 +44,42 @@ public class Loading : MonoBehaviour
         {
             Main = Camera.main;
         }
-
-        if (Main != null)
+        if (GameObject.FindWithTag("DollyCam") != null)
         {
-            if (LoadingGame && Main.GetComponent<OLDTVFilter3>().preset.noiseFilter.magnetude <= 1)
+            if (!GameObject.FindWithTag("DollyCam").GetComponent<CameraControl>().GameOver)
             {
-                Main.GetComponent<OLDTVFilter3>().preset.noiseFilter.magnetude += Time.deltaTime;
+                if (Main != null)
+                {
+                    if (LoadingGame && Main.GetComponent<OLDTVFilter3>().preset.noiseFilter.magnetude <= 1)
+                    {
+                        Main.GetComponent<OLDTVFilter3>().preset.noiseFilter.magnetude += Time.deltaTime;
+                    }
+                    else if (!LoadingGame && Main.GetComponent<OLDTVFilter3>().preset.noiseFilter.magnetude > 0)
+                    {
+                        Main.GetComponent<OLDTVFilter3>().preset.noiseFilter.magnetude -= Time.deltaTime;
+                    }
+                    if (Main.GetComponent<OLDTVFilter3>().preset.noiseFilter.magnetude < 0)
+                    {
+                        Main.GetComponent<OLDTVFilter3>().preset.noiseFilter.magnetude = 0;
+                    }
+                }
             }
-            else if (!LoadingGame && Main.GetComponent<OLDTVFilter3>().preset.noiseFilter.magnetude > 0)
+        }else
+        {
+            if (Main != null)
             {
-                Main.GetComponent<OLDTVFilter3>().preset.noiseFilter.magnetude -= Time.deltaTime;
-            }
-            if(Main.GetComponent<OLDTVFilter3>().preset.noiseFilter.magnetude < 0)
-            {
-                Main.GetComponent<OLDTVFilter3>().preset.noiseFilter.magnetude = 0;
+                if (LoadingGame && Main.GetComponent<OLDTVFilter3>().preset.noiseFilter.magnetude <= 1)
+                {
+                    Main.GetComponent<OLDTVFilter3>().preset.noiseFilter.magnetude += Time.deltaTime;
+                }
+                else if (!LoadingGame && Main.GetComponent<OLDTVFilter3>().preset.noiseFilter.magnetude > 0)
+                {
+                    Main.GetComponent<OLDTVFilter3>().preset.noiseFilter.magnetude -= Time.deltaTime;
+                }
+                if (Main.GetComponent<OLDTVFilter3>().preset.noiseFilter.magnetude < 0)
+                {
+                    Main.GetComponent<OLDTVFilter3>().preset.noiseFilter.magnetude = 0;
+                }
             }
         }
     }

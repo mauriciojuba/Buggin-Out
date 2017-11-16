@@ -17,6 +17,8 @@ public class Barreira : MonoBehaviour {
     [FMODUnity.EventRef]
     public string Evento_Horn;
 
+    [SerializeField] bool Domino, Door;
+
     void Start () {
 		
 	}
@@ -26,11 +28,17 @@ public class Barreira : MonoBehaviour {
 		if (AreaEnemys.Count == 0) {
 
             //FMODUnity.RuntimeManager.PlayOneShot(Evento_Horn, transform.position);
-
-            dominoCenterLeft.AddForce(forceDir*2000f);
-			dominoCenterRight.AddForce(-forceDir*2000f);
-			this.GetComponent<BoxCollider>().enabled = false;
-            StartCoroutine(DestroyThisOBJ());
+            if (Domino)
+            {
+                dominoCenterLeft.AddForce(forceDir * 2000f);
+                dominoCenterRight.AddForce(-forceDir * 2000f);
+                this.GetComponent<BoxCollider>().enabled = false;
+                StartCoroutine(DestroyThisOBJ());
+            }else if (Door)
+            {
+                GetComponent<Animator>().SetTrigger("Open");
+                Destroy(this,3);
+            }
 		}
 
 		for (int i = 0; i < AreaEnemys.Count; i++) {
