@@ -19,7 +19,7 @@ public class FightCollider : MonoBehaviour {
 			if (Player.CompareTag ("Player1_3D") || Player.CompareTag ("Player2_3D") ||
 				Player.CompareTag ("Player3_3D") || Player.CompareTag ("Player4_3D")) {
 				if (col.tag != "Player1_3D" && col.tag != "Player2_3D" && col.tag != "Player3_3D" && col.tag != "Player4_3D") {
-					if (col.gameObject.CompareTag("Enemy") || col.gameObject.CompareTag("Destructible")) {
+					if (col.gameObject.CompareTag("Enemy") || col.gameObject.CompareTag("Destructible") || col.CompareTag("Box")) {
 						//Aqui deve ser chamado o método(função) que substituirá o Update do script Life.
 						EnemyHit = col.gameObject;
 						//Aplica o Dano.
