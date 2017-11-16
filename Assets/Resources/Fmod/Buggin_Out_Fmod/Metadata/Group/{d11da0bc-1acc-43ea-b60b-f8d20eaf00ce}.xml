@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.09.00">
+    <object class="MixerGroup" id="{d11da0bc-1acc-43ea-b60b-f8d20eaf00ce}">
+        <property name="color">
+            <value>Blue</value>
+        </property>
+        <property name="name">
+            <value>Trilhas</value>
+        </property>
+        <relationship name="effectChain">
+            <destination>{bd9920bc-31a6-4658-a8e2-225f5a36eaee}</destination>
+        </relationship>
+        <relationship name="panner">
+            <destination>{3c5d21e3-76f5-4cea-aa72-d918718b18e2}</destination>
+        </relationship>
+        <relationship name="output">
+            <destination>{f58d2150-9fad-4aa0-8621-f3dba9c2ee89}</destination>
+        </relationship>
+    </object>
+    <object class="MixerBusEffectChain" id="{bd9920bc-31a6-4658-a8e2-225f5a36eaee}">
+        <relationship name="effects">
+            <destination>{c20c323b-19c5-41f4-82d5-7c03262fcbee}</destination>
+        </relationship>
+    </object>
+    <object class="MixerBusPanner" id="{3c5d21e3-76f5-4cea-aa72-d918718b18e2}"/>
+    <object class="MixerBusFader" id="{c20c323b-19c5-41f4-82d5-7c03262fcbee}"/>
+</objects>
