@@ -419,7 +419,23 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.42194194
+        functionName: ActiveRightFightCollider
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 5d9b5e3bc974c634a868df0dd32af592,
+          type: 3}
+        floatParameter: 100
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.7299554
+        functionName: DesactiveRightFightCollider
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 5d9b5e3bc974c634a868df0dd32af592,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}

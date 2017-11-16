@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EspecialLiz : MonoBehaviour
 {
-
+    public bool SpecialLiz;
     public float Damage = 25;
 
     private void Start()
@@ -35,11 +35,14 @@ public class EspecialLiz : MonoBehaviour
                 hit.GetComponent<IA_Mariposa>().TakeDamage();
             }
         }
-        else if (hit.CompareTag("Player1_3D") || hit.CompareTag("Player2_3D") ||
-                 hit.CompareTag("Player3_3D") || hit.CompareTag("Player4_3D"))
-        { 
-            hit.GetComponent<PlayerLife>().LifeAtual -= Damage;
-            hit.GetComponent<AnimationControl>().SetTakeDamageAnim();
+        if (!SpecialLiz)
+        {
+            if (hit.CompareTag("Player1_3D") || hit.CompareTag("Player2_3D") ||
+                     hit.CompareTag("Player3_3D") || hit.CompareTag("Player4_3D"))
+            {
+                hit.GetComponent<PlayerLife>().LifeAtual -= Damage;
+                hit.GetComponent<AnimationControl>().SetTakeDamageAnim();
+            }
         }
     }
 }
