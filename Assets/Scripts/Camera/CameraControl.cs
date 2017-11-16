@@ -230,8 +230,8 @@ public class CameraControl : MonoBehaviour {
         {
             if (Main.GetComponent<OLDTVFilter3>().preset.noiseFilter.magnetude <= 1)
             {
-                Main.GetComponent<OLDTVFilter3>().preset.noiseFilter.magnetude += Time.deltaTime;
-                Main.GetComponent<OLDTVFilter3>().preset.staticFilter.staticMagnitude += Time.deltaTime;
+                Main.GetComponent<OLDTVFilter3>().preset.noiseFilter.magnetude += Time.deltaTime * 0.5f;
+                Main.GetComponent<OLDTVFilter3>().preset.staticFilter.staticMagnitude += Time.deltaTime * 0.5f;
                 GameOver = true;
             }
             

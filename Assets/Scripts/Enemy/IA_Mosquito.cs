@@ -71,14 +71,14 @@ public class IA_Mosquito : EnemyIA {
             }
 
             //particulas
-            /*if (part != null) {
+            if (part != null) {
 				ParticleSystem particleemitter = part.GetComponent<ParticleSystem> ();
 				if (particleemitter != null) {
 					ParticleSystem.EmissionModule emit = particleemitter.emission;
 					emit.enabled = false;
 				}
 				Destroy(part, 5f);
-			}*/
+			}
 
             //if (Life > 0) {
             ActualState = State.GoingToWorld;
