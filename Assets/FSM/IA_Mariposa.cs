@@ -6,6 +6,7 @@ public class IA_Mariposa : EnemyIA
 {
 
     public GameObject HitBox;
+    public GameObject TornadoPrefab;
     public float Time_atk_Area = 5F;
 
     public override void Attack()
@@ -16,7 +17,7 @@ public class IA_Mariposa : EnemyIA
 
         ActualState = State.Chase;
 
-        
+
 
     }
 
@@ -24,7 +25,7 @@ public class IA_Mariposa : EnemyIA
     {
 
         Time_atk_Area -= Time.deltaTime;
-        if(Time_atk_Area < 0)
+        if (Time_atk_Area < 0)
         {
             ActualState = State.OnScreenAttack;
         }
@@ -61,7 +62,7 @@ public class IA_Mariposa : EnemyIA
     {
 
     }
-   
+
     public override void OnScreenAttack()
     {
         _anim.SetTrigger("ATK1");
@@ -75,7 +76,7 @@ public class IA_Mariposa : EnemyIA
 
     public override void DownToGround()
     {
-       
+
     }
 
     public override void Die()
@@ -84,13 +85,15 @@ public class IA_Mariposa : EnemyIA
         _anim.SetTrigger("Death");
 
     }
-    
 
-    public void OnTriggerExit(Collider hit){
-    	if (hit.CompareTag ("playerHitCollider")) {
-    		playerStr = hit.GetComponent<FightCollider> ().Damage;
-    		if(!hitted) hitted = true;
-    	}
+
+    public void OnTriggerExit(Collider hit)
+    {
+        if (hit.CompareTag("playerHitCollider"))
+        {
+            playerStr = hit.GetComponent<FightCollider>().Damage;
+            if (!hitted) hitted = true;
+        }
     }
 
     public void HitBoxOn()
@@ -103,4 +106,9 @@ public class IA_Mariposa : EnemyIA
         HitBox.GetComponent<Collider>().enabled = false;
     }
 
-        }
+    public void SpawnTornado()
+    {
+        GameObject Torn = GameObject.Instantiate(TornadoPrefab, transform.position, transform.rotation);
+        Torn.GetComponent<Rigidbody>().AddForce(transform.forward * 500);
+    }
+}

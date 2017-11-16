@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EspecialLiz : MonoBehaviour {
+public class EspecialLiz : MonoBehaviour
+{
 
     public float Damage = 25;
 
@@ -11,7 +12,8 @@ public class EspecialLiz : MonoBehaviour {
         Destroy(gameObject, 5);
     }
 
-    void OnTriggerEnter(Collider hit){
+    void OnTriggerEnter(Collider hit)
+    {
         if (hit.CompareTag("Enemy"))
         {
             if (hit.GetComponent<IA_Mosquito>() != null)
@@ -33,5 +35,12 @@ public class EspecialLiz : MonoBehaviour {
                 hit.GetComponent<IA_Mariposa>().TakeDamage();
             }
         }
-	}
+        else if (hit.CompareTag("Player1_3D") || hit.CompareTag("Player2_3D") ||
+                 hit.CompareTag("Player3_3D") || hit.CompareTag("Player4_3D"))
+        { 
+            hit.GetComponent<PlayerLife>().LifeAtual -= Damage;
+            hit.GetComponent<AnimationControl>().SetTakeDamageAnim();
+        }
+    }
 }
+
