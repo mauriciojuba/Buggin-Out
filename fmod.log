@@ -15,7 +15,7 @@
 [LOG] Thread::initThread                       : Init FMOD stream thread. Priority: 2, Stack Size: 65536, Semaphore: No, Sleep Time: 10, Looping: Yes.
 [LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
 [LOG] Thread::initThread                       : Init FMOD mixer thread. Priority: 3, Stack Size: 49152, Semaphore: No, Sleep Time: 0, Looping: Yes.
-[LOG] AsyncManager::init                       : manager 0000000045EDB028 isAsync 1 updatePeriod 0.02
+[LOG] AsyncManager::init                       : manager 0000000053D53708 isAsync 1 updatePeriod 0.02
 [LOG] Thread::initThread                       : Init FMOD Studio update thread. Priority: 0, Stack Size: 65536, Semaphore: No, Sleep Time: 1, Looping: No.
 [LOG] AsyncManager::init                       : done
 [LOG] PlaybackSystem::init                     : 
@@ -28,25 +28,19 @@
 [LOG] Manager::readBank                        : fileversion = 88, compatVersion = 86 (oldest = 44, newest = 88)
 [LOG] Manager::readBank                        : fileversion = 88, compatVersion = 86 (oldest = 44, newest = 88)
 [LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
-[ERR] assert                                   : assertion: 'listener >= 0 && listener < numlisteners' failed
-[ERR] assert                                   : assertion: 'listener >= 0 && listener < numlisteners' failed
-[LOG] LiveUpdate::clientConnected              : client = 00000000892B5228
-[LOG] LiveUpdate::readPacket                   : Accepting init message for client 00000000892B5228
-[LOG] LiveUpdate::transitionToConnected        : 
-[LOG] LiveUpdate::acceptInitPacket             : Client 00000000892B5228 connected, entering connected state
 [LOG] SystemI::createSoundInternal             : filename =  : mode 02000202
 [LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 232
 [LOG] SystemI::createSoundInternal             : exinfo->length             = 7509536
 [LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 122848
 [LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000007F35FBF8
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000006DB1FBF8
 [LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
 [LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
 [LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFB710A7110
 [LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFB710A70E0
 [LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFB710A71E0
 [LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFB710A7290
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 000000008914DD28
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 00000000541813C8
 [LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
 [LOG] SystemI::createSoundInternal             : Format has 1 subsounds.
 [LOG] SystemI::createSoundInternal             : Create as FMOD_CREATESAMPLE
@@ -54,21 +48,19 @@
 [LOG] SystemI::createSoundInternal             : creating subsound 0/1
 [LOG] SystemI::createSample                    : mode 02000202 length 57600 samples, lengthbytes 8320
 [LOG] SystemI::createSample                    : channels = 2
-[LOG] SystemI::createSample                    : output = 000000008B095BA8
+[LOG] SystemI::createSample                    : output = 00000000590209E8
 [LOG] OutputSoftware::createSample             : lengthpcm 57600, lengthbytes 8320, channels 2, format 2, freq 48000, mode 0200020a
 [LOG] SystemI::createSoundInternal             : No name found in file, use filename.
 [LOG] SystemI::createSoundInternal             : done.  OpenState now = FMOD_OPENSTATE_READY.
 
-[LOG] SoundI::release                          :  (00000000462CF7D8)
-[LOG] SoundI::release                          : release subsounds. (00000000462CF7D8)
-[LOG] SoundI::release                          :     Bomba01 (00000000706C7C28)
+[LOG] SoundI::release                          :  (0000000011BA1528)
+[LOG] SoundI::release                          : release subsounds. (0000000011BA1528)
+[LOG] SoundI::release                          :     Bomba01 (0000000058C7C558)
 [LOG] SoundI::release                          :     done
-[LOG] SoundI::release                          : release codec. (00000000462CF7D8)
+[LOG] SoundI::release                          : release codec. (0000000011BA1528)
 [LOG] SoundI::release                          : done
 [LOG] Thread::callback                         : FMOD Studio update thread finished.
 [LOG] Thread::callback                         : FMOD Studio bank load thread finished.
-[LOG] LiveUpdate::clientDisconnected           : client = 00000000892B5228
-[LOG] LiveUpdate::reset                        : Reset connection (reason Disconnected)
 [LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
 [LOG] Thread::callback                         : FMOD Studio sample load thread finished.
 [LOG] LiveUpdate::release                      : 
