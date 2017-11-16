@@ -46,6 +46,7 @@ public class HornControl : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		Debug.Log("Escolhendo ponto de retorno? "+escolhendoPontoDeRetorno);
         if (CanMove) {
 			if (!natela) {
 				mov = new Vector3 (Input.GetAxis ("Horizontal P1"), 0, Input.GetAxis ("Vertical P1"));
@@ -115,7 +116,7 @@ public class HornControl : MonoBehaviour {
 					Going = true;
 					anim.SetBool ("tocam", !natela);
 					rdb.isKinematic = true;
-					DollyCam.ChecarNaTela ();
+					escolhendoPontoDeRetorno = false;
 				}
 			}
 
