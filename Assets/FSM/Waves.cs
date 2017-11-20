@@ -8,18 +8,18 @@ public class Waves : MonoBehaviour
     public List<GameObject> AtualEnemy = new List<GameObject>();
 
     public int QuantInimigo;
-    public GameObject inimigo;
-    public Transform[] Spawn;
+    [SerializeField] int QuantWave;
+    [SerializeField] GameObject inimigo;
+    [SerializeField] Transform[] Spawn;
 
-    public Transform[] Caminho_1;
-    public Transform[] Caminho_2;
+    [SerializeField] Transform[] Caminho_1;
+    [SerializeField] Transform[] Caminho_2;
 
     public bool SpawnSimut = false;
-
+    bool Spawning;
     // Use this for initialization
     void Start()
     {
-        CriarInimigo();
     }
 
     private void FixedUpdate()
@@ -29,12 +29,14 @@ public class Waves : MonoBehaviour
             AtualEnemy.Remove(null);
         }
 
-        if (AtualEnemy.Count <= 0)
-            CriarInimigo();
+        if (AtualEnemy.Count < QuantWave && QuantInimigo > 0 && !Spawning)
+            StartCoroutine(CriarInimigo());
     }
 
-    public void CriarInimigo()
+    IEnumerator CriarInimigo()
     {
+        Spawning = true;
+        yield return new WaitForSeconds(1.5f);
         if (SpawnSimut && QuantInimigo > Spawn.Length && QuantInimigo > 0)
         {
             for (int i = 0; i < Spawn.Length; i++)
@@ -42,13 +44,14 @@ public class Waves : MonoBehaviour
                 QuantInimigo -= 1;
                 GameObject instance = (GameObject)Instantiate(inimigo, Spawn[i].position, Spawn[i].rotation);
 
-                int Rand = Mathf.RoundToInt(Random.Range(0, 1));
+                int Rand = Mathf.RoundToInt(Random.Range(0, 2));
 
                 if (Rand == 0)
                 {
                     instance.GetComponent<EnemyIA>().waypoints = new Transform[Caminho_1.Length];
                     for (int o = 0; o < Caminho_1.Length; o++)
                     {
+                        Debug.Log("Entrou");
                         instance.GetComponent<EnemyIA>().waypoints[o] = Caminho_1[o];
                     }
                 }
@@ -100,6 +103,6 @@ public class Waves : MonoBehaviour
             AtualEnemy.Add(instance);
         }
 
-
+        Spawning = false;
     }
 }

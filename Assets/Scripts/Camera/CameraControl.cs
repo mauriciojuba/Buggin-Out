@@ -67,27 +67,30 @@ public class CameraControl : MonoBehaviour {
 		ResetGame ();
         if (Main != null && reseting)
         {
-            if (Main.GetComponent<OLDTVFilter3>().preset.noiseFilter.magnetude > 0)
+            if (Main.GetComponent<OLDTVFilter3>() != null)
             {
-                Main.GetComponent<OLDTVFilter3>().preset.noiseFilter.magnetude -= Time.deltaTime;
-            }
-            if (Main.GetComponent<OLDTVFilter3>().preset.noiseFilter.magnetude <= 0)
-            {
-                Main.GetComponent<OLDTVFilter3>().preset.noiseFilter.magnetude = 0;
-            }
+                if (Main.GetComponent<OLDTVFilter3>().preset.noiseFilter.magnetude > 0)
+                {
+                    Main.GetComponent<OLDTVFilter3>().preset.noiseFilter.magnetude -= Time.deltaTime;
+                }
+                if (Main.GetComponent<OLDTVFilter3>().preset.noiseFilter.magnetude <= 0)
+                {
+                    Main.GetComponent<OLDTVFilter3>().preset.noiseFilter.magnetude = 0;
+                }
 
-            if (Main.GetComponent<OLDTVFilter3>().preset.staticFilter.staticMagnitude > 0)
-            {
-                Main.GetComponent<OLDTVFilter3>().preset.staticFilter.staticMagnitude -= Time.deltaTime;
-            }
-            if (Main.GetComponent<OLDTVFilter3>().preset.staticFilter.staticMagnitude <= 0)
-            {
-                Main.GetComponent<OLDTVFilter3>().preset.staticFilter.staticMagnitude = 0;
-            }
+                if (Main.GetComponent<OLDTVFilter3>().preset.staticFilter.staticMagnitude > 0)
+                {
+                    Main.GetComponent<OLDTVFilter3>().preset.staticFilter.staticMagnitude -= Time.deltaTime;
+                }
+                if (Main.GetComponent<OLDTVFilter3>().preset.staticFilter.staticMagnitude <= 0)
+                {
+                    Main.GetComponent<OLDTVFilter3>().preset.staticFilter.staticMagnitude = 0;
+                }
 
-            if(Main.GetComponent<OLDTVFilter3>().preset.staticFilter.staticMagnitude == 0 && Main.GetComponent<OLDTVFilter3>().preset.noiseFilter.magnetude == 0)
-            {
-                reseting = false;
+                if (Main.GetComponent<OLDTVFilter3>().preset.staticFilter.staticMagnitude == 0 && Main.GetComponent<OLDTVFilter3>().preset.noiseFilter.magnetude == 0)
+                {
+                    reseting = false;
+                }
             }
         }
         //        for (int i = 0; i < players.Length; i++)
