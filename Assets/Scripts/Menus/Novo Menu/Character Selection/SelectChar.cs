@@ -19,6 +19,17 @@ public class SelectChar : MonoBehaviour {
 
     [SerializeField] bool SelectCharacter, SelectPhase;
 
+    [FMODUnity.EventRef]
+    public string Evento_Liz;
+    [FMODUnity.EventRef]
+    public string Evento_Horn;
+
+    // Colocar essa linha Onde seleciona a Liz
+    //FMODUnity.RuntimeManager.PlayOneShot(Evento_Liz, transform.position);
+
+    // Colocar essa linha Onde seleciona o Horn
+    //FMODUnity.RuntimeManager.PlayOneShot(Evento_Horn, transform.position);
+
     void Start () {
         if (GameObject.FindWithTag("DATA") != null)
             DataS = GameObject.FindWithTag("DATA").GetComponent<Data>();

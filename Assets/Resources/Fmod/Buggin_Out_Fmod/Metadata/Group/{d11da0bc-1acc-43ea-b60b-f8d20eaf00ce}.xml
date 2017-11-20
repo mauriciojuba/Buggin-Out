@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.01.09.00">
     <object class="MixerGroup" id="{d11da0bc-1acc-43ea-b60b-f8d20eaf00ce}">
         <property name="volume">
-            <value>-4.5999999</value>
+            <value>-17</value>
         </property>
         <property name="color">
             <value>Blue</value>
@@ -23,8 +23,20 @@
     <object class="MixerBusEffectChain" id="{bd9920bc-31a6-4658-a8e2-225f5a36eaee}">
         <relationship name="effects">
             <destination>{c20c323b-19c5-41f4-82d5-7c03262fcbee}</destination>
+            <destination>{7f7f4c47-2e72-4a5c-8442-1ce0e9f6440a}</destination>
         </relationship>
     </object>
     <object class="MixerBusPanner" id="{3c5d21e3-76f5-4cea-aa72-d918718b18e2}"/>
     <object class="MixerBusFader" id="{c20c323b-19c5-41f4-82d5-7c03262fcbee}"/>
+    <object class="ThreeEQEffect" id="{7f7f4c47-2e72-4a5c-8442-1ce0e9f6440a}">
+        <property name="lowGain">
+            <value>7.5</value>
+        </property>
+        <property name="midGain">
+            <value>7.5</value>
+        </property>
+        <property name="highGain">
+            <value>-16.5</value>
+        </property>
+    </object>
 </objects>

@@ -194,7 +194,7 @@ public class HornControl : MonoBehaviour {
     // talvez seja necessário tornar público os limites da tela para diferentes objetos, dependo do tamanho.
     // horn limiteHorizontal = 0.1 e 0.9  limiteVertical = -0.1 e 0.5.
 		Vector3 pos = Camera.main.WorldToViewportPoint(trans.position);
-        Debug.Log("Posicao Atual: " + pos);
+        // Debug.Log("Posicao Atual: " + pos);
         //saiu pela esquerda
 		if(pos.x <= limiteHorizontal.x && movFactor.x<0){
             movFactor.x = 0;
