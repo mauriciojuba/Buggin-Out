@@ -12,6 +12,9 @@ public class Barreira : MonoBehaviour {
     [SerializeField] GameObject[] Dominos;
     [SerializeField] bool Ajust;
 
+
+    [FMODUnity.EventRef]
+    public string LiberandoCaminho;
     [FMODUnity.EventRef]
     public string Evento_Liz;
     [FMODUnity.EventRef]
@@ -37,6 +40,8 @@ public class Barreira : MonoBehaviour {
             }else if (Door)
             {
                 GetComponent<Animator>().SetTrigger("Open");
+                if(LiberandoCaminho != null)
+                FMODUnity.RuntimeManager.PlayOneShot(LiberandoCaminho, transform.position);
                 Destroy(this,3);
             }
 		}
