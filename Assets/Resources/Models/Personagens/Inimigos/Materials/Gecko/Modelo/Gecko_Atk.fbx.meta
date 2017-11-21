@@ -1,0 +1,542 @@
+fileFormatVersion: 2
+guid: 5199b8fe1b3974b4189eb0550838fade
+timeCreated: 1511305340
+licenseType: Free
+ModelImporter:
+  serializedVersion: 21
+  fileIDToRecycleName:
+    100000: back
+    100002: bottom
+    100004: //RootNode
+    100006: left
+    100008: ReiGecko:Armor_02_low
+    100010: ReiGecko:Armor_CTRL
+    100012: ReiGecko:B_Armor_01
+    100014: ReiGecko:B_Armor_02
+    100016: ReiGecko:B_Armor_low
+    100018: ReiGecko:bandages_low
+    100020: ReiGecko:BASE_CTRL
+    100022: ReiGecko:Body_low
+    100024: ReiGecko:bodyBelt_low
+    100026: ReiGecko:BOSS
+    100028: ReiGecko:eyelids_low
+    100030: ReiGecko:Eyes_low
+    100032: ReiGecko:Hammer_acessorios
+    100034: ReiGecko:Hammer_acessorios_INV
+    100036: ReiGecko:hammer_low
+    100038: ReiGecko:hammer_low_Inv
+    100040: ReiGecko:Head
+    100042: ReiGecko:Head_CTRL
+    100044: ReiGecko:Helmet
+    100046: ReiGecko:Helmet_CTRL
+    100048: ReiGecko:Helmet_End
+    100050: ReiGecko:Helmet_low
+    100052: ReiGecko:Jaw_01
+    100054: ReiGecko:Jaw_CTRL
+    100056: ReiGecko:Jaw_RT
+    100058: ReiGecko:joint2
+    100060: ReiGecko:joint2 1
+    100062: ReiGecko:JOINTS
+    100064: ReiGecko:L_Ankle
+    100066: ReiGecko:L_Ankle_ikHandle
+    100068: ReiGecko:L_Arm
+    100070: ReiGecko:L_Arm_CTRL
+    100072: ReiGecko:L_Arm_ikHandle
+    100074: ReiGecko:L_Ball
+    100076: ReiGecko:L_Ball 1
+    100078: ReiGecko:L_Ball_ikHandle
+    100080: ReiGecko:L_Elbow
+    100082: ReiGecko:L_Elbow_CTRL
+    100084: ReiGecko:L_Fingers
+    100086: ReiGecko:L_Foot
+    100088: ReiGecko:L_Foot_CTRL
+    100090: ReiGecko:L_Ind_01
+    100092: ReiGecko:L_Ind_01_CTRL
+    100094: ReiGecko:L_Ind_02
+    100096: ReiGecko:L_Ind_02_CTRL
+    100098: ReiGecko:L_Ind_03
+    100100: ReiGecko:L_Ind_RT
+    100102: ReiGecko:L_Ind_RT_CTRL
+    100104: ReiGecko:L_Knee
+    100106: ReiGecko:L_Knee_CTRL
+    100108: ReiGecko:L_Knee_Sup
+    100110: ReiGecko:L_Mid_01_CTRL
+    100112: ReiGecko:L_Mid_02_CTRL
+    100114: ReiGecko:L_Mid_RT_CTRL
+    100116: ReiGecko:L_Paw
+    100118: ReiGecko:L_Pinky_01
+    100120: ReiGecko:L_Pinky_01_CTRL
+    100122: ReiGecko:L_Pinky_02
+    100124: ReiGecko:L_Pinky_02_CTRL
+    100126: ReiGecko:L_Pinky_03
+    100128: ReiGecko:L_Pinky_RT
+    100130: ReiGecko:L_Pinky_RT_CTRL
+    100132: ReiGecko:L_Ring_01
+    100134: ReiGecko:L_Ring_02
+    100136: ReiGecko:L_Ring_03
+    100138: ReiGecko:L_Ring_RT
+    100140: ReiGecko:L_Rotate
+    100142: ReiGecko:L_S_Pad_01
+    100144: ReiGecko:L_S_Pad_02
+    100146: ReiGecko:L_S_Pad_CTRL
+    100148: ReiGecko:L_Shoulder
+    100150: ReiGecko:L_Shoulder_CTRL
+    100152: ReiGecko:L_Thumb_01
+    100154: ReiGecko:L_Thumb_01_CTRL
+    100156: ReiGecko:L_Thumb_02
+    100158: ReiGecko:L_Thumb_02_CTRL
+    100160: ReiGecko:L_Thumb_03
+    100162: ReiGecko:L_Thumb_RT
+    100164: ReiGecko:L_Thumb_RT_CTRL
+    100166: ReiGecko:L_TipToe
+    100168: ReiGecko:L_Toe
+    100170: ReiGecko:L_Toe 1
+    100172: ReiGecko:L_Toe_ikHandle
+    100174: ReiGecko:L_Walk
+    100176: ReiGecko:L_Wrist
+    100178: ReiGecko:L_Wrist_CTRL
+    100180: ReiGecko:left
+    100182: ReiGecko:MESH
+    100184: ReiGecko:Neck
+    100186: ReiGecko:Neck_CTRL
+    100188: ReiGecko:R_Ankle
+    100190: ReiGecko:R_Ankle_ikHandle
+    100192: ReiGecko:R_Arm
+    100194: ReiGecko:R_Arm_CTRL
+    100196: ReiGecko:R_Arm_ikHandle
+    100198: ReiGecko:R_Ball
+    100200: ReiGecko:R_Ball 1
+    100202: ReiGecko:R_Ball_ikHandle
+    100204: ReiGecko:R_Elbow
+    100206: ReiGecko:R_Elbow_CTRL
+    100208: ReiGecko:R_Fingers
+    100210: ReiGecko:R_Foot
+    100212: ReiGecko:R_Foot_CTRL
+    100214: ReiGecko:R_Ind_01
+    100216: ReiGecko:R_Ind_01_CTRL
+    100218: ReiGecko:R_Ind_02
+    100220: ReiGecko:R_Ind_02_CTRL
+    100222: ReiGecko:R_Ind_03
+    100224: ReiGecko:R_Ind_RT
+    100226: ReiGecko:R_Ind_RT_CTRL
+    100228: ReiGecko:R_Knee
+    100230: ReiGecko:R_Knee_CTRL
+    100232: ReiGecko:R_Knee_Sup
+    100234: ReiGecko:R_Mid_01_CTRL
+    100236: ReiGecko:R_Mid_02_CTRL
+    100238: ReiGecko:R_Mid_RT_CTRL
+    100240: ReiGecko:R_Paw
+    100242: ReiGecko:R_Pinky_01
+    100244: ReiGecko:R_Pinky_01_CTRL
+    100246: ReiGecko:R_Pinky_02
+    100248: ReiGecko:R_Pinky_02_CTRL
+    100250: ReiGecko:R_Pinky_03
+    100252: ReiGecko:R_Pinky_RT
+    100254: ReiGecko:R_Pinky_RT_CTRL
+    100256: ReiGecko:R_Ring_01
+    100258: ReiGecko:R_Ring_02
+    100260: ReiGecko:R_Ring_03
+    100262: ReiGecko:R_Ring_RT
+    100264: ReiGecko:R_Rotate
+    100266: ReiGecko:R_Shoulder
+    100268: ReiGecko:R_Shoulder_CTRL
+    100270: ReiGecko:R_Thumb_01
+    100272: ReiGecko:R_Thumb_01_CTRL
+    100274: ReiGecko:R_Thumb_02
+    100276: ReiGecko:R_Thumb_02_CTRL
+    100278: ReiGecko:R_Thumb_03
+    100280: ReiGecko:R_Thumb_RT
+    100282: ReiGecko:R_Thumb_RT_CTRL
+    100284: ReiGecko:R_TipToe
+    100286: ReiGecko:R_Toe
+    100288: ReiGecko:R_Toe 1
+    100290: ReiGecko:R_Toe_ikHandle
+    100292: ReiGecko:R_Walk
+    100294: ReiGecko:R_Weapon_01
+    100296: ReiGecko:R_Weapon_02
+    100298: ReiGecko:R_Weapon_02 1
+    100300: ReiGecko:R_Weapon_02_CTRL
+    100302: ReiGecko:R_Weapon_02_CTRL 1
+    100304: ReiGecko:R_Weapon_03
+    100306: ReiGecko:R_Weapon_03 1
+    100308: ReiGecko:R_Weapon_03_CTRL
+    100310: ReiGecko:R_Weapon_03_CTRL 1
+    100312: ReiGecko:R_Weapon_04
+    100314: ReiGecko:R_Weapon_04 1
+    100316: ReiGecko:R_Weapon_04_CTRL
+    100318: ReiGecko:R_Weapon_04_CTRL 1
+    100320: ReiGecko:R_Weapon_05
+    100322: ReiGecko:R_Weapon_05 1
+    100324: ReiGecko:R_Weapon_05_CTRL
+    100326: ReiGecko:R_Weapon_05_CTRL 1
+    100328: ReiGecko:R_Weapon_06
+    100330: ReiGecko:R_Weapon_06 1
+    100332: ReiGecko:R_Weapon_06_CTRL
+    100334: ReiGecko:R_Weapon_06_CTRL 1
+    100336: ReiGecko:R_Weapon_07
+    100338: ReiGecko:R_Weapon_07 1
+    100340: ReiGecko:R_Weapon_INV
+    100342: ReiGecko:R_Weapon_Scale
+    100344: ReiGecko:R_Weapon_Scale 1
+    100346: ReiGecko:R_Wrist
+    100348: ReiGecko:R_Wrist_CTRL
+    100350: ReiGecko:ROOT
+    100352: ReiGecko:ROOT_CTRL
+    100354: ReiGecko:Shoulder_Pad_low
+    100356: ReiGecko:Spine_01
+    100358: ReiGecko:Spine_01_CTRL
+    100360: ReiGecko:Spine_02
+    100362: ReiGecko:Spine_02_CTRL
+    100364: ReiGecko:Spine_03
+    100366: ReiGecko:Spine_03_CTRL
+    100368: ReiGecko:Spine_RT
+    100370: ReiGecko:Spine_RT_CTRL
+    100372: ReiGecko:Tail_01
+    100374: ReiGecko:Tail_01_CTRL
+    100376: ReiGecko:Tail_02
+    100378: ReiGecko:Tail_02_CTRL
+    100380: ReiGecko:Tail_03
+    100382: ReiGecko:Tail_03_CTRL
+    100384: ReiGecko:Tail_04
+    100386: ReiGecko:Tail_04_CTRL
+    100388: ReiGecko:Tail_05
+    100390: ReiGecko:Tail_RT
+    100392: ReiGecko:Tail_RT_CTRL
+    100394: ReiGecko:Tongue_01
+    100396: ReiGecko:Tongue_01_CTRL
+    100398: ReiGecko:Tongue_02
+    100400: ReiGecko:Tongue_02_CTRL
+    100402: ReiGecko:Tongue_03
+    100404: ReiGecko:Tongue_03_CTRL
+    100406: ReiGecko:Tongue_04
+    100408: ReiGecko:Tongue_04_CTRL
+    100410: ReiGecko:Tongue_05
+    100412: ReiGecko:Tongue_low
+    100414: ReiGecko:Tongue_RT
+    100416: ReiGecko:Tongue_RT_CTRL
+    100418: ReiGecko:Weapon_CTRL
+    100420: ReiGecko:Weapon_INV_CTRL
+    100422: ReiGecko:Weapon_Scale
+    100424: ReiGecko:Weapon_Scale1
+    400000: back
+    400002: bottom
+    400004: //RootNode
+    400006: left
+    400008: ReiGecko:Armor_02_low
+    400010: ReiGecko:Armor_CTRL
+    400012: ReiGecko:B_Armor_01
+    400014: ReiGecko:B_Armor_02
+    400016: ReiGecko:B_Armor_low
+    400018: ReiGecko:bandages_low
+    400020: ReiGecko:BASE_CTRL
+    400022: ReiGecko:Body_low
+    400024: ReiGecko:bodyBelt_low
+    400026: ReiGecko:BOSS
+    400028: ReiGecko:eyelids_low
+    400030: ReiGecko:Eyes_low
+    400032: ReiGecko:Hammer_acessorios
+    400034: ReiGecko:Hammer_acessorios_INV
+    400036: ReiGecko:hammer_low
+    400038: ReiGecko:hammer_low_Inv
+    400040: ReiGecko:Head
+    400042: ReiGecko:Head_CTRL
+    400044: ReiGecko:Helmet
+    400046: ReiGecko:Helmet_CTRL
+    400048: ReiGecko:Helmet_End
+    400050: ReiGecko:Helmet_low
+    400052: ReiGecko:Jaw_01
+    400054: ReiGecko:Jaw_CTRL
+    400056: ReiGecko:Jaw_RT
+    400058: ReiGecko:joint2
+    400060: ReiGecko:joint2 1
+    400062: ReiGecko:JOINTS
+    400064: ReiGecko:L_Ankle
+    400066: ReiGecko:L_Ankle_ikHandle
+    400068: ReiGecko:L_Arm
+    400070: ReiGecko:L_Arm_CTRL
+    400072: ReiGecko:L_Arm_ikHandle
+    400074: ReiGecko:L_Ball
+    400076: ReiGecko:L_Ball 1
+    400078: ReiGecko:L_Ball_ikHandle
+    400080: ReiGecko:L_Elbow
+    400082: ReiGecko:L_Elbow_CTRL
+    400084: ReiGecko:L_Fingers
+    400086: ReiGecko:L_Foot
+    400088: ReiGecko:L_Foot_CTRL
+    400090: ReiGecko:L_Ind_01
+    400092: ReiGecko:L_Ind_01_CTRL
+    400094: ReiGecko:L_Ind_02
+    400096: ReiGecko:L_Ind_02_CTRL
+    400098: ReiGecko:L_Ind_03
+    400100: ReiGecko:L_Ind_RT
+    400102: ReiGecko:L_Ind_RT_CTRL
+    400104: ReiGecko:L_Knee
+    400106: ReiGecko:L_Knee_CTRL
+    400108: ReiGecko:L_Knee_Sup
+    400110: ReiGecko:L_Mid_01_CTRL
+    400112: ReiGecko:L_Mid_02_CTRL
+    400114: ReiGecko:L_Mid_RT_CTRL
+    400116: ReiGecko:L_Paw
+    400118: ReiGecko:L_Pinky_01
+    400120: ReiGecko:L_Pinky_01_CTRL
+    400122: ReiGecko:L_Pinky_02
+    400124: ReiGecko:L_Pinky_02_CTRL
+    400126: ReiGecko:L_Pinky_03
+    400128: ReiGecko:L_Pinky_RT
+    400130: ReiGecko:L_Pinky_RT_CTRL
+    400132: ReiGecko:L_Ring_01
+    400134: ReiGecko:L_Ring_02
+    400136: ReiGecko:L_Ring_03
+    400138: ReiGecko:L_Ring_RT
+    400140: ReiGecko:L_Rotate
+    400142: ReiGecko:L_S_Pad_01
+    400144: ReiGecko:L_S_Pad_02
+    400146: ReiGecko:L_S_Pad_CTRL
+    400148: ReiGecko:L_Shoulder
+    400150: ReiGecko:L_Shoulder_CTRL
+    400152: ReiGecko:L_Thumb_01
+    400154: ReiGecko:L_Thumb_01_CTRL
+    400156: ReiGecko:L_Thumb_02
+    400158: ReiGecko:L_Thumb_02_CTRL
+    400160: ReiGecko:L_Thumb_03
+    400162: ReiGecko:L_Thumb_RT
+    400164: ReiGecko:L_Thumb_RT_CTRL
+    400166: ReiGecko:L_TipToe
+    400168: ReiGecko:L_Toe
+    400170: ReiGecko:L_Toe 1
+    400172: ReiGecko:L_Toe_ikHandle
+    400174: ReiGecko:L_Walk
+    400176: ReiGecko:L_Wrist
+    400178: ReiGecko:L_Wrist_CTRL
+    400180: ReiGecko:left
+    400182: ReiGecko:MESH
+    400184: ReiGecko:Neck
+    400186: ReiGecko:Neck_CTRL
+    400188: ReiGecko:R_Ankle
+    400190: ReiGecko:R_Ankle_ikHandle
+    400192: ReiGecko:R_Arm
+    400194: ReiGecko:R_Arm_CTRL
+    400196: ReiGecko:R_Arm_ikHandle
+    400198: ReiGecko:R_Ball
+    400200: ReiGecko:R_Ball 1
+    400202: ReiGecko:R_Ball_ikHandle
+    400204: ReiGecko:R_Elbow
+    400206: ReiGecko:R_Elbow_CTRL
+    400208: ReiGecko:R_Fingers
+    400210: ReiGecko:R_Foot
+    400212: ReiGecko:R_Foot_CTRL
+    400214: ReiGecko:R_Ind_01
+    400216: ReiGecko:R_Ind_01_CTRL
+    400218: ReiGecko:R_Ind_02
+    400220: ReiGecko:R_Ind_02_CTRL
+    400222: ReiGecko:R_Ind_03
+    400224: ReiGecko:R_Ind_RT
+    400226: ReiGecko:R_Ind_RT_CTRL
+    400228: ReiGecko:R_Knee
+    400230: ReiGecko:R_Knee_CTRL
+    400232: ReiGecko:R_Knee_Sup
+    400234: ReiGecko:R_Mid_01_CTRL
+    400236: ReiGecko:R_Mid_02_CTRL
+    400238: ReiGecko:R_Mid_RT_CTRL
+    400240: ReiGecko:R_Paw
+    400242: ReiGecko:R_Pinky_01
+    400244: ReiGecko:R_Pinky_01_CTRL
+    400246: ReiGecko:R_Pinky_02
+    400248: ReiGecko:R_Pinky_02_CTRL
+    400250: ReiGecko:R_Pinky_03
+    400252: ReiGecko:R_Pinky_RT
+    400254: ReiGecko:R_Pinky_RT_CTRL
+    400256: ReiGecko:R_Ring_01
+    400258: ReiGecko:R_Ring_02
+    400260: ReiGecko:R_Ring_03
+    400262: ReiGecko:R_Ring_RT
+    400264: ReiGecko:R_Rotate
+    400266: ReiGecko:R_Shoulder
+    400268: ReiGecko:R_Shoulder_CTRL
+    400270: ReiGecko:R_Thumb_01
+    400272: ReiGecko:R_Thumb_01_CTRL
+    400274: ReiGecko:R_Thumb_02
+    400276: ReiGecko:R_Thumb_02_CTRL
+    400278: ReiGecko:R_Thumb_03
+    400280: ReiGecko:R_Thumb_RT
+    400282: ReiGecko:R_Thumb_RT_CTRL
+    400284: ReiGecko:R_TipToe
+    400286: ReiGecko:R_Toe
+    400288: ReiGecko:R_Toe 1
+    400290: ReiGecko:R_Toe_ikHandle
+    400292: ReiGecko:R_Walk
+    400294: ReiGecko:R_Weapon_01
+    400296: ReiGecko:R_Weapon_02
+    400298: ReiGecko:R_Weapon_02 1
+    400300: ReiGecko:R_Weapon_02_CTRL
+    400302: ReiGecko:R_Weapon_02_CTRL 1
+    400304: ReiGecko:R_Weapon_03
+    400306: ReiGecko:R_Weapon_03 1
+    400308: ReiGecko:R_Weapon_03_CTRL
+    400310: ReiGecko:R_Weapon_03_CTRL 1
+    400312: ReiGecko:R_Weapon_04
+    400314: ReiGecko:R_Weapon_04 1
+    400316: ReiGecko:R_Weapon_04_CTRL
+    400318: ReiGecko:R_Weapon_04_CTRL 1
+    400320: ReiGecko:R_Weapon_05
+    400322: ReiGecko:R_Weapon_05 1
+    400324: ReiGecko:R_Weapon_05_CTRL
+    400326: ReiGecko:R_Weapon_05_CTRL 1
+    400328: ReiGecko:R_Weapon_06
+    400330: ReiGecko:R_Weapon_06 1
+    400332: ReiGecko:R_Weapon_06_CTRL
+    400334: ReiGecko:R_Weapon_06_CTRL 1
+    400336: ReiGecko:R_Weapon_07
+    400338: ReiGecko:R_Weapon_07 1
+    400340: ReiGecko:R_Weapon_INV
+    400342: ReiGecko:R_Weapon_Scale
+    400344: ReiGecko:R_Weapon_Scale 1
+    400346: ReiGecko:R_Wrist
+    400348: ReiGecko:R_Wrist_CTRL
+    400350: ReiGecko:ROOT
+    400352: ReiGecko:ROOT_CTRL
+    400354: ReiGecko:Shoulder_Pad_low
+    400356: ReiGecko:Spine_01
+    400358: ReiGecko:Spine_01_CTRL
+    400360: ReiGecko:Spine_02
+    400362: ReiGecko:Spine_02_CTRL
+    400364: ReiGecko:Spine_03
+    400366: ReiGecko:Spine_03_CTRL
+    400368: ReiGecko:Spine_RT
+    400370: ReiGecko:Spine_RT_CTRL
+    400372: ReiGecko:Tail_01
+    400374: ReiGecko:Tail_01_CTRL
+    400376: ReiGecko:Tail_02
+    400378: ReiGecko:Tail_02_CTRL
+    400380: ReiGecko:Tail_03
+    400382: ReiGecko:Tail_03_CTRL
+    400384: ReiGecko:Tail_04
+    400386: ReiGecko:Tail_04_CTRL
+    400388: ReiGecko:Tail_05
+    400390: ReiGecko:Tail_RT
+    400392: ReiGecko:Tail_RT_CTRL
+    400394: ReiGecko:Tongue_01
+    400396: ReiGecko:Tongue_01_CTRL
+    400398: ReiGecko:Tongue_02
+    400400: ReiGecko:Tongue_02_CTRL
+    400402: ReiGecko:Tongue_03
+    400404: ReiGecko:Tongue_03_CTRL
+    400406: ReiGecko:Tongue_04
+    400408: ReiGecko:Tongue_04_CTRL
+    400410: ReiGecko:Tongue_05
+    400412: ReiGecko:Tongue_low
+    400414: ReiGecko:Tongue_RT
+    400416: ReiGecko:Tongue_RT_CTRL
+    400418: ReiGecko:Weapon_CTRL
+    400420: ReiGecko:Weapon_INV_CTRL
+    400422: ReiGecko:Weapon_Scale
+    400424: ReiGecko:Weapon_Scale1
+    2000000: back
+    2000002: bottom
+    2000004: left
+    2000006: ReiGecko:left
+    4300000: ReiGecko:bandages_low
+    4300002: ReiGecko:bodyBelt_low
+    4300004: ReiGecko:Shoulder_Pad_low
+    4300006: ReiGecko:Helmet_low
+    4300008: ReiGecko:eyelids_low
+    4300010: ReiGecko:Eyes_low
+    4300012: ReiGecko:Tongue_low
+    4300014: ReiGecko:Body_low
+    4300016: ReiGecko:B_Armor_low
+    4300018: ReiGecko:Armor_02_low
+    4300020: ReiGecko:Hammer_acessorios
+    4300022: ReiGecko:hammer_low
+    4300024: ReiGecko:hammer_low_Inv
+    4300026: ReiGecko:Hammer_acessorios_INV
+    7400000: Atk_Gecko
+    9500000: //RootNode
+    13700000: ReiGecko:Armor_02_low
+    13700002: ReiGecko:B_Armor_low
+    13700004: ReiGecko:bandages_low
+    13700006: ReiGecko:Body_low
+    13700008: ReiGecko:bodyBelt_low
+    13700010: ReiGecko:eyelids_low
+    13700012: ReiGecko:Eyes_low
+    13700014: ReiGecko:Hammer_acessorios
+    13700016: ReiGecko:Hammer_acessorios_INV
+    13700018: ReiGecko:hammer_low
+    13700020: ReiGecko:hammer_low_Inv
+    13700022: ReiGecko:Helmet_low
+    13700024: ReiGecko:Shoulder_Pad_low
+    13700026: ReiGecko:Tongue_low
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
