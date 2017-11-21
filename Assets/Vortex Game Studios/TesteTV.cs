@@ -6,9 +6,9 @@ using UnityEngine.UI;
 public class TesteTV : MonoBehaviour {
 
     [SerializeField] int PlayerNumber = 1;
-    [SerializeField] GameObject[] Menus;
+    public GameObject[] Menus;
     [SerializeField] GameObject[] InMenus;
-    [SerializeField] int MenuSelected;
+    public int MenuSelected;
     [SerializeField] public int InMenuSelection;
     [SerializeField] PauseMenu PauseS;
     [Header("Cores dos Menus(Temporario)")]
@@ -298,7 +298,7 @@ public class TesteTV : MonoBehaviour {
         }
     }
 
-    void SetMenus()
+    public void SetMenus()
     {
         for (int i = 0; i < Menus.Length; i++)
         {
@@ -380,7 +380,19 @@ public class TesteTV : MonoBehaviour {
                 }
             }
         }
-        if(InMenus.Length > 1)
+
+        for (int i = 0; i < Menus.Length; i++)
+        {
+            if (i != MenuSelected)
+            {
+                Menus[i].GetComponent<Image>().color = UnselectedMenuColor;
+            }
+            else
+            {
+                Menus[i].GetComponent<Image>().color = SelectedMenuColor;
+            }
+        }
+        if (InMenus.Length > 1)
         OptionSelected = InMenus[InMenuSelection].name;
     }
 
@@ -393,7 +405,7 @@ public class TesteTV : MonoBehaviour {
         StartCoroutine(Static());
     }
 
-    IEnumerator SetCanChange()
+    public IEnumerator SetCanChange()
     {
         CanChange = false;
         yield return StartCoroutine(CoroutineUtil.WaitForRealSeconds(0.3f));
