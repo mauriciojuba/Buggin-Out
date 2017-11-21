@@ -141,6 +141,7 @@ public class SelectChar : MonoBehaviour {
         CanChange = false;
         DetectS.QuantSelected++;
         Selected = true;
+        UnlockedObjs[PosAtual].GetComponent<CharacterHolder>().Sound();
         if (PlayerNumb == 1)
         {
             UnlockedObjs[PosAtual].GetComponent<Animator>().SetBool("Selected", true);

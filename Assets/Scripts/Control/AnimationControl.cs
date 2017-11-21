@@ -114,7 +114,7 @@ public class AnimationControl : MonoBehaviour {
 
     public void SetUsingSpecial(bool Set)
     {
-      //  Anim.SetBool("UsingSpecial", Set);
+        Anim.SetBool("UsingSpecial", Set);
     }
 
     public void SetSpecial()

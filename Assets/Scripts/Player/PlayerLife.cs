@@ -50,6 +50,7 @@ public class PlayerLife : MonoBehaviour {
         if(TimeInPoison >= 1.5f)
         {
             LifeAtual -= Damage;
+            GetComponent<AnimationControl>().SetTakeDamageAnim();
             TimeInPoison = 0;
         }
     }

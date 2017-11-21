@@ -82,7 +82,10 @@ public class RecoveryItem : MonoBehaviour {
 	}
 
 	public void PlusLife(){
-		Player.gameObject.GetComponent<PlayerLife>().LifeAtual += valorRecuperacao;
-		Destroy (gameObject);
+        if (Player.gameObject.GetComponent<PlayerLife>().LifeAtual < Player.gameObject.GetComponent<PlayerLife>().MaxLife)
+        {
+            Player.gameObject.GetComponent<PlayerLife>().LifeAtual += valorRecuperacao;
+            Destroy(gameObject);
+        }
 	}
 }
