@@ -42,8 +42,10 @@ public class IA_Boss : MonoBehaviour
     public GameObject HitBox_Area;
 
     [Header("Configurações de Ataques")]
+    public float TimeToAtkArea =2;
     public float TimeToAtkDash;
     public float TimeToAtkBomb;
+    public float TimeToSumon;
     public GameObject Bomb, BombFail;
 
     [Header("WayPoint")]
@@ -82,6 +84,7 @@ public class IA_Boss : MonoBehaviour
         CheckAllTargets();
         CalculaDistancia();
         StartCoroutine(CalcDist());
+        
 
     }
 
@@ -109,6 +112,10 @@ public class IA_Boss : MonoBehaviour
     {
         //Fica um tempo em idle Antes da mudança de estado
         //Se os PLayers Chegarem perto ele da um ataque em area
+
+        if(_anim != null)
+        _anim.SetBool("Idle", true);
+
         CanHit = true;
 
         Vector3 dir = Target.transform.position;
@@ -117,20 +124,38 @@ public class IA_Boss : MonoBehaviour
 
         float Tdist = Vector3.Distance(Target.transform.position, gameObject.transform.position);
 
+
+
         if (Tdist < Visao)
         {
+            TimeToAtkArea -= Time.deltaTime;
+            if(TimeToAtkArea < 0)
             ActualState = State.ATK_Area;
         }
 
         
-        TimeToAtkBomb -= Time.deltaTime;
-        if (TimeToAtkBomb <= 0)
-        {
-            ActualState = State.Chama_Bomba;
-        }
-
+        
 
         TimeToAtkDash -= Time.deltaTime;
+
+        if (TimeToAtkDash <= 2)
+        {
+            if (_anim != null)
+            {
+                _anim.SetBool("Idle", false);
+                _anim.SetBool("Dash", true);
+            }
+        }
+
+        else
+        {
+            TimeToAtkBomb -= Time.deltaTime;
+            if (TimeToAtkBomb <= 0)
+            {
+                ActualState = State.Chama_Bomba;
+            }
+        }
+        
         if (TimeToAtkDash <= 0)
         {
             ActualState = State.ATK_Dash_Ground;
@@ -146,6 +171,9 @@ public class IA_Boss : MonoBehaviour
 
     public virtual void TakeDamage()
     {
+
+        _anim.SetTrigger("Damage");
+
         if (Life <= 0f)
             ActualState = State.Morte;
 
@@ -170,23 +198,32 @@ public class IA_Boss : MonoBehaviour
     public virtual void Die()
     {
 
-        //_anim.SetTrigger("Death");
+        _anim.SetTrigger("Death");
 
     }
 
 
     private void Cansado() //Bos fica Parado um Tempo depois do Dash Na tela
     {
+
+        transform.rotation = Quaternion.Euler(0,-90,0);
+
+        if (_anim != null)
+        {
+            _anim.SetBool("Fall", false);
+        }
+
         CanHit = true; 
 
         StunTime -= Time.deltaTime;
         if (StunTime > 0)
         {
-            if (_anim != null)
+            TimeToSumon -= Time.deltaTime;
+            if(TimeToSumon < 0)
             {
-               
+                _anim.SetTrigger("Sumon");
+                TimeToSumon = 4;
             }
-            print(StunTime);
         }
         else
         {
@@ -211,15 +248,18 @@ public class IA_Boss : MonoBehaviour
 
     private void Call_Bomb()
     {
+        if (_anim != null)
+            _anim.SetTrigger("Bomb");
+
         //Chama inimigo
         float randow;
         randow = UnityEngine.Random.Range(1,10);
         randow = Mathf.RoundToInt(randow);
 
         if(randow <=3)
-            Instantiate(BombFail, Target.transform.localPosition + Vector3.up * 10, Target.transform.rotation);
+            Instantiate(BombFail, Target.transform.localPosition + Vector3.up * 20, Target.transform.rotation);
         else
-            Instantiate(Bomb, Target.transform.localPosition + Vector3.up * 10, Target.transform.rotation);
+            Instantiate(Bomb, Target.transform.localPosition + Vector3.up * 20, Target.transform.rotation);
         TimeToAtkBomb = 4;
         ActualState = State.Idle;
 
@@ -229,8 +269,12 @@ public class IA_Boss : MonoBehaviour
     {
         CanHit = false;
 
+        _anim.SetTrigger("ATK");
+
         HitBoxOn("Area");
         HitBoxOff("Area");
+
+        TimeToAtkArea = 2;
 
         ActualState = State.Idle;
 
@@ -238,6 +282,7 @@ public class IA_Boss : MonoBehaviour
 
     private void AtkD()
     {
+       
         CanHit = false;
 
         //Dash No Chao
@@ -298,6 +343,8 @@ public class IA_Boss : MonoBehaviour
     private void GoingToScreen()
     {
 
+
+
         Screen.GoToScreen(gameObject, -50f, 0f, 0f);
         RB.useGravity = false;
         onScreen = true;
@@ -311,6 +358,14 @@ public class IA_Boss : MonoBehaviour
 
     private void GoingToWorld()
     {
+
+        if (_anim != null)
+        {
+            _anim.SetBool("Idle", false);
+            _anim.SetBool("Dash", false);
+            _anim.SetBool("Fall", true);
+        }
+
         if (Screen.GoOffScreen(waypoints[0], gameObject))
         {
             RB.isKinematic = false;
