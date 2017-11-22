@@ -2,9 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public class Waves : MonoBehaviour
 {
 
+    [System.Serializable]
+    public class Caminhos
+    {
+        public Transform[] Waypoints;
+    }
     public List<GameObject> AtualEnemy = new List<GameObject>();
 
     public int QuantInimigo;
@@ -14,6 +21,8 @@ public class Waves : MonoBehaviour
 
     [SerializeField] Transform[] Caminho_1;
     [SerializeField] Transform[] Caminho_2;
+
+    public Caminhos[] Ways;
 
     public bool SpawnSimut = false;
     bool Spawning;
@@ -51,7 +60,6 @@ public class Waves : MonoBehaviour
                     instance.GetComponent<EnemyIA>().waypoints = new Transform[Caminho_1.Length];
                     for (int o = 0; o < Caminho_1.Length; o++)
                     {
-                        Debug.Log("Entrou");
                         instance.GetComponent<EnemyIA>().waypoints[o] = Caminho_1[o];
                     }
                 }
@@ -73,32 +81,37 @@ public class Waves : MonoBehaviour
         else if (QuantInimigo > 0 && SpawnSimut == false)
         {
             QuantInimigo -= 1;
-            int Rand = Mathf.RoundToInt(Random.Range(0, Spawn.Length));
+            int Rand = Mathf.RoundToInt(Random.Range(0, Ways.Length));
+            int SpawnRand = Mathf.RoundToInt(Random.Range(0, Spawn.Length));
             print(Rand);
-            GameObject instance = (GameObject)Instantiate(inimigo, Spawn[Rand].position, Spawn[Rand].rotation);
+            GameObject instance = (GameObject)Instantiate(inimigo, Spawn[SpawnRand].position, Spawn[SpawnRand].rotation);
 
-            
-
-            if (Rand == 0)
+            instance.GetComponent<EnemyIA>().waypoints = new Transform[Ways[Rand].Waypoints.Length];
+            for(int o = 0; o < Ways[Rand].Waypoints.Length; o++)
             {
-
-                instance.GetComponent<EnemyIA>().waypoints = new Transform[Caminho_1.Length];
-
-                for (int o = 0; o < Caminho_1.Length; o++)
-                {
-                    instance.GetComponent<EnemyIA>().waypoints[o] = Caminho_1[o];
-                }
+                instance.GetComponent<EnemyIA>().waypoints[o] = Ways[Rand].Waypoints[o];
             }
+            instance.transform.SetParent(transform);
+            //if (Rand == 0)
+            //{
 
-            if (Rand == 1)
-            {
-                instance.GetComponent<EnemyIA>().waypoints = new Transform[Caminho_2.Length];
+            //    instance.GetComponent<EnemyIA>().waypoints = new Transform[Caminho_1.Length];
 
-                for (int o = 0; o < Caminho_2.Length; o++)
-                {
-                    instance.GetComponent<EnemyIA>().waypoints[o] = Caminho_2[o];
-                }
-            }
+            //    for (int o = 0; o < Caminho_1.Length; o++)
+            //    {
+            //        instance.GetComponent<EnemyIA>().waypoints[o] = Caminho_1[o];
+            //    }
+            //}
+
+            //if (Rand == 1)
+            //{
+            //    instance.GetComponent<EnemyIA>().waypoints = new Transform[Caminho_2.Length];
+
+            //    for (int o = 0; o < Caminho_2.Length; o++)
+            //    {
+            //        instance.GetComponent<EnemyIA>().waypoints[o] = Caminho_2[o];
+            //    }
+            //}
 
             AtualEnemy.Add(instance);
         }
