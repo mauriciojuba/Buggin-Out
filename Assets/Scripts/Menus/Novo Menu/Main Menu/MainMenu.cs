@@ -109,9 +109,13 @@ public class MainMenu : MonoBehaviour {
         if (SelectPhase)
         {
             if (PreSelected < UnlockedObjsPos.Count - 1)
+            {
+                CanChange = false;
                 PreSelected++;
+            }
             else if (PreSelected >= UnlockedObjsPos.Count - 1)
             {
+                CanChange = false;
                 PreSelected = 0;
             }
         }
@@ -138,7 +142,7 @@ public class MainMenu : MonoBehaviour {
             }
             else if (PreSelected <= 0)
             {
-                Debug.Log("Entrou");
+                CanChange = false;
                 PreSelected = UnlockedObjsPos.Count - 1;
             }
         }

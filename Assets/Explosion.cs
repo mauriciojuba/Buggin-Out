@@ -26,6 +26,14 @@ public class Explosion : MonoBehaviour {
         {
             other.GetComponent<PlayerLife>().LifeAtual -= Damage;
         }
+
+        if (other.GetComponent<EnemyIA>() != null)
+        {
+            other.GetComponent<EnemyIA>().playerStr = Damage;
+            other.GetComponent<EnemyIA>()._anim.SetTrigger("TakeDamage");
+            other.GetComponent<EnemyIA>().hitted = true;
+
+        }
     }
 
 }
