@@ -30,6 +30,9 @@ public class EnemyIA : MonoBehaviour, IGroundEnemy, IKillable, IGoToScreen, IScr
     [HideInInspector]
     public float randomOffsetOnScreen;
 
+    [SerializeField]
+    private float multiplyBy;
+
 
     public int VoiceChance;
 
@@ -85,7 +88,7 @@ public class EnemyIA : MonoBehaviour, IGroundEnemy, IKillable, IGoToScreen, IScr
 
         #region Teste NavMesh Start
         //Teste NavMesh
-        /*
+        
         _navMeshAgent = this.GetComponent<NavMeshAgent>();
 
         if (_navMeshAgent == null)
@@ -96,7 +99,7 @@ public class EnemyIA : MonoBehaviour, IGroundEnemy, IKillable, IGoToScreen, IScr
         {
             _navMeshAgent.SetDestination(waypoints[0].position);
         }
-        */
+        
 
         #endregion
         Screen = GameObject.Find("GoToScreen").GetComponent<GOToScreen>();
@@ -182,6 +185,9 @@ public class EnemyIA : MonoBehaviour, IGroundEnemy, IKillable, IGoToScreen, IScr
     }
     public virtual void Idle()
     {
+        _navMeshAgent.enabled = true;
+        _navMeshAgent.SetDestination(waypoints[currentWaypoint].position);
+
         if (_anim != null)
             _anim.SetBool("IsIdle", true);
 
@@ -210,11 +216,13 @@ public class EnemyIA : MonoBehaviour, IGroundEnemy, IKillable, IGoToScreen, IScr
     }
     public virtual void Patrol()
     {
+        _navMeshAgent.stoppingDistance = 0;
+
         if (_anim != null)
             _anim.SetBool("IsParolling", true);
         Vector3 dir = waypoints[currentWaypoint].position - transform.position;
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime * rotationSpeed);
-        transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
+        /*transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime * rotationSpeed);
+        transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);*/
 
         if (dir.sqrMagnitude <= 1)
         {
@@ -222,13 +230,13 @@ public class EnemyIA : MonoBehaviour, IGroundEnemy, IKillable, IGoToScreen, IScr
                 _anim.SetBool("IsParolling", false);
             ActualState = State.Idle;
         }
-        else
-            RB.MovePosition(transform.position + transform.forward * Time.deltaTime * speed);
+       // else
+       //     RB.MovePosition(transform.position + transform.forward * Time.deltaTime * speed);
 
         #region Teste NavMesh
 
         // TESTE NavMesh 
-        /*
+        
         if (waypoints != null)
         {
             if (Vector3.Distance(gameObject.transform.position, waypoints[currentWaypoint].position) < 1)
@@ -240,11 +248,15 @@ public class EnemyIA : MonoBehaviour, IGroundEnemy, IKillable, IGoToScreen, IScr
                     if (currentWaypoint >= waypoints.Length)
                         currentWaypoint = 0;
                     TimeToNextPoint = TimeToChangeTarget;
-                    _navMeshAgent.SetDestination(waypoints[currentWaypoint].position);
+                    
+                    
                 }
+
             }
+            _navMeshAgent.enabled = true;
+            _navMeshAgent.SetDestination(waypoints[currentWaypoint].position);
         }
-        */
+        
 
 
         #endregion
@@ -264,18 +276,24 @@ public class EnemyIA : MonoBehaviour, IGroundEnemy, IKillable, IGoToScreen, IScr
 
     public virtual void Chase()
     {
+
+        _navMeshAgent.stoppingDistance = 2;
+
         if (_anim != null)
         {
             _anim.SetBool("IsParolling", false);
             _anim.SetBool("FightingWalk", true);
         }
         Vector3 dir = Target.transform.position;
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(Target.transform.position - transform.position), Time.deltaTime * rotationSpeed);
-        transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
-        if (targetDistance > EnemyDist && Vector3.Distance(Target.transform.position, gameObject.transform.position) < SafeDist)
-        {
-            RB.MovePosition(transform.position + transform.forward * Time.deltaTime * speed);
-        }
+
+        _navMeshAgent.SetDestination(Target.transform.position);
+
+        //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(Target.transform.position - transform.position), Time.deltaTime * rotationSpeed);
+        //transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
+        //if (targetDistance > EnemyDist && Vector3.Distance(Target.transform.position, gameObject.transform.position) < SafeDist)
+        //{
+        //    RB.MovePosition(transform.position + transform.forward * Time.deltaTime * speed);
+        //}
         attackTimer += Time.deltaTime;
         if (targetDistance <= EnemyDist && attackTimer >= attackDelay)
         {
@@ -302,8 +320,29 @@ public class EnemyIA : MonoBehaviour, IGroundEnemy, IKillable, IGoToScreen, IScr
         if (_anim != null)
             _anim.SetBool("FightingWalk", false);
         TimeToNextPoint = 0;
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(transform.position - Target.transform.position), rotationSpeed * Time.deltaTime);
-        transform.position += transform.forward * speed * Time.deltaTime;
+        //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(transform.position - Target.transform.position), rotationSpeed * Time.deltaTime);
+        //transform.position += transform.forward * speed * Time.deltaTime;
+
+
+        //temporarily point the object to look away from the player
+        transform.rotation = Quaternion.LookRotation(transform.position - Target.transform.position);
+
+        //Then we'll get the position on that rotation that's multiplyBy down the path (you could set a Random.range
+        // for this if you want variable results) and store it in a new Vector3 called runTo
+        Vector3 runTo = transform.position + transform.forward * multiplyBy;
+        //Debug.Log("runTo = " + runTo);
+
+        //So now we've got a Vector3 to run to and we can transfer that to a location on the NavMesh with samplePosition.
+
+        NavMeshHit hit;    // stores the output in a variable called hit
+
+        // 5 is the distance to check, assumes you use default for the NavMesh Layer name
+        NavMesh.SamplePosition(runTo, out hit, 5, 1 << NavMesh.GetAreaFromName("Default"));
+        //Debug.Log("hit = " + hit + " hit.position = " + hit.position);
+
+
+        // And get it to head towards the found NavMesh position
+        _navMeshAgent.SetDestination(hit.position);
 
         if (targetDistance > SafeDist + 2 && Life <= lifeMax * 0.2f)
         {
@@ -314,6 +353,7 @@ public class EnemyIA : MonoBehaviour, IGroundEnemy, IKillable, IGoToScreen, IScr
                 _anim.SetBool("GoingToScreen", true);
             }
             randomOffsetOnScreen = Random.Range(-0.1f, 0.1f);
+            _navMeshAgent.enabled = false;
             ActualState = State.GoingToScreen;
         }
 
@@ -397,11 +437,16 @@ public class EnemyIA : MonoBehaviour, IGroundEnemy, IKillable, IGoToScreen, IScr
     }
     public virtual void DownToGround()
     {
+        
+
         if (Screen.GoOffScreen(worldPos, gameObject)) {
             RB.isKinematic = false;
             RB.useGravity = true;
             onScreen = false;
+            _navMeshAgent.enabled = true;
+            // Mexer aki -----------------------------------------------
             Destroy(worldPos.gameObject);
+            
             ActualState = State.Idle;
         }
     }
