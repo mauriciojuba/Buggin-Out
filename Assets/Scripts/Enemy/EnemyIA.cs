@@ -16,7 +16,7 @@ public class EnemyIA : MonoBehaviour, IGroundEnemy, IKillable, IGoToScreen, IScr
     [HideInInspector]
     public enum State { Idle, Patrol, Chase, Flee, Attack, TakeDamage,
         Dead, GoingToScreen, OnScreenIdle, OnScreenChase,
-        OnScreenAttack, GoingToWorld, OnScreenDamage, OnScreenFall };
+        OnScreenAttack, GoingToWorld, OnScreenDamage, OnScreenFall, Falling };
     [HideInInspector]
     public GameObject player1, player2;
     [HideInInspector]
@@ -130,6 +130,7 @@ public class EnemyIA : MonoBehaviour, IGroundEnemy, IKillable, IGoToScreen, IScr
             case State.OnScreenIdle: OnScreenIdle(); break;
             case State.OnScreenChase: OnScreenChase(); break;
             case State.OnScreenAttack: OnScreenAttack(); break;
+            case State.Falling: OnFalling(); break;
         }
     }
 
@@ -186,8 +187,7 @@ public class EnemyIA : MonoBehaviour, IGroundEnemy, IKillable, IGoToScreen, IScr
     public virtual void Idle()
     {
         _navMeshAgent.enabled = true;
-        _navMeshAgent.SetDestination(waypoints[currentWaypoint].position);
-
+       
         if (_anim != null)
             _anim.SetBool("IsIdle", true);
 
@@ -217,7 +217,11 @@ public class EnemyIA : MonoBehaviour, IGroundEnemy, IKillable, IGoToScreen, IScr
     public virtual void Patrol()
     {
         _navMeshAgent.stoppingDistance = 0;
-
+        if (worldPos != null)
+        {
+            _navMeshAgent.Warp(worldPos.position);
+            Destroy(worldPos.gameObject);
+        }
         if (_anim != null)
             _anim.SetBool("IsParolling", true);
         Vector3 dir = waypoints[currentWaypoint].position - transform.position;
@@ -319,7 +323,7 @@ public class EnemyIA : MonoBehaviour, IGroundEnemy, IKillable, IGoToScreen, IScr
     {
         if (_anim != null)
             _anim.SetBool("FightingWalk", false);
-        TimeToNextPoint = 0;
+        TimeToNextPoint = 2;
         //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(transform.position - Target.transform.position), rotationSpeed * Time.deltaTime);
         //transform.position += transform.forward * speed * Time.deltaTime;
 
@@ -337,7 +341,7 @@ public class EnemyIA : MonoBehaviour, IGroundEnemy, IKillable, IGoToScreen, IScr
         NavMeshHit hit;    // stores the output in a variable called hit
 
         // 5 is the distance to check, assumes you use default for the NavMesh Layer name
-        NavMesh.SamplePosition(runTo, out hit, 5, 1 << NavMesh.GetAreaFromName("Default"));
+        NavMesh.SamplePosition(runTo, out hit, 5, 1 << NavMesh.GetAreaFromName("Walkable"));
         //Debug.Log("hit = " + hit + " hit.position = " + hit.position);
 
 
@@ -440,13 +444,12 @@ public class EnemyIA : MonoBehaviour, IGroundEnemy, IKillable, IGoToScreen, IScr
         
 
         if (Screen.GoOffScreen(worldPos, gameObject)) {
+            TimeToNextPoint = 5;
             RB.isKinematic = false;
             RB.useGravity = true;
             onScreen = false;
             _navMeshAgent.enabled = true;
-            // Mexer aki -----------------------------------------------
-            Destroy(worldPos.gameObject);
-            
+            // Destroy(worldPos.gameObject);
             ActualState = State.Idle;
         }
     }
@@ -467,6 +470,11 @@ public class EnemyIA : MonoBehaviour, IGroundEnemy, IKillable, IGoToScreen, IScr
     }
     public virtual void OnScreenFall()
     {
+    }
+
+    public virtual void OnFalling()
+    {
+
     }
     #endregion
 
