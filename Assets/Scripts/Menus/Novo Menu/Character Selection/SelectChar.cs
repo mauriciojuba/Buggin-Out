@@ -185,7 +185,7 @@ public class SelectChar : MonoBehaviour {
 
     bool ChangePosition()
     {
-        transform.position = Vector3.Lerp(transform.position, UnlockedObjsPos[PosAtual].transform.position, Time.deltaTime * 15);
+        transform.position = Vector3.Lerp(transform.position, UnlockedObjsPos[PosAtual].transform.position, Time.deltaTime * 10);
         if (transform.position == UnlockedObjsPos[PosAtual].transform.position)
         {
             return true;
