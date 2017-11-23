@@ -13,6 +13,8 @@ public class IA_Aranha : EnemyIA {
 	#region Override EnemyIA
 	public override void Attack ()
 	{
+        _navMeshAgent.enabled = false;
+
 		_anim.SetBool("IsIdle", true);
 
 		if (hitted)

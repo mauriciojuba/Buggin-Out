@@ -24,6 +24,8 @@ public class IA_Mariposa : EnemyIA
     public override void Chase()
     {
 
+        _navMeshAgent.SetDestination(Target.transform.position);
+
         Time_atk_Area -= Time.deltaTime;
         if (Time_atk_Area < 0)
         {
@@ -36,12 +38,15 @@ public class IA_Mariposa : EnemyIA
             _anim.SetBool("FightingWalk", true);
         }
         Vector3 dir = Target.transform.position;
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(Target.transform.position - transform.position), Time.deltaTime * rotationSpeed);
-        transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
-        if (targetDistance > EnemyDist && Vector3.Distance(Target.transform.position, gameObject.transform.position) < SafeDist)
-        {
-            RB.MovePosition(transform.position + transform.forward * Time.deltaTime * speed);
-        }
+
+        //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(Target.transform.position - transform.position), Time.deltaTime * rotationSpeed);
+        //transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
+        //if (targetDistance > EnemyDist && Vector3.Distance(Target.transform.position, gameObject.transform.position) < SafeDist)
+        //{
+        //    RB.MovePosition(transform.position + transform.forward * Time.deltaTime * speed);
+        //}
+
+
         attackTimer += Time.deltaTime;
         if (targetDistance <= EnemyDist && attackTimer >= attackDelay)
         {

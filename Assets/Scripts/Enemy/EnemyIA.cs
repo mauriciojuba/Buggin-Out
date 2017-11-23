@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class EnemyIA : MonoBehaviour, IGroundEnemy, IKillable, IGoToScreen, IScreenEntity {
 
-    NavMeshAgent _navMeshAgent;
+    public NavMeshAgent _navMeshAgent;
 
 
     [HideInInspector]
