@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.AI;
 using UnityEngine;
 
 
@@ -52,7 +53,7 @@ public class Waves : MonoBehaviour
             {
                 QuantInimigo -= 1;
                 GameObject instance = (GameObject)Instantiate(inimigo, Spawn[i].position, Spawn[i].rotation);
-
+                instance.GetComponent<NavMeshAgent>().Warp(Spawn[i].position);
                 int Rand = Mathf.RoundToInt(Random.Range(0, 2));
 
                 if (Rand == 0)
