@@ -7,28 +7,48 @@ public class IA_Aranha : EnemyIA {
 	#region Aranha variáveis
 	public GameObject Muzle;
 	public GameObject Shot;
+    public bool Attacking;
 	public float force;
-	#endregion
+    #endregion
 
-	#region Override EnemyIA
-	public override void Attack ()
+    #region Override EnemyIA
+    public override void Chase()
+    {
+        base.Chase();
+        _navMeshAgent.stoppingDistance = EnemyDist;
+    }
+
+    public override void Attack ()
 	{
-        _navMeshAgent.enabled = false;
+        //_navMeshAgent.enabled = false;
 
 		_anim.SetBool("IsIdle", true);
+        _anim.SetBool("FightingWalk", false);
 
-		if (hitted)
+
+        if (hitted)
 			ActualState = State.TakeDamage;
 
-		//rotaciona o Npc apontando para o alvo
-		transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(Target.transform.position - transform.position), Time.deltaTime * rotationSpeed);
-		transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
+        //rotaciona o Npc apontando para o alvo
+        if (!Attacking)
+        {
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(Target.transform.position - transform.position), Time.deltaTime * rotationSpeed);
+            transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
+        }
+        else
+        {
+            if(_anim.GetCurrentAnimatorStateInfo(0).IsName("Attack_Ranged") && _anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9f)
+            {
+                Attacking = false;
+            }
+        }
 
 		attackTimer += Time.deltaTime;
 		if (targetDistance <= EnemyDist && attackTimer >= attackDelay)
 		{
 			_anim.SetBool("IsIdle", false);
             _anim.SetTrigger("ATK");
+            Attacking = true;
 			attackTimer = 0;
 		}
 		if (targetDistance > EnemyDist)

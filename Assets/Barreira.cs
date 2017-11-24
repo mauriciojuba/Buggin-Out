@@ -8,7 +8,6 @@ public class Barreira : MonoBehaviour {
 	[SerializeField] List<GameObject> AreaEnemys;
 	[SerializeField] Rigidbody dominoCenterLeft,dominoCenterRight;
 	[SerializeField] Vector3 forceDir;
-	[SerializeField] List<GameObject> DeadEnemys;
     [SerializeField] GameObject[] Dominos;
     [SerializeField] bool Ajust;
 
@@ -47,7 +46,7 @@ public class Barreira : MonoBehaviour {
 		}
 
 		for (int i = 0; i < AreaEnemys.Count; i++) {
-            if (AreaEnemys[i] == null)
+            if (AreaEnemys[i].GetComponent<Waves>().AtualEnemy.Count == 0 && AreaEnemys[i].GetComponent<Waves>().QuantInimigo == 0)
             {
                 AreaEnemys.RemoveAt(i);
             }

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.AI;
 using UnityEngine;
 
 public class IA_Mosquito : EnemyIA {
@@ -157,6 +158,8 @@ public class IA_Mosquito : EnemyIA {
         _anim.SetBool("UsingWings", false);
         NormalCollider.enabled = false;
         DeathCollider.enabled = true;
+        GetComponent<NavMeshAgent>().enabled = false;
+        GetComponent<Rigidbody>().isKinematic = false;
         if(_anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.8f)
         Destroy(gameObject, 3f);
     }

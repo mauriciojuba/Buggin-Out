@@ -292,17 +292,21 @@ public class EnemyIA : MonoBehaviour, IGroundEnemy, IKillable, IGoToScreen, IScr
 
         _navMeshAgent.SetDestination(Target.transform.position);
 
-        //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(Target.transform.position - transform.position), Time.deltaTime * rotationSpeed);
-        //transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(Target.transform.position - transform.position), Time.deltaTime * rotationSpeed);
+        transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
         //if (targetDistance > EnemyDist && Vector3.Distance(Target.transform.position, gameObject.transform.position) < SafeDist)
         //{
         //    RB.MovePosition(transform.position + transform.forward * Time.deltaTime * speed);
         //}
         attackTimer += Time.deltaTime;
-        if (targetDistance <= EnemyDist && attackTimer >= attackDelay)
-        {
-            ActualState = State.Attack;
-            attackTimer = 0;
+        if (targetDistance <= EnemyDist) {
+            _anim.SetBool("FightingWalk", false);
+            _anim.SetBool("IsIdle", true);
+            if (attackTimer >= attackDelay)
+            {
+                ActualState = State.Attack;
+                attackTimer = 0;
+            }
         }
         if (targetDistance > SafeDist + 1)
         {

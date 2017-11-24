@@ -22,6 +22,7 @@ public class Waves : MonoBehaviour
 
     [SerializeField] Transform[] Caminho_1;
     [SerializeField] Transform[] Caminho_2;
+    [SerializeField] float DelayOfSpawn = 1.5f;
 
     public Caminhos[] Ways;
 
@@ -46,7 +47,7 @@ public class Waves : MonoBehaviour
     IEnumerator CriarInimigo()
     {
         Spawning = true;
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(DelayOfSpawn);
         if (SpawnSimut && QuantInimigo > Spawn.Length && QuantInimigo > 0)
         {
             for (int i = 0; i < Spawn.Length; i++)
