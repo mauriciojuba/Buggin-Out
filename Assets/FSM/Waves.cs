@@ -28,6 +28,7 @@ public class Waves : MonoBehaviour
 
     public bool SpawnSimut = false;
     bool Spawning;
+    bool SpawnNow;
     // Use this for initialization
     void Start()
     {
@@ -40,8 +41,16 @@ public class Waves : MonoBehaviour
             AtualEnemy.Remove(null);
         }
 
-        if (AtualEnemy.Count < QuantWave && QuantInimigo > 0 && !Spawning)
+        if (AtualEnemy.Count <= 0) {
+            SpawnNow = true;
+        }else if(AtualEnemy.Count == QuantWave)
+        {
+            SpawnNow = false;
+        }
+        if (QuantInimigo > 0 && !Spawning && SpawnNow)
+        {
             StartCoroutine(CriarInimigo());
+        }
     }
 
     IEnumerator CriarInimigo()
@@ -119,5 +128,6 @@ public class Waves : MonoBehaviour
         }
 
         Spawning = false;
+        
     }
 }
