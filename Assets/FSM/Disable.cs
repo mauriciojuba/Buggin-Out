@@ -5,19 +5,21 @@ using UnityEngine;
 public class Disable : MonoBehaviour {
 
     public GameObject FalaHorn, FalaLiz;
-
+    public bool activated;
     public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.name == "Horn")
         {
-            FalaHorn.SetActive(true);
-            gameObject.GetComponent<Collider>().enabled = false;
+            if (!activated)
+                FalaHorn.SetActive(true);
+            //gameObject.GetComponent<Collider>().enabled = false;
 
         }
         else if(other.gameObject.name == "Liz")
         {
-            FalaLiz.SetActive(true);
-            gameObject.GetComponent<Collider>().enabled = false;
+            if (!activated)
+                FalaLiz.SetActive(true);
+            //gameObject.GetComponent<Collider>().enabled = false;
         }
     }
 }

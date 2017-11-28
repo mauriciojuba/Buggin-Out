@@ -98,6 +98,7 @@ public class Waves : MonoBehaviour
             GameObject instance = (GameObject)Instantiate(inimigo, Spawn[SpawnRand].position, Spawn[SpawnRand].rotation);
 
             instance.GetComponent<EnemyIA>().waypoints = new Transform[Ways[Rand].Waypoints.Length];
+            instance.GetComponent<EnemyIA>().currentWaypoint = Random.Range(0, instance.GetComponent<EnemyIA>().waypoints.Length);
             for(int o = 0; o < Ways[Rand].Waypoints.Length; o++)
             {
                 instance.GetComponent<EnemyIA>().waypoints[o] = Ways[Rand].Waypoints[o];

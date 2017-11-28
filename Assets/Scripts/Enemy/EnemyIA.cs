@@ -73,7 +73,7 @@ public class EnemyIA : MonoBehaviour, IGroundEnemy, IKillable, IGoToScreen, IScr
     public float TimeToChangeTarget = 5f;
 
     protected float TimeTo;
-    protected int currentWaypoint;
+    public int currentWaypoint;
 
     [Header("Configurações de Alcance")]
     public float Visao;
@@ -201,7 +201,7 @@ public class EnemyIA : MonoBehaviour, IGroundEnemy, IKillable, IGoToScreen, IScr
         TimeToNextPoint -= Time.deltaTime;
         if (TimeToNextPoint < 0)
         {
-            currentWaypoint++;
+            currentWaypoint = Random.Range(0, waypoints.Length);
             CalculaDistancia();
             if (currentWaypoint >= waypoints.Length)
                 currentWaypoint = 0;
