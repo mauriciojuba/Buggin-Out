@@ -46,9 +46,19 @@ public class Barreira : MonoBehaviour {
 		}
 
 		for (int i = 0; i < AreaEnemys.Count; i++) {
-            if (AreaEnemys[i].GetComponent<Waves>().AtualEnemy.Count == 0 && AreaEnemys[i].GetComponent<Waves>().QuantInimigo == 0)
+            if (AreaEnemys[i].GetComponent<Waves>() != null)
             {
-                AreaEnemys.RemoveAt(i);
+                if (AreaEnemys[i].GetComponent<Waves>().AtualEnemy.Count == 0 && AreaEnemys[i].GetComponent<Waves>().QuantInimigo == 0)
+                {
+                    AreaEnemys.RemoveAt(i);
+                }
+            }
+            else
+            {
+                if(AreaEnemys[i] == null)
+                {
+                    AreaEnemys.RemoveAt(i);
+                }
             }
 		}
 

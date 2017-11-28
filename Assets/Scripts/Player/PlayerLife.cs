@@ -13,6 +13,7 @@ public class PlayerLife : MonoBehaviour {
     public float TimeInPoison;
     public bool Stunned;
     [SerializeField] CameraControl _Cam;
+    [SerializeField] GameObject ParticlePoison;
 
     void Start () {
         LifeInGame = Instantiate(LifeEmblem, Camera.main.transform);
@@ -50,6 +51,10 @@ public class PlayerLife : MonoBehaviour {
         if(TimeInPoison >= 1.5f)
         {
             LifeAtual -= Damage;
+            if (ParticlePoison != null)
+            {
+                ParticlePoison.GetComponent<PoisonParticle>().Activate();
+            }
             GetComponent<AnimationControl>().SetTakeDamageAnim();
             TimeInPoison = 0;
         }
