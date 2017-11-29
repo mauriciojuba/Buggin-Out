@@ -303,6 +303,7 @@ public class IA_Boss : MonoBehaviour
             if (currentWaypoint >= waypoints.Length)
             {
                 currentWaypoint = 0;
+                _anim.SetTrigger("DashScreen");
                 ActualState = State.UpToScreen;
             }
         }
@@ -315,6 +316,8 @@ public class IA_Boss : MonoBehaviour
     private void AtkD_S()
     {
         CanHit = false;
+
+        
 
         //Dash Na tela
         RB.isKinematic = true;
