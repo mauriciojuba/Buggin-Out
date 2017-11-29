@@ -22,7 +22,9 @@ public class IA_Aranha : EnemyIA {
 	{
         //_navMeshAgent.enabled = false;
 
-		_anim.SetBool("IsIdle", true);
+       
+
+        _anim.SetBool("IsIdle", true);
         _anim.SetBool("FightingWalk", false);
 
 
@@ -48,6 +50,7 @@ public class IA_Aranha : EnemyIA {
 		{
 			_anim.SetBool("IsIdle", false);
             _anim.SetTrigger("ATK");
+            //FMODUnity.RuntimeManager.PlayOneShot("event:/Inimigos/Aranha/Ataque_Basico_Aranha", transform.position);
             Attacking = true;
 			attackTimer = 0;
 		}
