@@ -26,6 +26,7 @@ public class InstantiateCharacters : MonoBehaviour {
 			P1 = GameObject.Instantiate (P1Model, P1_Pos.transform.position, P1_Pos.transform.rotation);
 			//define o nome do personagem
 			P1.name = DataS.P1SelectedCharacter.CharacterName;
+            P1.GetComponent<SetSkin>().Skin = DataS.P1SkinSelected;
             P1.GetComponent<PlayerNumb>().PlayerNumber = DataS.P1SelectedCharacter.PlayerNumber;
             P1.GetComponent<PlayerLife>().LifeEmblem = DataS.P1SelectedCharacter.LifeEmblem;
             P1.GetComponent<PlayerLife>().MaxLife = DataS.P1SelectedCharacter.Life;
@@ -42,6 +43,7 @@ public class InstantiateCharacters : MonoBehaviour {
 				P2 = GameObject.Instantiate (P2Model, P2_Pos.transform.position, P2_Pos.transform.rotation);
 				//define o nome do personagem
 				P2.name = DataS.P2SelectedCharacter.CharacterName;
+                P2.GetComponent<SetSkin>().Skin = DataS.P2SkinSelected;
                 P2.GetComponent<PlayerNumb>().PlayerNumber = DataS.P2SelectedCharacter.PlayerNumber;
                 P2.GetComponent<PlayerLife>().LifeEmblem = DataS.P2SelectedCharacter.LifeEmblem;
                 P2.GetComponent<PlayerLife>().MaxLife = DataS.P2SelectedCharacter.Life;

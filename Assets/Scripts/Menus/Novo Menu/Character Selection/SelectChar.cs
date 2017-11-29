@@ -9,15 +9,18 @@ public class SelectChar : MonoBehaviour {
 
     [SerializeField] List<GameObject> UnlockedObjs;
     [SerializeField] List<GameObject> UnlockedObjsPos;
+    [SerializeField] List<Material> UnlockedSkinLiz;
+    [SerializeField] List<Material> UnlockedSKinHorn;
 
     [SerializeField] int PosAtual;
+    [SerializeField] int PosSkinAtual;
     [SerializeField] int PlayerNumber;
-    [SerializeField] bool CanChange;
+    [SerializeField] bool CanChange,CanChangeSkin;
     [SerializeField] bool Selected;
     [SerializeField] DetectJoysticks DetectS;
     Data DataS;
 
-    [SerializeField] bool SelectCharacter, SelectPhase;
+    [SerializeField] bool SelectCharacter, SelectSkin;
 
     [FMODUnity.EventRef]
     public string Evento_Liz;
@@ -37,13 +40,8 @@ public class SelectChar : MonoBehaviour {
         if(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "SelecaoPersonagem")
         {
             SelectCharacter = true;
-            SelectPhase = false;
         }
-        else if(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "SelecaoFase")
-        {
-            SelectCharacter = false;
-            SelectPhase = true;
-        }
+      
 
         if (SelectCharacter)
         {
@@ -59,21 +57,6 @@ public class SelectChar : MonoBehaviour {
                 }
             }
         }
-        else if (SelectPhase)
-        {
-            if (DataS.CompletedPhases.Contains(1))
-            {
-                if (!UnlockedObjs.Contains(AllObjs[1]))
-                {
-                    UnlockedObjs.Add(AllObjs[1]);
-                }
-                if (!UnlockedObjsPos.Contains(AllObjsPos[1]))
-                {
-                    UnlockedObjsPos.Add(AllObjsPos[1]);
-                }
-            }
-        }
-
     }
 
     // Update is called once per frame
@@ -81,7 +64,7 @@ public class SelectChar : MonoBehaviour {
     {
         if (Camera.main.GetComponent<OLDTVFilter3>().preset.noiseFilter.magnetude <= 0)
         {
-            if (!CanChange)
+            if (!CanChange && !Selected)
             {
                 if (ChangePosition())
                 {
@@ -90,33 +73,54 @@ public class SelectChar : MonoBehaviour {
             }
             if (Input.GetAxis("Horizontal P" + PlayerNumber) > 0.5f && CanChange)
             {
-                NextSelection();
+                if (!Selected)
+                    NextSelection();
+               
             }
             if (Input.GetAxis("Horizontal P" + PlayerNumber) < -0.5f && CanChange)
             {
-                PreviousSelection();
+                if (!Selected)
+                    PreviousSelection();
             }
 
-            if (Input.GetButtonDown("A P" + PlayerNumber) && !Selected)
+            if (Input.GetButtonDown("A P" + PlayerNumber))
             {
                 if (SelectCharacter)
+                {
                     OnSelectCharacter(PlayerNumber);
-                else if (SelectPhase)
-                    OnSelectPhase();
+                }
             }
 
             if (Input.GetButtonDown("B P" + PlayerNumber) && Selected)
             {
-                if (SelectCharacter)
+                if (SelectCharacter && Selected)
                     OnDeselectCharacter(PlayerNumber);
             }
-            
+
+            if(Input.GetButtonDown("RB P" + PlayerNumber))
+            {
+                if (!Selected)
+                {
+                    NextSkinSelection();
+                }
+            }
+
+            if (Input.GetButtonDown("LB P" + PlayerNumber))
+            {
+                if (!Selected)
+                {
+                    PreviousSkinSelection();
+                }
+            }
+
         }
     }
 
     public void NextSelection()
     {
         CanChange = false;
+        PosSkinAtual = 0;
+        SetSkin();
         if (PosAtual < UnlockedObjsPos.Count - 1)
             PosAtual++;
         else if (PosAtual >= UnlockedObjsPos.Count - 1)
@@ -128,6 +132,8 @@ public class SelectChar : MonoBehaviour {
     public void PreviousSelection()
     {
         CanChange = false;
+        PosSkinAtual = 0;
+        SetSkin();
         if (PosAtual > 0)
             PosAtual--;
         else if (PosAtual <= 0)
@@ -136,24 +142,110 @@ public class SelectChar : MonoBehaviour {
         }
     }
 
+    public void NextSkinSelection()
+    {
+        CanChangeSkin = false;
+        if (UnlockedObjs[PosAtual].GetComponent<CharacterHolder>().ThisCharacter.name == "Liz")
+        {
+            if (PosSkinAtual < UnlockedSkinLiz.Count - 1)
+                PosSkinAtual++;
+            else if (PosSkinAtual >= UnlockedSkinLiz.Count - 1)
+            {
+                PosSkinAtual = 0;
+            }
+        }
+        if (UnlockedObjs[PosAtual].GetComponent<CharacterHolder>().ThisCharacter.name == "Horn")
+        {
+            if (PosSkinAtual < UnlockedSKinHorn.Count - 1)
+                PosSkinAtual++;
+            else if (PosSkinAtual >= UnlockedSKinHorn.Count - 1)
+            {
+                PosSkinAtual = 0;
+            }
+        }
+        SetSkin();
+        StartCoroutine(SetCanChangeSkinTrue());
+
+    }
+
+    public void PreviousSkinSelection()
+    {
+        CanChangeSkin = false;
+        if (UnlockedObjs[PosAtual].GetComponent<CharacterHolder>().ThisCharacter.name == "Liz")
+        {
+            if (PosSkinAtual > 0)
+                PosSkinAtual--;
+            else if (PosSkinAtual <= 0)
+            {
+                PosSkinAtual = UnlockedSkinLiz.Count - 1;
+            }
+        }
+        if (UnlockedObjs[PosAtual].GetComponent<CharacterHolder>().ThisCharacter.name == "Horn")
+        {
+            if (PosSkinAtual > 0)
+                PosSkinAtual--;
+            else if (PosSkinAtual <= 0)
+            {
+                PosSkinAtual = UnlockedSKinHorn.Count - 1;
+            }
+        }
+        SetSkin();
+        StartCoroutine(SetCanChangeSkinTrue());
+
+    }
+
+    public void SetSkin()
+    {
+        if (UnlockedObjs[PosAtual].GetComponent<CharacterHolder>().ThisCharacter.name == "Liz")
+        {
+            for (int i = 0; i < UnlockedObjs[PosAtual].transform.Find("Liz:Liz_ALL").Find("Liz:MALHA").childCount; i++)
+            {
+                UnlockedObjs[PosAtual].transform.Find("Liz:Liz_ALL").Find("Liz:MALHA").GetChild(i).GetComponent<SkinnedMeshRenderer>().material = UnlockedSkinLiz[PosSkinAtual];
+            }
+        }
+
+        if (UnlockedObjs[PosAtual].GetComponent<CharacterHolder>().ThisCharacter.name == "Horn")
+        {
+            for (int i = 0; i < UnlockedObjs[PosAtual].transform.Find("Horn:Horn_ALL").Find("Horn:MALHA").childCount; i++)
+            {
+                UnlockedObjs[PosAtual].transform.Find("Horn:Horn_ALL").Find("Horn:MALHA").GetChild(i).GetComponent<SkinnedMeshRenderer>().material = UnlockedSKinHorn[PosSkinAtual];
+            }
+        }
+    }
+
     public void OnSelectCharacter(int PlayerNumb)
     {
         CanChange = false;
-        DetectS.QuantSelected++;
         Selected = true;
+        DetectS.QuantSelected++;
         UnlockedObjs[PosAtual].GetComponent<CharacterHolder>().Sound();
         if (PlayerNumb == 1)
         {
             UnlockedObjs[PosAtual].GetComponent<Animator>().SetBool("Selected", true);
             DataS.P1SelectedCharacter = UnlockedObjs[PosAtual].GetComponent<CharacterHolder>().ThisCharacter;
+            if (UnlockedObjs[PosAtual].GetComponent<CharacterHolder>().ThisCharacter.name == "Liz")
+            {
+                DataS.P1SkinSelected = UnlockedSkinLiz[PosSkinAtual];
+            }
+            if (UnlockedObjs[PosAtual].GetComponent<CharacterHolder>().ThisCharacter.name == "Horn")
+            {
+                DataS.P1SkinSelected = UnlockedSKinHorn[PosSkinAtual];
+            }
             DataS.P1SelectedCharacter.PlayerNumber = PlayerNumb;
         }
         else if (PlayerNumb == 2)
         {
             UnlockedObjs[PosAtual].GetComponent<Animator>().SetBool("Selected", true);
             DataS.P2SelectedCharacter = UnlockedObjs[PosAtual].GetComponent<CharacterHolder>().ThisCharacter;
+            if (UnlockedObjs[PosAtual].GetComponent<CharacterHolder>().ThisCharacter.name == "Liz")
+            {
+                DataS.P2SkinSelected = UnlockedSkinLiz[PosSkinAtual];
+            }
+            if (UnlockedObjs[PosAtual].GetComponent<CharacterHolder>().ThisCharacter.name == "Horn")
+            {
+                DataS.P2SkinSelected = UnlockedSKinHorn[PosSkinAtual];
+            }
             DataS.P2SelectedCharacter.PlayerNumber = PlayerNumb;
-
         }
     }
 
@@ -200,5 +292,11 @@ public class SelectChar : MonoBehaviour {
     {
         yield return new WaitForSeconds(0.15f);
         CanChange = true;
+    }
+
+    IEnumerator SetCanChangeSkinTrue()
+    {
+        yield return new WaitForSeconds(0.15f);
+        CanChangeSkin = true;
     }
 }

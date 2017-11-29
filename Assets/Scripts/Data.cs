@@ -16,6 +16,9 @@ public class Data : MonoBehaviour {
 	public Character P3SelectedCharacter;
 	public Character P4SelectedCharacter;
 
+    public Material P1SkinSelected;
+    public Material P2SkinSelected;
+
 	public GameObject P1Life, P2Life;
 
 	void Awake(){
