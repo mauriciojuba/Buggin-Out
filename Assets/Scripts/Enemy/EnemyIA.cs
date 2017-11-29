@@ -482,6 +482,10 @@ public class EnemyIA : MonoBehaviour, IGroundEnemy, IKillable, IGoToScreen, IScr
     }
     #endregion
 
+    public void PlaySound(string Event)
+    {
+        FMODUnity.RuntimeManager.PlayOneShot(Event, transform.position);
+    }
 
     //public void OnTriggerExit(Collider hit){
     //	if (hit.CompareTag ("playerHitCollider")) {

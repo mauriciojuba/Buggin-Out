@@ -740,6 +740,14 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+      - time: 0.63753206
+        functionName: PlaySound
+        data: event:/Inimigos/Aranha/Ataque_Basico_Aranha
+        objectReferenceParameter: {fileID: 11500000, guid: 33a74d8d0e3aed04694ca9978dcf619c,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask:
       - path: 
         weight: 1

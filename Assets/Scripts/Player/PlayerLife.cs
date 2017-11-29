@@ -12,6 +12,7 @@ public class PlayerLife : MonoBehaviour {
 	public Animator Mask;
     public float TimeInPoison;
     public bool Stunned;
+    private float TimerToFala = 0;
     [SerializeField] CameraControl _Cam;
     [SerializeField] GameObject ParticlePoison;
 
@@ -41,9 +42,26 @@ public class PlayerLife : MonoBehaviour {
 	}
 
 	void atualizaVida(){
+
+         bool dublagem = false;
+
+        if (LifeAtual <= MaxLife * 0.5)
+        {
+            dublagem = true;
+            TimerToFala -= Time.deltaTime;
+        } 
+        if (dublagem && TimerToFala <=0)
+        {
+            if(gameObject.name == "Horn")
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Horn/Falas/Pouca_Vida_Horn", transform.position);
+            if (gameObject.name == "Liz")
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Liz/Falas/Pouca_Vida", transform.position);
+            TimerToFala = 20;
+        }
+
         if(Mask != null)
 		Mask.SetFloat ("Life", (LifeAtual / MaxLife));
-	}
+    }
 
     public void DamagePerSecond(float Damage)
     {

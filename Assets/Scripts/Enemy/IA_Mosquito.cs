@@ -60,6 +60,9 @@ public class IA_Mosquito : EnemyIA {
                     if (Target.name == "Liz")
                         FMODUnity.RuntimeManager.PlayOneShot(Evento_Liz, transform.position);
                 }
+
+                gameObject.SetActive(false);
+                gameObject.SetActive(true);
                 ActualState = State.Dead;
             }
         }

@@ -5,7 +5,7 @@
             <value>Pouca_Vida_Horn</value>
         </property>
         <property name="outputFormat">
-            <value>2</value>
+            <value>1</value>
         </property>
         <relationship name="folder">
             <destination>{10bcd208-0cd3-4d7b-b4db-8dba452433ff}</destination>
@@ -56,7 +56,14 @@
             <destination>{a7bcf539-1c2f-4ba4-886f-df88d1b84091}</destination>
         </relationship>
     </object>
-    <object class="EventAutomatableProperties" id="{6999a8cd-5c9d-4a59-925a-c155e3dd5dd0}"/>
+    <object class="EventAutomatableProperties" id="{6999a8cd-5c9d-4a59-925a-c155e3dd5dd0}">
+        <property name="maxVoices">
+            <value>1</value>
+        </property>
+        <property name="voiceStealing">
+            <value>3</value>
+        </property>
+    </object>
     <object class="MarkerTrack" id="{5e81488c-b3af-4ff3-9a80-39316c1c3047}"/>
     <object class="GroupTrack" id="{cb266c56-dcd5-4a12-bdae-9b958e8937ff}">
         <relationship name="modules">
@@ -118,7 +125,6 @@
     <object class="MixerBusEffectChain" id="{2706b02d-a256-4a62-9023-5bef3145e7af}">
         <relationship name="effects">
             <destination>{2bd720fb-a75a-41e2-b87e-dec85de0ffda}</destination>
-            <destination>{3f65628d-a23e-4db4-9d4d-e838831e056e}</destination>
         </relationship>
     </object>
     <object class="MixerBusPanner" id="{7650c09d-927b-4b53-951c-3284f451df76}"/>
@@ -160,6 +166,5 @@
     </object>
     <object class="MixerBusPanner" id="{ccf69573-3280-488a-aa73-501bb58753da}"/>
     <object class="MixerBusFader" id="{2bd720fb-a75a-41e2-b87e-dec85de0ffda}"/>
-    <object class="SpatialiserEffect" id="{3f65628d-a23e-4db4-9d4d-e838831e056e}"/>
     <object class="MixerBusFader" id="{e08a2e31-c18a-475c-bdcd-ef15e518c541}"/>
 </objects>
