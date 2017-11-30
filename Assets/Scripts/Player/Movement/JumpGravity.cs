@@ -27,7 +27,7 @@ public class JumpGravity : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 		if (Moviment != null) {
 			if (!Moviment.natela) {
 				/*

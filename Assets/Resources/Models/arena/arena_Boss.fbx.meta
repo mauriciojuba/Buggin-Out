@@ -1,0 +1,191 @@
+fileFormatVersion: 2
+guid: 4c3dd371f4a73f04c948d93b50d50fe5
+timeCreated: 1512010628
+licenseType: Free
+ModelImporter:
+  serializedVersion: 21
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: cabos_low
+    100004: mastro_low
+    100006: paredes_low
+    100008: portao1_low
+    100010: portao2_low
+    100012: portao3_low
+    100014: portao4_low
+    100016: portoes_low
+    100018: poste1_low
+    100020: poste2_low
+    100022: poste3_low
+    100024: poste4_low
+    100026: poste5_low
+    100028: poste6_low
+    100030: poste7_low
+    100032: poste8_low
+    100034: postes_low
+    100036: prato_low
+    100038: trilhos_low
+    400000: //RootNode
+    400002: cabos_low
+    400004: mastro_low
+    400006: paredes_low
+    400008: portao1_low
+    400010: portao2_low
+    400012: portao3_low
+    400014: portao4_low
+    400016: portoes_low
+    400018: poste1_low
+    400020: poste2_low
+    400022: poste3_low
+    400024: poste4_low
+    400026: poste5_low
+    400028: poste6_low
+    400030: poste7_low
+    400032: poste8_low
+    400034: postes_low
+    400036: prato_low
+    400038: trilhos_low
+    2300000: cabos_low
+    2300002: mastro_low
+    2300004: paredes_low
+    2300006: portao1_low
+    2300008: portao2_low
+    2300010: portao3_low
+    2300012: portao4_low
+    2300014: poste1_low
+    2300016: poste2_low
+    2300018: poste3_low
+    2300020: poste4_low
+    2300022: poste5_low
+    2300024: poste6_low
+    2300026: poste7_low
+    2300028: poste8_low
+    2300030: prato_low
+    2300032: trilhos_low
+    3300000: cabos_low
+    3300002: mastro_low
+    3300004: paredes_low
+    3300006: portao1_low
+    3300008: portao2_low
+    3300010: portao3_low
+    3300012: portao4_low
+    3300014: poste1_low
+    3300016: poste2_low
+    3300018: poste3_low
+    3300020: poste4_low
+    3300022: poste5_low
+    3300024: poste6_low
+    3300026: poste7_low
+    3300028: poste8_low
+    3300030: prato_low
+    3300032: trilhos_low
+    4300000: prato_low
+    4300002: paredes_low
+    4300004: trilhos_low
+    4300006: mastro_low
+    4300008: cabos_low
+    4300010: poste1_low
+    4300012: poste2_low
+    4300014: poste3_low
+    4300016: poste4_low
+    4300018: poste5_low
+    4300020: poste6_low
+    4300022: poste7_low
+    4300024: poste8_low
+    4300026: portao1_low
+    4300028: portao2_low
+    4300030: portao3_low
+    4300032: portao4_low
+    6400000: cabos_low
+    6400002: mastro_low
+    6400004: paredes_low
+    6400006: portao1_low
+    6400008: portao2_low
+    6400010: portao3_low
+    6400012: portao4_low
+    6400014: poste1_low
+    6400016: poste2_low
+    6400018: poste3_low
+    6400020: poste4_low
+    6400022: poste5_low
+    6400024: poste6_low
+    6400026: poste7_low
+    6400028: poste8_low
+    6400030: prato_low
+    6400032: trilhos_low
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 250
+    meshCompression: 0
+    addColliders: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
