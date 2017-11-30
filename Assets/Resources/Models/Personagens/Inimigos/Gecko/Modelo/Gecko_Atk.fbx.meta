@@ -512,7 +512,31 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.47814924
+        functionName: Particula
+        data: Hamer
+        objectReferenceParameter: {fileID: 11500000, guid: 05c6f9af2a9bcce499c1a3330f365e07,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.48843175
+        functionName: HitBoxOn
+        data: Area
+        objectReferenceParameter: {fileID: 11500000, guid: 05c6f9af2a9bcce499c1a3330f365e07,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.78663236
+        functionName: HitBoxOff
+        data: Area
+        objectReferenceParameter: {fileID: 11500000, guid: 05c6f9af2a9bcce499c1a3330f365e07,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}

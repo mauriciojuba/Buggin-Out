@@ -73,6 +73,8 @@ public class IA_Boss : MonoBehaviour
     protected float targetDistance;
     public float randomOffsetOnScreen;
 
+    public ParticleSystem Hamer;
+
     // Use this for initialization
     void Start()
     {
@@ -113,7 +115,9 @@ public class IA_Boss : MonoBehaviour
         //Fica um tempo em idle Antes da mudança de estado
         //Se os PLayers Chegarem perto ele da um ataque em area
 
-        if(_anim != null)
+        HitBoxOff("Dash");
+
+        if (_anim != null)
         _anim.SetBool("Idle", true);
 
         CanHit = true;
@@ -205,8 +209,9 @@ public class IA_Boss : MonoBehaviour
 
     private void Cansado() //Bos fica Parado um Tempo depois do Dash Na tela
     {
+        HitBoxOff("Dash");
 
-        transform.rotation = Quaternion.Euler(0,-90,0);
+        transform.rotation = Quaternion.Euler(0,-180,0);
 
         if (_anim != null)
         {
@@ -271,9 +276,6 @@ public class IA_Boss : MonoBehaviour
 
         _anim.SetTrigger("ATK");
 
-        HitBoxOn("Area");
-        HitBoxOff("Area");
-
         TimeToAtkArea = 2;
 
         ActualState = State.Idle;
@@ -282,7 +284,9 @@ public class IA_Boss : MonoBehaviour
 
     private void AtkD()
     {
-       
+
+        HitBoxOn("Dash");
+
         CanHit = false;
 
         //Dash No Chao
@@ -380,6 +384,21 @@ public class IA_Boss : MonoBehaviour
 
 
     //Outras Funçoes  /////////////////////////////////////////
+
+    public void Particula(string Part)
+    {
+        if(Part == "Hamer")
+        {
+            Hamer.Play();
+        }
+
+    }
+
+
+    public void PlaySound()
+    {
+
+    }
 
     IEnumerator CalcDist()
     {
