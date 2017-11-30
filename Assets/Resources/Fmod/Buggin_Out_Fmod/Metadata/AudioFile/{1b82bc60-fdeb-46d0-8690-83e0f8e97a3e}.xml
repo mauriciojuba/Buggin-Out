@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.09.00">
+    <object class="AudioFile" id="{1b82bc60-fdeb-46d0-8690-83e0f8e97a3e}">
+        <property name="assetPath">
+            <value>Trilhas/MenuLoop/04-Loop02_MainTheme.wav</value>
+        </property>
+        <property name="isStreaming">
+            <value>true</value>
+        </property>
+        <property name="frequencyInKHz">
+            <value>44.0999985</value>
+        </property>
+        <property name="channelCount">
+            <value>2</value>
+        </property>
+        <property name="length">
+            <value>23.928639455782314</value>
+        </property>
+        <relationship name="masterAssetFolder">
+            <destination>{03bc8d35-9f13-4b66-a22f-2a40c7dc76a9}</destination>
+        </relationship>
+    </object>
+</objects>
