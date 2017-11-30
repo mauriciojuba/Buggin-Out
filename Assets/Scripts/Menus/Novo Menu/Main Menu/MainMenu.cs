@@ -98,6 +98,8 @@ public class MainMenu : MonoBehaviour {
     {
         CanChange = false;
 
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Alavanca_de_Madeira", transform.position);
+
         if (PreSelected < MenuPos.Count - 1)
             PreSelected++;
         else if (PreSelected >= MenuPos.Count - 1)
@@ -109,6 +111,9 @@ public class MainMenu : MonoBehaviour {
 
     public void PreviousSelection()
     {
+
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Alavanca_de_Madeira", transform.position);
+
         CanChange = false;
         if (PreSelected > 0)
             PreSelected--;
