@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.AI;
 
 public class EnemyIA : MonoBehaviour, IGroundEnemy, IKillable, IGoToScreen, IScreenEntity {
@@ -55,8 +56,10 @@ public class EnemyIA : MonoBehaviour, IGroundEnemy, IKillable, IGoToScreen, IScr
     public float onScreenAtkStr;
     public bool hitted;
     public bool grabbed;
-
+    public Image LifeIndicator;
+    public bool SetOffIsRunning;
     protected float attackTimer;
+
 
     [Header("Configurações de Movimento")]
     public float speed;
@@ -81,6 +84,8 @@ public class EnemyIA : MonoBehaviour, IGroundEnemy, IKillable, IGoToScreen, IScr
     public float EnemyDist;
 
     protected float targetDistance;
+
+    public float TimeInPoison;
 
     public virtual void Start()
     {
@@ -110,6 +115,11 @@ public class EnemyIA : MonoBehaviour, IGroundEnemy, IKillable, IGoToScreen, IScr
         TimeTo = TimeToNextPoint;
         CalculaDistancia();
         StartCoroutine(CalcDist());
+        if (LifeIndicator != null)
+        {
+            LifeIndicator.fillAmount = Life / lifeMax;
+            LifeIndicator.gameObject.SetActive(false);
+        }
     }
 
     public void FixedUpdate()
@@ -386,7 +396,7 @@ public class EnemyIA : MonoBehaviour, IGroundEnemy, IKillable, IGoToScreen, IScr
     #region IKillable
     public virtual void TakeDamage()
     {
-
+       
         if (Life <= 0f)
         {
             float random = Random.Range(0, 100);
@@ -414,7 +424,13 @@ public class EnemyIA : MonoBehaviour, IGroundEnemy, IKillable, IGoToScreen, IScr
             hitted = false;
 
         }
-
+        if (LifeIndicator != null)
+        {
+            LifeIndicator.gameObject.SetActive(true);
+            if(!SetOffIsRunning)
+            StartCoroutine(SetOffLifeDisplay());
+            LifeIndicator.fillAmount = Life / lifeMax;
+        }
         if (Life > 0f)
             ActualState = State.Chase;
 
@@ -425,6 +441,32 @@ public class EnemyIA : MonoBehaviour, IGroundEnemy, IKillable, IGoToScreen, IScr
         
         _anim.SetTrigger("Death");
 
+    }
+
+    public virtual void DamagePerSecond(float Damage)
+    {
+        TimeInPoison += Time.deltaTime;
+        //Mudar o tempo pra domar dano
+        //                   \/
+        if (TimeInPoison >= 1.5f)
+        {
+            _anim.SetTrigger("Take Damage");
+            Life -= playerStr;
+            TimeInPoison = 0;
+        }
+
+        if (Life <= 0f)
+        {
+            float random = Random.Range(0, 100);
+            if (random <= VoiceChance)
+            {
+                if (Target.name == "Horn")
+                    FMODUnity.RuntimeManager.PlayOneShot(Evento_Horn, transform.position);
+                if (Target.name == "Liz")
+                    FMODUnity.RuntimeManager.PlayOneShot(Evento_Liz, transform.position);
+            }
+            ActualState = State.Dead;
+        }
     }
     #endregion
 
@@ -487,6 +529,13 @@ public class EnemyIA : MonoBehaviour, IGroundEnemy, IKillable, IGoToScreen, IScr
         FMODUnity.RuntimeManager.PlayOneShot(Event, transform.position);
     }
 
+    public virtual IEnumerator SetOffLifeDisplay()
+    {
+        SetOffIsRunning = true;
+        yield return new WaitForSeconds(15);
+        LifeIndicator.gameObject.SetActive(false);
+        SetOffIsRunning = false;
+    }
     //public void OnTriggerExit(Collider hit){
     //	if (hit.CompareTag ("playerHitCollider")) {
     //		playerStr = hit.GetComponent<FightCollider> ().Damage;

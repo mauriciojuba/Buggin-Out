@@ -33,10 +33,13 @@ public class FightCollider : MonoBehaviour {
 
 						//ativa a animação do inimigo
 						ApplyEnemyHitAnim ();
+                        if (Player.GetComponent<HornControl>().NumberOfSpecial < 100)
+                        {
+                            Player.GetComponent<HornControl>().NumberOfSpecial += Random.Range(5, 15);
+                        }
 
-
-					}
-				}
+                    }
+                }
 			}
 		} else {
 

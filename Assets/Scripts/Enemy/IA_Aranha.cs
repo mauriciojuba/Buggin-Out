@@ -76,6 +76,13 @@ public class IA_Aranha : EnemyIA {
             Life -= playerStr;
             hitted = false;
         }
+        if (LifeIndicator != null)
+        {
+            LifeIndicator.gameObject.SetActive(true);
+            if (!SetOffIsRunning)
+                StartCoroutine(SetOffLifeDisplay());
+            LifeIndicator.fillAmount = Life / lifeMax;
+        }
         if (Life <= 0)
 		{
             float random = Random.Range(0, 100);

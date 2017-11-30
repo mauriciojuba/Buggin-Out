@@ -57,7 +57,9 @@ public class GrabObject : MonoBehaviour {
 				PickUp = true;
 				gameObject.GetComponent<HornControl> ().CanMove = false;
                 gameObject.GetComponent<HornControl>().mov = Vector3.zero;
-				Debug.LogWarning ("Pode Pegar");
+                gameObject.GetComponent<AnimationControl>().DesactiveRightFightCollider();
+                gameObject.GetComponent<AnimationControl>().DesactiveLeftFightCollider();
+                Debug.LogWarning ("Pode Pegar");
 			}
 		}
 	}

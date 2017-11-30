@@ -90,6 +90,13 @@ public class IA_Mosquito : EnemyIA {
             //	ActualState = State.Dead;
             //}
         }
+        if (LifeIndicator != null)
+        {
+            LifeIndicator.gameObject.SetActive(true);
+            if(!SetOffIsRunning)
+            StartCoroutine(SetOffLifeDisplay());
+            LifeIndicator.fillAmount = Life / lifeMax;
+        }
         //hitted = false;
         if (_anim.GetCurrentAnimatorStateInfo(0).IsName("Take Damage") && _anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.7f && Life > 0)
         {

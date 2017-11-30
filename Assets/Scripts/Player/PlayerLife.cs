@@ -10,6 +10,7 @@ public class PlayerLife : MonoBehaviour {
     public GameObject LifeInGame;
 	float maskOver;
 	public Animator Mask;
+    public Animator SpecialMask;
     public float TimeInPoison;
     public bool Stunned;
     private float TimerToFala = 0;
@@ -20,6 +21,7 @@ public class PlayerLife : MonoBehaviour {
         LifeInGame = Instantiate(LifeEmblem, Camera.main.transform);
         LifeInGame.name = "LifeEmblem";
         Mask = LifeInGame.GetComponent<Animator>();
+        SpecialMask = LifeInGame.transform.Find("Special").GetComponent<Animator>();
 		LifeAtual = MaxLife;
         Mask.SetFloat("Life", (LifeAtual / MaxLife));
         _Cam = GameObject.FindWithTag("DollyCam").GetComponent<CameraControl>();
@@ -55,11 +57,14 @@ public class PlayerLife : MonoBehaviour {
                 FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Horn/Falas/Pouca_Vida_Horn", transform.position);
             if (gameObject.name == "Liz")
                 FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Liz/Falas/Pouca_Vida", transform.position);
-            TimerToFala = 20;
+            TimerToFala = 300;
         }
 
-        if(Mask != null)
-		Mask.SetFloat ("Life", (LifeAtual / MaxLife));
+        if (Mask != null)
+        {
+            Mask.SetFloat("Life", (LifeAtual / MaxLife));
+            SpecialMask.SetFloat("Special", (GetComponent<HornControl>().NumberOfSpecial / 100));
+        }
     }
 
     public void DamagePerSecond(float Damage)

@@ -43,6 +43,10 @@ public class Poison : MonoBehaviour {
             //criar uma função igual a do player no script de vida do mosquito
             other.GetComponent<PlayerLife>().DamagePerSecond(DamagePerSecond);
         }
+        if(other.GetComponent<EnemyIA>() != null)
+        {
+            other.GetComponent<EnemyIA>().DamagePerSecond(DamagePerSecond);
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -51,6 +55,10 @@ public class Poison : MonoBehaviour {
         {
             //criar uma variavel de tempo pro script de vida do mosquito
             other.GetComponent<PlayerLife>().TimeInPoison = 0;
+        }
+        if (other.GetComponent<EnemyIA>() != null)
+        {
+            other.GetComponent<EnemyIA>().TimeInPoison = 0;
         }
     }
 }

@@ -18,37 +18,45 @@ public class RecoveryItem : MonoBehaviour {
         if (other.CompareTag("Player1_3D") || other.CompareTag("Player2_3D") || other.CompareTag("Player3_3D") || other.CompareTag("Player4_3D")) {
             if (RecuperaHP)
             {
-				if (other.gameObject.GetComponent<PlayerLife> () != null) {
-						if (emitter != null) { //desabilita efeitos graficos
-							Renderer rend = model.GetComponent<Renderer> (); // remove a emissao
-							Material mat = rend.material;
-							float emission = 0;
-							Color white = Color.white;
-							Color attrib = white * Mathf.LinearToGammaSpace (emission);
-							mat.SetColor ("_EmissionColor", attrib); // emissao end
+                if (other.gameObject.GetComponent<PlayerLife>() != null)
+                {
+                    if (other.gameObject.GetComponent<PlayerLife>().LifeAtual < other.gameObject.GetComponent<PlayerLife>().MaxLife)
+                    {
+                        if (emitter != null)
+                        { //desabilita efeitos graficos
+                            Renderer rend = model.GetComponent<Renderer>(); // remove a emissao
+                            Material mat = rend.material;
+                            float emission = 0;
+                            Color white = Color.white;
+                            Color attrib = white * Mathf.LinearToGammaSpace(emission);
+                            mat.SetColor("_EmissionColor", attrib); // emissao end
 
-							ParticleSystem particleemitter = emitter.GetComponent<ParticleSystem> ();
-							if (particleemitter != null) {
-								ParticleSystem.EmissionModule emit = particleemitter.emission;
-								emit.enabled = false;
-							}
+                            ParticleSystem particleemitter = emitter.GetComponent<ParticleSystem>();
+                            if (particleemitter != null)
+                            {
+                                ParticleSystem.EmissionModule emit = particleemitter.emission;
+                                emit.enabled = false;
+                            }
 
-							Light lightemitter = emitter.GetComponent<Light> ();
-							if (lightemitter != null) {
-								lightemitter.enabled = false;
-							}
-						} //efeitos graficos end
+                            Light lightemitter = emitter.GetComponent<Light>();
+                            if (lightemitter != null)
+                            {
+                                lightemitter.enabled = false;
+                            }
+                        } //efeitos graficos end
 
-						if (effect != null) { //particula
-							partTime = effect.GetComponent<ParticleSystem> ().main.duration;
-							GameObject part = Instantiate (effect, transform.position, Quaternion.identity) as GameObject;
-							GameObject.Destroy (part, partTime);
-						} //particula end
-                    Player = other.gameObject;
-                    PlusLife();
-					Destroy (GetComponent<Collider> ());
-					Destroy (GetComponent<Rigidbody> ());
-				}
+                        if (effect != null)
+                        { //particula
+                            partTime = effect.GetComponent<ParticleSystem>().main.duration;
+                            GameObject part = Instantiate(effect, transform.position, Quaternion.identity) as GameObject;
+                            GameObject.Destroy(part, partTime);
+                        } //particula end
+                        Player = other.gameObject;
+                        PlusLife();
+                        Destroy(GetComponent<Collider>());
+                        Destroy(GetComponent<Rigidbody>());
+                    }
+                }
             }
             if (RecuperaESP)
             {

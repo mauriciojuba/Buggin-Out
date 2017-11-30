@@ -96,6 +96,14 @@ public class IA_Mariposa : EnemyIA
             ActualState = State.Dead;
         }
 
+        if (LifeIndicator != null)
+        {
+            LifeIndicator.gameObject.SetActive(true);
+            if (!SetOffIsRunning)
+                StartCoroutine(SetOffLifeDisplay());
+            LifeIndicator.fillAmount = Life / lifeMax;
+        }
+
         if (hitted)
         {
             if (playerStr == 0)

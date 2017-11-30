@@ -47,6 +47,7 @@ public class IA_Boss : MonoBehaviour
     public float TimeToAtkBomb;
     public float TimeToSumon;
     public GameObject Bomb, BombFail;
+    public GameObject BombAim;
 
     [Header("WayPoint")]
     public Transform[] waypoints;
@@ -74,7 +75,11 @@ public class IA_Boss : MonoBehaviour
     public float randomOffsetOnScreen;
 
     public ParticleSystem Hamer;
-
+    public float TimerToSpawnBomb;
+    public float Timer;
+    public bool StartBombs;
+    Vector3 Area1;
+    Vector3 Area2;
     // Use this for initialization
     void Start()
     {
@@ -86,12 +91,15 @@ public class IA_Boss : MonoBehaviour
         CheckAllTargets();
         CalculaDistancia();
         StartCoroutine(CalcDist());
-        
-
     }
 
     private void FixedUpdate()
     {
+        if (StartBombs)
+        {
+            SpawnBombs();
+        }
+
         switch (ActualState)
         {
             case State.Idle: Idle(); break;
@@ -256,18 +264,42 @@ public class IA_Boss : MonoBehaviour
         if (_anim != null)
             _anim.SetTrigger("Bomb");
 
-        //Chama inimigo
-        float randow;
-        randow = UnityEngine.Random.Range(1,10);
-        randow = Mathf.RoundToInt(randow);
-
-        if(randow <=3)
-            Instantiate(BombFail, Target.transform.localPosition + Vector3.up * 20, Target.transform.rotation);
-        else
-            Instantiate(Bomb, Target.transform.localPosition + Vector3.up * 20, Target.transform.rotation);
-        TimeToAtkBomb = 4;
+        Area1 = new Vector3(Target.transform.position.x + 7, Target.transform.position.y, Target.transform.position.z + 7);
+        Area2 = new Vector3(Target.transform.position.x - 7, Target.transform.position.y, Target.transform.position.z - 7);
+        TimerToSpawnBomb = 0;
+        TimeToAtkBomb = 30;
+        StartBombs = true;
         ActualState = State.Idle;
 
+    }
+
+    private void SpawnBombs()
+    {
+        Timer += Time.deltaTime;
+        TimerToSpawnBomb += Time.deltaTime;
+      
+        if (TimerToSpawnBomb >= 1)
+        {
+            float random;
+            random = UnityEngine.Random.Range(1, 10);
+            random = Mathf.RoundToInt(random);
+            float RandomX;
+            RandomX = UnityEngine.Random.Range(Area2.x, Area1.x);
+            float RandomZ;
+            RandomZ = UnityEngine.Random.Range(Area2.z, Area1.z);
+            if (random <= 1)
+                Instantiate(BombFail, new Vector3(RandomX, Area1.y, RandomZ) + Vector3.up * 20, Target.transform.rotation);
+            else
+                Instantiate(Bomb, new Vector3(RandomX, Area1.y, RandomZ) + Vector3.up * 20, Target.transform.rotation);
+
+            Instantiate(BombAim, new Vector3(RandomX, Area1.y + 1, RandomZ), Target.transform.rotation);
+            TimerToSpawnBomb = 0;
+        }
+
+        if (Timer > 20)
+        {
+            StartBombs = false;
+        }
     }
 
     private void AtkA()

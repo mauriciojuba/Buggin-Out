@@ -30,7 +30,7 @@ public class HornControl : MonoBehaviour {
 	[SerializeField] float CamSpeed;
 	[SerializeField] float Speed = 5;
     [SerializeField] UseEspecial SpecialRef;
-    public int NumberOfSpecial;
+    public float NumberOfSpecial;
 
     public int PlayerNumber;
 
@@ -178,7 +178,7 @@ public class HornControl : MonoBehaviour {
         //Estou tentando zerar a velocity do rdb mas ela continua deslizando enquanto usa o especial.. ajudem ae se caso souberem o motivo
         if (!natela)
         {
-            if (Input.GetButtonDown("UseSpecial P" + PlayerNumber) && !UseSpecial)
+            if (Input.GetButtonDown("UseSpecial P" + PlayerNumber) && !UseSpecial && NumberOfSpecial >= 100)
             {
 
                 if (SpecialRef.Horn)
@@ -188,6 +188,7 @@ public class HornControl : MonoBehaviour {
                 mov = Vector3.zero;
                 UseSpecial = true;
                 AnimCTRL.SetSpecial();
+                NumberOfSpecial = 0;
                 
             }
 
