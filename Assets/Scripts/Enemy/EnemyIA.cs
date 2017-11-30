@@ -105,7 +105,7 @@ public class EnemyIA : MonoBehaviour, IGroundEnemy, IKillable, IGoToScreen, IScr
         Screen = GameObject.Find("GoToScreen").GetComponent<GOToScreen>();
         RB = GetComponent<Rigidbody>();
         _anim = GetComponent<Animator>();
-        lifeMax = Life;
+        Life = lifeMax;
         CheckAllTargets();
         TimeTo = TimeToNextPoint;
         CalculaDistancia();

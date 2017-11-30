@@ -75,11 +75,7 @@ public class FightCollider : MonoBehaviour {
     }
 
 	void ApplyEnemyHitAnim(){
-		//ja podemos tirar fsm daqui?
-		if (EnemyHit.GetComponent<FSMMosquito> () != null) {
-			EnemyHit.GetComponent<FSMMosquito> ().state = FSMMosquito.FSMStates.Damage;
-			EnemyHit.GetComponent<FSMMosquito> ().SetTakeDamageAnim ();
-		}
+		
 		if (EnemyHit.GetComponent<IA_Mosquito> () != null) {
             EnemyHit.GetComponent<IA_Mosquito>().playerStr = Damage;
             EnemyHit.GetComponent<IA_Mosquito>()._anim.SetTrigger("TakeDamage");
@@ -93,10 +89,10 @@ public class FightCollider : MonoBehaviour {
 
 		}
 		//ja podemos tirar fsm daqui?
-		if (EnemyHit.GetComponent<FSMAranha> () != null) {
-            EnemyHit.GetComponent<FSMAranha>().Life -= Damage;
-			EnemyHit.GetComponent<FSMAranha> ().state = FSMAranha.FSMStates.Damage;
-			EnemyHit.GetComponent<FSMAranha> ().SetTakeDamageAnim ();
+		if (EnemyHit.GetComponent<EnemyIA> () != null) {
+            EnemyHit.GetComponent<EnemyIA>().playerStr = Damage;
+			EnemyHit.GetComponent<EnemyIA>().ActualState = EnemyIA.State.TakeDamage;
+            EnemyHit.GetComponent<EnemyIA>().hitted = true;
 		}
 	}
 

@@ -12,7 +12,10 @@ public class IA_Mariposa : EnemyIA
     public override void Attack()
     {
         _anim.SetTrigger("ATK2");
+        Vector3 dir = Target.transform.position;
 
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(Target.transform.position - transform.position), Time.deltaTime * rotationSpeed);
+        transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
         if (hitted) ActualState = State.TakeDamage;
 
         ActualState = State.Chase;
@@ -25,7 +28,7 @@ public class IA_Mariposa : EnemyIA
     {
 
         _navMeshAgent.SetDestination(Target.transform.position);
-
+        _navMeshAgent.stoppingDistance = 3;
         Time_atk_Area -= Time.deltaTime;
         if (Time_atk_Area < 0)
         {
@@ -78,6 +81,38 @@ public class IA_Mariposa : EnemyIA
 
         ActualState = State.Chase;
     }
+    public override void TakeDamage()
+    {
+        if (Life <= 0f)
+        {
+            float random = Random.Range(0, 100);
+            if (random <= VoiceChance)
+            {
+                if (Target.name == "Horn")
+                    FMODUnity.RuntimeManager.PlayOneShot(Evento_Horn, transform.position);
+                if (Target.name == "Liz")
+                    FMODUnity.RuntimeManager.PlayOneShot(Evento_Liz, transform.position);
+            }
+            ActualState = State.Dead;
+        }
+
+        if (hitted)
+        {
+            if (playerStr == 0)
+                playerStr = 50;
+
+
+            Life -= playerStr;
+
+
+
+            hitted = false;
+
+        }
+
+        if (Life > 0f)
+            ActualState = State.Chase;
+    }
 
     public override void DownToGround()
     {
@@ -88,7 +123,7 @@ public class IA_Mariposa : EnemyIA
     {
         RB.isKinematic = true;
         _anim.SetTrigger("Death");
-
+        Destroy(gameObject, 5);
     }
 
 
