@@ -34,6 +34,16 @@ public class Explosion : MonoBehaviour {
             other.GetComponent<EnemyIA>().hitted = true;
 
         }
+
+        if (other.GetComponent<IA_Boss>() != null)
+        {
+            if (other.GetComponent<IA_Boss>().CanHit && !other.GetComponent<IA_Boss>().hitted)
+            {
+                other.GetComponent<IA_Boss>().playerStr = Damage;
+                other.GetComponent<IA_Boss>().hitted = true;
+                other.GetComponent<IA_Boss>().ActualState = IA_Boss.State.LevaDano;
+            }
+        }
     }
 
 }

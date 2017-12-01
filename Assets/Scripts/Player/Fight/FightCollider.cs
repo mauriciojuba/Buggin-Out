@@ -97,7 +97,17 @@ public class FightCollider : MonoBehaviour {
 			EnemyHit.GetComponent<EnemyIA>().ActualState = EnemyIA.State.TakeDamage;
             EnemyHit.GetComponent<EnemyIA>().hitted = true;
 		}
-	}
+
+        if(EnemyHit.GetComponent<IA_Boss>() != null)
+        {
+            if (EnemyHit.GetComponent<IA_Boss>().CanHit && !EnemyHit.GetComponent<IA_Boss>().hitted)
+            {
+                EnemyHit.GetComponent<IA_Boss>().playerStr = Damage;
+                EnemyHit.GetComponent<IA_Boss>().hitted = true;
+                EnemyHit.GetComponent<IA_Boss>().ActualState = IA_Boss.State.LevaDano;
+            }
+        }
+    }
 
 	void PlaySound(string TypeofAtk){
 		if (Horn) {

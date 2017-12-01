@@ -210,9 +210,9 @@ public class IA_Boss : MonoBehaviour
 
     public virtual void Die()
     {
-
+        _anim.SetBool("Dead", true);
         _anim.SetTrigger("Death");
-
+        
     }
 
 
@@ -507,13 +507,13 @@ public class IA_Boss : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, SafeDist);
     }
 
-    public void OnTriggerEnter(Collider hit)
-    {
-        if (hit.CompareTag("playerHitCollider"))
-        {
-            playerStr = hit.GetComponent<FightCollider>().Damage;
-            if (!hitted && CanHit) hitted = true;
-        }
-    }
+    //public void OnTriggerEnter(Collider hit)
+    //{
+    //    if (hit.CompareTag("playerHitCollider"))
+    //    {
+    //        playerStr = hit.GetComponent<FightCollider>().Damage;
+    //        if (!hitted && CanHit) hitted = true;
+    //    }
+    //}
 
 }
