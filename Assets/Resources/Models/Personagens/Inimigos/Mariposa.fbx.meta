@@ -553,6 +553,14 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+      - time: 0.44769248
+        functionName: PlaySound
+        data: event:/Inimigos/Mariposa/Ataque_Basico_Mariposa
+        objectReferenceParameter: {fileID: 11500000, guid: 86999b5d589a8344d9bce9dd8322a101,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
