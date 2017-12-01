@@ -15,7 +15,7 @@ public class GrabObject : MonoBehaviour {
 	Quaternion targetRotation;
     [Space(20)]
     [Header("Mira")]
-    [SerializeField] GameObject[] Enemies;
+    [SerializeField] List<GameObject> Enemies;
     [SerializeField] List<GameObject> ProximityEnemies;
     [SerializeField] List<GameObject> EnemiesInVision;
     [SerializeField] GameObject TargetEnemy;
@@ -25,7 +25,11 @@ public class GrabObject : MonoBehaviour {
     [SerializeField] int PlayerNumber;
 	void Start () {
 		Boxs = GameObject.FindGameObjectsWithTag ("Box");
-        Enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        for (int i = 0; i < GameObject.FindGameObjectsWithTag("Enemy").Length; i++)
+        {
+            if (!Enemies.Contains(GameObject.FindGameObjectsWithTag("Enemy")[i]))
+                Enemies.Add(GameObject.FindGameObjectsWithTag("Enemy")[i]);
+        }
         PlayerNumber = GetComponent<PlayerNumb>().PlayerNumber;
 		AnimCTRL = gameObject.GetComponent<AnimationControl> ();
 	}
@@ -35,7 +39,11 @@ public class GrabObject : MonoBehaviour {
 		if (Input.GetButtonDown ("B P" + PlayerNumber) && !PickUp && !PickedObj || Input.GetKeyDown(KeyCode.L) && !PickUp && !PickedObj) {
 			CheckAllDistance ();
 			CheckDistance ();
-            Enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            for (int i = 0; i < GameObject.FindGameObjectsWithTag("Enemy").Length; i++)
+            {
+                if(!Enemies.Contains(GameObject.FindGameObjectsWithTag("Enemy")[i]))
+                Enemies.Add(GameObject.FindGameObjectsWithTag("Enemy")[i]);
+            }
             ProximityEnemies.Clear();
             EnemiesInVision.Clear();
         }
@@ -55,7 +63,7 @@ public class GrabObject : MonoBehaviour {
             {
                 if(Input.GetAxis("Right Analog Horizontal P" + PlayerNumber) > 0.5f)
                 {
-                    Enemies = GameObject.FindGameObjectsWithTag("Enemy");
+                    
                     if (AtualTarget < EnemiesInVision.Count)
                     {
                         AtualTarget++;
@@ -66,7 +74,6 @@ public class GrabObject : MonoBehaviour {
 
                 if (Input.GetAxis("Right Analog Horizontal P" + PlayerNumber) < -0.5f)
                 {
-                    Enemies = GameObject.FindGameObjectsWithTag("Enemy");
                     if (AtualTarget > 0)
                     {
                         AtualTarget--;
@@ -77,8 +84,13 @@ public class GrabObject : MonoBehaviour {
             }
         }
 
-       
-	}
+        if (Aim)
+        {
+            if(TargetEnemy != null)
+            Muzzle.LookAt(TargetEnemy.transform.position);
+        }
+
+    }
 
     private void FixedUpdate()
     {
@@ -87,7 +99,6 @@ public class GrabObject : MonoBehaviour {
             if (EnemiesInVision.Count > 0)
             {
                 TargetEnemy = EnemiesInVision[AtualTarget];
-                Muzzle.LookAt(TargetEnemy.transform.position);
             }
             else
             {
@@ -152,28 +163,37 @@ public class GrabObject : MonoBehaviour {
 	}
 
 	void ThrowObj(){
-		PickedObj = false;
 		BoxProximity.transform.SetParent (null);
 		StartCoroutine (BoxProximity.GetComponent<DestruirObjeto> ().ActiveCol ());
 		BoxProximity.GetComponent<Rigidbody> ().isKinematic = false;
         if (Aim)
         {
+            BoxProximity.GetComponent<Rigidbody>().useGravity = false;
+            BoxProximity.transform.position = Muzzle.position;
+            BoxProximity.transform.rotation = Muzzle.rotation;
             BoxProximity.GetComponent<Rigidbody>().AddForce(Muzzle.forward * Force);
         }
         else
         {
             BoxProximity.GetComponent<Rigidbody>().AddForce((transform.forward + transform.up) * Force);
         }
-		BoxProximity.GetComponent<DestruirObjeto> ().Throwed = true;
-	}
+        PickedObj = false;
+        BoxProximity.GetComponent<DestruirObjeto> ().Throwed = true;
+        TargetEnemy = null;
+    }
 
     void CheckEnemies()
     {
 
-        if (Enemies.Length > 0)
+        if (Enemies.Count > 0)
         {
-            for(int i = 0; i < Enemies.Length; i++)
+            for(int i = 0; i < Enemies.Count; i++)
             {
+                if(Enemies[i] == null)
+                {
+                    Enemies.RemoveAt(i);
+                }
+
                 if (Vector3.Distance(transform.position, Enemies[i].transform.position) < 20)
                 {
                     if (!ProximityEnemies.Contains(Enemies[i]))
@@ -182,13 +202,26 @@ public class GrabObject : MonoBehaviour {
                     }
                 }
             }
-            
-            for(int i = 0; i < ProximityEnemies.Count; i++)
+
+            for (int i = 0; i < EnemiesInVision.Count; i++)
             {
+                if (EnemiesInVision[i] == null)
+                {
+                    EnemiesInVision.RemoveAt(i);
+                }
+            }
+
+            for (int i = 0; i < ProximityEnemies.Count; i++)
+            {
+                if (ProximityEnemies[i] == null)
+                {
+                    ProximityEnemies.RemoveAt(i);
+                }
+
                 Vector3 Dir = ProximityEnemies[i].transform.position - transform.position;
                 float angle = Vector3.Angle(Dir, transform.forward);
 
-                if(angle < 70)
+                if (angle < 40)
                 {
                     if (!EnemiesInVision.Contains(ProximityEnemies[i]))
                         EnemiesInVision.Add(ProximityEnemies[i]);
@@ -201,19 +234,10 @@ public class GrabObject : MonoBehaviour {
                     }
                 }
 
-                if(ProximityEnemies[i] == null)
-                {
-                    ProximityEnemies.Remove(ProximityEnemies[i]);
-                }
+                
             }
 
-            for(int i = 0; i < EnemiesInVision.Count; i++)
-            {
-                if (EnemiesInVision[i] == null)
-                {
-                    EnemiesInVision.Remove(EnemiesInVision[i]);
-                }
-            }
+            
         }
 
     }

@@ -18,7 +18,7 @@ public class DestruirObjeto : MonoBehaviour {
                 this.GetComponent<Life>().Contact = hit.contacts[0].point;
                 if (this.GetComponent<Life>().Poison)
                 {
-                    if (hit.gameObject.CompareTag("Chão"))
+                    if (hit.gameObject.CompareTag("Chão")||hit.gameObject.CompareTag("Enemy"))
                     {
                         this.GetComponent<Life>().LifeQuant = 0;
                         gameObject.GetComponent<Collider>().enabled = false;
@@ -31,17 +31,25 @@ public class DestruirObjeto : MonoBehaviour {
                 }
 			}
 			if (hit.gameObject.tag != "Player1_3D" && hit.gameObject.tag != "Player2_3D") {
-				if (hit.gameObject.GetComponent<Life> () != null) {
-					hit.gameObject.GetComponent<Life> ().LifeQuant -= Damage;
-					hit.gameObject.GetComponent<Life> ().UpdateLife ();
+				if (hit.gameObject.GetComponent<EnemyIA> () != null) {
+                    if (Damage > 0)
+                    {
+                        hit.gameObject.GetComponent<EnemyIA>().playerStr = Damage;
+                        hit.gameObject.GetComponent<EnemyIA>().ActualState = EnemyIA.State.TakeDamage;
+                        hit.gameObject.GetComponent<EnemyIA>().hitted = true;
+                    }
 				}
+                if(hit.gameObject.GetComponent<Life>() != null)
+                {
+                    hit.gameObject.GetComponent<Life>().LifeQuant -= Damage;
+                }
 			}
 		
 		}
 	}
 
 	public IEnumerator ActiveCol(){
-		yield return new WaitForSeconds (0.1f);
+		yield return new WaitForSeconds (0.05f);
 		gameObject.GetComponent<Collider> ().isTrigger = false;
 
 	}
