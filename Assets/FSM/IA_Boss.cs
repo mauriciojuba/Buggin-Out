@@ -128,7 +128,7 @@ public class IA_Boss : MonoBehaviour
         if (_anim != null)
         _anim.SetBool("Idle", true);
 
-        CanHit = true;
+        CanHit = false;
 
         Vector3 dir = Target.transform.position;
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(Target.transform.position - transform.position), Time.deltaTime * rotationSpeed);
@@ -186,6 +186,7 @@ public class IA_Boss : MonoBehaviour
 
         _anim.SetTrigger("Damage");
 
+
         if (Life <= 0f)
             ActualState = State.Morte;
 
@@ -218,12 +219,15 @@ public class IA_Boss : MonoBehaviour
     private void Cansado() //Bos fica Parado um Tempo depois do Dash Na tela
     {
         HitBoxOff("Dash");
-
         transform.rotation = Quaternion.Euler(0,-180,0);
+
+        if (hitted)
+            ActualState = State.LevaDano;
 
         if (_anim != null)
         {
             _anim.SetBool("Fall", false);
+            _anim.SetBool("Injuried", true);
         }
 
         CanHit = true; 
@@ -245,8 +249,7 @@ public class IA_Boss : MonoBehaviour
             ActualState = State.Idle;
         }
 
-        if (hitted)
-            ActualState = State.LevaDano;
+       
 
     }
 
@@ -504,7 +507,7 @@ public class IA_Boss : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, SafeDist);
     }
 
-    public void OnTriggerExit(Collider hit)
+    public void OnTriggerEnter(Collider hit)
     {
         if (hit.CompareTag("playerHitCollider"))
         {
