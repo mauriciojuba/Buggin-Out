@@ -23,6 +23,7 @@ public class GrabObject : MonoBehaviour {
     [SerializeField] int AtualTarget;
     [SerializeField] Transform Muzzle;
     [SerializeField] int PlayerNumber;
+    [SerializeField] bool Checking;
 	void Start () {
 		Boxs = GameObject.FindGameObjectsWithTag ("Box");
         for (int i = 0; i < GameObject.FindGameObjectsWithTag("Enemy").Length; i++)
@@ -86,8 +87,12 @@ public class GrabObject : MonoBehaviour {
 
         if (Aim)
         {
-            if(TargetEnemy != null)
-            Muzzle.LookAt(TargetEnemy.transform.position);
+            if (TargetEnemy != null)
+                Muzzle.LookAt(TargetEnemy.transform.position + (Vector3.up * 0.5f));
+        }
+        else
+        {
+            Muzzle.localEulerAngles = new Vector3(0, 0, 0);
         }
 
     }
@@ -175,16 +180,20 @@ public class GrabObject : MonoBehaviour {
         }
         else
         {
-            BoxProximity.GetComponent<Rigidbody>().AddForce((transform.forward + transform.up) * Force);
+            BoxProximity.transform.position = Muzzle.position;
+            BoxProximity.transform.rotation = Muzzle.rotation;
+            BoxProximity.GetComponent<Rigidbody>().AddForce((Muzzle.forward + Muzzle.up) * Force);
         }
-        PickedObj = false;
         BoxProximity.GetComponent<DestruirObjeto> ().Throwed = true;
-        TargetEnemy = null;
+        StartCoroutine(SetAimOff());
     }
 
     void CheckEnemies()
     {
-
+        if (!Checking)
+        {
+            StartCoroutine(CheckQuantyEnemies());
+        }
         if (Enemies.Count > 0)
         {
             for(int i = 0; i < Enemies.Count; i++)
@@ -240,6 +249,25 @@ public class GrabObject : MonoBehaviour {
             
         }
 
+    }
+
+    IEnumerator SetAimOff()
+    {
+        yield return new WaitForSeconds(0.5f);
+        TargetEnemy = null;
+        PickedObj = false;
+    }
+
+    IEnumerator CheckQuantyEnemies()
+    {
+        Checking = true;
+        yield return new WaitForSeconds(1.5f);
+        for (int i = 0; i < GameObject.FindGameObjectsWithTag("Enemy").Length; i++)
+        {
+            if (!Enemies.Contains(GameObject.FindGameObjectsWithTag("Enemy")[i]))
+                Enemies.Add(GameObject.FindGameObjectsWithTag("Enemy")[i]);
+        }
+        Checking = false;
     }
 
 }
