@@ -7,8 +7,10 @@ using UnityEngine.AI;
 public class IA_Boss : MonoBehaviour
 {
 
-    public enum State { Idle, Chama_Bomba, LevaDano, Atordoado, Cansado, ATK_Dash_Ground, ATK_Dash_Screen, ATK_Area, Morte , UpToScreen, DowToGround }
+    public enum State { Idle, Chama_Bomba, LevaDano, Atordoado, Cansado, ATK_Dash_Ground, ATK_Dash_Screen, ATK_Area, Morte , UpToScreen, DowToGround, Walk }
     public State ActualState = State.Idle;
+
+    public NavMeshAgent _navMeshAgent;
 
     [HideInInspector]
     public GOToScreen Screen;
@@ -83,6 +85,16 @@ public class IA_Boss : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        _navMeshAgent = this.GetComponent<NavMeshAgent>();
+
+        if (_navMeshAgent == null)
+        {
+            Debug.LogError("The nav mesh agent is not attached");
+        }
+        else
+        {
+            _navMeshAgent.SetDestination(waypoints[0].position);
+        }
 
         Screen = GameObject.Find("GoToScreen").GetComponent<GOToScreen>();
         RB = GetComponent<Rigidbody>();
@@ -113,20 +125,50 @@ public class IA_Boss : MonoBehaviour
             case State.Morte: Die(); break;
             case State.UpToScreen: GoingToScreen(); break;
             case State.DowToGround: GoingToWorld(); break;
+            case State.Walk: Walk(); break;
         }
     }
 
+    private void Walk()
+    {
+        _anim.SetBool("Walk", true);
+        _navMeshAgent.enabled = true;
+        _navMeshAgent.SetDestination(Target.transform.position);
 
+        if (Target.GetComponent<HornControl>().natela == true)
+        {
+            _anim.SetBool("Walk", false);
+            ActualState = State.Idle;
+        }
+
+        float Tdist = Vector3.Distance(Target.transform.position, gameObject.transform.position);
+        if (Tdist < Visao)
+        {
+
+            TimeToAtkArea -= Time.deltaTime;
+            if (TimeToAtkArea < 0)
+                ActualState = State.ATK_Area;
+        }
+
+
+        //Iniciar Ataque Bomba
+        if(TimeToAtkBomb > -1)
+        TimeToAtkBomb -= Time.deltaTime;
+        if (TimeToAtkBomb <= 0)
+        {
+            _anim.SetBool("Walk", false);
+            ActualState = State.Chama_Bomba;
+        }
+
+    }
 
     private void Idle()
     {
-        //Fica um tempo em idle Antes da mudança de estado
-        //Se os PLayers Chegarem perto ele da um ataque em area
-
+        _navMeshAgent.enabled = false;
         HitBoxOff("Dash");
 
         if (_anim != null)
-        _anim.SetBool("Idle", true);
+            _anim.SetBool("Idle", true);
 
         CanHit = false;
 
@@ -136,35 +178,20 @@ public class IA_Boss : MonoBehaviour
 
         float Tdist = Vector3.Distance(Target.transform.position, gameObject.transform.position);
 
-
-
-        if (Tdist < Visao)
+        if (Target.GetComponent<HornControl>().natela == false && StartBombs == false)
         {
-            TimeToAtkArea -= Time.deltaTime;
-            if(TimeToAtkArea < 0)
-            ActualState = State.ATK_Area;
+            _anim.SetBool("Idle", false);
+            ActualState = State.Walk;
         }
 
-        
-        
-
+        if(TimeToAtkDash > -1)
         TimeToAtkDash -= Time.deltaTime;
-
-        if (TimeToAtkDash <= 2)
+        if (TimeToAtkDash <= 2.5)
         {
             if (_anim != null)
             {
                 _anim.SetBool("Idle", false);
                 _anim.SetBool("Dash", true);
-            }
-        }
-
-        else
-        {
-            TimeToAtkBomb -= Time.deltaTime;
-            if (TimeToAtkBomb <= 0)
-            {
-                ActualState = State.Chama_Bomba;
             }
         }
         
@@ -246,6 +273,7 @@ public class IA_Boss : MonoBehaviour
         {
             StunTime = 0;
             print(StunTime);
+            _anim.SetBool("Injuried", false);
             ActualState = State.Idle;
         }
 
@@ -302,18 +330,21 @@ public class IA_Boss : MonoBehaviour
         if (Timer > 20)
         {
             StartBombs = false;
+            Timer = 0;
         }
     }
 
     private void AtkA()
     {
+        _navMeshAgent.enabled = true;
+
         CanHit = false;
 
         _anim.SetTrigger("ATK");
 
         TimeToAtkArea = 2;
 
-        ActualState = State.Idle;
+        ActualState = State.Walk;
 
     }
 
