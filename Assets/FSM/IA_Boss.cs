@@ -427,9 +427,9 @@ public class IA_Boss : MonoBehaviour
     }
 
 
-    public void PlaySound()
+    public void PlaySound(string Event)
     {
-
+        FMODUnity.RuntimeManager.PlayOneShot(Event, transform.position);
     }
 
     IEnumerator CalcDist()

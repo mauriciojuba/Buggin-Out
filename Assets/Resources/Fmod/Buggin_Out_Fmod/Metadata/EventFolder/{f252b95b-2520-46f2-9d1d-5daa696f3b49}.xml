@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.09.00">
+    <object class="EventFolder" id="{f252b95b-2520-46f2-9d1d-5daa696f3b49}">
+        <property name="name">
+            <value>Gecko</value>
+        </property>
+        <relationship name="folder">
+            <destination>{477ad5e9-49df-4036-ad54-02ac2fdf4107}</destination>
+        </relationship>
+    </object>
+</objects>
