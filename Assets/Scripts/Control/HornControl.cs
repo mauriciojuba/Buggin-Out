@@ -50,7 +50,7 @@ public class HornControl : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Debug.Log("Escolhendo ponto de retorno? "+escolhendoPontoDeRetorno);
+		//Debug.Log("Escolhendo ponto de retorno? "+escolhendoPontoDeRetorno);
         if (CanMove)
         {
             if (!natela)
@@ -240,7 +240,26 @@ public class HornControl : MonoBehaviour {
     // talvez seja necessário tornar público os limites da tela para diferentes objetos, dependo do tamanho.
     // horn limiteHorizontal = 0.1 e 0.9  limiteVertical = -0.1 e 0.5.
 		Vector3 pos = Camera.main.WorldToViewportPoint(trans.position);
-        // Debug.Log("Posicao Atual: " + pos);
+        Debug.Log(movFactor.z);
+        if(!natela){
+            if(pos.x <= limiteHorizontal.x && movFactor.x<0){
+            movFactor.x = 0;
+            }
+            //saiu pela direita
+            if(limiteHorizontal.y <= pos.x && movFactor.x>0){
+                movFactor.x = 0;
+            }
+            //saiu por baixo
+            if(pos.y <= 0 && movFactor.z<0){
+                movFactor.y = 0;
+                movFactor.z = 0;
+            }
+            //saiu por cima
+            if(limiteVertical.y <= pos.y && movFactor.z>0){
+                movFactor.y = 0;
+                movFactor.z = 0;
+            }
+        }
         //saiu pela esquerda
 		if(pos.x <= limiteHorizontal.x && movFactor.x<0){
             movFactor.x = 0;
