@@ -173,10 +173,10 @@ public class GrabObject : MonoBehaviour {
 		BoxProximity.GetComponent<Rigidbody> ().isKinematic = false;
         if (Aim)
         {
-            BoxProximity.GetComponent<Rigidbody>().useGravity = false;
+            //BoxProximity.GetComponent<Rigidbody>().useGravity = false;
             BoxProximity.transform.position = Muzzle.position;
             BoxProximity.transform.rotation = Muzzle.rotation;
-            BoxProximity.GetComponent<Rigidbody>().AddForce(Muzzle.forward * Force);
+            BoxProximity.GetComponent<Rigidbody>().AddForce(Muzzle.forward * Force * 2);
         }
         else
         {
