@@ -56,10 +56,14 @@ public class HornControl : MonoBehaviour {
             if (!natela)
             {
                 mov = new Vector3(Input.GetAxis("Horizontal P" + PlayerNumber), 0, Input.GetAxis("Vertical P" + PlayerNumber));
-                if (ReferenciaDir != null)
+                if (ReferenciaDir != null){
                     mov = ReferenciaDir.transform.TransformVector(mov);
+                }
+                
                 Vector3 Direction = new Vector3(rdb.velocity.x, 0, rdb.velocity.z);
                 Vector3 Directionabs = new Vector3(mov.x, 0, mov.z);
+                mov = CheckPositionOnScreen(mov,transform);
+                
 
                 if (mov.magnitude > 0)
                 {
