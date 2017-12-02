@@ -82,6 +82,10 @@ public class IA_Boss : MonoBehaviour
     public bool StartBombs;
     Vector3 Area1;
     Vector3 Area2;
+
+    public GameObject Mosquito;
+    public Transform Spawn;
+
     // Use this for initialization
     void Start()
     {
@@ -150,9 +154,26 @@ public class IA_Boss : MonoBehaviour
                 ActualState = State.ATK_Area;
         }
 
+        if (TimeToAtkDash > -1)
+            TimeToAtkDash -= Time.deltaTime;
+        if (TimeToAtkDash <= 2.5)
+        {
+            if (_anim != null)
+            {
+                _navMeshAgent.enabled = false;
+                _anim.SetBool("Walk", false);
+                _anim.SetBool("Idle", false);
+                _anim.SetBool("Dash", true);
+            }
+        }
+
+        if (TimeToAtkDash <= 0)
+        {
+            ActualState = State.ATK_Dash_Ground;
+        }
 
         //Iniciar Ataque Bomba
-        if(TimeToAtkBomb > -1)
+        if (TimeToAtkBomb > -1)
         TimeToAtkBomb -= Time.deltaTime;
         if (TimeToAtkBomb <= 0)
         {
@@ -300,7 +321,7 @@ public class IA_Boss : MonoBehaviour
         TimerToSpawnBomb = 0;
         TimeToAtkBomb = 30;
         StartBombs = true;
-        ActualState = State.Idle;
+        ActualState = State.Walk;
 
     }
 
@@ -418,9 +439,6 @@ public class IA_Boss : MonoBehaviour
    
     private void GoingToScreen()
     {
-
-
-
         Screen.GoToScreen(gameObject, -50f, 0f, 0f);
         RB.useGravity = false;
         onScreen = true;
@@ -453,6 +471,14 @@ public class IA_Boss : MonoBehaviour
 
 
     //Outras Funçoes  /////////////////////////////////////////
+
+        public void Sumon()
+    {
+        GameObject instance = (GameObject)Instantiate(Mosquito, Spawn.position, Spawn.rotation);
+        instance.GetComponent<NavMeshAgent>().Warp(Spawn.position);
+
+        instance.GetComponent<EnemyIA>().waypoints[0] = Target.transform;
+    }
 
     public void Particula(string Part)
     {
