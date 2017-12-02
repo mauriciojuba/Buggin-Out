@@ -55,7 +55,7 @@ public class HornControl : MonoBehaviour {
         {
             if (!natela)
             {
-                mov = new Vector3(Input.GetAxis("Horizontal P1"), 0, Input.GetAxis("Vertical P1"));
+                mov = new Vector3(Input.GetAxis("Horizontal P" + PlayerNumber), 0, Input.GetAxis("Vertical P" + PlayerNumber));
                 if (ReferenciaDir != null)
                     mov = ReferenciaDir.transform.TransformVector(mov);
                 Vector3 Direction = new Vector3(rdb.velocity.x, 0, rdb.velocity.z);
@@ -83,7 +83,7 @@ public class HornControl : MonoBehaviour {
             else
             {
 
-                mov = new Vector3(Input.GetAxis("Horizontal P1"), Input.GetAxis("Vertical P1"), 0);
+                mov = new Vector3(Input.GetAxis("Horizontal P" + PlayerNumber), Input.GetAxis("Vertical P" + PlayerNumber), 0);
 
                 mov = cameragame.transform.TransformVector(mov);
                 mov = CheckPositionOnScreen(mov, transform);
@@ -113,8 +113,7 @@ public class HornControl : MonoBehaviour {
             {
                 if (!natela)
                 {
-                    if (Input.GetButtonDown("RB P1") && !Going ||
-                        Input.GetKeyDown(KeyCode.LeftShift) && !Going)
+                    if (Input.GetButtonDown("RB P" + PlayerNumber) && !Going)
                     {
                         AntPos = GameObject.Instantiate(AntPosPrefab, transform.position, transform.rotation).transform;
                         antposRB = AntPos.GetComponent<Rigidbody>();
@@ -129,13 +128,11 @@ public class HornControl : MonoBehaviour {
                 }
                 else
                 {
-                    if (Input.GetButton("RB P1") && !Going ||
-                        Input.GetKey(KeyCode.LeftShift) && !Going)
+                    if (Input.GetButton("RB P" + PlayerNumber) && !Going)
                     {
                         MudaPontoDeRetorno();
                     }
-                    if (Input.GetButtonUp("RB P1") && !Going ||
-                        Input.GetKeyUp(KeyCode.LeftShift) && !Going)
+                    if (Input.GetButtonUp("RB P" + PlayerNumber) && !Going)
                     {
                         Going = true;
                         anim.SetBool("tocam", !natela);
@@ -196,7 +193,7 @@ public class HornControl : MonoBehaviour {
             {
                 if (SpecialRef.UsingSpecial())
                 {
-                    Vector3 movSpecial = new Vector3(Input.GetAxis("Horizontal P1"), 0, Input.GetAxis("Vertical P1"));
+                    Vector3 movSpecial = new Vector3(Input.GetAxis("Horizontal P" + PlayerNumber), 0, Input.GetAxis("Vertical P" + PlayerNumber));
                     Vector3 DirectionSpecial = new Vector3(movSpecial.x, 0, movSpecial.z);
                     if (DirectionSpecial.magnitude > 0.1f)
                     {
@@ -227,7 +224,7 @@ public class HornControl : MonoBehaviour {
             AntPos.GetComponent<Rigidbody>().isKinematic = false;
             AntPos.GetComponent<Rigidbody>().useGravity = true;
             AntPos.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            movAntPos = new Vector3 (Input.GetAxis ("Horizontal P1"), 0, Input.GetAxis ("Vertical P1"));
+            movAntPos = new Vector3 (Input.GetAxis ("Horizontal P" + PlayerNumber), 0, Input.GetAxis ("Vertical P" + PlayerNumber));
 			movAntPos = CheckPositionOnScreen (movAntPos,AntPos);
 			//Debug.Log (AntPos+","+ movAntPos);
 			AntPos.Translate (movAntPos * Time.deltaTime * CamSpeed*5, Space.World);

@@ -8,5 +8,7 @@ public class SetActualScene : MonoBehaviour {
 	void Start () {
         if(GameObject.FindWithTag("Loading") != null)
         GameObject.FindWithTag("Loading").GetComponent<Loading>().currentScene = SceneManager.GetActiveScene();
+
+        Camera.main.GetComponent<OLDTVFilter3>().preset.staticFilter.staticMagnitude = 0;
     }
 }

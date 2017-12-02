@@ -37,7 +37,8 @@ public class DetectJoysticks : MonoBehaviour {
 	[Range(1,5)]
 	[SerializeField] private float MaxTimer = 3;
 
-	[SerializeField] private GameObject Player2;
+	[SerializeField] private GameObject Player2Seta;
+    [SerializeField] private GameObject[] Player2GB;
 	[SerializeField] private Transform Point;
 	[Range(650,1500)]
 	[SerializeField] private float Force = 650;
@@ -118,7 +119,7 @@ public class DetectJoysticks : MonoBehaviour {
 			if (P2Active) {
 				if (Input.GetButtonDown ("B P2")) {
 					P2Active = false;
-					Destroy (P2);
+                    DeactiveP2(2);
 				}
 			}
 		} else {
@@ -168,7 +169,10 @@ public class DetectJoysticks : MonoBehaviour {
 
 	void SummonPlayer(int Number){
 		if (Number == 2) {
-			P2 = GameObject.Instantiate (Player2, Point.position, Point.rotation);
+            Player2Seta.SetActive(true); 
+            for(int i = 0; i < Player2GB.Length; i++){
+                Player2GB[i].SetActive(true);
+            }
 			//P2.transform.Find("PlayerModel").GetComponent<OptionsPlayer> ().CanMove = false;
 			//P2.transform.Find("PlayerModel").GetComponent<OptionsPlayer> ().PlayerNumber = Number;
 			//StartCoroutine (P2.transform.Find ("PlayerModel").GetComponent<OptionsPlayer> ().StarMove ());
@@ -177,4 +181,16 @@ public class DetectJoysticks : MonoBehaviour {
 			//P2.transform.Find ("PlayerModel").GetComponent<Rigidbody> ().useGravity = true;
 		}
 	}
+
+    void DeactiveP2(int Number)
+    {
+        if (Number == 2)
+        {
+            Player2Seta.SetActive(false);
+            for (int i = 0; i < Player2GB.Length; i++)
+            {
+                Player2GB[i].SetActive(false);
+            }
+        }
+    }
 }

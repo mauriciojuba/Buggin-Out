@@ -19,6 +19,7 @@ public class PlayerLife : MonoBehaviour {
 
     void Start () {
         LifeInGame = Instantiate(LifeEmblem, Camera.main.transform);
+        LifeInGame.GetComponent<PlayerLifePos>().PlayerNumb = GetComponent<PlayerNumb>().PlayerNumber;
         LifeInGame.name = "LifeEmblem";
         Mask = LifeInGame.GetComponent<Animator>();
         SpecialMask = LifeInGame.transform.Find("Special").GetComponent<Animator>();

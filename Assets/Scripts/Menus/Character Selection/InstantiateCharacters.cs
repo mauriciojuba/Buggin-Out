@@ -30,15 +30,18 @@ public class InstantiateCharacters : MonoBehaviour {
             P1.GetComponent<PlayerNumb>().PlayerNumber = DataS.P1SelectedCharacter.PlayerNumber;
             P1.GetComponent<PlayerLife>().LifeEmblem = DataS.P1SelectedCharacter.LifeEmblem;
             P1.GetComponent<PlayerLife>().MaxLife = DataS.P1SelectedCharacter.Life;
-			//ativa o script de movimentacao 3D para o jogador 1
-			//P1.transform.Find ("3D_Player").gameObject.GetComponent<PlayerNumb> ().PlayerNumber = DataS.P1SelectedCharacter.PlayerNumber;
-			//P1.transform.Find ("3D_Player").gameObject.GetComponent<Life> ().LifeQuant = DataS.P1SelectedCharacter.Life;
-			//P1.transform.Find ("3D_Player").gameObject.GetComponent<Life> ().LifeOF = Life.LifeType.Player;
-			//P1.transform.Find ("3D_Player").gameObject.GetComponent<UseSpecial> ().SpecialRef = DataS.P1SelectedCharacter.Special;
-			//P1.transform.Find ("3D_Player").gameObject.GetComponent<Life> ().LifeSpritePrefab = DataS.P1Life;
-			//P1.transform.Find ("3D_Player").tag = "Player1_3D";
+            P1.GetComponent<PlayerLife>().LifeAtual = DataS.P1SelectedCharacter.Life;
+            P1.GetComponent<JumpGravity>().PlayerNumber = DataS.P1SelectedCharacter.PlayerNumber;
+            P1.tag = "Player1_3D";
+            //ativa o script de movimentacao 3D para o jogador 1
+            //P1.transform.Find ("3D_Player").gameObject.GetComponent<PlayerNumb> ().PlayerNumber = DataS.P1SelectedCharacter.PlayerNumber;
+            //P1.transform.Find ("3D_Player").gameObject.GetComponent<Life> ().LifeQuant = DataS.P1SelectedCharacter.Life;
+            //P1.transform.Find ("3D_Player").gameObject.GetComponent<Life> ().LifeOF = Life.LifeType.Player;
+            //P1.transform.Find ("3D_Player").gameObject.GetComponent<UseSpecial> ().SpecialRef = DataS.P1SelectedCharacter.Special;
+            //P1.transform.Find ("3D_Player").gameObject.GetComponent<Life> ().LifeSpritePrefab = DataS.P1Life;
+            //P1.transform.Find ("3D_Player").tag = "Player1_3D";
 
-			if (P2Model != null) {
+            if (P2Model != null) {
 				//instancia o modelo de personagem do jogador 2.
 				P2 = GameObject.Instantiate (P2Model, P2_Pos.transform.position, P2_Pos.transform.rotation);
 				//define o nome do personagem
@@ -47,6 +50,9 @@ public class InstantiateCharacters : MonoBehaviour {
                 P2.GetComponent<PlayerNumb>().PlayerNumber = DataS.P2SelectedCharacter.PlayerNumber;
                 P2.GetComponent<PlayerLife>().LifeEmblem = DataS.P2SelectedCharacter.LifeEmblem;
                 P2.GetComponent<PlayerLife>().MaxLife = DataS.P2SelectedCharacter.Life;
+                P2.GetComponent<PlayerLife>().LifeAtual = DataS.P2SelectedCharacter.Life;
+                P2.GetComponent<JumpGravity>().PlayerNumber = DataS.P2SelectedCharacter.PlayerNumber;
+                P2.tag = "Player2_3D";
                 //ativa o script de movimentacao 3D para o jogador 1
                 //P2.transform.Find ("3D_Player").gameObject.GetComponent<PlayerNumb> ().PlayerNumber = DataS.P2SelectedCharacter.PlayerNumber;
                 //P2.transform.Find ("3D_Player").gameObject.GetComponent<Life> ().LifeQuant = DataS.P2SelectedCharacter.Life;

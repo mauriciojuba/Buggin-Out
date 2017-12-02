@@ -8,7 +8,7 @@ public class JumpGravity : MonoBehaviour {
 	[SerializeField] private float FallMultiplier = 2.5f;
 	[SerializeField] private float LowJumpMultiplayer = 2;
 	[SerializeField] private HornControl Moviment;
-	[SerializeField] private int PlayerNumber;
+	public int PlayerNumber;
 	[SerializeField] private float MaxJump, JumpForce;
 
 
@@ -20,14 +20,14 @@ public class JumpGravity : MonoBehaviour {
 	Rigidbody Rb;
 
 	void Awake () {
-		PlayerNumber = GetComponent<PlayerNumb> ().PlayerNumber;
 		AnimCTRL = GetComponent<AnimationControl> ();
 		Rb = GetComponent<Rigidbody> ();
 		Moviment = GetComponent<HornControl> ();
-	}
-	
-	// Update is called once per frame
-	void FixedUpdate () {
+        PlayerNumber = GetComponent<PlayerNumb>().PlayerNumber;
+    }
+
+    // Update is called once per frame
+    void FixedUpdate () {
 		if (Moviment != null) {
 			if (!Moviment.natela) {
 				/*
