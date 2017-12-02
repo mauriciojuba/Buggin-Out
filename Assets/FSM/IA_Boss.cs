@@ -355,18 +355,16 @@ public class IA_Boss : MonoBehaviour
 
         CanHit = false;
 
+        _navMeshAgent.stoppingDistance = 0;
+        _navMeshAgent.speed = 20;
         //Dash No Chao
 
-        if (_anim != null)
-            _anim.SetBool("IsParolling", true);
         Vector3 dir = waypoints[currentWaypoint].position - transform.position;
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime * rotationSpeed);
-        transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
+        //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime * rotationSpeed);
+        //transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
 
         if (dir.sqrMagnitude <= 1)
         {
-            if (_anim != null)
-                _anim.SetBool("IsParolling", false);
 
             currentWaypoint++;
             CalculaDistancia();
@@ -374,12 +372,17 @@ public class IA_Boss : MonoBehaviour
             {
                 currentWaypoint = 0;
                 _anim.SetTrigger("DashScreen");
+                _navMeshAgent.enabled = false;
+                _navMeshAgent.stoppingDistance = 5;
+                _navMeshAgent.speed = 2.5f;
                 ActualState = State.UpToScreen;
             }
         }
         else
         {
-            RB.MovePosition(transform.position + transform.forward * Time.deltaTime * DashSpeed);
+            _navMeshAgent.enabled = true;
+            _navMeshAgent.SetDestination(waypoints[currentWaypoint].position);
+            // RB.MovePosition(transform.position + transform.forward * Time.deltaTime * DashSpeed);
         }
     }
 
