@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class Minigame : MonoBehaviour {
@@ -9,6 +10,7 @@ public class Minigame : MonoBehaviour {
     [SerializeField] List<GameObject> AreaEnemies;
     [SerializeField] bool Started;
     [SerializeField] GameObject[] Prision;
+    [SerializeField] Text _TextTimer;
 	void Start () {
         for (int i = 0; i < AreaEnemies.Count; i++)
         {
@@ -20,6 +22,13 @@ public class Minigame : MonoBehaviour {
 	void Update () {
         if (Started)
         {
+
+            if (_TextTimer != null)
+            {
+                int minutes = (int)(Timer / 60);
+                int seconds = (int)(Timer % 60);
+                _TextTimer.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+            }
             if (AreaEnemies.Count > 0)
             {
                 if(Timer > 0)

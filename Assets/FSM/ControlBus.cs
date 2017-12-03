@@ -15,7 +15,7 @@ public class ControlBus : MonoBehaviour {
     [Range(-0.2f,0.2f)]
     public float BrightnessNivel;
 
-    public int MasterVolume, MusicVolume, SFXVolume, DubsVolume, Brightness;
+    public int MasterVolume, MusicVolume, SFXVolume, DubsVolume, Brightness, Resolution;
 
     private GameObject[] Controls;
     private OLDTVFilter3 TV;
