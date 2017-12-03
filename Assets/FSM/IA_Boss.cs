@@ -76,7 +76,11 @@ public class IA_Boss : MonoBehaviour
     protected float targetDistance;
     public float randomOffsetOnScreen;
 
+
     public ParticleSystem Hamer;
+    public GameObject HamerParticle;
+    public GameObject DashParticle;
+
     public float TimerToSpawnBomb;
     public float Timer;
     public bool StartBombs;
@@ -89,6 +93,10 @@ public class IA_Boss : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+
+        HamerParticle.SetActive(false);
+        DashParticle.SetActive(false);
+
         _navMeshAgent = this.GetComponent<NavMeshAgent>();
 
         if (_navMeshAgent == null)
@@ -373,6 +381,7 @@ public class IA_Boss : MonoBehaviour
     {
 
         HitBoxOn("Dash");
+        DashParticle.SetActive(true);
 
         CanHit = false;
 
@@ -411,7 +420,7 @@ public class IA_Boss : MonoBehaviour
     {
         CanHit = false;
 
-        
+        DashParticle.SetActive(false);
 
         //Dash Na tela
         RB.isKinematic = true;
@@ -484,6 +493,7 @@ public class IA_Boss : MonoBehaviour
     {
         if(Part == "Hamer")
         {
+            HamerParticle.SetActive(true);
             Hamer.Play();
         }
 
