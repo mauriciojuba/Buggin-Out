@@ -358,7 +358,23 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.086330935
+        functionName: PlaySound
+        data: event:/Player/Horn/Footsteps_Horn
+        objectReferenceParameter: {fileID: 11500000, guid: 5d9b5e3bc974c634a868df0dd32af592,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.6366906
+        functionName: PlaySound
+        data: event:/Player/Horn/Footsteps_Horn
+        objectReferenceParameter: {fileID: 11500000, guid: 5d9b5e3bc974c634a868df0dd32af592,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -386,7 +402,23 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.48112208
+        functionName: PlaySound
+        data: event:/Player/Horn/Footsteps_Horn
+        objectReferenceParameter: {fileID: 11500000, guid: 5d9b5e3bc974c634a868df0dd32af592,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.91726613
+        functionName: PlaySound
+        data: event:/Player/Horn/Footsteps_Horn
+        objectReferenceParameter: {fileID: 11500000, guid: 5d9b5e3bc974c634a868df0dd32af592,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
