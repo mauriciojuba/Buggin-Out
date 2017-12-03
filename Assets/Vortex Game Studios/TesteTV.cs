@@ -23,6 +23,10 @@ public class TesteTV : MonoBehaviour {
     public Text _TextGraphics;
     public Text _TextBrightness;
     public Text _TextMasterVolume;
+    public Text _TextMusic;
+    public Text _TextDubs;
+    public Text _TextSFX;
+
 
     int QualitySelected;
 
@@ -32,6 +36,15 @@ public class TesteTV : MonoBehaviour {
     int VolumeNumber;
     string MasterVolume;
 
+    int MusicVolNumber;
+    string MusicVolume;
+
+    int DubsVolNumber;
+    string DubsVolume;
+
+    int SFXVolNumber;
+    string SFXVolume;
+
     public string OptionSelected;
 
     [SerializeField] OLDTVFilter3 TVMenu;
@@ -40,13 +53,60 @@ public class TesteTV : MonoBehaviour {
 
     [SerializeField] bool CanChange = true;
 
+    [SerializeField] private ControlBus VolControl;
+
+    [SerializeField]
+    public Resolution[] _Resolutions;
+    public Resolution _CurrentRes;
+    public Text Res;
+    public int QuantRes;
+    public int SelectedRes;
     // Use this for initialization
     void Start () {
+        _Resolutions = Screen.resolutions;
+        _CurrentRes = Screen.currentResolution;
+
+        for(int i = 0; i < _Resolutions.Length; i++)
+        {
+            if(_Resolutions[i].height == _CurrentRes.height && _Resolutions[i].width == _CurrentRes.width)
+            {
+                break;
+            }
+            SelectedRes++;
+        }
+
         CanChange = true;
         SetMenus();
+        VolControl = GameObject.Find("VolumeControl").GetComponent<ControlBus>();
+
+        VolumeNumber = VolControl.MasterVolume;
+        MusicVolNumber = VolControl.MusicVolume;
+        DubsVolNumber = VolControl.DubsVolume;
+        SFXVolNumber = VolControl.SFXVolume;
+        BrightnessNumber = VolControl.Brightness;
+
         for (int i = 0; i < BrightnessNumber; i++)
         {
             Brightness += "/";
+        }
+        for (int i = 0; i < VolumeNumber; i++)
+        {
+            MasterVolume += "/";
+        }
+
+        for (int i = 0; i < MusicVolNumber; i++)
+        {
+            MusicVolume += "/";
+        }
+
+        for (int i = 0; i < DubsVolNumber; i++)
+        {
+            DubsVolume += "/";
+        }
+
+        for (int i = 0; i < SFXVolNumber; i++)
+        {
+            SFXVolume += "/";
         }
 
         if (InMenus[InMenuSelection] != null && InMenus.Length > 0)
@@ -73,7 +133,11 @@ public class TesteTV : MonoBehaviour {
         _TextGraphics.text = QualitySettings.names[QualitySelected];
         _TextBrightness.text = Brightness;
         _TextMasterVolume.text = MasterVolume;
-
+        _TextDubs.text = DubsVolume;
+        _TextMusic.text = MusicVolume;
+        _TextSFX.text = SFXVolume;
+        Res.text = " " + _Resolutions[SelectedRes].width + " X " + _Resolutions[SelectedRes].height + " @ " + _Resolutions[SelectedRes].refreshRate + " hz";
+        QuantRes = _Resolutions.Length;
 
         #region Buttons to Press
         if (Input.GetAxis("Horizontal P1") > 0.5f && CanChange || Input.GetKey(KeyCode.D) && CanChange)
@@ -123,16 +187,63 @@ public class TesteTV : MonoBehaviour {
         {
             if (BrightnessNumber < 20)
             {
-                BrightnessNumber++;
+                VolControl.Brightness++;
+                VolControl.BrightnessNivel += 0.02f;
+                BrightnessNumber ++;
+                VolControl.SetBrightness();
                 Brightness += "/";
+            }
+        }
+        if(OptionSelected == "Resolução")
+        {
+            if(SelectedRes < _Resolutions.Length - 1)
+            {
+                SelectedRes++;
+                Screen.SetResolution(_Resolutions[SelectedRes].width, _Resolutions[SelectedRes].height, Screen.fullScreen);
             }
         }
         if (OptionSelected == "Volume Geral")
         {
             if (VolumeNumber < 20)
             {
+                VolControl.MasterVolume++;
+                VolControl.VolMaster += 0.05f;
+                VolControl.SetMasterVolume();
                 VolumeNumber++;
                 MasterVolume += "/";
+            }
+        }
+        if (OptionSelected == "Musica")
+        {
+            if (MusicVolNumber < 20)
+            {
+                VolControl.MusicVolume++;
+                VolControl.VolTrilhas += 0.05f;
+                VolControl.SetMusicVolume();
+                MusicVolNumber++;
+                MusicVolume += "/";
+            }
+        }
+        if (OptionSelected == "Dublagens")
+        {
+            if (DubsVolNumber < 20)
+            {
+                VolControl.DubsVolume++;
+                VolControl.VolFalas += 0.05f;
+                VolControl.SetDubsVolume();
+                DubsVolNumber++;
+                DubsVolume += "/";
+            }
+        }
+        if (OptionSelected == "Efeitos Sonoros")
+        {
+            if (SFXVolNumber < 20)
+            {
+                VolControl.SFXVolume++;
+                VolControl.VolSFX += 0.05f;
+                VolControl.SetSfxVolume();
+                SFXVolNumber++;
+                SFXVolume += "/";
             }
         }
     }
@@ -155,6 +266,9 @@ public class TesteTV : MonoBehaviour {
             if (BrightnessNumber > 0)
             {
                 BrightnessNumber--;
+                VolControl.Brightness--;
+                VolControl.BrightnessNivel -= 0.02f;
+                VolControl.SetBrightness();
                 Brightness = "";
                 for (int i = 0; i < BrightnessNumber; i++)
                 {
@@ -163,15 +277,75 @@ public class TesteTV : MonoBehaviour {
             }
         }
 
+        if (OptionSelected == "Resolução")
+        {
+            if (SelectedRes > 0)
+            {
+                SelectedRes--;
+                Screen.SetResolution(_Resolutions[SelectedRes].width, _Resolutions[SelectedRes].height, Screen.fullScreen);
+            }
+        }
+
         if (OptionSelected == "Volume Geral")
         {
             if (VolumeNumber > 0)
             {
                 VolumeNumber--;
+                VolControl.MasterVolume--;
+                VolControl.VolMaster -= 0.05f;
+                VolControl.SetMasterVolume();
                 MasterVolume = "";
                 for (int i = 0; i < VolumeNumber; i++)
                 {
                     MasterVolume += "/";
+                }
+            }
+        }
+
+        if (OptionSelected == "Musica")
+        {
+            if (MusicVolNumber > 0)
+            {
+                MusicVolNumber--;
+                VolControl.MusicVolume--;
+                VolControl.VolTrilhas -= 0.05f;
+                VolControl.SetMusicVolume();
+                MusicVolume = "";
+                for (int i = 0; i < MusicVolNumber; i++)
+                {
+                    MusicVolume += "/";
+                }
+            }
+        }
+
+        if (OptionSelected == "Dublagens")
+        {
+            if (DubsVolNumber > 0)
+            {
+                DubsVolNumber--;
+                VolControl.DubsVolume--;
+                VolControl.VolFalas -= 0.05f;
+                VolControl.SetDubsVolume();
+                DubsVolume = "";
+                for (int i = 0; i < DubsVolNumber; i++)
+                {
+                    DubsVolume += "/";
+                }
+            }
+        }
+
+        if (OptionSelected == "Efeitos Sonoros")
+        {
+            if (SFXVolNumber > 0)
+            {
+                SFXVolNumber--;
+                VolControl.SFXVolume--;
+                VolControl.VolSFX -= 0.05f;
+                VolControl.SetSfxVolume();
+                SFXVolume = "";
+                for (int i = 0; i < SFXVolNumber; i++)
+                {
+                    SFXVolume += "/";
                 }
             }
         }

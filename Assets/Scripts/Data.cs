@@ -21,6 +21,8 @@ public class Data : MonoBehaviour {
 
 	public GameObject P1Life, P2Life;
 
+
+
 	void Awake(){
 		//procura todas os objetos de Dados do jogo e coloca no Array.
 		Datas = GameObject.FindGameObjectsWithTag ("DATA");
