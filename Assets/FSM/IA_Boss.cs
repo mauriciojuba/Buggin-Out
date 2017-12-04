@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.AI;
 
 public class IA_Boss : MonoBehaviour
@@ -33,6 +34,7 @@ public class IA_Boss : MonoBehaviour
     public float Target_dist;
 
     [Header("Vida")]
+    public float LifeMax = 3000f;
     public float Life = 3000f;
     public bool CanHit;
     public bool hitted;
@@ -96,6 +98,8 @@ public class IA_Boss : MonoBehaviour
 
     public float TimerToEnd;
     public GameObject EndGame;
+    public Image LifeIndicator;
+    public bool SetOffIsRunning;
     // Use this for initialization
     void Start()
     {
@@ -268,6 +272,14 @@ public class IA_Boss : MonoBehaviour
 
             Life -= playerStr;
             hitted = false;
+        }
+
+        if (LifeIndicator != null)
+        {
+            LifeIndicator.gameObject.SetActive(true);
+            if (!SetOffIsRunning)
+                StartCoroutine(SetOffLifeDisplay());
+            LifeIndicator.fillAmount = Life / LifeMax;
         }
 
         if (Life > 0f && StunTime > 0f)
@@ -602,6 +614,14 @@ public class IA_Boss : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, SafeDist);
+    }
+
+    public IEnumerator SetOffLifeDisplay()
+    {
+        SetOffIsRunning = true;
+        yield return new WaitForSeconds(15);
+        LifeIndicator.gameObject.SetActive(false);
+        SetOffIsRunning = false;
     }
 
     //public void OnTriggerEnter(Collider hit)
