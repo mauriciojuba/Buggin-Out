@@ -458,7 +458,7 @@ ModelImporter:
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 5d9b5e3bc974c634a868df0dd32af592,
           type: 3}
-        floatParameter: 100
+        floatParameter: 150
         intParameter: 0
         messageOptions: 0
       - time: 0.9253337
@@ -510,7 +510,7 @@ ModelImporter:
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 5d9b5e3bc974c634a868df0dd32af592,
           type: 3}
-        floatParameter: 100
+        floatParameter: 150
         intParameter: 0
         messageOptions: 0
       - time: 0.8213352
@@ -562,7 +562,7 @@ ModelImporter:
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 5d9b5e3bc974c634a868df0dd32af592,
           type: 3}
-        floatParameter: 100
+        floatParameter: 150
         intParameter: 0
         messageOptions: 0
       - time: 0.77599823
@@ -614,7 +614,7 @@ ModelImporter:
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 5d9b5e3bc974c634a868df0dd32af592,
           type: 3}
-        floatParameter: 100
+        floatParameter: 150
         intParameter: 0
         messageOptions: 0
       - time: 0.75466776
@@ -666,7 +666,7 @@ ModelImporter:
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 5d9b5e3bc974c634a868df0dd32af592,
           type: 3}
-        floatParameter: 100
+        floatParameter: 150
         intParameter: 0
         messageOptions: 0
       - time: 0.42666698
@@ -674,7 +674,7 @@ ModelImporter:
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 5d9b5e3bc974c634a868df0dd32af592,
           type: 3}
-        floatParameter: 100
+        floatParameter: 150
         intParameter: 0
         messageOptions: 0
       - time: 0.67999995

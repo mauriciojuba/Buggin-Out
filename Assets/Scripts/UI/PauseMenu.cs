@@ -18,6 +18,8 @@ public class PauseMenu : MonoBehaviour {
 
     [SerializeField] OLDTVFilter3 TVMenu;
 
+    public TesteTV _Ajustar;
+
     private void Start()
     {
         if (GameObject.FindWithTag("Player1_3D") != null)
@@ -71,6 +73,11 @@ public class PauseMenu : MonoBehaviour {
         {
             //Event.SetSelectedGameObject(ButtonSelect);
             StartCoroutine(Static());
+            _Ajustar.MenuSelected = 0;
+            _Ajustar.InMenuSelection = 0;
+            _Ajustar.SetMenus();
+            _Ajustar.SetColor();
+            StartCoroutine(_Ajustar.GetComponent<TesteTV>().SetCanChange());
         }
         else
         {

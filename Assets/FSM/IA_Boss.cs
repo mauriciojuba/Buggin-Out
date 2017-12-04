@@ -93,6 +93,9 @@ public class IA_Boss : MonoBehaviour
     public GameObject Mosquito;
     public Transform Spawn;
 
+
+    public float TimerToEnd;
+    public GameObject EndGame;
     // Use this for initialization
     void Start()
     {
@@ -277,7 +280,11 @@ public class IA_Boss : MonoBehaviour
     {
         _anim.SetBool("Dead", true);
         _anim.SetTrigger("Death");
-        
+        TimerToEnd += Time.deltaTime;
+        if(TimerToEnd > 5)
+        {
+            EndGame.SetActive(true);
+        }
     }
 
 

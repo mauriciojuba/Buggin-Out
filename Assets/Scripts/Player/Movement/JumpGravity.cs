@@ -26,7 +26,28 @@ public class JumpGravity : MonoBehaviour {
         PlayerNumber = GetComponent<PlayerNumb>().PlayerNumber;
     }
 
-    // Update is called once per frame
+
+    private void Update()
+    {
+        InGround = Physics.Linecast(transform.position, transform.position - Vector3.up * 1.1f, NoIgnoredLayers);
+        Debug.DrawLine(transform.position, transform.position - Vector3.up);
+        //se estiver no chao, pula, apertando A no controle.
+        AnimCTRL.SetGrounded(InGround);
+        if (Input.GetButtonDown("A P" + PlayerNumber) && InGround && !Moviment.natela || Input.GetButtonDown("Jump") && InGround && !Moviment.natela)
+        {
+
+            Jumping = true;
+            AnimCTRL.SetJumpAnim();
+            Vector3 V3 = Rb.velocity;
+            V3.y = JumpForce;
+            Rb.velocity = V3;
+        }
+        if (Input.GetButtonUp("A P" + PlayerNumber) || Input.GetButtonUp("Jump"))
+        {
+            Jumping = false;
+        }
+    }
+
     void FixedUpdate () {
 		if (Moviment != null) {
 			if (!Moviment.natela) {
@@ -52,17 +73,17 @@ public class JumpGravity : MonoBehaviour {
 		Debug.DrawLine (transform.position,transform.position - Vector3.up);
 		//se estiver no chao, pula, apertando A no controle.
 		AnimCTRL.SetGrounded(InGround);
-		if (Input.GetButtonDown ("A P" + PlayerNumber) && InGround && !Moviment.natela || Input.GetButtonDown("Jump") && InGround && !Moviment.natela) {
+		//if (Input.GetButtonDown ("A P" + PlayerNumber) && InGround && !Moviment.natela || Input.GetButtonDown("Jump") && InGround && !Moviment.natela) {
 
-			Jumping = true;
-			AnimCTRL.SetJumpAnim ();
-			Vector3 V3 = Rb.velocity;
-			V3.y = JumpForce;
-			Rb.velocity = V3;
-		}
-		if (Input.GetButtonUp ("A P" + PlayerNumber) || Input.GetButtonUp("Jump")) {
-			Jumping = false;
-		}
+		//	Jumping = true;
+		//	AnimCTRL.SetJumpAnim ();
+		//	Vector3 V3 = Rb.velocity;
+		//	V3.y = JumpForce;
+		//	Rb.velocity = V3;
+		//}
+		//if (Input.GetButtonUp ("A P" + PlayerNumber) || Input.GetButtonUp("Jump")) {
+		//	Jumping = false;
+		//}
 //			}
 
 		if (Jumping && !Moviment.natela) {

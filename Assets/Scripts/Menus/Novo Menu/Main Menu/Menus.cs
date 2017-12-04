@@ -7,6 +7,7 @@ public class Menus : MonoBehaviour {
     [SerializeField] GameObject Menu;
     [SerializeField] bool StartNewGame;
     public string NamePhase;
+  
 
     public void ActiveMenu()
     {

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Barreira : MonoBehaviour {
 
-	[SerializeField] List<GameObject> AreaEnemys;
+	[SerializeField] public List<GameObject> AreaEnemys;
 	[SerializeField] Rigidbody dominoCenterLeft,dominoCenterRight;
 	[SerializeField] Vector3 forceDir;
     [SerializeField] GameObject[] Dominos;

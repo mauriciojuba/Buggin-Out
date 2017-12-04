@@ -16,23 +16,26 @@ public class EspecialLiz : MonoBehaviour
     {
         if (hit.CompareTag("Enemy"))
         {
-            if (hit.GetComponent<IA_Mosquito>() != null)
+            if (SpecialLiz)
             {
-                hit.GetComponent<IA_Mosquito>().playerStr = Damage;
-                hit.GetComponent<IA_Mosquito>().hitted = true;
-                hit.GetComponent<IA_Mosquito>().TakeDamage();
-            }
+                if (hit.GetComponent<IA_Mosquito>() != null)
+                {
+                    hit.GetComponent<IA_Mosquito>().playerStr = Damage;
+                    hit.GetComponent<IA_Mosquito>().hitted = true;
+                    hit.GetComponent<IA_Mosquito>().TakeDamage();
+                }
 
-            if (hit.GetComponent<IA_Aranha>() != null)
-            {
-                hit.GetComponent<IA_Aranha>().Life -= Damage;
-                hit.GetComponent<IA_Aranha>().TakeDamage();
-            }
+                if (hit.GetComponent<IA_Aranha>() != null)
+                {
+                    hit.GetComponent<IA_Aranha>().Life -= Damage;
+                    hit.GetComponent<IA_Aranha>().TakeDamage();
+                }
 
-            if (hit.GetComponent<IA_Mariposa>() != null)
-            {
-                hit.GetComponent<IA_Mariposa>().Life -= Damage;
-                hit.GetComponent<IA_Mariposa>().TakeDamage();
+                if (hit.GetComponent<IA_Mariposa>() != null)
+                {
+                    hit.GetComponent<IA_Mariposa>().Life -= Damage;
+                    hit.GetComponent<IA_Mariposa>().TakeDamage();
+                }
             }
         }
         if (!SpecialLiz)

@@ -6,6 +6,6 @@ public class ReturnMenu : MonoBehaviour {
 
 	void ReturnToMenu(){
 
-		UnityEngine.SceneManagement.SceneManager.LoadScene ("Creditos");
+		UnityEngine.SceneManagement.SceneManager.LoadScene ("Main");
 	}
 }

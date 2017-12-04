@@ -491,7 +491,7 @@ public class EnemyIA : MonoBehaviour, IGroundEnemy, IKillable, IGoToScreen, IScr
 
         if (Screen.GoOffScreen(worldPos, gameObject)) {
             TimeToNextPoint = 5;
-            RB.isKinematic = false;
+            //RB.isKinematic = false;
             RB.useGravity = true;
             onScreen = false;
             _navMeshAgent.enabled = true;

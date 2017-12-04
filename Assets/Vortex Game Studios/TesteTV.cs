@@ -184,6 +184,8 @@ public class TesteTV : MonoBehaviour {
 
     void Plus()
     {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Menu/Confirm", transform.position);
+
         StartCoroutine(SetCanChange());
         if(OptionSelected == "Gráficos")
         {
@@ -260,6 +262,7 @@ public class TesteTV : MonoBehaviour {
 
     void Minus()
     {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Menu/Confirm", transform.position);
         StartCoroutine(SetCanChange());
 
         if (OptionSelected == "Gráficos")
@@ -363,6 +366,8 @@ public class TesteTV : MonoBehaviour {
 
     void PlusMenu()
     {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Menu/Confirm", transform.position);
+
         StartCoroutine(SetCanChange());
 
         if (MenuSelected < Menus.Length - 1)
@@ -402,6 +407,8 @@ public class TesteTV : MonoBehaviour {
 
     void MinusMenu()
     {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Menu/Confirm", transform.position);
+
         StartCoroutine(SetCanChange());
 
         if (MenuSelected > 0)
@@ -440,6 +447,7 @@ public class TesteTV : MonoBehaviour {
 
     void PlusInMenu()
     {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Menu/Select", transform.position);
         StartCoroutine(SetCanChange());
 
         if (InMenuSelection < InMenus.Length - 1)
@@ -462,6 +470,7 @@ public class TesteTV : MonoBehaviour {
 
     void MinusInMenu()
     {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Menu/Select", transform.position);
         StartCoroutine(SetCanChange());
 
         if (InMenuSelection > 0)
