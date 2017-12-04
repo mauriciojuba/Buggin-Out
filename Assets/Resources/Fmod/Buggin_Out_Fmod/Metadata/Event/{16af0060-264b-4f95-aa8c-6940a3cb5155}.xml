@@ -5,7 +5,7 @@
             <value>Pouca Vida</value>
         </property>
         <property name="outputFormat">
-            <value>2</value>
+            <value>1</value>
         </property>
         <relationship name="folder">
             <destination>{f252b95b-2520-46f2-9d1d-5daa696f3b49}</destination>
@@ -31,6 +31,9 @@
         <relationship name="timeline">
             <destination>{1da6821a-4633-486b-9cc7-3b36e775c48f}</destination>
         </relationship>
+        <relationship name="banks">
+            <destination>{90ddf400-f10c-4793-8037-e300dffb3841}</destination>
+        </relationship>
     </object>
     <object class="EventMixer" id="{7f1f9108-066f-4099-9f6d-f35683b75f41}">
         <relationship name="masterBus">
@@ -50,10 +53,17 @@
             <destination>{83ce3801-bd94-48a8-bdc2-e16456134719}</destination>
         </relationship>
         <relationship name="output">
-            <destination>{f58d2150-9fad-4aa0-8621-f3dba9c2ee89}</destination>
+            <destination>{c4aad773-f1a6-4700-b518-16f78b7bd0a2}</destination>
         </relationship>
     </object>
-    <object class="EventAutomatableProperties" id="{23771579-8425-40b2-a78c-90b81c02c201}"/>
+    <object class="EventAutomatableProperties" id="{23771579-8425-40b2-a78c-90b81c02c201}">
+        <property name="maxVoices">
+            <value>1</value>
+        </property>
+        <property name="voiceStealing">
+            <value>3</value>
+        </property>
+    </object>
     <object class="MarkerTrack" id="{eb85fe0a-bfbc-4327-917e-9db2065990a2}"/>
     <object class="GroupTrack" id="{57449579-ac24-46ed-8ce7-00e6ff831d2b}">
         <relationship name="modules">
@@ -111,7 +121,6 @@
     <object class="MixerBusEffectChain" id="{2b011ab4-0be4-4f0d-bde8-04634cbff089}">
         <relationship name="effects">
             <destination>{cae65cd9-9426-4afa-927f-bf2b9d3b05de}</destination>
-            <destination>{528eb974-eba1-4006-89b8-5e557f423fd5}</destination>
         </relationship>
     </object>
     <object class="MixerBusPanner" id="{3baa55cd-7695-406d-904e-05b24447b2a9}"/>
@@ -133,6 +142,5 @@
     </object>
     <object class="MixerBusPanner" id="{df7c2f71-89ff-485a-8820-bf57ba45c9c7}"/>
     <object class="MixerBusFader" id="{cae65cd9-9426-4afa-927f-bf2b9d3b05de}"/>
-    <object class="SpatialiserEffect" id="{528eb974-eba1-4006-89b8-5e557f423fd5}"/>
     <object class="MixerBusFader" id="{5d8fe3c7-d664-450b-925e-16927a902da2}"/>
 </objects>

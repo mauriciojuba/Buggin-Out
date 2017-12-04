@@ -2,10 +2,10 @@
 <objects serializationModel="Studio.01.09.00">
     <object class="Event" id="{8b0bdf0a-4119-45a4-9729-9cb74b562570}">
         <property name="name">
-            <value>Geck_atk</value>
+            <value>Gecko_atk</value>
         </property>
         <property name="outputFormat">
-            <value>2</value>
+            <value>1</value>
         </property>
         <relationship name="folder">
             <destination>{f252b95b-2520-46f2-9d1d-5daa696f3b49}</destination>
@@ -31,6 +31,9 @@
         <relationship name="timeline">
             <destination>{cfb5b390-89b5-4237-8035-841f7f25930d}</destination>
         </relationship>
+        <relationship name="banks">
+            <destination>{90ddf400-f10c-4793-8037-e300dffb3841}</destination>
+        </relationship>
     </object>
     <object class="EventMixer" id="{ea21ac03-9292-43fb-8e80-56c7799586a0}">
         <relationship name="masterBus">
@@ -50,10 +53,17 @@
             <destination>{10fa1b62-b50e-4263-989a-dbc03eef8a6f}</destination>
         </relationship>
         <relationship name="output">
-            <destination>{f58d2150-9fad-4aa0-8621-f3dba9c2ee89}</destination>
+            <destination>{c4aad773-f1a6-4700-b518-16f78b7bd0a2}</destination>
         </relationship>
     </object>
-    <object class="EventAutomatableProperties" id="{65b3dc9d-9643-4585-98df-b1fd8a2ccfb8}"/>
+    <object class="EventAutomatableProperties" id="{65b3dc9d-9643-4585-98df-b1fd8a2ccfb8}">
+        <property name="maxVoices">
+            <value>3</value>
+        </property>
+        <property name="voiceStealing">
+            <value>3</value>
+        </property>
+    </object>
     <object class="MarkerTrack" id="{c8cd22c5-2de1-415b-82f2-3a569a725568}"/>
     <object class="GroupTrack" id="{863838d5-bf11-477c-945d-5837d705b5a2}">
         <relationship name="modules">
@@ -114,7 +124,6 @@
     <object class="MixerBusEffectChain" id="{f1e565f3-a1ef-4a0c-b701-8dd8f0d16981}">
         <relationship name="effects">
             <destination>{183bc158-962c-4266-b91d-70ad25f480ed}</destination>
-            <destination>{ae0dca37-42e1-4d46-b93d-9239119c0307}</destination>
         </relationship>
     </object>
     <object class="MixerBusPanner" id="{e1af5078-9e98-4485-8359-d33d54edb3e1}"/>
@@ -151,6 +160,5 @@
     </object>
     <object class="MixerBusPanner" id="{fa4894ae-58a2-4fb8-9dd2-01c25ac0b9d5}"/>
     <object class="MixerBusFader" id="{183bc158-962c-4266-b91d-70ad25f480ed}"/>
-    <object class="SpatialiserEffect" id="{ae0dca37-42e1-4d46-b93d-9239119c0307}"/>
     <object class="MixerBusFader" id="{332f4988-8d97-4fe7-ad4a-226266f42d66}"/>
 </objects>

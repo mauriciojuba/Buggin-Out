@@ -49,6 +49,7 @@ public class IA_Boss : MonoBehaviour
     public float TimeToAtkBomb;
     public float TimeToSumon;
     public GameObject Bomb, BombFail;
+    public GameObject PoisonBomb;
     public GameObject BombAim;
 
     [Header("WayPoint")]
@@ -86,6 +87,8 @@ public class IA_Boss : MonoBehaviour
     public bool StartBombs;
     Vector3 Area1;
     Vector3 Area2;
+
+    public bool PoucaVida = false;
 
     public GameObject Mosquito;
     public Transform Spawn;
@@ -147,6 +150,12 @@ public class IA_Boss : MonoBehaviour
         _navMeshAgent.enabled = true;
         _navMeshAgent.SetDestination(Target.transform.position);
 
+        if (PoucaVida == false && Life < 1000)
+        {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Inimigos/Gecko/Pouca Vida", transform.position);
+            PoucaVida = true;
+        }
+        
         if (Target.GetComponent<HornControl>().natela == true)
         {
             _anim.SetBool("Walk", false);
@@ -347,13 +356,24 @@ public class IA_Boss : MonoBehaviour
             RandomX = UnityEngine.Random.Range(Area2.x, Area1.x);
             float RandomZ;
             RandomZ = UnityEngine.Random.Range(Area2.z, Area1.z);
-            if (random <= 1)
-                Instantiate(BombFail, new Vector3(RandomX, Area1.y, RandomZ) + Vector3.up * 20, Target.transform.rotation);
+            if (Life > 1000f)
+            {
+                if (random <= 1)
+                    Instantiate(BombFail, new Vector3(RandomX, Area1.y, RandomZ) + Vector3.up * 20, Target.transform.rotation);
+                else
+                    Instantiate(Bomb, new Vector3(RandomX, Area1.y, RandomZ) + Vector3.up * 20, Target.transform.rotation);
+                Instantiate(BombAim, new Vector3(RandomX, Area1.y + 1, RandomZ), Target.transform.rotation);
+                TimerToSpawnBomb = 0;
+            }
             else
-                Instantiate(Bomb, new Vector3(RandomX, Area1.y, RandomZ) + Vector3.up * 20, Target.transform.rotation);
-
-            Instantiate(BombAim, new Vector3(RandomX, Area1.y + 1, RandomZ), Target.transform.rotation);
-            TimerToSpawnBomb = 0;
+            {
+                if (random <= 1)
+                    Instantiate(BombFail, new Vector3(RandomX, Area1.y, RandomZ) + Vector3.up * 20, Target.transform.rotation);
+                else
+                    Instantiate(PoisonBomb, new Vector3(RandomX, Area1.y, RandomZ) + Vector3.up * 20, Target.transform.rotation);
+                Instantiate(BombAim, new Vector3(RandomX, Area1.y + 1, RandomZ), Target.transform.rotation);
+                TimerToSpawnBomb = 0;
+            }
         }
 
         if (Timer > 20)

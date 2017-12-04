@@ -62,7 +62,17 @@ public class TesteTV : MonoBehaviour {
     public int QuantRes;
     public int SelectedRes;
     // Use this for initialization
+
+        
+
     void Start () {
+
+        //Confirmar
+        //FMODUnity.RuntimeManager.PlayOneShot("event:/Menu/Confirm", transform.position);
+        //Selecionar
+        //FMODUnity.RuntimeManager.PlayOneShot("event:/Menu/Select", transform.position);
+
+
         _Resolutions = Screen.resolutions;
         _CurrentRes = Screen.currentResolution;
 

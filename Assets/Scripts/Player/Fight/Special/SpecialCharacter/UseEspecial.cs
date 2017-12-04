@@ -24,6 +24,11 @@ public class UseEspecial : MonoBehaviour {
 
     public bool UsingSpecial()
     {
+        if(Horn)
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Horn/Falas/Uiltimate_Horn", transform.position);
+        else
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Liz/Falas/Ultimate_Liz", transform.position);
+
         Timer += Time.deltaTime;
         if (UseForce)
         {
